@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="MirrorNotes Support — get help with the app.">
   <meta name="theme-color" content="#160408">
   <title>Support — MirrorNotes</title>
@@ -18,7 +18,8 @@
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
-    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(13,2,4,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    nav { position: sticky; top: 0; z-index: 100; padding: env(safe-area-inset-top, 0px) 24px 0; height: calc(60px + env(safe-area-inset-top, 0px)); display: flex; align-items: flex-end; gap: 16px; background: rgba(13,2,4,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    nav > * { padding-bottom: 12px; }
     .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
     .nav-sep  { color: var(--text-3); }
