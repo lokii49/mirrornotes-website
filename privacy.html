@@ -359,7 +359,7 @@
         <li>Your journal entries never leave your device. Ever.</li>
         <li>All AI inference runs locally on your iPhone (Gemma 3 1B). No cloud AI.</li>
         <li>iCloud sync goes to your own Apple account — we cannot access it.</li>
-        <li>We collect only what's needed for auth (Sign In with Apple) and subscription (RevenueCat).</li>
+        <li>We collect only what's needed for subscription management (RevenueCat). No account or sign-in required.</li>
         <li>We do not sell your data, profile you, or use your data for advertising.</li>
         <li>You can delete your account and all associated data at any time.</li>
       </ul>
@@ -417,15 +417,9 @@
             <td><span class="tag tag-none">Never</span></td>
           </tr>
           <tr>
-            <td><strong>Apple ID (anonymized)</strong><br><small>From Sign In with Apple</small></td>
-            <td>Authentication</td>
-            <td>Supabase (your user ID only)</td>
-            <td><span class="tag tag-third">Auth only</span></td>
-          </tr>
-          <tr>
             <td><strong>Subscription status</strong><br><small>Tier, expiry, renewal status</small></td>
             <td>Feature gating</td>
-            <td>Supabase subscriptions table</td>
+            <td>RevenueCat servers</td>
             <td><span class="tag tag-third">Yes (RevenueCat)</span></td>
           </tr>
           <tr>
@@ -459,16 +453,12 @@
     <div class="policy-section">
       <h2>4. Third-party services</h2>
 
-      <h3>Supabase (authentication and subscription)</h3>
-      <p>We use Supabase to store your authentication record (Apple user ID) and your subscription tier. No journal data is ever stored in or transmitted to Supabase. Row-Level Security is enforced: you can only read your own row.</p>
-      <p>Supabase Privacy Policy: <a href="https://supabase.com/privacy" target="_blank" rel="noopener">supabase.com/privacy</a></p>
-
       <h3>RevenueCat (subscription management)</h3>
       <p>RevenueCat processes in-app purchase receipts from Apple and updates your subscription status. RevenueCat receives your Apple purchase receipts and assigns you a subscriber ID. No journal data is involved.</p>
       <p>RevenueCat Privacy Policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
-      <h3>Apple (Sign In with Apple + iCloud + App Store)</h3>
-      <p>Sign In with Apple provides authentication. Apple may share a unique, anonymized user identifier with us — it is not your email address unless you choose to share it. Apple CloudKit syncs your entries between your devices using your iCloud account. Apple handles all payment processing for subscriptions.</p>
+      <h3>Apple (iCloud + App Store)</h3>
+      <p>Apple CloudKit syncs your entries between your devices using your iCloud account. Apple handles all payment processing for subscriptions. No account or sign-in is required to use MirrorNotes.</p>
       <p>Apple Privacy Policy: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
       <div class="callout callout-warn">
@@ -497,16 +487,16 @@
       <h3>Your journal entries</h3>
       <p>Stored on-device. Deleted immediately when you delete them. No server copy exists. If you delete the app, SwiftData is cleared. iCloud copies are managed by your Apple ID settings.</p>
 
-      <h3>Authentication and subscription data</h3>
-      <p>Stored in Supabase for as long as your account is active. Deleted within 30 days of account deletion request.</p>
+      <h3>Subscription data</h3>
+      <p>Subscription status is stored by RevenueCat for as long as you have an active subscription. Deleted within 30 days of a deletion request.</p>
 
-      <h3>How to delete your account</h3>
+      <h3>How to delete your data</h3>
       <ol>
         <li>Open MirrorNotes → Settings → Account</li>
         <li>Tap "Delete Account"</li>
         <li>Confirm deletion</li>
       </ol>
-      <p>This deletes your authentication record and subscription status from our servers. Your journal entries — stored locally and in your iCloud — must be deleted separately through iOS Settings or by deleting the app.</p>
+      <p>This removes your subscription status from RevenueCat. Your journal entries — stored locally and in your iCloud — must be deleted separately through iOS Settings or by deleting the app.</p>
 
       <p>You may also contact us at <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> to request account deletion.</p>
     </div>
@@ -530,7 +520,7 @@
       <p>We do not sell or share personal information for cross-context behavioral advertising. We collect only the minimum data necessary to provide the service. You have the right to know, delete, and opt-out as described above.</p>
 
       <h3>European residents (GDPR)</h3>
-      <p>Our legal basis for processing authentication and subscription data is contract performance (providing the service you signed up for). You have the rights described above under GDPR Articles 15–22. To lodge a complaint, contact your local Data Protection Authority.</p>
+      <p>Our legal basis for processing subscription data is contract performance (providing the service you signed up for). You have the rights described above under GDPR Articles 15–22. To lodge a complaint, contact your local Data Protection Authority.</p>
     </div>
 
     <!-- 8 -->
@@ -538,10 +528,8 @@
       <h2>8. Security</h2>
       <p>We take security seriously:</p>
       <ul>
-        <li>Authentication tokens are stored in iOS Keychain only — never in plain text.</li>
-        <li>Supabase Row-Level Security (RLS) ensures each user can only access their own subscription row.</li>
-        <li>All network requests (to Supabase and RevenueCat) use HTTPS/TLS.</li>
-        <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to auth and subscription status — not your writing.</li>
+        <li>All network requests (to RevenueCat and Apple) use HTTPS/TLS.</li>
+        <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to subscription status only — not your writing.</li>
       </ul>
       <p>If you discover a security vulnerability, please report it to <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
     </div>
