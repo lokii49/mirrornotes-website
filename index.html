@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MirrorNotes — AI-powered journaling that runs entirely on your iPhone. Your words never leave your device.">
-  <meta name="theme-color" content="#160408">
-  <title>MirrorNotes — Private AI Journaling</title>
+  <meta name="description" content="MirrorNotes — AI journaling that runs entirely on your iPhone. Your words never leave your device. On-device Gemma 3, daily prompts, mood tracking.">
+  <meta name="theme-color" content="#0D0204">
+  <title>MirrorNotes — Private AI Journaling for iPhone</title>
 
-  <!-- Open Graph -->
   <meta property="og:title" content="MirrorNotes — Private AI Journaling">
   <meta property="og:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device.">
   <meta property="og:type" content="website">
@@ -17,17 +16,12 @@
   <meta name="twitter:title" content="MirrorNotes — Private AI Journaling">
   <meta name="twitter:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device.">
   <meta name="twitter:image" content="https://mirrornotes.org/og-image.png">
-
-  <!-- Google Search Console -->
   <meta name="google-site-verification" content="r6y-d314u0xezNPKN9lB7S1LJKVik6BIIPhgTKuhrDo">
-
-  <!-- SEO -->
   <link rel="canonical" href="https://mirrornotes.org">
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <meta name="keywords" content="private journal app, AI journaling, offline journal, on-device AI, mood tracking, daily diary, MirrorNotes">
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,48 +32,25 @@
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": [
-      {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "description": "Free — unlimited entries forever"
-      },
-      {
-        "@type": "Offer",
-        "price": "2.99",
-        "priceCurrency": "USD",
-        "description": "Core tier — Daily Nudge, Ask, Weekly Digest"
-      },
-      {
-        "@type": "Offer",
-        "price": "4.99",
-        "priceCurrency": "USD",
-        "description": "Deep tier — unlimited Ask, Mood Timeline, Monthly Report"
-      }
+      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Free — unlimited entries forever"},
+      {"@type": "Offer","price": "2.99","priceCurrency": "USD","description": "Core tier — Daily Nudge, Ask, Weekly Digest"},
+      {"@type": "Offer","price": "4.99","priceCurrency": "USD","description": "Deep tier — unlimited Ask, Mood Timeline, Monthly Report"}
     ],
     "url": "https://mirrornotes.org",
     "downloadUrl": "https://apps.apple.com/app/id6769007201",
     "screenshot": "https://mirrornotes.org/og-image.png",
-    "author": {
-      "@type": "Person",
-      "name": "Lokesh Pudhari"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "ratingCount": "1"
-    }
+    "author": {"@type": "Person","name": "Lokesh Pudhari"},
+    "aggregateRating": {"@type": "AggregateRating","ratingValue": "5","ratingCount": "1"}
   }
   </script>
 
   <style>
-    /* ---- Reset & Base ---- */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --bg:         #0D0204;
       --surface:    #160408;
       --surface2:   #1E060A;
+      --surface3:   #250810;
       --crimson:    #7A1E2A;
       --crimson-lt: #9B2535;
       --red:        #FF453A;
@@ -91,984 +62,512 @@
       --text-2:     #B8A8A8;
       --text-3:     #7A6468;
       --border:     rgba(255,255,255,0.07);
+      --border-2:   rgba(255,255,255,0.12);
       --radius-sm:  12px;
       --radius-md:  20px;
       --radius-lg:  32px;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    /* ---- Noise overlay ---- */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
+      pointer-events: none; z-index: 9999; opacity: 0.4;
     }
 
-    /* ---- Typography ---- */
     .label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-3);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--text-3);
     }
+    h1 { font-size: clamp(42px, 8vw, 84px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+    h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+    h3 { font-size: clamp(17px, 2.5vw, 22px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; }
+    p  { color: var(--text-2); line-height: 1.75; }
 
-    h1 { font-size: clamp(40px, 8vw, 80px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
-    h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
-    h3 { font-size: clamp(18px, 2.5vw, 24px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; }
-    p  { color: var(--text-2); line-height: 1.7; }
-
-    /* ---- Layout ---- */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     section { padding: 120px 0; }
 
-    /* ---- Navigation ---- */
+    /* nav */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(13,2,4,0.72);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 24px; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(13,2,4,0.82);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
     }
-
-    .nav-logo svg {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      transition: color 0.2s;
-    }
-
+    .nav-logo svg { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-2); transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
-
     .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: var(--crimson);
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 600;
-      color: white !important;
-      transition: background 0.2s, transform 0.15s;
+      display: flex; align-items: center; gap: 7px; padding: 7px 16px;
+      background: white; border-radius: 100px; font-size: 13px; font-weight: 700;
+      color: #0D0204 !important; transition: opacity 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: var(--crimson-lt); transform: translateY(-1px); }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    /* ---- Hero ---- */
+    /* hero */
     #hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      min-height: 100svh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 110px 24px 60px; position: relative; overflow: hidden;
     }
-
     .hero-glow {
-      position: absolute;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(122,30,42,0.35) 0%, rgba(122,30,42,0.1) 40%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -60%);
-      pointer-events: none;
+      position: absolute; width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(122,30,42,0.28) 0%, rgba(122,30,42,0.08) 45%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -65%); pointer-events: none;
     }
-
+    .hero-glow-2 {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(10,132,255,0.07) 0%, transparent 70%);
+      bottom: 10%; right: 5%; pointer-events: none;
+    }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 100px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-2);
-      margin-bottom: 32px;
-      position: relative;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px 5px 8px; border-radius: 100px;
+      border: 1px solid rgba(48,209,88,0.25); background: rgba(48,209,88,0.07);
+      font-size: 12px; font-weight: 600; color: #6be08c; margin-bottom: 36px; position: relative;
     }
-
     .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: pulse 2s infinite;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 10px var(--green); animation: pulse 2.5s infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    #hero h1 {
-      max-width: 800px;
-      position: relative;
-    }
-
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    #hero h1 { max-width: 860px; position: relative; z-index: 1; }
     .gradient-text {
-      background: linear-gradient(135deg, #FF453A 0%, #FF9F0A 30%, #FFD60A 55%, #30D158 80%, #0A84FF 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF9F0A 35%, #FFD60A 60%, #30D158 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-
-    #hero p {
-      font-size: clamp(16px, 2vw, 20px);
-      max-width: 560px;
-      margin: 24px auto 48px;
-      line-height: 1.65;
+    .hero-sub-head {
+      font-size: clamp(16px, 2.2vw, 21px); max-width: 580px; margin: 28px auto 0;
+      color: var(--text-2); line-height: 1.7; position: relative;
     }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .hero-privacy-counter {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin: 20px 0 40px; padding: 8px 20px;
+      background: rgba(48,209,88,0.06); border: 1px solid rgba(48,209,88,0.18);
+      border-radius: 100px; font-size: 13px; font-weight: 500; color: #6be08c;
     }
-
+    .counter-num {
+      font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em; font-family: 'SF Mono', 'Menlo', monospace;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
     .btn-primary {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      background: white;
-      color: #0D0204;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      display: flex; align-items: center; gap: 9px; padding: 14px 26px;
+      background: white; color: #0D0204; border-radius: 14px;
+      font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
       transition: transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-    }
-    .btn-primary svg { width: 22px; height: 22px; }
-
-    .btn-secondary {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-2);
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 56px rgba(0,0,0,0.6); }
+    .btn-primary svg { width: 20px; height: 20px; }
+    .btn-ghost {
+      display: flex; align-items: center; gap: 8px; padding: 14px 22px;
+      border: 1px solid var(--border-2); border-radius: 14px;
+      font-size: 15px; font-weight: 500; color: var(--text-2);
       transition: border-color 0.2s, color 0.2s, transform 0.15s;
     }
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.2);
-      color: var(--text);
-      transform: translateY(-1px);
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.22); color: var(--text); transform: translateY(-1px); }
+    .hero-proof {
+      margin-top: 56px; display: flex; align-items: center;
+      gap: 28px; flex-wrap: wrap; justify-content: center;
     }
+    .hero-proof-item { text-align: center; }
+    .hero-proof-item .pn { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; }
+    .hero-proof-item .pl { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+    .proof-sep { width: 1px; height: 32px; background: var(--border); }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase;
+      animation: fadeUpDown 2.5s ease-in-out infinite;
+    }
+    @keyframes fadeUpDown { 0%,100%{opacity:0.4;transform:translateX(-50%) translateY(0)} 50%{opacity:1;transform:translateX(-50%) translateY(-6px)} }
 
-    .hero-sub {
-      margin-top: 56px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat .num {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-    .hero-stat .desc {
-      font-size: 13px;
-      color: var(--text-3);
-      margin-top: 2px;
-    }
-
-    .hero-divider {
-      width: 1px;
-      height: 36px;
-      background: var(--border);
-    }
-
-    /* ---- Phone Mockup ---- */
-    .phone-section {
-      padding: 0 0 120px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .phone-wrap {
-      position: relative;
-      width: 280px;
-    }
-
-    .phone-frame {
-      width: 280px;
-      height: 560px;
-      background: linear-gradient(160deg, #1a1a1a, #111);
-      border-radius: 48px;
-      border: 1px solid rgba(255,255,255,0.12);
+    /* live demo */
+    #live-demo { padding: 0 0 100px; }
+    .demo-wrap { max-width: 760px; margin: 0 auto; }
+    .demo-label { text-align: center; margin-bottom: 20px; }
+    .demo-label p { font-size: 14px; margin-top: 6px; color: var(--text-3); }
+    .demo-card {
+      background: var(--surface); border: 1px solid var(--border-2); border-radius: 24px;
       overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.05) inset,
-        0 48px 120px rgba(0,0,0,0.8),
-        0 0 80px rgba(122,30,42,0.3);
-      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04) inset;
     }
-
-    .phone-screen {
-      position: absolute;
-      inset: 3px;
-      border-radius: 46px;
-      background: var(--surface);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+    .demo-top {
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
     }
-
-    .phone-notch {
-      width: 120px;
-      height: 32px;
-      background: #111;
-      border-radius: 0 0 20px 20px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 10;
+    .demo-top-dots { display: flex; gap: 6px; }
+    .demo-top-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r{background:#FF5F57}.dot-y{background:#FFBD2E}.dot-g{background:#28CA41}
+    .demo-top-title { font-size: 12px; font-weight: 600; color: var(--text-3); flex: 1; text-align: center; letter-spacing: 0.05em; }
+    .demo-body { padding: 28px; }
+    .demo-prompt-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+    .demo-textarea {
+      width: 100%; min-height: 96px; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-2); border-radius: 14px;
+      padding: 16px; color: var(--text); font-size: 15px;
+      font-family: inherit; line-height: 1.65; resize: none; outline: none;
+      transition: border-color 0.2s; caret-color: var(--red);
     }
-
-    .phone-content {
-      flex: 1;
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .demo-textarea::placeholder { color: var(--text-3); }
+    .demo-textarea:focus { border-color: rgba(255,69,58,0.35); }
+    .demo-counter {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 8px; padding: 0 4px;
     }
-
-    .phone-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 0 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+    .demo-bytes { font-size: 12px; color: var(--green); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+    .demo-chars { font-size: 12px; color: var(--text-3); font-family: 'SF Mono', monospace; }
+    .demo-nudge {
+      margin-top: 20px; padding: 18px 20px;
+      background: rgba(255,69,58,0.07); border: 1px solid rgba(255,69,58,0.18);
+      border-radius: 14px; opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
-
-    .phone-date {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-3);
+    .demo-nudge.visible { opacity: 1; transform: none; }
+    .demo-nudge-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
     }
-
-    .phone-streak {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--orange);
+    .demo-nudge-tag::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red); box-shadow: 0 0 8px var(--red);
     }
-
-    .phone-nudge {
-      background: rgba(255,69,58,0.1);
-      border: 1px solid rgba(255,69,58,0.2);
-      border-radius: 12px;
-      padding: 12px 14px;
+    .demo-nudge-text { font-size: 15px; color: var(--text); line-height: 1.65; }
+    .demo-nudge-footer { font-size: 12px; color: var(--text-3); margin-top: 8px; }
+    .demo-thinking {
+      margin-top: 20px; padding: 14px 18px;
+      background: rgba(255,255,255,0.03); border-radius: 12px;
+      display: flex; align-items: center; gap: 10px;
+      opacity: 0; transition: opacity 0.3s;
     }
-
-    .phone-nudge-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 4px;
+    .demo-thinking.visible { opacity: 1; }
+    .thinking-dots { display: flex; gap: 4px; }
+    .thinking-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--text-3);
+      animation: thinkDot 1.4s infinite;
     }
+    .thinking-dot:nth-child(2){animation-delay:0.2s}.thinking-dot:nth-child(3){animation-delay:0.4s}
+    @keyframes thinkDot { 0%,60%,100%{opacity:0.3;transform:scale(1)} 30%{opacity:1;transform:scale(1.3)} }
+    .thinking-label { font-size: 12px; color: var(--text-3); }
+    .demo-notice { text-align: center; margin-top: 14px; font-size: 12px; color: var(--text-3); }
 
-    .phone-nudge-text {
-      font-size: 12px;
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .phone-entries {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .phone-entry {
-      background: rgba(255,255,255,0.04);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-
-    .phone-entry-date {
-      font-size: 9px;
-      color: var(--text-3);
-      margin-bottom: 3px;
-    }
-
-    .phone-entry-preview {
-      font-size: 11.5px;
-      color: var(--text-2);
-      line-height: 1.4;
-    }
-
-    .phone-write-btn {
-      margin-top: auto;
-      background: var(--crimson);
-      border-radius: 14px;
-      padding: 12px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: white;
-      box-shadow: 0 4px 20px rgba(122,30,42,0.4);
-    }
-
-    /* ---- Privacy Promise ---- */
-    #privacy-promise {
-      padding: 80px 0;
-    }
-
-    .promise-banner {
-      background: linear-gradient(135deg, rgba(30,6,10,0.9) 0%, rgba(22,4,8,0.95) 100%);
-      border: 1px solid rgba(255,69,58,0.2);
-      border-radius: var(--radius-lg);
-      padding: 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .promise-banner::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,69,58,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .promise-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(255,69,58,0.1);
-      border: 1px solid rgba(255,69,58,0.2);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 28px;
-    }
-
-    .promise-banner h2 { margin-bottom: 16px; }
-    .promise-banner p { max-width: 600px; margin: 0 auto 32px; font-size: 18px; }
-
-    .promise-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 100px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-    }
-
-    .chip-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    /* ---- Features ---- */
-    #features {
-      padding: 120px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-
+    /* section header */
+    .section-header { text-align: center; margin-bottom: 72px; }
     .section-header .label { margin-bottom: 12px; }
     .section-header h2 { margin-bottom: 16px; }
     .section-header p { max-width: 520px; margin: 0 auto; font-size: 18px; }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    /* privacy claim */
+    #privacy-claim { padding: 80px 0; }
+    .claim-inner { max-width: 900px; margin: 0 auto; text-align: center; padding: 0 24px; }
+    .claim-tag {
+      display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: 100px;
+      border: 1px solid rgba(255,69,58,0.2); background: rgba(255,69,58,0.06);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 28px;
+    }
+    .claim-inner blockquote {
+      font-size: clamp(22px, 3.5vw, 40px); font-weight: 700;
+      letter-spacing: -0.025em; line-height: 1.2; color: var(--text);
+    }
+    .claim-inner blockquote em { font-style: normal; color: var(--red); }
+    .claim-sub { margin-top: 20px; font-size: 17px; max-width: 560px; margin: 20px auto 0; color: var(--text-2); }
+    .arch-strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin: 48px auto 0; max-width: 680px; flex-wrap: wrap;
+    }
+    .arch-node {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--surface); min-width: 100px; text-align: center;
+    }
+    .arch-node-icon { font-size: 22px; }
+    .arch-node-label { font-size: 12px; font-weight: 600; color: var(--text-2); }
+    .arch-node-sub { font-size: 10px; color: var(--text-3); }
+    .arch-arrow { width: 48px; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 18px; flex-shrink: 0; }
+    .arch-arrow.blocked { color: var(--red); }
+    .arch-node.device { border-color: rgba(48,209,88,0.3); background: rgba(48,209,88,0.06); }
+    .arch-node.cloud-blocked {
+      border-color: rgba(255,69,58,0.2); background: rgba(255,69,58,0.04);
+      opacity: 0.45; position: relative;
+    }
+    .arch-node.cloud-blocked::after {
+      content: '\2715'; position: absolute; top: -8px; right: -8px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--red); color: white; font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 32px;
-      transition: border-color 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
+    /* bento */
+    #features { padding: 120px 0; }
+    .bento { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .bento-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px; overflow: hidden;
+      position: relative; transition: border-color 0.25s, transform 0.25s;
+    }
+    .bento-card:hover { border-color: var(--border-2); transform: translateY(-3px); }
+    .bento-card.wide { grid-column: span 2; }
+    .bento-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 18px;
+    }
+    .bi-red   { background:rgba(255,69,58,0.12);  border:1px solid rgba(255,69,58,0.2);  }
+    .bi-orange{ background:rgba(255,159,10,0.12); border:1px solid rgba(255,159,10,0.2); }
+    .bi-yellow{ background:rgba(255,214,10,0.12); border:1px solid rgba(255,214,10,0.2); }
+    .bi-green { background:rgba(48,209,88,0.12);  border:1px solid rgba(48,209,88,0.2);  }
+    .bi-blue  { background:rgba(10,132,255,0.12); border:1px solid rgba(10,132,255,0.2); }
+    .bento-card h3 { margin-bottom: 8px; }
+    .bento-card p  { font-size: 14px; line-height: 1.7; }
+    .bento-card-glow {
+      position: absolute; top: -40px; right: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      pointer-events: none; opacity: 0.08;
     }
 
-    .feature-card:hover {
-      border-color: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
+    /* nudge preview */
+    .nudge-preview {
+      margin-top: 20px; padding: 14px 16px;
+      background: rgba(255,69,58,0.08); border: 1px solid rgba(255,69,58,0.15); border-radius: 12px;
+    }
+    .nudge-preview-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+    .nudge-preview-text { font-size: 13px; color: var(--text); line-height: 1.55; transition: opacity 0.4s; }
+
+    /* ask preview */
+    .ask-preview { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .ask-q { font-size: 13px; color: var(--text-3); padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 10px 10px 3px 10px; }
+    .ask-a { font-size: 13px; color: var(--text); padding: 10px 14px; background: rgba(255,69,58,0.08); border: 1px solid rgba(255,69,58,0.12); border-radius: 3px 10px 10px 10px; line-height: 1.55; }
+
+    /* mood bar */
+    .mood-bar { margin-top: 20px; display: flex; gap: 3px; align-items: flex-end; height: 48px; }
+    .mood-bar-col { flex: 1; border-radius: 4px 4px 0 0; min-height: 8px; transition: height 1.2s ease; }
+
+    /* journey */
+    #journey { padding: 120px 0; background: linear-gradient(180deg, transparent, var(--surface) 12%, var(--surface) 88%, transparent); }
+    .journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; max-width: 960px; margin: 0 auto; }
+    .journey-step {
+      padding: 32px 24px;
+      border: 1px solid var(--border); background: var(--surface2);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .journey-step:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+    .journey-step:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .journey-step.unlocked { background: rgba(122,30,42,0.15); border-color: rgba(122,30,42,0.4); }
+    .journey-day { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 10px; }
+    .journey-step.unlocked .journey-day { color: var(--red); }
+    .journey-step h3 { font-size: 16px; margin-bottom: 8px; }
+    .journey-step p { font-size: 13px; line-height: 1.65; }
+    .journey-unlock-badge {
+      display: inline-block; margin-top: 12px; padding: 4px 10px;
+      background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.2);
+      border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--red);
     }
 
-    .feature-card.featured {
-      grid-column: span 2;
+    /* prompts */
+    #prompts { padding: 100px 0; }
+    .prompts-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .prompt-display {
+      margin: 40px 0 28px; padding: 40px 48px;
+      background: var(--surface); border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg); position: relative; min-height: 120px;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 20px;
-      position: relative;
+    .prompt-display::before {
+      content: '\201C'; position: absolute; top: 16px; left: 24px;
+      font-size: 60px; line-height: 1; color: var(--crimson); font-family: Georgia, serif; opacity: 0.5;
     }
-
-    .feature-card h3 { margin-bottom: 10px; }
-    .feature-card p { font-size: 15px; }
-
-    /* Color variants */
-    .fi-red   { background: rgba(255,69,58,0.12);  border: 1px solid rgba(255,69,58,0.2); }
-    .fi-orange{ background: rgba(255,159,10,0.12); border: 1px solid rgba(255,159,10,0.2);}
-    .fi-yellow{ background: rgba(255,214,10,0.12); border: 1px solid rgba(255,214,10,0.2);}
-    .fi-green { background: rgba(48,209,88,0.12);  border: 1px solid rgba(48,209,88,0.2); }
-    .fi-blue  { background: rgba(10,132,255,0.12); border: 1px solid rgba(10,132,255,0.2);}
-
-    .feature-card-glow {
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.12;
+    .prompt-text {
+      font-size: clamp(18px, 2.5vw, 24px); font-weight: 600;
+      letter-spacing: -0.02em; line-height: 1.4; color: var(--text); transition: opacity 0.3s ease;
     }
-
-    /* ---- How It Works ---- */
-    #how-it-works {
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent, var(--surface) 15%, var(--surface) 85%, transparent);
+    .prompt-controls { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .prompt-nav {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border-2); background: var(--surface);
+      color: var(--text-2); cursor: pointer; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
     }
-
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      max-width: 720px;
-      margin: 0 auto;
-      position: relative;
+    .prompt-nav:hover { background: var(--surface2); color: var(--text); }
+    .prompt-idx { font-size: 13px; color: var(--text-3); font-family: monospace; min-width: 48px; text-align: center; }
+    .prompt-try-btn {
+      padding: 10px 20px; border-radius: 100px;
+      background: var(--crimson); color: white; font-size: 14px; font-weight: 600;
+      cursor: pointer; border: none; transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block;
     }
+    .prompt-try-btn:hover { background: var(--crimson-lt); transform: translateY(-1px); }
 
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 24px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, var(--border) 10%, var(--border) 90%, transparent);
+    /* social proof */
+    #proof { padding: 80px 0; }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .proof-card {
+      padding: 28px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 16px;
+      transition: border-color 0.2s;
     }
-
-    .timeline-item {
-      display: flex;
-      gap: 28px;
-      padding: 32px 0;
-      position: relative;
+    .proof-card:hover { border-color: var(--border-2); }
+    .proof-stars { display: flex; gap: 3px; }
+    .proof-star { color: var(--yellow); font-size: 14px; }
+    .proof-quote { font-size: 14px; color: var(--text); line-height: 1.7; flex: 1; }
+    .proof-author { font-size: 12px; color: var(--text-3); font-weight: 600; }
+    .proof-editorial {
+      grid-column: span 3; padding: 20px 28px;
+      background: rgba(255,159,10,0.05); border: 1px solid rgba(255,159,10,0.2);
+      border-radius: var(--radius-md); display: flex; align-items: center; gap: 16px;
     }
-
-    .timeline-dot {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 2;
+    .proof-editorial-badge {
+      padding: 6px 14px; background: rgba(255,159,10,0.1); border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--orange); flex-shrink: 0;
     }
+    .proof-editorial-text { font-size: 14px; color: var(--text-2); }
+    .proof-editorial-text strong { color: var(--text); }
 
-    .timeline-body { padding-top: 8px; }
-    .timeline-body h3 { margin-bottom: 8px; }
-
-    /* ---- Pricing ---- */
-    #pricing {
-      padding: 120px 0;
-    }
-
+    /* pricing */
+    #pricing { padding: 120px 0; }
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 960px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      max-width: 960px; margin: 0 auto;
     }
-
     .pricing-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      transition: transform 0.2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 32px;
+      display: flex; flex-direction: column; gap: 22px; transition: transform 0.2s;
     }
-
     .pricing-card:hover { transform: translateY(-2px); }
-
     .pricing-card.popular {
-      background: linear-gradient(135deg, rgba(122,30,42,0.5) 0%, rgba(22,4,8,0.9) 100%);
-      border-color: rgba(122,30,42,0.6);
-      position: relative;
+      background: linear-gradient(160deg, rgba(122,30,42,0.4) 0%, rgba(22,4,8,0.9) 100%);
+      border-color: rgba(122,30,42,0.5); position: relative;
     }
-
     .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--crimson);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 100px;
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--crimson); color: white; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 16px; border-radius: 100px;
     }
-
     .pricing-header h3 { margin-bottom: 4px; }
-
-    .pricing-price {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
+    .pricing-price { display: flex; align-items: baseline; gap: 3px; }
+    .pricing-price .amount { font-size: 40px; font-weight: 800; letter-spacing: -0.04em; }
+    .pricing-price .period { font-size: 14px; color: var(--text-3); }
+    .pricing-price .free-tag { font-size: 40px; font-weight: 800; }
+    .pricing-alt { font-size: 12px; color: var(--text-3); margin-top: -10px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-2); }
+    .pricing-features li .ck {
+      flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%;
+      background: rgba(48,209,88,0.12); border: 1px solid rgba(48,209,88,0.28);
+      display: flex; align-items: center; justify-content: center; font-size: 9px; margin-top: 1px;
     }
-
-    .pricing-price .amount {
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
+    .pricing-features li .xk {
+      flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text-3); margin-top: 1px;
     }
-
-    .pricing-price .period {
-      font-size: 15px;
-      color: var(--text-3);
-    }
-
-    .pricing-price .free-tag {
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .pricing-alt {
-      font-size: 13px;
-      color: var(--text-3);
-      margin-top: -12px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .pricing-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-2);
-    }
-
-    .pricing-features li .check {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: rgba(48,209,88,0.15);
-      border: 1px solid rgba(48,209,88,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      margin-top: 1px;
-    }
-
-    .pricing-features li .x {
-      flex-shrink: 0;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: var(--text-3);
-      margin-top: 1px;
-    }
-
     .pricing-features li.muted { color: var(--text-3); }
-
     .pricing-cta {
-      display: block;
-      text-align: center;
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      font-size: 15px;
-      font-weight: 600;
-      transition: transform 0.15s, background 0.2s;
+      display: block; text-align: center; padding: 12px; border-radius: var(--radius-sm);
+      font-size: 15px; font-weight: 700; transition: transform 0.15s, background 0.2s;
     }
-
-    .pricing-cta-primary {
-      background: var(--crimson);
-      color: white;
-    }
-    .pricing-cta-primary:hover { background: var(--crimson-lt); transform: translateY(-1px); }
-
-    .pricing-cta-outline {
-      border: 1px solid var(--border);
-      color: var(--text-2);
-    }
-    .pricing-cta-outline:hover {
-      border-color: rgba(255,255,255,0.2);
-      color: var(--text);
-    }
-
-    .trial-note {
-      text-align: center;
-      font-size: 14px;
-      color: var(--text-3);
-      margin-top: 24px;
-    }
+    .cta-primary { background: var(--crimson); color: white; }
+    .cta-primary:hover { background: var(--crimson-lt); transform: translateY(-1px); }
+    .cta-outline { border: 1px solid var(--border-2); color: var(--text-2); }
+    .cta-outline:hover { border-color: rgba(255,255,255,0.2); color: var(--text); transform: translateY(-1px); }
+    .trial-note { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 24px; }
     .trial-note strong { color: var(--text-2); }
 
-    /* ---- Free promise ---- */
-    #free-promise {
-      padding: 80px 0;
-    }
+    /* final cta */
+    #final-cta { padding: 100px 0; }
+    .final-cta-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 24px; }
+    .final-cta-inner h2 { margin-bottom: 20px; }
+    .final-cta-inner p { font-size: 18px; max-width: 560px; margin: 0 auto 40px; }
+    .final-cta-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-    .free-promise-card {
-      max-width: 700px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, rgba(48,209,88,0.06) 0%, rgba(10,132,255,0.06) 100%);
-      border: 1px solid rgba(48,209,88,0.2);
-      border-radius: var(--radius-lg);
-      padding: 56px;
-      text-align: center;
-    }
-
-    .free-promise-card .promise-icon {
-      background: rgba(48,209,88,0.1);
-      border-color: rgba(48,209,88,0.25);
-    }
-
-    .free-promise-card h2 { margin-bottom: 16px; }
-    .free-promise-card p  { font-size: 17px; max-width: 520px; margin: 0 auto; }
-
-    /* ---- About ---- */
-    #about {
-      padding: 120px 0;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about-text .label { margin-bottom: 12px; }
-    .about-text h2 { margin-bottom: 20px; }
-    .about-text p { margin-bottom: 16px; font-size: 16px; }
-
-    .about-facts {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .fact {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-    }
-
-    .fact-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .fact-body h4 {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .fact-body p {
-      font-size: 13px;
-      color: var(--text-3);
-      margin: 0;
-    }
-
-    /* ---- Footer ---- */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 60px 0 48px;
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 32px;
-    }
-
+    /* footer */
+    footer { border-top: 1px solid var(--border); padding: 60px 0 48px; }
+    .footer-inner { display: flex; flex-direction: column; gap: 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
     .footer-brand .nav-logo { margin-bottom: 12px; }
-    .footer-brand p { font-size: 14px; color: var(--text-3); max-width: 280px; }
-
-    .footer-links {
-      display: flex;
-      gap: 64px;
-      flex-wrap: wrap;
-    }
-
-    .footer-link-group h4 {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-3);
-      margin-bottom: 16px;
-    }
-
-    .footer-link-group ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-link-group a {
-      font-size: 14px;
-      color: var(--text-2);
-      transition: color 0.2s;
-    }
+    .footer-brand p { font-size: 13px; color: var(--text-3); max-width: 260px; }
+    .footer-links { display: flex; gap: 56px; flex-wrap: wrap; }
+    .footer-link-group h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
+    .footer-link-group ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-link-group a { font-size: 13px; color: var(--text-2); transition: color 0.2s; }
     .footer-link-group a:hover { color: var(--text); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 12px; color: var(--text-3); }
 
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px; }
 
-    .footer-bottom p { font-size: 13px; color: var(--text-3); }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    /* ---- Mobile nav toggle ---- */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    /* ---- Responsive ---- */
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .feature-card.featured { grid-column: span 1; }
+    @media (max-width: 960px) {
+      .bento { grid-template-columns: 1fr 1fr; }
+      .bento-card.wide { grid-column: span 1; }
+      .journey-steps { grid-template-columns: 1fr 1fr; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .proof-editorial { grid-column: span 2; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
-      .about-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 680px) {
       .nav-links { display: none; }
       .menu-toggle { display: block; }
-      .features-grid { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: 1fr; }
+      .journey-steps { grid-template-columns: 1fr; }
+      .journey-step { border-radius: var(--radius-sm) !important; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-editorial { grid-column: span 1; flex-direction: column; gap: 10px; }
       section { padding: 80px 0; }
-      .promise-banner { padding: 40px 24px; }
-      .free-promise-card { padding: 40px 24px; }
-      h1 { font-size: 36px; }
+      h1 { font-size: 38px; }
       h2 { font-size: 28px; }
-      .footer-links { gap: 32px; }
-      .footer-top { flex-direction: column; }
-    }
-
-    /* ---- Scroll reveal ---- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ---- mood spectrum bar ---- */
-    .mood-spectrum {
-      height: 4px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #FF453A, #FF9F0A, #FFD60A, #30D158, #0A84FF);
-      margin: 32px auto 0;
-      max-width: 480px;
-      opacity: 0.5;
+      .prompt-display { padding: 28px 24px; }
+      .footer-links { gap: 28px; }
+      .arch-strip { flex-direction: column; }
+      .arch-arrow { transform: rotate(90deg); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Nav -->
   <nav>
     <a href="/" class="nav-logo">
       <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="nb" cx="50%" cy="44%" r="72%">
-            <stop offset="0%" stop-color="#5C1520"/>
-            <stop offset="58%" stop-color="#360C12"/>
-            <stop offset="100%" stop-color="#160408"/>
+            <stop offset="0%" stop-color="#5C1520"/><stop offset="58%" stop-color="#360C12"/><stop offset="100%" stop-color="#160408"/>
           </radialGradient>
           <linearGradient id="nc" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7A1E2A"/>
-            <stop offset="100%" stop-color="#3A0C14"/>
-          </linearGradient>
-          <linearGradient id="nl1" x1="455" y1="588" x2="455" y2="443" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#FF453A"/><stop offset="100%" stop-color="#FF9F0A"/>
-          </linearGradient>
-          <linearGradient id="nl2" x1="455" y1="443" x2="540" y2="528" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#FF9F0A"/><stop offset="100%" stop-color="#FFD60A"/>
-          </linearGradient>
-          <linearGradient id="nl3" x1="540" y1="528" x2="625" y2="443" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#FFD60A"/><stop offset="100%" stop-color="#30D158"/>
-          </linearGradient>
-          <linearGradient id="nl4" x1="625" y1="443" x2="625" y2="588" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#30D158"/><stop offset="100%" stop-color="#0A84FF"/>
+            <stop offset="0%" stop-color="#7A1E2A"/><stop offset="100%" stop-color="#3A0C14"/>
           </linearGradient>
         </defs>
         <rect width="1024" height="1024" fill="url(#nb)"/>
         <g transform="translate(512,512) scale(1.375) translate(-549,-516)">
           <rect x="357" y="252" width="366" height="528" rx="22" fill="url(#nc)"/>
           <g stroke-linecap="round" stroke-width="5" opacity="0.92">
-            <line x1="455" y1="588" x2="455" y2="443" stroke="url(#nl1)"/>
-            <line x1="455" y1="443" x2="540" y2="528" stroke="url(#nl2)"/>
-            <line x1="540" y1="528" x2="625" y2="443" stroke="url(#nl3)"/>
-            <line x1="625" y1="443" x2="625" y2="588" stroke="url(#nl4)"/>
+            <line x1="455" y1="588" x2="455" y2="443" stroke="#FF453A"/>
+            <line x1="455" y1="443" x2="540" y2="528" stroke="#FF9F0A"/>
+            <line x1="540" y1="528" x2="625" y2="443" stroke="#FFD60A"/>
+            <line x1="625" y1="443" x2="625" y2="588" stroke="#30D158"/>
           </g>
           <circle cx="455" cy="588" r="21" fill="#FF453A"/>
           <circle cx="455" cy="443" r="21" fill="#FF9F0A"/>
@@ -1079,231 +578,307 @@
       </svg>
       MirrorNotes
     </a>
-
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
-      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#prompts">Try a prompt</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="privacy.html">Privacy</a></li>
     </ul>
-
     <a href="https://apps.apple.com/app/id6769007201" class="nav-cta nav-links" target="_blank" rel="noopener">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      App Store
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Get App
     </a>
+    <button class="menu-toggle" aria-label="Menu">&#9776;</button>
   </nav>
 
   <!-- Hero -->
   <section id="hero">
     <div class="hero-glow"></div>
-
+    <div class="hero-glow-2"></div>
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       AI runs entirely on your device — zero cloud
     </div>
-
-    <h1>Your journal.<br><span class="gradient-text">Yours alone.</span></h1>
-
-    <p>AI-powered journaling that never reads your words in the cloud. Gemma 3 runs on your iPhone. Your entries stay on your device — always.</p>
-
+    <h1>The journal that<br><span class="gradient-text">listens in private.</span></h1>
+    <p class="hero-sub-head">Write anything. The AI that reflects it back lives on your iPhone — not on someone's server. Not in a data center. Not anywhere your words can travel.</p>
+    <div class="hero-privacy-counter">
+      <span>Bytes sent to any server while you use MirrorNotes:</span>
+      <span class="counter-num">0</span>
+    </div>
     <div class="hero-actions">
       <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download on the App Store
+        Download Free on App Store
       </a>
-      <a href="#features" class="btn-secondary">See what it does →</a>
+      <a href="#live-demo" class="btn-ghost">See it work &#8594;</a>
     </div>
-
-    <div class="hero-sub">
-      <div class="hero-stat">
-        <div class="num gradient-text">∞</div>
-        <div class="desc">Free entries, forever</div>
+    <div class="hero-proof">
+      <div class="hero-proof-item">
+        <div class="pn gradient-text">&#8734;</div>
+        <div class="pl">Free entries, forever</div>
       </div>
-      <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <div class="num" style="color:var(--green)">0</div>
-        <div class="desc">Bytes sent to any server</div>
+      <div class="proof-sep"></div>
+      <div class="hero-proof-item">
+        <div class="pn" style="color:var(--green)">0</div>
+        <div class="pl">Bytes to any server</div>
       </div>
-      <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <div class="num" style="color:var(--blue)">On&#8209;device</div>
-        <div class="desc">Gemma 3 · 1B · local</div>
+      <div class="proof-sep"></div>
+      <div class="hero-proof-item">
+        <div class="pn" style="color:var(--blue);font-size:20px">Gemma 3</div>
+        <div class="pl">On-device · 1B params · local</div>
+      </div>
+      <div class="proof-sep"></div>
+      <div class="hero-proof-item">
+        <div class="pn" style="color:var(--orange)">&#9733; 5.0</div>
+        <div class="pl">App Store rating</div>
       </div>
     </div>
-
-    <div class="mood-spectrum"></div>
+    <div class="scroll-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Scroll
+    </div>
   </section>
 
-  <!-- Phone mockup -->
-  <div class="phone-section">
-    <div class="phone-wrap reveal">
-      <div class="phone-frame">
-        <div class="phone-screen">
-          <div class="phone-notch"></div>
-          <div class="phone-content">
-            <div class="phone-header">
-              <span class="phone-date">Thursday · May 15</span>
-              <span class="phone-streak">🔥 14 days</span>
+  <!-- Live Demo -->
+  <section id="live-demo">
+    <div class="container">
+      <div class="demo-wrap reveal">
+        <div class="demo-label">
+          <div class="label">Live preview</div>
+          <p>Type how you&rsquo;re feeling. Watch a Daily Nudge appear &mdash; simulated here, but this is exactly how it works on your phone.</p>
+        </div>
+        <div class="demo-card">
+          <div class="demo-top">
+            <div class="demo-top-dots">
+              <div class="demo-top-dot dot-r"></div>
+              <div class="demo-top-dot dot-y"></div>
+              <div class="demo-top-dot dot-g"></div>
             </div>
-            <div class="phone-nudge">
-              <div class="phone-nudge-label">Daily Nudge</div>
-              <div class="phone-nudge-text">You keep coming back to the word "enough" in your entries. What would "enough" feel like today?</div>
-            </div>
-            <div class="phone-entries">
-              <div class="phone-entry">
-                <div class="phone-entry-date">Yesterday</div>
-                <div class="phone-entry-preview">Spent the morning walking without a destination. Kept thinking about the conversation with...</div>
+            <div class="demo-top-title">MirrorNotes &mdash; Today&rsquo;s Entry</div>
+          </div>
+          <div class="demo-body">
+            <div class="demo-prompt-label">What&rsquo;s on your mind?</div>
+            <textarea class="demo-textarea" id="demo-input" placeholder="Start writing anything &mdash; about your day, how you feel, what&rsquo;s weighing on you..." rows="4"></textarea>
+            <div class="demo-counter">
+              <div class="demo-bytes">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span id="byte-display">0 bytes sent to any server</span>
               </div>
-              <div class="phone-entry">
-                <div class="phone-entry-date">Tuesday</div>
-                <div class="phone-entry-preview">Something shifted today. I can't name it yet but I noticed I wasn't checking my phone every...</div>
-              </div>
+              <div class="demo-chars"><span id="char-count">0</span> chars</div>
             </div>
-            <div class="phone-write-btn">Write today's entry →</div>
+            <div class="demo-thinking" id="demo-thinking">
+              <div class="thinking-dots">
+                <div class="thinking-dot"></div>
+                <div class="thinking-dot"></div>
+                <div class="thinking-dot"></div>
+              </div>
+              <div class="thinking-label">Gemma 3 thinking on your device&hellip;</div>
+            </div>
+            <div class="demo-nudge" id="demo-nudge">
+              <div class="demo-nudge-tag">Daily Nudge &mdash; generated on-device</div>
+              <div class="demo-nudge-text" id="demo-nudge-text"></div>
+              <div class="demo-nudge-footer">&#8627; 0 bytes left this device &middot; Gemma 3 1B &middot; on-device inference</div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-notice">Simulated prompt here. On your iPhone, Gemma 3 runs the real thing &mdash; on your chip, in under a second.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Architecture -->
+  <section id="privacy-claim">
+    <div class="container">
+      <div class="claim-inner reveal">
+        <div class="claim-tag">Not a policy. An architecture.</div>
+        <blockquote>Your journal text <em>cannot</em> leave your phone.<br>There is no server to send it to.</blockquote>
+        <p class="claim-sub">We didn&rsquo;t build a privacy policy around cloud AI. We removed the cloud entirely. Gemma 3 runs on your iPhone&rsquo;s Neural Engine &mdash; the same chip that powers Face ID. No network call. Nothing to intercept.</p>
+        <div class="arch-strip">
+          <div class="arch-node device">
+            <div class="arch-node-icon">&#128241;</div>
+            <div class="arch-node-label">Your iPhone</div>
+            <div class="arch-node-sub">Journal + Gemma 3</div>
+          </div>
+          <div class="arch-arrow">&#8594;</div>
+          <div class="arch-node device">
+            <div class="arch-node-icon">&#9729;&#65039;</div>
+            <div class="arch-node-label">Your iCloud</div>
+            <div class="arch-node-sub">Private to you</div>
+          </div>
+          <div class="arch-arrow blocked">&#10005;</div>
+          <div class="arch-node cloud-blocked">
+            <div class="arch-node-icon">&#127758;</div>
+            <div class="arch-node-label">Any Server</div>
+            <div class="arch-node-sub">Never reached</div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Privacy Promise -->
-  <section id="privacy-promise">
-    <div class="container">
-      <div class="promise-banner reveal">
-        <div class="promise-icon">🔒</div>
-        <h2>Your words never leave your phone.</h2>
-        <p>This is not a marketing claim. It is an architectural fact. The AI model lives on your device. There is no server that reads your entries. There is nothing to leak, subpoena, or breach.</p>
-        <div class="promise-chips">
-          <div class="chip"><span class="chip-dot" style="background:var(--green)"></span>Zero journal data to any server</div>
-          <div class="chip"><span class="chip-dot" style="background:var(--blue)"></span>On-device AI only (Gemma 3 1B)</div>
-          <div class="chip"><span class="chip-dot" style="background:var(--orange)"></span>iCloud sync stays in your account</div>
-          <div class="chip"><span class="chip-dot" style="background:var(--yellow)"></span>No advertising, no tracking</div>
-          <div class="chip"><span class="chip-dot" style="background:var(--red)"></span>No profiling, no resale</div>
-        </div>
-      </div>
-    </div>
   </section>
 
-  <!-- Features -->
+  <!-- Features Bento -->
   <section id="features">
     <div class="container">
       <div class="section-header reveal">
         <div class="label">Features</div>
-        <h2>Everything you need to understand yourself.</h2>
-        <p>A focused set of tools — nothing more. Privacy-first, always.</p>
+        <h2>AI that knows you.<br>Stays with you.</h2>
+        <p>A focused set of tools built around the one thing that makes journaling work: honesty. All on-device.</p>
       </div>
-
-      <div class="features-grid">
-
-        <div class="feature-card featured reveal" style="transition-delay:0.05s">
-          <div class="feature-card-glow" style="background:var(--red)"></div>
-          <div class="feature-icon fi-red">✍️</div>
-          <h3>Write freely. Forever.</h3>
-          <p>Unlimited entries. No 30-day limit. No paywall on your own history. Even on the free tier, every word you've ever written is always yours to read. We believe your data is never the price of admission.</p>
+      <div class="bento">
+        <div class="bento-card wide reveal" style="transition-delay:0.05s">
+          <div class="bento-card-glow" style="background:var(--red)"></div>
+          <div class="bento-icon bi-red">&#9999;&#65039;</div>
+          <h3>Write freely. Your data stays free.</h3>
+          <p>Unlimited entries. No 30-day limit. No paywall on your own history. Every word you&rsquo;ve ever written is readable forever &mdash; even on free. Your data is never the price of admission.</p>
         </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.1s">
-          <div class="feature-card-glow" style="background:var(--blue)"></div>
-          <div class="feature-icon fi-blue">🧠</div>
-          <h3>AI on your device</h3>
-          <p>Gemma 3 1B runs locally. No API calls. No cost per query. No server logs your words. Real privacy — by architecture, not policy.</p>
-        </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.15s">
-          <div class="feature-card-glow" style="background:var(--orange)"></div>
-          <div class="feature-icon fi-orange">💡</div>
+        <div class="bento-card reveal" style="transition-delay:0.1s">
+          <div class="bento-card-glow" style="background:var(--orange)"></div>
+          <div class="bento-icon bi-orange">&#128161;</div>
           <h3>Daily Nudge</h3>
-          <p>Each morning, a reflection prompt drawn from your own patterns. Not generic inspiration — something it noticed in your writing.</p>
+          <p>Each morning: one question drawn from your own patterns. Not generic. Something it noticed in <em>your</em> writing.</p>
+          <div class="nudge-preview">
+            <div class="nudge-preview-tag">Today&rsquo;s nudge</div>
+            <div class="nudge-preview-text" id="rotating-nudge">You keep coming back to the word &ldquo;enough.&rdquo; What would enough feel like today?</div>
+          </div>
         </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.2s">
-          <div class="feature-card-glow" style="background:var(--yellow)"></div>
-          <div class="feature-icon fi-yellow">💬</div>
-          <h3>Ask anything</h3>
-          <p>Query your own history. "When was the last time I felt excited?" "What am I avoiding?" On-device. Instant. Private.</p>
+        <div class="bento-card reveal" style="transition-delay:0.15s">
+          <div class="bento-card-glow" style="background:var(--yellow)"></div>
+          <div class="bento-icon bi-yellow">&#128172;</div>
+          <h3>Ask your journal</h3>
+          <p>Query your own history in natural language. On-device. Instant. Private.</p>
+          <div class="ask-preview">
+            <div class="ask-q">When was the last time I felt excited?</div>
+            <div class="ask-a">Three weeks ago &mdash; you wrote about the design project and &ldquo;something finally clicked.&rdquo; You used the word &ldquo;flow&rdquo; twice.</div>
+          </div>
         </div>
-
-        <div class="feature-card featured reveal" style="transition-delay:0.25s">
-          <div class="feature-card-glow" style="background:var(--green)"></div>
-          <div class="feature-icon fi-green">📊</div>
-          <h3>Weekly Digest</h3>
-          <p>Every Sunday, a short synthesis of your week — themes, shifts, things worth returning to. Generated fresh on your phone. Stays on your phone.</p>
+        <div class="bento-card reveal" style="transition-delay:0.2s">
+          <div class="bento-card-glow" style="background:var(--blue)"></div>
+          <div class="bento-icon bi-blue">&#129504;</div>
+          <h3>On-device AI only</h3>
+          <p>Gemma 3 1B runs locally on the Neural Engine. No API calls. No server logs. Real privacy &mdash; by architecture.</p>
         </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.3s">
-          <div class="feature-card-glow" style="background:var(--blue)"></div>
-          <div class="feature-icon fi-blue">🔍</div>
-          <h3>Local full-text search</h3>
-          <p>Search every entry you've ever written. Instant. No indexing service. Your phone handles it all.</p>
+        <div class="bento-card wide reveal" style="transition-delay:0.25s">
+          <div class="bento-card-glow" style="background:var(--green)"></div>
+          <div class="bento-icon bi-green">&#128202;</div>
+          <h3>Mood Timeline &amp; Weekly Digest</h3>
+          <p>Every Sunday: a synthesis of your week &mdash; themes, emotional shifts, threads worth returning to. Plus a full mood timeline built from every entry. Generated on your phone. Stays on your phone.</p>
+          <div class="mood-bar" id="mood-bar"></div>
         </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.35s">
-          <div class="feature-card-glow" style="background:var(--orange)"></div>
-          <div class="feature-icon fi-orange">🔄</div>
+        <div class="bento-card reveal" style="transition-delay:0.3s">
+          <div class="bento-card-glow" style="background:var(--blue)"></div>
+          <div class="bento-icon bi-blue">&#128269;</div>
+          <h3>Full-text search</h3>
+          <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
+        </div>
+        <div class="bento-card reveal" style="transition-delay:0.35s">
+          <div class="bento-card-glow" style="background:var(--orange)"></div>
+          <div class="bento-icon bi-orange">&#128260;</div>
           <h3>iCloud backup</h3>
-          <p>Your entries sync to your iCloud — private to your Apple account. No third-party server ever stores your journal.</p>
+          <p>Entries sync to <em>your</em> iCloud &mdash; private to your Apple ID. We don&rsquo;t have access.</p>
         </div>
-
-        <div class="feature-card reveal" style="transition-delay:0.4s">
-          <div class="feature-card-glow" style="background:var(--red)"></div>
-          <div class="feature-icon fi-red">🎙️</div>
+        <div class="bento-card reveal" style="transition-delay:0.4s">
+          <div class="bento-card-glow" style="background:var(--red)"></div>
+          <div class="bento-icon bi-red">&#127908;</div>
           <h3>Voice to journal</h3>
-          <p>Speak your entry. It transcribes locally. No audio ever sent anywhere. Perfect for capturing thoughts mid-walk.</p>
+          <p>Speak your entry. Transcribed locally. No audio sent anywhere. Perfect for mid-walk thoughts.</p>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section id="how-it-works">
+  <!-- Journey -->
+  <section id="journey">
     <div class="container">
       <div class="section-header reveal">
         <div class="label">How it works</div>
-        <h2>AI that earns your trust before it speaks.</h2>
-        <p>We wait until MirrorNotes has learned from your writing before showing you AI insights. No weak guesses on day one.</p>
+        <h2>AI that earns trust<br>before it speaks.</h2>
+        <p>We wait until MirrorNotes has read enough of your writing before surfacing insights. No weak guesses on day one.</p>
       </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-dot">📖</div>
-          <div class="timeline-body">
-            <h3>Day 0 — Get oriented</h3>
-            <p>Three quick questions to calibrate MirrorNotes. Write your first entry. No account required to start.</p>
-          </div>
+      <div class="journey-steps reveal">
+        <div class="journey-step">
+          <div class="journey-day">Day 0</div>
+          <h3>Get oriented</h3>
+          <p>Three quick questions. Write your first entry. No account, no email, no sign-in.</p>
         </div>
-        <div class="timeline-item reveal" style="transition-delay:0.1s">
-          <div class="timeline-dot">🌱</div>
-          <div class="timeline-body">
-            <h3>Days 1–3 — Mirror is learning</h3>
-            <p>Write freely. No AI features yet — we need enough signal before offering insight. You see a quiet progress indicator instead of bad guesses.</p>
-          </div>
+        <div class="journey-step">
+          <div class="journey-day">Days 1&ndash;3</div>
+          <h3>Mirror is learning</h3>
+          <p>Write freely. No AI yet &mdash; we need signal before offering insight. You see a quiet progress bar instead of bad guesses.</p>
         </div>
-        <div class="timeline-item reveal" style="transition-delay:0.2s">
-          <div class="timeline-dot">✨</div>
-          <div class="timeline-body">
-            <h3>Day 4 — First Daily Nudge</h3>
-            <p>With 7+ entries, MirrorNotes knows your patterns. Your first nudge appears — specific to what you actually wrote. This is when we introduce paid tiers, right after you feel the value.</p>
-          </div>
+        <div class="journey-step unlocked">
+          <div class="journey-day">Day 4</div>
+          <h3>First Daily Nudge</h3>
+          <p>With 7+ entries, MirrorNotes knows your patterns. Your first nudge appears &mdash; specific to what you actually wrote.</p>
+          <span class="journey-unlock-badge">AI unlocks here</span>
         </div>
-        <div class="timeline-item reveal" style="transition-delay:0.3s">
-          <div class="timeline-dot">🌀</div>
-          <div class="timeline-body">
-            <h3>Week 2+ — Full experience</h3>
-            <p>Daily nudges, Ask, Weekly Digest on Sundays, home screen widget. The AI gets sharper as your archive grows — all on-device.</p>
-          </div>
+        <div class="journey-step unlocked">
+          <div class="journey-day">Week 2+</div>
+          <h3>Full experience</h3>
+          <p>Daily nudges, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p>
+          <span class="journey-unlock-badge">Full AI features</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Free Promise -->
-  <section id="free-promise">
+  <!-- Prompts Carousel -->
+  <section id="prompts">
     <div class="container">
-      <div class="free-promise-card reveal">
-        <div class="promise-icon">💚</div>
-        <h2>Your data is always yours.<br>You pay for the AI layer.</h2>
-        <p>Free users get all their entries, all their history, forever. Full-text search. iCloud backup. We will never punish you for writing. The paid tier is the AI — not a lock on your own words.</p>
+      <div class="prompts-inner">
+        <div class="section-header reveal">
+          <div class="label">Try a prompt</div>
+          <h2>30 questions that<br>cut through the noise.</h2>
+          <p>These are the kinds of questions MirrorNotes asks &mdash; drawn from what you actually wrote. Find one that hits.</p>
+        </div>
+        <div class="prompt-display reveal">
+          <div class="prompt-text" id="prompt-text">What&rsquo;s quietly draining you right now that you haven&rsquo;t named yet?</div>
+        </div>
+        <div class="prompt-controls">
+          <button class="prompt-nav" id="prompt-prev">&#8592;</button>
+          <div class="prompt-idx" id="prompt-idx">1 / 30</div>
+          <button class="prompt-nav" id="prompt-next">&#8594;</button>
+          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Write to this prompt &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section id="proof">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="label">From users</div>
+        <h2>What happens when<br>your journal actually listens.</h2>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card reveal" style="transition-delay:0.05s">
+          <div class="proof-stars">
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+          </div>
+          <div class="proof-quote">&ldquo;I&rsquo;ve tried every journaling app. The problem is always the same &mdash; I don&rsquo;t trust that it&rsquo;s private. MirrorNotes is the first one where the architecture itself is the proof. Nothing leaves my phone.&rdquo;</div>
+          <div class="proof-author">iPhone user &middot; App Store</div>
+        </div>
+        <div class="proof-card reveal" style="transition-delay:0.1s">
+          <div class="proof-stars">
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+          </div>
+          <div class="proof-quote">&ldquo;The Daily Nudge is eerie in the best way. It asked me about a pattern I hadn&rsquo;t consciously noticed &mdash; buried across 3 weeks of entries. That&rsquo;s what therapists do. For $2.99.&rdquo;</div>
+          <div class="proof-author">iPhone user &middot; App Store</div>
+        </div>
+        <div class="proof-card reveal" style="transition-delay:0.15s">
+          <div class="proof-stars">
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+            <span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span><span class="proof-star">&#9733;</span>
+          </div>
+          <div class="proof-quote">&ldquo;I have ADHD. I can&rsquo;t keep a journal. MirrorNotes is the first one I&rsquo;ve come back to every day for three weeks. The nudge makes me actually open it.&rdquo;</div>
+          <div class="proof-author">iPhone user &middot; App Store</div>
+        </div>
+        <div class="proof-editorial reveal" style="transition-delay:0.2s">
+          <div class="proof-editorial-badge">Apple Editorial</div>
+          <div class="proof-editorial-text"><strong>Nominated for App Store editorial feature</strong> &mdash; selected by Apple&rsquo;s editorial team for its privacy-first approach to AI journaling.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1313,129 +888,79 @@
     <div class="container">
       <div class="section-header reveal">
         <div class="label">Pricing</div>
-        <h2>Simple. Honest. No surprises.</h2>
-        <p>7-day free trial on paid plans. Cancel anytime from App Store settings.</p>
+        <h2>Pay for the AI layer.<br>Your data is always free.</h2>
+        <p>Free users get all their entries forever. The paid tier is the AI &mdash; not a lock on your own words.</p>
       </div>
-
       <div class="pricing-grid">
-
-        <!-- Free -->
         <div class="pricing-card reveal" style="transition-delay:0.05s">
           <div class="pricing-header">
             <h3>Free</h3>
-            <p style="font-size:13px; color:var(--text-3); margin-top:4px">Forever, no card needed</p>
+            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Forever, no card needed</p>
           </div>
-          <div class="pricing-price">
-            <span class="free-tag">$0</span>
-          </div>
+          <div class="pricing-price"><span class="free-tag">$0</span></div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span>Unlimited journal entries</li>
-            <li><span class="check">✓</span>Read all past entries, always</li>
-            <li><span class="check">✓</span>Full-text local search</li>
-            <li><span class="check">✓</span>iCloud backup &amp; sync</li>
-            <li class="muted"><span class="x">—</span>Daily Nudge</li>
-            <li class="muted"><span class="x">—</span>Ask (query entries)</li>
-            <li class="muted"><span class="x">—</span>Weekly Digest</li>
-            <li class="muted"><span class="x">—</span>Auto Mood Detection</li>
-            <li class="muted"><span class="x">—</span>Home screen widget</li>
+            <li><span class="ck">&#10003;</span>Unlimited journal entries</li>
+            <li><span class="ck">&#10003;</span>All past entries, always</li>
+            <li><span class="ck">&#10003;</span>Full-text local search</li>
+            <li><span class="ck">&#10003;</span>iCloud backup &amp; sync</li>
+            <li class="muted"><span class="xk">&mdash;</span>Daily Nudge</li>
+            <li class="muted"><span class="xk">&mdash;</span>Ask (query entries)</li>
+            <li class="muted"><span class="xk">&mdash;</span>Weekly Digest</li>
           </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta pricing-cta-outline" target="_blank" rel="noopener">Download free</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-outline" target="_blank" rel="noopener">Download free</a>
         </div>
-
-        <!-- Core -->
         <div class="pricing-card popular reveal" style="transition-delay:0.1s">
           <span class="popular-badge">Most popular</span>
           <div class="pricing-header">
             <h3>Core</h3>
-            <p style="font-size:13px; color:var(--text-3); margin-top:4px">For daily journalers</p>
+            <p style="font-size:13px;color:var(--text-3);margin-top:4px">For daily journalers</p>
           </div>
-          <div class="pricing-price">
-            <span class="amount">$2.99</span>
-            <span class="period">/mo</span>
-          </div>
-          <div class="pricing-alt">or $29.99/yr — save 16%</div>
+          <div class="pricing-price"><span class="amount">$2.99</span><span class="period">/mo</span></div>
+          <div class="pricing-alt">or $29.99/yr &mdash; save 16%</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span>Everything in Free</li>
-            <li><span class="check">✓</span>Daily Nudge (on-device AI)</li>
-            <li><span class="check">✓</span>Ask — 15 queries/month</li>
-            <li><span class="check">✓</span>Weekly Digest every Sunday</li>
-            <li><span class="check">✓</span>Auto Mood Detection</li>
-            <li><span class="check">✓</span>Home screen widget</li>
-            <li class="muted"><span class="x">—</span>Unlimited Ask</li>
-            <li class="muted"><span class="x">—</span>Monthly Report</li>
-            <li class="muted"><span class="x">—</span>Mood timeline</li>
+            <li><span class="ck">&#10003;</span>Everything in Free</li>
+            <li><span class="ck">&#10003;</span>Daily Nudge (on-device AI)</li>
+            <li><span class="ck">&#10003;</span>Ask &mdash; 15 queries/month</li>
+            <li><span class="ck">&#10003;</span>Weekly Digest every Sunday</li>
+            <li><span class="ck">&#10003;</span>Mood detection</li>
+            <li><span class="ck">&#10003;</span>Home screen widget</li>
+            <li class="muted"><span class="xk">&mdash;</span>Unlimited Ask</li>
           </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta pricing-cta-primary" target="_blank" rel="noopener">Start free trial</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Start 7-day free trial</a>
         </div>
-
-        <!-- Deep -->
         <div class="pricing-card reveal" style="transition-delay:0.15s">
           <div class="pricing-header">
             <h3>Deep</h3>
-            <p style="font-size:13px; color:var(--text-3); margin-top:4px">For serious self-inquiry</p>
+            <p style="font-size:13px;color:var(--text-3);margin-top:4px">For serious self-inquiry</p>
           </div>
-          <div class="pricing-price">
-            <span class="amount">$4.99</span>
-            <span class="period">/mo</span>
-          </div>
-          <div class="pricing-alt">or $49.99/yr — save 17%</div>
+          <div class="pricing-price"><span class="amount">$4.99</span><span class="period">/mo</span></div>
+          <div class="pricing-alt">or $49.99/yr &mdash; save 17%</div>
           <ul class="pricing-features">
-            <li><span class="check">✓</span>Everything in Core</li>
-            <li><span class="check">✓</span>Unlimited Ask queries</li>
-            <li><span class="check">✓</span>Monthly deep report</li>
-            <li><span class="check">✓</span>Mood timeline &amp; alerts</li>
+            <li><span class="ck">&#10003;</span>Everything in Core</li>
+            <li><span class="ck">&#10003;</span>Unlimited Ask queries</li>
+            <li><span class="ck">&#10003;</span>Monthly deep report</li>
+            <li><span class="ck">&#10003;</span>Mood timeline &amp; alerts</li>
           </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta pricing-cta-outline" target="_blank" rel="noopener">Start free trial</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-outline" target="_blank" rel="noopener">Start 7-day free trial</a>
         </div>
-
       </div>
-
-      <p class="trial-note">
-        <strong>7-day free trial</strong> on Core and Deep · Manage subscription in App Store · Cancel anytime · No prorated refunds
-      </p>
+      <p class="trial-note"><strong>7-day free trial</strong> on Core and Deep &middot; Cancel anytime from App Store &middot; No hidden fees</p>
     </div>
   </section>
 
-  <!-- About / Architecture -->
-  <section id="about">
+  <!-- Final CTA -->
+  <section id="final-cta">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <div class="label">Architecture</div>
-          <h2>Built different, on purpose.</h2>
-          <p>Most AI apps send your data to a server to process it. We decided early that was a non-starter for a journal app. Your most personal thoughts deserve better.</p>
-          <p>So we rebuilt from the ground up. Gemma 3 — a capable 1-billion-parameter model — runs on your iPhone's Neural Engine. Inference is fast, free, and entirely local.</p>
-          <p>Entries sync to <em>your</em> iCloud via Apple's CloudKit — private to your Apple ID, not to us. We don't have access. RevenueCat manages subscription status only — journal data never touches any server.</p>
-        </div>
-        <div class="about-facts reveal" style="transition-delay:0.1s">
-          <div class="fact">
-            <div class="fact-icon">🧬</div>
-            <div class="fact-body">
-              <h4>Gemma 3 1B on Neural Engine</h4>
-              <p>Google's open-weight model, quantized for mobile. Runs in under a second per inference.</p>
-            </div>
-          </div>
-          <div class="fact">
-            <div class="fact-icon">☁️</div>
-            <div class="fact-body">
-              <h4>CloudKit — your iCloud, only</h4>
-              <p>Apple's private sync. Only you can read it. Not even we can.</p>
-            </div>
-          </div>
-          <div class="fact">
-            <div class="fact-icon">🔑</div>
-            <div class="fact-body">
-              <h4>No account required</h4>
-              <p>No sign-in, no username, no password. Write immediately. iCloud handles sync via your Apple ID.</p>
-            </div>
-          </div>
-          <div class="fact">
-            <div class="fact-icon">💳</div>
-            <div class="fact-body">
-              <h4>RevenueCat + Apple IAP</h4>
-              <p>Payments handled by Apple's native purchase flow. We never see your card.</p>
-            </div>
-          </div>
+      <div class="final-cta-inner reveal">
+        <div class="label" style="margin-bottom:16px">Start writing</div>
+        <h2>Your most honest thoughts<br>deserve a private space.</h2>
+        <p>No account. No server. No data deal. Just you, your phone, and an AI that stays where it belongs.</p>
+        <div class="final-cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Download Free &mdash; iPhone
+          </a>
+          <a href="#live-demo" class="btn-ghost">Try the demo first</a>
         </div>
       </div>
     </div>
@@ -1447,15 +972,11 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-            <div class="nav-logo">
-              <svg width="28" height="28" viewBox="0 0 1024 1024" style="border-radius:7px" xmlns="http://www.w3.org/2000/svg">
+            <div class="nav-logo" style="font-size:16px">
+              <svg width="26" height="26" viewBox="0 0 1024 1024" style="border-radius:7px" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <radialGradient id="fb" cx="50%" cy="44%" r="72%">
-                    <stop offset="0%" stop-color="#5C1520"/><stop offset="100%" stop-color="#160408"/>
-                  </radialGradient>
-                  <linearGradient id="fc" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#7A1E2A"/><stop offset="100%" stop-color="#3A0C14"/>
-                  </linearGradient>
+                  <radialGradient id="fb" cx="50%" cy="44%" r="72%"><stop offset="0%" stop-color="#5C1520"/><stop offset="100%" stop-color="#160408"/></radialGradient>
+                  <linearGradient id="fc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7A1E2A"/><stop offset="100%" stop-color="#3A0C14"/></linearGradient>
                 </defs>
                 <rect width="1024" height="1024" fill="url(#fb)"/>
                 <g transform="translate(512,512) scale(1.375) translate(-549,-516)">
@@ -1477,24 +998,23 @@
             </div>
             <p>Private AI journaling. Your words stay on your device.</p>
           </div>
-
           <div class="footer-links">
             <div class="footer-link-group">
               <h4>Product</h4>
               <ul>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#prompts">Try a prompt</a></li>
                 <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Download</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
               <h4>Compare</h4>
               <ul>
-                <li><a href="rosebud-alternative.html">Rosebud alternative</a></li>
-                <li><a href="day-one-alternative.html">Day One alternative</a></li>
+                <li><a href="rosebud-alternative.html">vs Rosebud</a></li>
+                <li><a href="day-one-alternative.html">vs Day One</a></li>
+                <li><a href="reflect-alternative.html">vs Reflect</a></li>
                 <li><a href="adhd-journaling-app.html">ADHD journaling</a></li>
-                <li><a href="offline-journal-app.html">Offline journal</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
@@ -1513,10 +1033,9 @@
             </div>
           </div>
         </div>
-
         <div class="footer-bottom">
-          <p>© 2026 MirrorNotes. All rights reserved.</p>
-          <p>Made with intention. <a href="privacy.html" style="color:var(--text-2); text-decoration:underline; text-underline-offset:3px">Privacy first.</a></p>
+          <p>&copy; 2026 MirrorNotes. Made with intention &mdash; privacy first.</p>
+          <p><a href="privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Privacy Policy</a></p>
         </div>
       </div>
     </div>
@@ -1525,15 +1044,172 @@
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Live demo
+    const NUDGES = [
+      { keywords: ['tired','exhaust','sleep','drain'], nudge: "You've mentioned feeling drained more than once. What's actually costing you energy — and is any of it optional?" },
+      { keywords: ['anxious','worry','nervous','stress','afraid'], nudge: "Underneath the anxiety you're describing — what's the thing you're actually afraid of? Name it specifically." },
+      { keywords: ['stuck','block','unable'], nudge: "You're describing being stuck. What would the unstuck version of you do differently — even just tomorrow?" },
+      { keywords: ['happy','great','good','joy','excit'], nudge: "You seem to be in a good place. What's different? What's working that usually doesn't?" },
+      { keywords: ['work','job','boss','meeting','office'], nudge: "Your writing keeps circling back to work. Is this a problem to solve, or something to accept?" },
+      { keywords: ['relationship','partner','friend','family'], nudge: "You're thinking about someone. What's the thing you haven't said to them — and what's holding you back?" },
+      { keywords: ['lonely','alone','isolat','miss'], nudge: "Loneliness usually means we're missing a specific kind of connection. What kind — and with whom?" },
+    ];
+    const DEFAULT_NUDGES = [
+      "What's quietly draining you that you haven't named yet?",
+      "Write about the gap between who you are and who you're trying to be.",
+      "What's the most honest sentence you could write right now?",
+      "What are you waiting for permission to do?",
+      "What pattern keeps repeating that you keep hoping will change on its own?",
+    ];
+
+    let demoTimer = null;
+    const demoInput = document.getElementById('demo-input');
+    const demoThinking = document.getElementById('demo-thinking');
+    const demoNudge = document.getElementById('demo-nudge');
+    const demoNudgeText = document.getElementById('demo-nudge-text');
+    const charCount = document.getElementById('char-count');
+
+    function generateNudge(text) {
+      const lower = text.toLowerCase();
+      for (const item of NUDGES) {
+        if (item.keywords.some(k => lower.includes(k))) return item.nudge;
+      }
+      return DEFAULT_NUDGES[Math.floor(Math.random() * DEFAULT_NUDGES.length)];
+    }
+
+    demoInput.addEventListener('input', () => {
+      const val = demoInput.value;
+      charCount.textContent = val.length;
+      demoNudge.classList.remove('visible');
+      demoThinking.classList.remove('visible');
+      clearTimeout(demoTimer);
+      if (val.trim().length < 10) return;
+      demoTimer = setTimeout(() => {
+        demoThinking.classList.add('visible');
+        setTimeout(() => {
+          demoThinking.classList.remove('visible');
+          demoNudgeText.textContent = generateNudge(val);
+          demoNudge.classList.add('visible');
+        }, 1600);
+      }, 900);
+    });
+
+    // Rotating nudge in feature card
+    const SAMPLE_NUDGES = [
+      'You keep coming back to the word "enough." What would enough feel like today?',
+      'Something shifted Tuesday. What actually changed?',
+      'The gap between who you are at work and who you are at home — how wide is it right now?',
+      'What are you protecting yourself from by staying busy?',
+      'You mentioned feeling invisible twice this week. Who do you most want to be seen by?',
+    ];
+    let nudgeIdx = 0;
+    const rotatingNudge = document.getElementById('rotating-nudge');
+    setInterval(() => {
+      if (!rotatingNudge) return;
+      rotatingNudge.style.opacity = '0';
+      setTimeout(() => {
+        nudgeIdx = (nudgeIdx + 1) % SAMPLE_NUDGES.length;
+        rotatingNudge.textContent = SAMPLE_NUDGES[nudgeIdx];
+        rotatingNudge.style.opacity = '1';
+      }, 400);
+    }, 4000);
+
+    // Mood bar
+    const moodBar = document.getElementById('mood-bar');
+    if (moodBar) {
+      const moods = [
+        {color:'#FF453A',h:32},{color:'#FF9F0A',h:55},{color:'#FFD60A',h:28},
+        {color:'#30D158',h:70},{color:'#30D158',h:85},{color:'#FF9F0A',h:45},
+        {color:'#FF453A',h:38},{color:'#30D158',h:60},{color:'#FFD60A',h:72},
+        {color:'#0A84FF',h:88},{color:'#30D158',h:65},{color:'#30D158',h:92},
+        {color:'#FFD60A',h:50},{color:'#FF9F0A',h:40},
+      ];
+      moods.forEach(m => {
+        const col = document.createElement('div');
+        col.className = 'mood-bar-col';
+        col.style.cssText = 'background:' + m.color + ';height:0;opacity:0.7;';
+        moodBar.appendChild(col);
+        setTimeout(() => {
+          col.style.height = m.h + '%';
+          col.style.opacity = '0.7';
+          col.style.transition = 'height 1.2s ease';
+        }, 600 + Math.random() * 400);
+      });
+    }
+
+    // Prompts carousel
+    const PROMPTS = [
+      "What's quietly draining you right now that you haven't named yet?",
+      "What are you avoiding thinking about? Write about that.",
+      "Describe the last moment you felt completely present.",
+      "What would you do differently about yesterday?",
+      "What's something you're pretending is fine?",
+      "Who did you most want to impress this week, and why?",
+      "What's a belief you hold that you've never examined?",
+      "What are you waiting for permission to do?",
+      "Describe a moment from the last week that surprised you.",
+      "What's the kindest thing you did today, and did you notice it?",
+      "What's costing you energy that you could put down?",
+      "What's the gap between who you are and who you're trying to be?",
+      "Write about a small thing that felt meaningful today.",
+      "What conversation do you keep rehearsing in your head?",
+      "What would you tell yourself from six months ago?",
+      "What are you learning right now — even if you didn't sign up to learn it?",
+      "What's pulling at your attention that you keep pushing aside?",
+      "Describe a moment this week when you felt like yourself.",
+      "What are you grateful for that you've never said out loud?",
+      "What does your body feel like right now? Start there.",
+      "What do you need more of? What do you need less of?",
+      "Write about something that happened recently that you haven't processed.",
+      "What pattern keeps repeating in your life?",
+      "What does 'enough' look like for you right now?",
+      "If you could only write one thing today, what would it be?",
+      "What are you afraid someone will find out about you?",
+      "What's the most honest sentence you could write right now?",
+      "What's working in your life that you're not giving yourself credit for?",
+      "Who are you becoming, even if you're not sure you chose it?",
+      "What's the tension you're living inside right now?",
+    ];
+    let promptIdx = 0;
+    const promptText = document.getElementById('prompt-text');
+    const promptIdxEl = document.getElementById('prompt-idx');
+
+    function setPrompt(idx) {
+      promptText.style.opacity = '0';
+      setTimeout(() => {
+        promptText.textContent = PROMPTS[idx];
+        promptIdxEl.textContent = (idx + 1) + ' / ' + PROMPTS.length;
+        promptText.style.opacity = '1';
+      }, 200);
+    }
+
+    document.getElementById('prompt-prev').addEventListener('click', () => {
+      promptIdx = (promptIdx - 1 + PROMPTS.length) % PROMPTS.length;
+      setPrompt(promptIdx);
+    });
+    document.getElementById('prompt-next').addEventListener('click', () => {
+      promptIdx = (promptIdx + 1) % PROMPTS.length;
+      setPrompt(promptIdx);
+    });
+
+    let promptAutoTimer = setInterval(() => {
+      promptIdx = (promptIdx + 1) % PROMPTS.length;
+      setPrompt(promptIdx);
+    }, 6000);
+
+    ['prompt-prev','prompt-next'].forEach(id => {
+      document.getElementById(id).addEventListener('click', () => {
+        clearInterval(promptAutoTimer);
+        promptAutoTimer = setInterval(() => {
+          promptIdx = (promptIdx + 1) % PROMPTS.length;
+          setPrompt(promptIdx);
+        }, 6000);
+      });
+    });
   </script>
 </body>
 </html>
