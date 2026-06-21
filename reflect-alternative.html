@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Looking for a Reflect app alternative? MirrorNotes offers on-device AI journaling at $2.99/mo — no cloud, no server, journal text never leaves your iPhone.">
+  <meta name="theme-color" content="#160408">
+  <title>Reflect Alternative — MirrorNotes: Private AI Journaling on iPhone</title>
+  <link rel="canonical" href="https://mirrornotes.org/reflect-alternative.html">
+  <meta property="og:title" content="Reflect Alternative: MirrorNotes — On-Device AI Journal">
+  <meta property="og:description" content="AI journaling at $2.99/mo with the model running on your iPhone, not a server. No account, no cloud AI, works offline.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/reflect-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good Reflect app alternative?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes is a Reflect alternative built around on-device AI. Where Reflect sends your notes to a cloud for AI processing, MirrorNotes runs Gemma 3 locally on your iPhone — so daily prompts, mood analysis, Ask your journal, and weekly digests all work offline with no data ever leaving your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MirrorNotes cheaper than Reflect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Reflect charges around $10–15/mo for full AI features. MirrorNotes Core is $2.99/mo and Deep is $4.99/mo — significantly cheaper because on-device inference has zero server cost to pass on to users."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Reflect have on-device AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reflect uses cloud AI for its intelligence features, which means your notes are processed on external servers. MirrorNotes runs Gemma 3 via CoreML entirely on your iPhone — no API calls, no server, no data transmitted. Every AI feature works in airplane mode."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can MirrorNotes replace Reflect for journaling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For focused personal journaling with AI insights, yes. MirrorNotes offers daily reflection prompts, 'Ask your journal' queries, mood tracking, weekly digests, and monthly deep reports — all on-device. If you use Reflect primarily as a linked-note knowledge base or team tool, MirrorNotes is a different product focused on personal journaling."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0204; --surface: #160408; --surface2: #1E060A;
+      --crimson: #7A1E2A; --red: #FF453A; --green: #30D158;
+      --blue: #0A84FF; --orange: #FF9F0A;
+      --text: #F2E8E8; --text-2: #B8A8A8; --text-3: #7A6468;
+      --border: rgba(255,255,255,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(13,2,4,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(48,209,88,0.06); border: 1px solid rgba(48,209,88,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,132,255,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Reflect Alternative</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Comparison</div>
+      <h1>A Reflect alternative where the AI stays on your phone</h1>
+      <p>Reflect is a capable note-taking and journaling tool. The catch: its AI features send your notes to a cloud for processing. MirrorNotes takes the opposite approach — Gemma 3 runs locally on your iPhone, so daily prompts, mood analysis, and journal queries work offline, with no text ever reaching a server.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>Reflect AI runs in the cloud. MirrorNotes AI runs on your iPhone — no data transmitted, ever.</li>
+        <li>MirrorNotes is $2.99/mo vs Reflect's $10–15/mo — on-device inference means zero server cost to pass on.</li>
+        <li>Every feature works offline: write, get AI insights, ask questions — on a plane, underground, anywhere.</li>
+        <li>No account, no sign-in. Your journal syncs through your own iCloud.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Side-by-side comparison</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Feature</th><th>MirrorNotes</th><th>Reflect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Gemma 3 via CoreML)</td><td class="warn">Cloud servers</td></tr>
+          <tr><td><strong>Journal text leaves device</strong></td><td class="yes">Never</td><td class="warn">Yes, for AI processing</td></tr>
+          <tr><td><strong>Works offline</strong></td><td class="yes">Fully — including all AI features</td><td class="no">AI requires internet</td></tr>
+          <tr><td><strong>Daily AI reflection prompts</strong></td><td class="yes">Yes — personalized to your recent entries</td><td class="no">No</td></tr>
+          <tr><td><strong>Ask your journal</strong></td><td class="yes">"What stresses me out?" — answered on-device</td><td class="warn">AI chat, cloud-processed</td></tr>
+          <tr><td><strong>Mood tracking & timeline</strong></td><td class="yes">Yes — on-device detection (Deep tier)</td><td class="no">No mood analytics</td></tr>
+          <tr><td><strong>Weekly & monthly AI summaries</strong></td><td class="yes">Weekly Digest + Monthly Deep Report</td><td class="no">No</td></tr>
+          <tr><td><strong>Account required</strong></td><td class="yes">No account, no sign-in</td><td class="warn">Account required</td></tr>
+          <tr><td><strong>Free tier</strong></td><td class="yes">Unlimited writing, full history, search, iCloud backup — forever</td><td class="no">Limited free tier</td></tr>
+          <tr><td><strong>Price</strong></td><td class="yes">Core $2.99/mo · Deep $4.99/mo</td><td class="warn">~$10–15/mo</td></tr>
+          <tr><td><strong>Platforms</strong></td><td class="no">iPhone only</td><td class="yes">iOS, Mac, web</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>The privacy difference is architectural</h2>
+      <p>Most AI journaling apps — including Reflect — process your writing on a server. That's not a criticism of their privacy policies; it's a technical consequence of running cloud AI. The model has to see the text to process it.</p>
+      <p>MirrorNotes ships its own model. Gemma 3 1B runs via CoreML on your iPhone's Neural Engine. When you write an entry, the AI reads it on your chip, generates an insight, and the text stays on your device. Not transmitted, not logged, not stored anywhere outside your iCloud.</p>
+      <div class="callout">
+        <strong>The privacy guarantee is architectural, not a policy promise.</strong> There's no cloud code path in the app. It can't send your journal to a server because there's no server to send it to.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>What MirrorNotes does differently</h2>
+      <ul>
+        <li><strong>Daily Nudge</strong> — each morning, a personalized reflection prompt generated from your recent entries. Not a quote. Not a template. Something based on what you've actually been writing about.</li>
+        <li><strong>Ask your journal</strong> — query months of your own writing: "when do I feel most creative?", "what am I avoiding?", "how did I handle stress last month?" — answered on-device from your actual entries.</li>
+        <li><strong>Mood Timeline</strong> — tracks emotional tone across entries, shows patterns across weeks and months. Alerts you when three consecutive entries trend negative.</li>
+        <li><strong>Monthly Deep Report</strong> — on the 1st of each month, a full reflection: your month's theme, central tension, a moment that shifted something, who you're becoming.</li>
+      </ul>
+
+      <h3>What Reflect does better</h3>
+      <p>Reflect is stronger for knowledge management — linked notes, backlinks, web clipper, multi-platform sync. If you're building a personal wiki or need notes on Mac and iOS simultaneously, Reflect is a better fit. MirrorNotes is focused on one thing: personal journaling with private AI that feeds insight back to you.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Frequently asked questions</h2>
+      <h3>Can I switch from Reflect to MirrorNotes?</h3>
+      <p>You can start writing in MirrorNotes immediately — the free tier is unlimited. Journal import from Reflect isn't available yet, but existing entries in Reflect stay there while you build a habit in MirrorNotes.</p>
+      <h3>Does MirrorNotes have linked notes or backlinks?</h3>
+      <p>No. MirrorNotes is a focused journaling app, not a knowledge base. The AI reads across all your entries to surface patterns, but there's no manual linking system. If you need that, Reflect or Obsidian are better tools.</p>
+      <h3>Why is MirrorNotes so much cheaper?</h3>
+      <p>On-device inference has zero marginal cost. Cloud AI journals pay per token to OpenAI or run their own GPU infrastructure — that cost passes to you. MirrorNotes' model runs on your chip, so the math is completely different.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Try MirrorNotes free</h3>
+      <p>Free to write forever. AI features: 7-day free trial, then $2.99/mo.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="adhd-journaling-app.html">ADHD Journaling</a>
+        <a href="offline-journal-app.html">Offline Journal</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

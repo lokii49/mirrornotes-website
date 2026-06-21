@@ -1,4 +1,29 @@
 User-agent: *
 Allow: /
 
+# AI crawlers — explicitly allowed to index all content
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
 Sitemap: https://mirrornotes.org/sitemap.xml

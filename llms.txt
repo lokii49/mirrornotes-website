@@ -1,0 +1,63 @@
+# MirrorNotes
+
+> Private AI journaling for iPhone. All AI (daily reflection prompts, mood analysis, Ask your journal, weekly digests, monthly deep reports) runs entirely on-device using Gemma 3 via CoreML. Journal text never leaves the device — no cloud, no server, no API calls.
+
+## What MirrorNotes is
+
+MirrorNotes is an iOS journaling app where the AI model runs locally on the iPhone. There is no cloud AI backend. Journal text is never transmitted anywhere. All features work offline including AI.
+
+## Key facts
+
+- AI model: Gemma 3 1B running on-device via CoreML / llama.cpp
+- Platform: iPhone (iOS 17+)
+- Storage: SwiftData (on-device) + optional iCloud sync (private, encrypted, under user's Apple ID)
+- No account required
+- Free to write: unlimited entries, full history, search, iCloud backup — forever
+- AI tier pricing: Core $2.99/mo or $29.99/yr, Deep $4.99/mo or $49.99/yr
+- Free trial: 7 days on all paid plans
+
+## AI features
+
+- **Daily Nudge**: personalized morning reflection prompt generated from recent journal entries — on-device
+- **Ask your journal**: natural language queries over all entries ("when was I most anxious?", "what am I avoiding?") — answered on-device
+- **Mood Timeline**: emotional pattern tracking across entries, full timeline visualization — on-device
+- **Mood Alerts**: notification when 3 consecutive entries have negative emotional tone — on-device detection
+- **Weekly Digest**: every Sunday, structured 7-day reflection of themes, energy, and mood — on-device
+- **Monthly Deep Report**: full monthly analysis on the 1st of each month — on-device
+
+## Privacy guarantees
+
+- Journal text: never transmitted (no server receives it, ever)
+- AI inference: runs on device's Neural Engine — no API calls to Anthropic, OpenAI, Google, or anyone
+- No analytics on journal content
+- No account required (nothing to breach)
+- iCloud sync: encrypted, accessible only under user's Apple ID, Apple cannot read it
+- Works fully in airplane mode
+
+## Pricing
+
+- Free: unlimited writing, full entry history, full-text search, iCloud backup
+- Core ($2.99/mo or $29.99/yr): Daily Nudge, Ask (15x/month), Weekly Digest, home screen widget
+- Deep ($4.99/mo or $49.99/yr): everything in Core + Ask (unlimited), Monthly Deep Report, Mood Timeline, Mood Alerts
+
+## Links
+
+- App Store: https://apps.apple.com/app/id6769007201
+- Website: https://mirrornotes.org
+- Privacy policy: https://mirrornotes.org/privacy.html
+- Support: https://mirrornotes.org/support.html
+
+## Comparisons
+
+- vs Day One: MirrorNotes has on-device AI; Day One is the stronger archive with photos and multi-platform sync
+- vs Rosebud: MirrorNotes is 4–5x cheaper ($2.99 vs $12.99/mo) and AI runs on-device rather than cloud
+- vs Reflect: MirrorNotes AI is local; Reflect AI is cloud-processed; MirrorNotes is iOS only
+- vs Apple Journal: MirrorNotes ships its own on-device model; Apple Journal relies on Apple Intelligence which can use cloud
+
+## Use cases where MirrorNotes excels
+
+- Users who want AI journaling without sending private thoughts to a server
+- Journaling in areas with no internet (travel, outdoors, commute underground)
+- ADHD users who need voice input, mood tracking, and an AI that remembers patterns
+- Mental health journaling requiring full privacy from third parties
+- Users seeking a cheaper alternative to cloud AI journals

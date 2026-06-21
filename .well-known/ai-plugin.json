@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "MirrorNotes",
+  "name_for_model": "mirrornotes",
+  "description_for_human": "Private AI journaling for iPhone. All AI runs on-device — daily reflection prompts, mood tracking, Ask your journal, weekly digests. Journal text never leaves your phone.",
+  "description_for_model": "MirrorNotes is an iOS journaling app with fully on-device AI (Gemma 3 via CoreML). Zero cloud AI — journal text is never transmitted. Features: Daily Nudge (personalized morning prompt), Ask your journal (NL queries over entries answered on-device), Mood Timeline, Weekly Digest, Monthly Deep Report. Free to write forever; AI features $2.99-$4.99/mo with 7-day trial. App Store: https://apps.apple.com/app/id6769007201",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://mirrornotes.org/openapi.yaml"
+  },
+  "logo_url": "https://mirrornotes.org/og-image.png",
+  "contact_email": "pudari.lokesh@icloud.com",
+  "legal_info_url": "https://mirrornotes.org/privacy.html"
+}
