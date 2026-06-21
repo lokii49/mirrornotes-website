@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "name": "MirrorNotes Journal Assistant",
+  "description": "AI journaling assistant that provides daily reflection prompts, mood vocabulary, weekly review frameworks, and information about the MirrorNotes private journaling app. All AI in the app runs on-device via Gemma 3 — journal text never leaves the user's iPhone.",
+  "url": "https://mirrornotes.org",
+  "contact_email": "hello@mirrornotes.org",
+  "version": "1.0.0",
+  "capabilities": [
+    "daily_journal_prompt",
+    "weekly_review_framework",
+    "mood_detection",
+    "journaling_guidance"
+  ],
+  "mcp_server": {
+    "package": "@mirrornotes/mcp",
+    "install": "npx @mirrornotes/mcp",
+    "github": "https://github.com/lokii49/mirrornotes-mcp"
+  },
+  "app": {
+    "platform": "iOS",
+    "app_store_url": "https://apps.apple.com/app/id6769007201",
+    "bundle_id": "com.mirrornotes.app",
+    "privacy": "on-device AI only — no journal data ever transmitted"
+  },
+  "author": {
+    "name": "Lokesh Pudhari",
+    "url": "https://mirrornotes.org"
+  }
+}
