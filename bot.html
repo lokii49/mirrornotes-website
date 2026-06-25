@@ -77,7 +77,7 @@
     <p class="subtitle">HDFC InvestRight granted access. Copy the code below and paste it in your terminal.</p>
 
     <div class="code-block" id="code-block">
-      <div class="code-label">Auth Code</div>
+      <div class="code-label">Request Token</div>
       <div class="code-value" id="code-display"></div>
     </div>
 
@@ -100,22 +100,22 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
+    const token = params.get('request_token') || params.get('code');
 
-    if (code) {
-      document.getElementById('code-display').textContent = code;
+    if (token) {
+      document.getElementById('code-display').textContent = token;
       document.getElementById('code-block').style.display = 'block';
       document.getElementById('step-block').style.display = 'block';
       document.getElementById('cmd-display').textContent =
-        `python -c "from auth import generate_access_token; generate_access_token('${code}')"`;
+        `python -c "from auth import generate_access_token; generate_access_token('${token}')"`;
     } else {
       document.getElementById('success-card').style.display = 'none';
       document.getElementById('error-card').style.display = 'block';
     }
 
     function copyCode() {
-      if (!code) return;
-      navigator.clipboard.writeText(code).then(() => {
+      if (!token) return;
+      navigator.clipboard.writeText(token).then(() => {
         const btn = document.getElementById('copy-btn');
         document.getElementById('copy-icon').textContent = '✓';
         document.getElementById('copy-label').textContent = 'Copied!';
