@@ -100,7 +100,7 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('request_token') || params.get('code');
+    const token = params.get('requestToken') || params.get('request_token') || params.get('code');
 
     if (token) {
       document.getElementById('code-display').textContent = token;
