@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="An offline journal app where even the AI works without internet. MirrorNotes runs Gemma 3 on your iPhone — write, reflect, and get insights in airplane mode.">
+  <meta name="description" content="An offline journal app where even the AI works without internet. MirrorNotes runs Gemma 3 on your iPhone: write, reflect, and get insights in airplane mode. Free.">
   <meta name="theme-color" content="#160408">
-  <title>Offline Journal App with AI — MirrorNotes Works Without Internet</title>
+  <title>Offline Journal App with AI: MirrorNotes Works Without Internet</title>
   <link rel="canonical" href="https://mirrornotes.org/offline-journal-app.html">
-  <meta property="og:title" content="Offline Journal App with AI — MirrorNotes">
+  <meta property="og:title" content="Offline Journal App with AI: MirrorNotes">
   <meta property="og:description" content="Even the AI works without internet. Write, reflect, and get insights in airplane mode.">
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://mirrornotes.org/og-image.png">
@@ -22,7 +22,7 @@
         "name": "Is there a journal app that works completely offline?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes works completely offline — including its AI features. The model (Gemma 3) runs on the iPhone itself, so daily prompts, mood analysis, weekly digests, and journal questions all work in airplane mode with no internet connection. Most journaling apps work offline for writing only; their AI features require a connection because the AI runs on remote servers."
+          "text": "MirrorNotes works completely offline, including its AI features. The model (Gemma 3) runs on the iPhone itself, so daily prompts, mood analysis, weekly digests, and journal questions all work in airplane mode with no internet connection. Most journaling apps work offline for writing only; their AI features require a connection because the AI runs on remote servers."
         }
       },
       {
@@ -30,7 +30,7 @@
         "name": "Why does offline AI matter for a journal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Two reasons: availability and privacy. Availability — your journal works on flights, hikes, subways, and anywhere without signal. Privacy — if the AI never needs the internet, your journal text never travels over it. An offline-capable AI is structural proof that entries aren't being sent to a server."
+          "text": "Two reasons: availability and privacy. Availability: your journal works on flights, hikes, subways, and anywhere without signal. Privacy: if the AI never needs the internet, your journal text never travels over it. An offline-capable AI is structural proof that entries aren't being sent to a server."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Does MirrorNotes sync between devices without the cloud?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes stores everything on-device and optionally syncs through your personal iCloud account (Apple CloudKit). Sync is optional — the app is fully functional without it — and when enabled, data goes only to your own Apple ID, which the developer cannot access."
+          "text": "MirrorNotes stores everything on-device and optionally syncs through your personal iCloud account (Apple CloudKit). Sync is optional: the app is fully functional without it, and when enabled, data goes only to your own Apple ID, which the developer cannot access."
         }
       }
     ]
@@ -112,13 +112,13 @@
     <div class="page-header">
       <div class="label">Guide</div>
       <h1>An offline journal where even the AI works in airplane mode</h1>
-      <p>Plenty of journal apps let you write offline. MirrorNotes goes further: the AI itself — daily prompts, mood analysis, weekly summaries, questions over your entries — runs on your iPhone's chip, no connection required. On a flight, on a trail, underground: everything works.</p>
+      <p>Plenty of journal apps let you write offline. MirrorNotes goes further: the AI itself, daily prompts, mood analysis, weekly summaries, questions over your entries, runs on your iPhone's chip, no connection required. On a flight, on a trail, underground: everything works.</p>
     </div>
 
     <div class="tldr">
       <h3>TL;DR</h3>
       <ul>
-        <li>Every feature works offline — writing, voice transcription, and all AI.</li>
+        <li>Every feature works offline: writing, voice transcription, and all AI.</li>
         <li>The model (Gemma 3 1B) lives on your iPhone and runs via CoreML. No API calls, ever.</li>
         <li>Offline AI doubles as a privacy guarantee: text that never needs the internet never crosses it.</li>
         <li>Optional iCloud sync to your own Apple ID when you're back online. No account, no sign-in.</li>
@@ -127,7 +127,7 @@
 
     <div class="policy-section">
       <h2>"Offline" usually has an asterisk</h2>
-      <p>Most journaling apps are offline the way a web browser is offline — you can look at what's cached, and writing queues up for later. But the moment AI is involved, the asterisk appears: prompts, insights, and summaries come from a server, so they need a connection. Your "offline journal" quietly becomes an online service with a local cache.</p>
+      <p>Most journaling apps are offline the way a web browser is offline: you can look at what's cached, and writing queues up for later. But the moment AI is involved, the asterisk appears: prompts, insights, and summaries come from a server, so they need a connection. Your "offline journal" quietly becomes an online service with a local cache.</p>
       <p>MirrorNotes has no asterisk because there is no server:</p>
       <table class="data-table">
         <thead>
@@ -135,10 +135,10 @@
         </thead>
         <tbody>
           <tr><td><strong>Writing entries</strong></td><td class="yes">Yes</td><td class="yes">Usually</td></tr>
-          <tr><td><strong>Reading full history & search</strong></td><td class="yes">Yes — stored on-device</td><td class="warn">Depends on cache</td></tr>
-          <tr><td><strong>Voice-to-text</strong></td><td class="yes">Yes — transcribed locally</td><td class="warn">Often cloud transcription</td></tr>
-          <tr><td><strong>Daily AI prompt</strong></td><td class="yes">Yes — generated on-device</td><td class="no">Needs connection</td></tr>
-          <tr><td><strong>AI questions over entries</strong></td><td class="yes">Yes — local inference</td><td class="no">Needs connection</td></tr>
+          <tr><td><strong>Reading full history & search</strong></td><td class="yes">Yes, stored on-device</td><td class="warn">Depends on cache</td></tr>
+          <tr><td><strong>Voice-to-text</strong></td><td class="yes">Yes, transcribed locally</td><td class="warn">Often cloud transcription</td></tr>
+          <tr><td><strong>Daily AI prompt</strong></td><td class="yes">Yes, generated on-device</td><td class="no">Needs connection</td></tr>
+          <tr><td><strong>AI questions over entries</strong></td><td class="yes">Yes, local inference</td><td class="no">Needs connection</td></tr>
           <tr><td><strong>Weekly digest / mood analysis</strong></td><td class="yes">Yes</td><td class="no">Needs connection</td></tr>
         </tbody>
       </table>
@@ -146,12 +146,12 @@
 
     <div class="policy-section">
       <h2>Offline-first is privacy-first</h2>
-      <p>These two properties are the same engineering decision. An AI that works in airplane mode is an AI that demonstrably doesn't send your words anywhere — you can verify it yourself by flipping the switch and watching every feature keep working.</p>
+      <p>These two properties are the same engineering decision. An AI that works in airplane mode is an AI that demonstrably doesn't send your words anywhere. You can verify it yourself by flipping the switch and watching every feature keep working.</p>
       <ul>
         <li>Entries are stored in SwiftData on your iPhone.</li>
         <li>AI inference happens in your phone's memory via the Neural Engine. The model reads your entry, generates the insight, and nothing is transmitted.</li>
         <li>No account exists. There's nothing to sign into and no server-side profile of you.</li>
-        <li>When you're back online, optional CloudKit sync copies entries to your own iCloud — under your Apple ID, inaccessible to us.</li>
+        <li>When you're back online, optional CloudKit sync copies entries to your own iCloud, under your Apple ID, inaccessible to us.</li>
       </ul>
       <div class="callout">
         <strong>Try the test:</strong> put your phone in airplane mode, write an entry, and ask your journal a question. It answers. That's the whole privacy policy, demonstrated in ten seconds. Details in our <a href="privacy.html">privacy policy</a>.
@@ -161,27 +161,27 @@
     <div class="policy-section">
       <h2>What you get</h2>
       <ul>
-        <li><strong>Daily Nudge</strong> — a personalized reflection prompt each morning, built from your recent entries.</li>
-        <li><strong>Ask your journal</strong> — natural-language questions over months of your own writing.</li>
-        <li><strong>Weekly Digest</strong> — Sunday summary of themes, moods, and patterns.</li>
-        <li><strong>Mood Timeline & Monthly Reports</strong> — longer-range emotional trends (Deep tier).</li>
+        <li><strong>Daily Nudge:</strong> a personalized reflection prompt each morning, built from your recent entries.</li>
+        <li><strong>Ask your journal:</strong> natural-language questions over months of your own writing.</li>
+        <li><strong>Weekly Digest:</strong> Sunday summary of themes, moods, and patterns.</li>
+        <li><strong>Mood Timeline & Monthly Reports:</strong> longer-range emotional trends.</li>
       </ul>
-      <p>Writing is free forever: unlimited entries, full history, full-text search, iCloud backup. AI features are $2.99–$4.99/month with a 7-day free trial.</p>
+      <p>Everything is free: unlimited entries, full history, full-text search, iCloud backup, and the full AI layer. No trial, no cap.</p>
     </div>
 
     <div class="policy-section">
       <h2>Frequently asked questions</h2>
       <h3>How big is the AI model? Does it eat my storage or battery?</h3>
-      <p>Gemma 3 1B is a small model by modern standards — designed for exactly this kind of on-device use. Inference runs on the Neural Engine, generates a short insight, and stops; it's not running in the background. Insights are cached so nothing is regenerated within 24 hours.</p>
+      <p>Gemma 3 1B is a small model by modern standards, designed for exactly this kind of on-device use. Inference runs on the Neural Engine, generates a short insight, and stops; it's not running in the background. Insights are cached so nothing is regenerated within 24 hours.</p>
       <h3>What iPhone do I need?</h3>
       <p>MirrorNotes requires iOS 17 or later. Recent iPhones run the model comfortably; newer chips are simply faster.</p>
       <h3>If I lose my phone, are my entries gone?</h3>
-      <p>Enable iCloud sync and your entries are backed up to your own Apple ID and restorable on a new device. Without sync, entries exist only on the device — maximum privacy, your call.</p>
+      <p>Enable iCloud sync and your entries are backed up to your own Apple ID and restorable on a new device. Without sync, entries exist only on the device: maximum privacy, your call.</p>
     </div>
 
     <div class="cta-card">
       <h3>Journal anywhere. Reflect anywhere.</h3>
-      <p>Free to write forever. AI features: 7-day free trial, then $2.99/mo.</p>
+      <p>Every feature, completely free. No trial, no card, no catch.</p>
       <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
     </div>
 
