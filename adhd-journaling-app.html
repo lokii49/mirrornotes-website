@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A journaling app that works with an ADHD brain: instant capture, voice input, mood tags, and an AI that remembers your patterns so you don't have to. Private, on-device.">
-  <meta name="theme-color" content="#160408">
+  <meta name="theme-color" content="#FFFFFF">
   <title>ADHD Journaling App: MirrorNotes, External Memory That Talks Back</title>
   <link rel="canonical" href="https://mirrornotes.org/adhd-journaling-app.html">
   <meta property="og:title" content="ADHD Journaling App: MirrorNotes">
@@ -47,16 +47,16 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0D0204; --surface: #160408; --surface2: #1E060A;
-      --crimson: #7A1E2A; --red: #FF453A; --green: #30D158;
-      --blue: #0A84FF; --orange: #FF9F0A;
-      --text: #F2E8E8; --text-2: #B8A8A8; --text-3: #7A6468;
-      --border: rgba(255,255,255,0.07);
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
     }
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
-    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(13,2,4,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
     .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
     .nav-sep { color: var(--text-3); }
@@ -66,7 +66,7 @@
     .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
     .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
     .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
-    .tldr { background: rgba(48,209,88,0.06); border: 1px solid rgba(48,209,88,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
     .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
     .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
@@ -78,9 +78,9 @@
     .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
     .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
     .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
-    .callout { background: rgba(10,132,255,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
     .callout strong { color: var(--text); }
-    .callout-warn { background: rgba(255,159,10,0.07); border-left-color: var(--orange); }
+    .callout-warn { background: rgba(219,127,0,0.07); border-left-color: var(--orange); }
     .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
     .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
     .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }

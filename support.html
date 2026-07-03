@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MirrorNotes Support: get help with the app.">
-  <meta name="theme-color" content="#160408">
+  <meta name="theme-color" content="#FFFFFF">
   <title>Support: MirrorNotes</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:      #0D0204; --surface: #160408; --surface2: #1E060A;
-      --crimson: #7A1E2A; --blue: #0A84FF; --green: #30D158; --orange: #FF9F0A;
-      --red:     #FF453A; --yellow: #FFD60A;
-      --text:    #F2E8E8; --text-2: #B8A8A8; --text-3: #7A6468;
-      --border:  rgba(255,255,255,0.07);
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C; --orange: #DB7F00;
+      --red:     #E8432E; --yellow: #B38600;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
     }
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
-    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(13,2,4,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
     .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: var(--text); }
     .nav-sep  { color: var(--text-3); }
@@ -42,7 +42,7 @@
     .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
     @media (max-width: 560px) { .contact-cards { grid-template-columns: 1fr; } }
     .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s; }
-    .contact-card:hover { border-color: rgba(255,255,255,0.12); }
+    .contact-card:hover { border-color: rgba(20,18,16,0.12); }
     .contact-card .icon { font-size: 28px; }
     .contact-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
     .contact-card p { font-size: 14px; color: var(--text-3); }
