@@ -68,6 +68,8 @@
       --radius-lg:  32px;
       --shadow-card: 0 1px 2px rgba(30,20,15,0.04), 0 10px 28px rgba(30,20,15,0.05);
       --shadow-lift: 0 24px 64px rgba(30,20,15,0.10);
+      --serif: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      --mono: 'SF Mono', 'Menlo', ui-monospace, monospace;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -88,14 +90,24 @@
     }
 
     .label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--text-3);
-      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--crimson);
+      font-family: var(--mono);
     }
-    h1 { font-size: clamp(42px, 8vw, 84px); font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; color: var(--text); }
-    h2 { font-size: clamp(28px, 4vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; color: var(--text); }
+    h1 { font-family: var(--serif); font-size: clamp(42px, 7.5vw, 82px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: var(--text); }
+    h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 50px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.12; color: var(--text); }
     h3 { font-size: clamp(17px, 2.5vw, 22px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; color: var(--text); }
     p  { color: var(--text-2); line-height: 1.75; }
+
+    /* notebook margin rule — page-length signature */
+    body::after {
+      content: ''; position: fixed; top: 0; bottom: 0;
+      left: clamp(18px, calc((100vw - 1100px) / 2 - 48px), 200px);
+      width: 1px; background: rgba(122,30,42,0.25);
+      box-shadow: 4px 0 0 rgba(122,30,42,0.10);
+      z-index: 1; pointer-events: none;
+    }
+    @media (max-width: 680px) { body::after { display: none; } .mood-field { opacity: 0.5; } }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     section { padding: 120px 0; }
@@ -112,7 +124,7 @@
     }
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+      font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.01em;
     }
     .nav-logo svg { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; }
     .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
@@ -127,23 +139,29 @@
 
     /* hero */
     #hero {
-      min-height: 100svh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 110px 24px 60px; position: relative; overflow: hidden;
+      min-height: 100svh; display: flex; align-items: center;
+      padding: 120px 0 80px; position: relative; overflow: hidden;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 14px 5px 8px; border-radius: 100px;
-      border: 1px solid rgba(30,158,76,0.22); background: rgba(30,158,76,0.06);
-      font-size: 12px; font-weight: 600; color: #1a8a43; margin-bottom: 32px; position: relative;
+    .hero-inner { position: relative; z-index: 2; }
+    .mood-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .field-dot {
+      position: absolute; border-radius: 50%;
+      animation: fieldDrift var(--dur) ease-in-out infinite;
+      animation-delay: var(--delay);
     }
-    .hero-badge-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-      box-shadow: 0 0 0 0 rgba(30,158,76,0.4); animation: pulseDot 2.2s ease-out infinite;
+    @keyframes fieldDrift {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-14px) scale(1.18); }
     }
-    @keyframes pulseDot { 0%{box-shadow:0 0 0 0 rgba(30,158,76,0.35)} 70%{box-shadow:0 0 0 7px rgba(30,158,76,0)} 100%{box-shadow:0 0 0 0 rgba(30,158,76,0)} }
-    .hero-mark { margin-bottom: 28px; }
-    .hero-mark svg { width: 150px; height: auto; }
+    @media (prefers-reduced-motion: reduce) {
+      .field-dot { animation: none; }
+    }
+    .hero-date {
+      font-family: var(--mono); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson);
+      margin: 26px 0 18px;
+    }
+    .hero-mark svg { width: 130px; height: auto; }
     .hero-mark .hm-line {
       stroke-dasharray: 300; stroke-dashoffset: 300;
       animation: drawMark 1.4s 0.2s cubic-bezier(.4,0,.2,1) forwards;
@@ -154,30 +172,22 @@
     }
     @keyframes drawMark { to { stroke-dashoffset: 0; } }
     @keyframes popDot { to { opacity: 1; transform: scale(1); } }
-    #hero h1 { max-width: 860px; position: relative; z-index: 1; }
-    .gradient-text {
-      color: var(--crimson); position: relative; white-space: nowrap; display: inline-block;
-    }
-    .gradient-text::after {
-      content: ''; position: absolute; left: -2%; right: -2%; bottom: 0.05em; height: 0.32em;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M2 9 Q 25 2, 50 8 T 100 8 T 150 8 T 198 8' fill='none' stroke='%237A1E2A' stroke-width='4' stroke-linecap='round' opacity='0.32'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
-      z-index: -1; pointer-events: none;
-    }
+    #hero h1 { max-width: 800px; }
+    #hero h1 em { font-style: italic; color: var(--crimson); }
     .hero-sub-head {
-      font-size: clamp(16px, 2.2vw, 21px); max-width: 580px; margin: 28px auto 0;
-      color: var(--text-2); line-height: 1.7; position: relative;
+      font-size: clamp(16px, 2.2vw, 20px); max-width: 560px; margin: 26px 0 0;
+      color: var(--text-2); line-height: 1.7;
     }
     .hero-privacy-counter {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin: 20px 0 40px; padding: 8px 20px;
-      background: rgba(30,158,76,0.05); border: 1px solid rgba(30,158,76,0.16);
-      border-radius: 100px; font-size: 13px; font-weight: 500; color: #1a8a43;
+      display: flex; align-items: baseline; gap: 10px;
+      margin: 26px 0 40px;
+      font-family: var(--mono); font-size: 13px; color: var(--text-3);
     }
     .counter-num {
-      font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em; font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;
+      color: #1a8a43; font-family: var(--mono);
     }
-    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
       display: flex; align-items: center; gap: 9px; padding: 14px 26px;
       background: var(--text); color: var(--bg); border-radius: 14px;
@@ -196,25 +206,17 @@
     .btn-ghost:hover { border-color: rgba(20,18,16,0.3); color: var(--text); transform: translateY(-1px); }
     .hero-proof {
       margin-top: 56px; display: flex; align-items: center;
-      gap: 28px; flex-wrap: wrap; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
     }
-    .hero-proof-item { text-align: center; }
-    .hero-proof-item .pn { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; font-family: 'SF Mono', 'Menlo', monospace; }
+    .hero-proof-item .pn { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; font-family: var(--mono); }
     .hero-proof-item .pl { font-size: 12px; color: var(--text-3); margin-top: 2px; }
     .proof-sep { width: 1px; height: 32px; background: var(--border-2); }
-    .scroll-hint {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      font-size: 11px; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase;
-      animation: fadeUpDown 2.5s ease-in-out infinite;
-    }
-    @keyframes fadeUpDown { 0%,100%{opacity:0.4;transform:translateX(-50%) translateY(0)} 50%{opacity:1;transform:translateX(-50%) translateY(-6px)} }
 
     /* section header */
-    .section-header { text-align: center; margin-bottom: 72px; }
-    .section-header .label { margin-bottom: 12px; }
+    .section-header { text-align: left; margin-bottom: 64px; }
+    .section-header .label { margin-bottom: 14px; display: block; }
     .section-header h2 { margin-bottom: 16px; }
-    .section-header p { max-width: 520px; margin: 0 auto; font-size: 18px; }
+    .section-header p { max-width: 560px; margin: 0; font-size: 18px; }
 
     /* privacy claim */
     #privacy-claim { padding: 80px 0; background: var(--bg-alt); }
@@ -226,10 +228,10 @@
       color: var(--crimson); margin-bottom: 28px;
     }
     .claim-inner blockquote {
-      font-size: clamp(22px, 3.5vw, 40px); font-weight: 700;
-      letter-spacing: -0.025em; line-height: 1.2; color: var(--text);
+      font-family: var(--serif); font-size: clamp(22px, 3.5vw, 40px); font-weight: 700;
+      letter-spacing: -0.015em; line-height: 1.25; color: var(--text);
     }
-    .claim-inner blockquote em { font-style: normal; color: var(--crimson); }
+    .claim-inner blockquote em { font-style: italic; color: var(--crimson); }
     .claim-sub { margin-top: 20px; font-size: 17px; max-width: 560px; margin: 20px auto 0; color: var(--text-2); }
     .arch-strip {
       display: flex; align-items: center; justify-content: center;
@@ -241,7 +243,9 @@
       background: var(--surface); min-width: 100px; text-align: center;
       box-shadow: var(--shadow-card);
     }
-    .arch-node-icon { font-size: 22px; }
+    .arch-node-icon { color: var(--text-2); display: flex; }
+    .arch-node.device .arch-node-icon { color: var(--green); }
+    .arch-node.cloud-blocked .arch-node-icon { color: var(--crimson); }
     .arch-node-label { font-size: 12px; font-weight: 600; color: var(--text-2); }
     .arch-node-sub { font-size: 10px; color: var(--text-3); }
     .arch-arrow { width: 48px; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 18px; flex-shrink: 0; }
@@ -269,18 +273,30 @@
     }
     .bento-card:hover { border-color: var(--border-2); transform: translateY(-3px); box-shadow: var(--shadow-lift); }
     .bento-card.wide { grid-column: span 2; }
-    .bento-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; margin-bottom: 18px;
+    .card-dot {
+      display: block; width: 10px; height: 10px; border-radius: 50%;
+      margin-bottom: 18px;
     }
-    .bi-red   { background:rgba(232,67,46,0.10);  border:1px solid rgba(232,67,46,0.2);  }
-    .bi-orange{ background:rgba(219,127,0,0.10); border:1px solid rgba(219,127,0,0.2); }
-    .bi-yellow{ background:rgba(179,134,0,0.10); border:1px solid rgba(179,134,0,0.2); }
-    .bi-green { background:rgba(30,158,76,0.10);  border:1px solid rgba(30,158,76,0.2);  }
-    .bi-blue  { background:rgba(10,111,219,0.10); border:1px solid rgba(10,111,219,0.2); }
+    .cd-red   { background:#FF453A; }
+    .cd-orange{ background:#FF9F0A; }
+    .cd-yellow{ background:#E0B000; }
+    .cd-green { background:#30D158; }
+    .cd-blue  { background:#0A84FF; }
     .bento-card h3 { margin-bottom: 8px; }
     .bento-card p  { font-size: 14px; line-height: 1.7; }
+
+    /* card stats (fills wide cards without a preview widget) */
+    .card-stats { display: flex; gap: 28px; margin-top: 24px; flex-wrap: wrap; }
+    .card-stat { display: flex; flex-direction: column; gap: 2px; }
+    .cs-num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--crimson); font-family: var(--mono); }
+    .cs-label { font-size: 12px; color: var(--text-3); }
+
+    /* tag row (small architecture facts) */
+    .tag-row { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+    .tag-chip {
+      font-size: 12px; font-weight: 600; color: var(--text-2);
+      padding: 6px 12px; border-radius: 100px; background: var(--surface2); border: 1px solid var(--border);
+    }
 
     /* nudge preview */
     .nudge-preview {
@@ -335,8 +351,9 @@
       font-size: 60px; line-height: 1; color: var(--crimson); font-family: Georgia, serif; opacity: 0.35;
     }
     .prompt-text {
-      font-size: clamp(18px, 2.5vw, 24px); font-weight: 600;
-      letter-spacing: -0.02em; line-height: 1.4; color: var(--text); transition: opacity 0.3s ease;
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(19px, 2.6vw, 26px); font-weight: 500;
+      letter-spacing: -0.01em; line-height: 1.45; color: var(--text); transition: opacity 0.3s ease;
     }
     .prompt-controls { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .prompt-nav {
@@ -432,15 +449,15 @@
     .cta-primary:hover { background: var(--crimson-lt); transform: translateY(-1px); }
     .cta-outline { border: 1px solid var(--border-2); color: var(--text-2); }
     .cta-outline:hover { border-color: rgba(20,18,16,0.3); color: var(--text); transform: translateY(-1px); }
-    .trial-note { text-align: center; font-size: 13px; color: var(--text-3); margin-top: 24px; }
+    .trial-note { text-align: left; font-size: 13px; color: var(--text-3); margin-top: 24px; }
     .trial-note strong { color: var(--text-2); }
 
     /* final cta */
     #final-cta { padding: 100px 0; }
-    .final-cta-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 24px; }
+    .final-cta-inner { max-width: 1100px; margin: 0 auto; text-align: left; padding: 0 24px; }
     .final-cta-inner h2 { margin-bottom: 20px; }
-    .final-cta-inner p { font-size: 18px; max-width: 560px; margin: 0 auto 40px; }
-    .final-cta-row { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .final-cta-inner p { font-size: 18px; max-width: 560px; margin: 0 0 40px; }
+    .final-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
     /* footer */
     footer { border-top: 1px solid var(--border); padding: 60px 0 48px; }
@@ -534,6 +551,8 @@
 
   <!-- Hero -->
   <section id="hero">
+    <div class="mood-field" id="mood-field" aria-hidden="true"></div>
+    <div class="container hero-inner">
     <div class="hero-mark">
       <svg viewBox="3 0 78 33" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="hm-line" d="M14 24 L14 9 L42 21 L70 9 L70 24" stroke="#8B8D90" stroke-opacity="0.4" stroke-width="2.5" stroke-linecap="round"/>
@@ -551,14 +570,11 @@
         </defs>
       </svg>
     </div>
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      AI runs entirely on your device, zero cloud
-    </div>
-    <h1>The journal that<br><span class="gradient-text">listens in private.</span></h1>
+    <div class="hero-date" id="hero-date">Today</div>
+    <h1>The journal that<br><em>listens in private.</em></h1>
     <p class="hero-sub-head">Write anything. The AI that reflects it back lives on your iPhone. Not on someone's server. Not in a data center. Not anywhere your words can travel.</p>
     <div class="hero-privacy-counter">
-      <span>Bytes sent to any server while you use MirrorNotes:</span>
+      <span>bytes sent to any server while you write &#8594;</span>
       <span class="counter-num">0</span>
     </div>
     <div class="hero-actions">
@@ -570,7 +586,7 @@
     </div>
     <div class="hero-proof">
       <div class="hero-proof-item">
-        <div class="pn gradient-text">&#8734;</div>
+        <div class="pn" style="color:var(--crimson)">&#8734;</div>
         <div class="pl">Free entries, forever</div>
       </div>
       <div class="proof-sep"></div>
@@ -589,9 +605,6 @@
         <div class="pl">Apple nominated</div>
       </div>
     </div>
-    <div class="scroll-hint">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      Scroll
     </div>
   </section>
 
@@ -604,19 +617,19 @@
         <p class="claim-sub">We didn&rsquo;t build a privacy policy around cloud AI. We removed the cloud entirely. Gemma 3 runs on your iPhone&rsquo;s Neural Engine, the same chip that powers Face ID. No network call. Nothing to intercept.</p>
         <div class="arch-strip">
           <div class="arch-node device">
-            <div class="arch-node-icon">&#128241;</div>
+            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg></div>
             <div class="arch-node-label">Your iPhone</div>
             <div class="arch-node-sub">Journal + Gemma 3</div>
           </div>
           <div class="arch-arrow">&#8594;</div>
           <div class="arch-node device">
-            <div class="arch-node-icon">&#9729;&#65039;</div>
+            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H7a4 4 0 1 1 .6-7.95 5.5 5.5 0 0 1 10.6 1.6 3.2 3.2 0 0 1-.7 6.35z"/></svg></div>
             <div class="arch-node-label">Your iCloud</div>
             <div class="arch-node-sub">Private to you</div>
           </div>
           <div class="arch-arrow blocked">&#10005;</div>
           <div class="arch-node cloud-blocked">
-            <div class="arch-node-icon">&#127758;</div>
+            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg></div>
             <div class="arch-node-label">Any Server</div>
             <div class="arch-node-sub">Never reached</div>
           </div>
@@ -635,12 +648,17 @@
       </div>
       <div class="bento">
         <div class="bento-card wide reveal" style="transition-delay:0.05s">
-          <div class="bento-icon bi-red">&#9999;&#65039;</div>
+          <span class="card-dot cd-red"></span>
           <h3>Write freely. Your data stays free.</h3>
           <p>Unlimited entries. No 30-day limit. No paywall on your own history. Every word you&rsquo;ve ever written is readable forever. Your data is never the price of admission.</p>
+          <div class="card-stats">
+            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Entries, forever</span></div>
+            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Day limit</span></div>
+            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">To read your past</span></div>
+          </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.1s">
-          <div class="bento-icon bi-orange">&#128161;</div>
+          <span class="card-dot cd-orange"></span>
           <h3>Daily Nudge</h3>
           <p>Each morning: one question drawn from your own patterns. Not generic. Something it noticed in <em>your</em> writing.</p>
           <div class="nudge-preview">
@@ -649,7 +667,7 @@
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.15s">
-          <div class="bento-icon bi-yellow">&#128172;</div>
+          <span class="card-dot cd-yellow"></span>
           <h3>Ask your journal</h3>
           <p>Query your own history in natural language. On-device. Instant. Private.</p>
           <div class="ask-preview">
@@ -658,28 +676,33 @@
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.2s">
-          <div class="bento-icon bi-blue">&#129504;</div>
+          <span class="card-dot cd-blue"></span>
           <h3>On-device AI only</h3>
           <p>Gemma 3 1B runs locally on the Neural Engine. No API calls. No server logs. Real privacy, by architecture.</p>
+          <div class="tag-row">
+            <span class="tag-chip">Neural Engine</span>
+            <span class="tag-chip">0 network calls</span>
+            <span class="tag-chip">1B params</span>
+          </div>
         </div>
         <div class="bento-card wide reveal" style="transition-delay:0.25s">
-          <div class="bento-icon bi-green">&#128202;</div>
+          <span class="card-dot cd-green"></span>
           <h3>Mood Timeline &amp; Weekly Digest</h3>
           <p>Every Sunday: a synthesis of your week, covering themes, emotional shifts, and threads worth returning to. Plus a full mood timeline built from every entry. Generated on your phone. Stays on your phone.</p>
           <div class="mood-bar" id="mood-bar"></div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.3s">
-          <div class="bento-icon bi-blue">&#128269;</div>
+          <span class="card-dot cd-blue"></span>
           <h3>Full-text search</h3>
           <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.35s">
-          <div class="bento-icon bi-orange">&#128260;</div>
+          <span class="card-dot cd-orange"></span>
           <h3>iCloud backup</h3>
           <p>Entries sync to <em>your</em> iCloud, private to your Apple ID. We don&rsquo;t have access.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.4s">
-          <div class="bento-icon bi-red">&#127908;</div>
+          <span class="card-dot cd-red"></span>
           <h3>Voice to journal</h3>
           <p>Speak your entry. Transcribed locally. No audio sent anywhere. Perfect for mid-walk thoughts.</p>
         </div>
@@ -777,7 +800,7 @@
         <h2>Free. All of it.</h2>
         <p>Every feature is unlocked during early access: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report. No card, no trial, no cap.</p>
       </div>
-      <div class="pricing-grid" style="grid-template-columns: 1fr; max-width: 420px;">
+      <div class="pricing-grid" style="grid-template-columns: 1fr; max-width: 420px; margin: 0;">
         <div class="pricing-card popular reveal" style="transition-delay:0.05s">
           <span class="popular-badge">Early access</span>
           <div class="pricing-header">
@@ -891,6 +914,7 @@
         </div>
         <div class="footer-bottom">
           <p>&copy; 2026 MirrorNotes. Made with intention. Privacy first.</p>
+          <p style="font-family:var(--mono);font-size:11px">This page loads zero third-party resources. No analytics, no tracking pixels, no fonts from Google. View source.</p>
           <p><a href="privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Privacy Policy</a></p>
         </div>
       </div>
@@ -898,6 +922,40 @@
   </footer>
 
   <script>
+    // Journal date line
+    (function () {
+      const el = document.getElementById('hero-date');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    })();
+
+    // Ambient mood-dot field
+    (function () {
+      const field = document.getElementById('mood-field');
+      if (!field) return;
+      const colors = ['#FF453A', '#FF9F0A', '#FFD60A', '#30D158', '#0A84FF'];
+      const COUNT = 34;
+      let placed = 0, attempts = 0;
+      while (placed < COUNT && attempts < COUNT * 12) {
+        attempts++;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        if (x < 62 && y > 10 && y < 86) continue; // clear zone: text column sits left
+        const size = 4 + Math.random() * 6;
+        const dot = document.createElement('span');
+        dot.className = 'field-dot';
+        dot.style.left = x + '%';
+        dot.style.top = y + '%';
+        dot.style.width = size + 'px';
+        dot.style.height = size + 'px';
+        dot.style.background = colors[placed % colors.length];
+        dot.style.opacity = (0.10 + Math.random() * 0.22).toFixed(2);
+        dot.style.setProperty('--dur', (5 + Math.random() * 5).toFixed(1) + 's');
+        dot.style.setProperty('--delay', (Math.random() * -8).toFixed(1) + 's');
+        field.appendChild(dot);
+        placed++;
+      }
+    })();
+
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});

@@ -91,6 +91,11 @@
     .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
     .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
   </style>
 </head>
 <body>
