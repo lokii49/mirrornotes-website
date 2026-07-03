@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>OG Image Preview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: #FAF9F6; }
+
+    .card {
+      width: 1200px; height: 630px; position: relative; overflow: hidden;
+      background: #FAF9F6;
+      font-family: 'Iowan Old Style', 'Palatino', Georgia, serif;
+    }
+
+    /* grain */
+    .card::before {
+      content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.15; mix-blend-mode: multiply;
+    }
+
+    /* notebook margin rule */
+    .margin-rule {
+      position: absolute; top: 0; bottom: 0; left: 84px; width: 1px;
+      background: rgba(122,30,42,0.28);
+      box-shadow: 5px 0 0 rgba(122,30,42,0.10);
+    }
+
+    .content { position: absolute; left: 132px; top: 118px; z-index: 2; }
+
+    .date {
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 17px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #7A1E2A; margin-bottom: 26px;
+    }
+
+    h1 {
+      font-size: 88px; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.06; color: #16181A;
+    }
+    h1 em { font-style: italic; color: #7A1E2A; }
+
+    .sub {
+      font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      font-size: 24px; color: #55575B; margin-top: 30px; max-width: 620px; line-height: 1.55;
+    }
+
+    .footer-row {
+      position: absolute; left: 132px; right: 84px; bottom: 64px; z-index: 2;
+      display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .wordmark { font-size: 30px; font-weight: 700; color: #16181A; }
+    .domain {
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 17px; color: #8B8D90; letter-spacing: 0.06em;
+    }
+
+    .viz { position: absolute; right: 64px; top: 96px; width: 400px; z-index: 1; }
+    .viz svg { width: 100%; height: auto; display: block; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="margin-rule"></div>
+
+    <div class="viz">
+      <svg viewBox="0 0 440 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 340 L105 380 L170 260 L235 300 L300 175 L365 125 L410 200"
+              stroke="#8B8D90" stroke-opacity="0.35" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <g filter="url(#s)">
+          <circle cx="40"  cy="340" r="13" fill="#FF453A" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="105" cy="380" r="11" fill="#FF9F0A" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="170" cy="260" r="12" fill="#E0B000" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="235" cy="300" r="11" fill="#FF9F0A" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="300" cy="175" r="14" fill="#30D158" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="365" cy="125" r="13" fill="#30D158" stroke="#FAF9F6" stroke-width="4.5"/>
+          <circle cx="410" cy="200" r="12" fill="#0A84FF" stroke="#FAF9F6" stroke-width="4.5"/>
+        </g>
+        <text x="40" y="378" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="12" fill="#8B8D90">mon</text>
+        <text x="300" y="149" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="12" fill="#8B8D90">fri</text>
+        <text x="410" y="238" text-anchor="middle" font-family="SF Mono, Menlo, monospace" font-size="12" fill="#8B8D90">sun</text>
+        <defs>
+          <filter id="s" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#16181A" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="content">
+      <div class="date">Your private entry</div>
+      <h1>The journal that<br><em>listens in private.</em></h1>
+      <p class="sub">AI journaling that runs entirely on your iPhone. Your words never leave your device. Free.</p>
+    </div>
+
+    <div class="footer-row">
+      <div class="wordmark">MirrorNotes</div>
+      <div class="domain">mirrornotes.org</div>
+    </div>
+  </div>
+</body>
+</html>

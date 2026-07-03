@@ -107,7 +107,7 @@
       box-shadow: 4px 0 0 rgba(122,30,42,0.10);
       z-index: 1; pointer-events: none;
     }
-    @media (max-width: 680px) { body::after { display: none; } .mood-field { opacity: 0.5; } }
+    @media (max-width: 680px) { body::after { display: none; } }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     section { padding: 120px 0; }
@@ -143,32 +143,38 @@
       padding: 120px 0 80px; position: relative; overflow: hidden;
     }
     .hero-inner { position: relative; z-index: 2; }
-    .mood-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .field-dot {
-      position: absolute; border-radius: 50%;
-      animation: fieldDrift var(--dur) ease-in-out infinite;
-      animation-delay: var(--delay);
+    .hero-viz {
+      position: absolute; z-index: 1; pointer-events: none;
+      right: max(2vw, calc((100vw - 1220px) / 2)); top: 50%;
+      transform: translateY(-50%);
+      width: clamp(300px, 32vw, 460px);
     }
-    @keyframes fieldDrift {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-14px) scale(1.18); }
+    .hero-viz svg { width: 100%; height: auto; display: block; }
+    .hero-viz .hv-line {
+      stroke-dasharray: 1400; stroke-dashoffset: 1400;
+      animation: drawMark 2.6s 0.5s cubic-bezier(.4,0,.2,1) forwards;
     }
+    .hero-viz .hv-dot {
+      opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center;
+      animation: popDot 0.45s cubic-bezier(.34,1.56,.64,1) forwards, vizBreathe 5.2s ease-in-out infinite;
+    }
+    @keyframes vizBreathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.14)} }
+    .hero-viz .hv-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
+      fill: var(--text-3); opacity: 0;
+      animation: fadeIn 0.8s 3s forwards;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @media (max-width: 960px) { .hero-viz { display: none; } }
     @media (prefers-reduced-motion: reduce) {
-      .field-dot { animation: none; }
+      .hero-viz .hv-line { animation: none; stroke-dashoffset: 0; }
+      .hero-viz .hv-dot { animation: none; opacity: 1; transform: scale(1); }
+      .hero-viz .hv-label { animation: none; opacity: 1; }
     }
     .hero-date {
       font-family: var(--mono); font-size: 13px; font-weight: 500;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--crimson);
       margin: 26px 0 18px;
-    }
-    .hero-mark svg { width: 130px; height: auto; }
-    .hero-mark .hm-line {
-      stroke-dasharray: 300; stroke-dashoffset: 300;
-      animation: drawMark 1.4s 0.2s cubic-bezier(.4,0,.2,1) forwards;
-    }
-    .hero-mark .hm-dot {
-      opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center;
-      animation: popDot 0.4s cubic-bezier(.34,1.56,.64,1) forwards;
     }
     @keyframes drawMark { to { stroke-dashoffset: 0; } }
     @keyframes popDot { to { opacity: 1; transform: scale(1); } }
@@ -222,9 +228,9 @@
     #privacy-claim { padding: 80px 0; background: var(--bg-alt); }
     .claim-inner { max-width: 900px; margin: 0 auto; text-align: center; padding: 0 24px; }
     .claim-tag {
-      display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: 100px;
-      border: 1px solid rgba(122,30,42,0.2); background: rgba(122,30,42,0.05);
-      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      display: inline-block;
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--crimson); margin-bottom: 28px;
     }
     .claim-inner blockquote {
@@ -326,8 +332,18 @@
     .journey-step:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
     .journey-step:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
     .journey-step.unlocked { background: var(--crimson-tint); border-color: rgba(122,30,42,0.3); }
-    .journey-day { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); font-family: 'SF Mono', monospace; margin-bottom: 10px; }
+    .journey-day {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-3); font-family: var(--mono); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .journey-day::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border-2); flex-shrink: 0;
+    }
     .journey-step.unlocked .journey-day { color: var(--crimson); }
+    .journey-step.unlocked:nth-child(3) .journey-day::before { background: #FF9F0A; }
+    .journey-step.unlocked:nth-child(4) .journey-day::before { background: #30D158; }
     .journey-step h3 { font-size: 16px; margin-bottom: 8px; }
     .journey-step p { font-size: 13px; line-height: 1.65; }
     .journey-unlock-badge {
@@ -338,7 +354,7 @@
 
     /* prompts */
     #prompts { padding: 100px 0; }
-    .prompts-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .prompts-inner { max-width: 720px; margin: 0; text-align: left; }
     .prompt-display {
       margin: 40px 0 28px; padding: 40px 48px;
       background: var(--surface); border: 1px solid var(--border);
@@ -355,7 +371,7 @@
       font-size: clamp(19px, 2.6vw, 26px); font-weight: 500;
       letter-spacing: -0.01em; line-height: 1.45; color: var(--text); transition: opacity 0.3s ease;
     }
-    .prompt-controls { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .prompt-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .prompt-nav {
       width: 40px; height: 40px; border-radius: 50%;
       border: 1px solid var(--border-2); background: var(--surface);
@@ -374,7 +390,7 @@
 
     /* social proof */
     #proof { padding: 80px 0; }
-    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .proof-card {
       padding: 28px; background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 16px;
@@ -386,7 +402,7 @@
     .proof-quote { font-size: 14px; color: var(--text); line-height: 1.7; flex: 1; }
     .proof-author { font-size: 12px; color: var(--text-3); font-weight: 600; }
     .proof-editorial {
-      grid-column: span 3; padding: 20px 28px;
+      grid-column: 1 / -1; padding: 20px 28px;
       background: rgba(219,127,0,0.05); border: 1px solid rgba(219,127,0,0.2);
       border-radius: var(--radius-md); display: flex; align-items: center; gap: 16px;
     }
@@ -451,6 +467,19 @@
     .cta-outline:hover { border-color: rgba(20,18,16,0.3); color: var(--text); transform: translateY(-1px); }
     .trial-note { text-align: left; font-size: 13px; color: var(--text-3); margin-top: 24px; }
     .trial-note strong { color: var(--text-2); }
+    .pricing-layout {
+      display: grid; grid-template-columns: 400px 1fr; gap: 56px;
+      align-items: start; max-width: 960px;
+    }
+    .pricing-why h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 14px; }
+    .pricing-why > p { font-size: 15px; max-width: 480px; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+    .why-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; color: var(--text-2); line-height: 1.65; max-width: 480px; }
+    .why-list strong { color: var(--text); }
+    .why-dot { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; }
+    @media (max-width: 960px) {
+      .pricing-layout { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
+    }
 
     /* final cta */
     #final-cta { padding: 100px 0; }
@@ -551,25 +580,30 @@
 
   <!-- Hero -->
   <section id="hero">
-    <div class="mood-field" id="mood-field" aria-hidden="true"></div>
-    <div class="container hero-inner">
-    <div class="hero-mark">
-      <svg viewBox="3 0 78 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="hm-line" d="M14 24 L14 9 L42 21 L70 9 L70 24" stroke="#8B8D90" stroke-opacity="0.4" stroke-width="2.5" stroke-linecap="round"/>
-        <g filter="url(#hm-shadow)">
-          <circle class="hm-dot" style="animation-delay:1.3s" cx="14" cy="24" r="6" fill="#FF453A" stroke="#FAF9F6" stroke-width="2.5"/>
-          <circle class="hm-dot" style="animation-delay:1.5s" cx="14" cy="9"  r="6" fill="#FF9F0A" stroke="#FAF9F6" stroke-width="2.5"/>
-          <circle class="hm-dot" style="animation-delay:1.7s" cx="42" cy="21" r="6" fill="#FFD60A" stroke="#FAF9F6" stroke-width="2.5"/>
-          <circle class="hm-dot" style="animation-delay:1.9s" cx="70" cy="9"  r="6" fill="#30D158" stroke="#FAF9F6" stroke-width="2.5"/>
-          <circle class="hm-dot" style="animation-delay:2.1s" cx="70" cy="24" r="6" fill="#0A84FF" stroke="#FAF9F6" stroke-width="2.5"/>
+    <div class="hero-viz" aria-hidden="true">
+      <svg viewBox="0 0 440 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="hv-line" d="M40 430 L105 470 L170 330 L235 370 L300 220 L365 160 L410 250"
+              stroke="#8B8D90" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g filter="url(#hv-shadow)">
+          <circle class="hv-dot" style="animation-delay:1.4s,3.6s" cx="40"  cy="430" r="12" fill="#FF453A" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:1.65s,4.1s" cx="105" cy="470" r="10" fill="#FF9F0A" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:1.9s,4.6s" cx="170" cy="330" r="11" fill="#E0B000" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:2.15s,5.1s" cx="235" cy="370" r="10" fill="#FF9F0A" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:2.4s,5.6s" cx="300" cy="220" r="13" fill="#30D158" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:2.65s,6.1s" cx="365" cy="160" r="12" fill="#30D158" stroke="#FAF9F6" stroke-width="4"/>
+          <circle class="hv-dot" style="animation-delay:2.9s,6.6s" cx="410" cy="250" r="11" fill="#0A84FF" stroke="#FAF9F6" stroke-width="4"/>
         </g>
+        <text class="hv-label" x="40"  y="466" text-anchor="middle">mon</text>
+        <text class="hv-label" x="300" y="196" text-anchor="middle">fri</text>
+        <text class="hv-label" x="410" y="286" text-anchor="middle">sun</text>
         <defs>
-          <filter id="hm-shadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#16181A" flood-opacity="0.18"/>
+          <filter id="hv-shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#16181A" flood-opacity="0.15"/>
           </filter>
         </defs>
       </svg>
     </div>
+    <div class="container hero-inner">
     <div class="hero-date" id="hero-date">Today</div>
     <h1>The journal that<br><em>listens in private.</em></h1>
     <p class="hero-sub-head">Write anything. The AI that reflects it back lives on your iPhone. Not on someone's server. Not in a data center. Not anywhere your words can travel.</p>
@@ -685,16 +719,16 @@
             <span class="tag-chip">1B params</span>
           </div>
         </div>
-        <div class="bento-card wide reveal" style="transition-delay:0.25s">
+        <div class="bento-card reveal" style="transition-delay:0.25s">
+          <span class="card-dot cd-blue"></span>
+          <h3>Full-text search</h3>
+          <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
+        </div>
+        <div class="bento-card wide reveal" style="transition-delay:0.3s">
           <span class="card-dot cd-green"></span>
           <h3>Mood Timeline &amp; Weekly Digest</h3>
           <p>Every Sunday: a synthesis of your week, covering themes, emotional shifts, and threads worth returning to. Plus a full mood timeline built from every entry. Generated on your phone. Stays on your phone.</p>
           <div class="mood-bar" id="mood-bar"></div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.3s">
-          <span class="card-dot cd-blue"></span>
-          <h3>Full-text search</h3>
-          <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.35s">
           <span class="card-dot cd-orange"></span>
@@ -705,6 +739,16 @@
           <span class="card-dot cd-red"></span>
           <h3>Voice to journal</h3>
           <p>Speak your entry. Transcribed locally. No audio sent anywhere. Perfect for mid-walk thoughts.</p>
+        </div>
+        <div class="bento-card reveal" style="transition-delay:0.45s">
+          <span class="card-dot cd-yellow"></span>
+          <h3>Works in airplane mode</h3>
+          <p>The AI doesn&rsquo;t need the internet. Write and reflect anywhere: a flight, a cabin, a dead zone.</p>
+        </div>
+        <div class="bento-card reveal" style="transition-delay:0.5s">
+          <span class="card-dot cd-green"></span>
+          <h3>No account, ever</h3>
+          <p>No email. No password. No sign-in screen. Nothing to breach, because we never asked who you are.</p>
         </div>
       </div>
     </div>
@@ -775,7 +819,7 @@
         <h2>New app. Real privacy.<br>Be among the first.</h2>
       </div>
       <div class="proof-grid">
-        <div class="proof-editorial reveal" style="transition-delay:0.05s;grid-column:1/-1;max-width:600px;margin:0 auto">
+        <div class="proof-editorial reveal" style="transition-delay:0.05s">
           <div class="proof-editorial-badge">Apple Editorial</div>
           <div class="proof-editorial-text"><strong>Nominated for App Store editorial feature</strong>, selected by Apple&rsquo;s editorial team for its privacy-first approach to AI journaling.</div>
         </div>
@@ -800,7 +844,7 @@
         <h2>Free. All of it.</h2>
         <p>Every feature is unlocked during early access: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report. No card, no trial, no cap.</p>
       </div>
-      <div class="pricing-grid" style="grid-template-columns: 1fr; max-width: 420px; margin: 0;">
+      <div class="pricing-layout">
         <div class="pricing-card popular reveal" style="transition-delay:0.05s">
           <span class="popular-badge">Early access</span>
           <div class="pricing-header">
@@ -822,8 +866,17 @@
           </ul>
           <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Download free</a>
         </div>
+        <div class="pricing-why reveal" style="transition-delay:0.1s">
+          <h3>Why is it free?</h3>
+          <p>Most journaling apps pay for cloud AI on every entry you write, so they have to charge you, or worse, monetize you. MirrorNotes runs its AI on the chip already in your pocket. Our marginal cost per user is zero, so early access is too.</p>
+          <ul class="why-list">
+            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>We can&rsquo;t sell your data.</strong> It never reaches us. There is nothing on our side to sell.</div></li>
+            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>We can&rsquo;t lock your history.</strong> Your entries live in your iCloud, under your Apple&nbsp;ID.</div></li>
+            <li><span class="why-dot" style="background:#30D158"></span><div><strong>We&rsquo;ll never charge you to read your own words.</strong> If paid tiers come later, they gate new AI features, not your archive.</div></li>
+          </ul>
+          <p class="trial-note" style="margin-top:28px">No account. No card. Cancel is a non-issue: there&rsquo;s nothing to cancel.</p>
+        </div>
       </div>
-      <p class="trial-note">No account. No card. Cancel is a non-issue: there's nothing to cancel.</p>
     </div>
   </section>
 
@@ -926,34 +979,6 @@
     (function () {
       const el = document.getElementById('hero-date');
       if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    })();
-
-    // Ambient mood-dot field
-    (function () {
-      const field = document.getElementById('mood-field');
-      if (!field) return;
-      const colors = ['#FF453A', '#FF9F0A', '#FFD60A', '#30D158', '#0A84FF'];
-      const COUNT = 34;
-      let placed = 0, attempts = 0;
-      while (placed < COUNT && attempts < COUNT * 12) {
-        attempts++;
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        if (x < 62 && y > 10 && y < 86) continue; // clear zone: text column sits left
-        const size = 4 + Math.random() * 6;
-        const dot = document.createElement('span');
-        dot.className = 'field-dot';
-        dot.style.left = x + '%';
-        dot.style.top = y + '%';
-        dot.style.width = size + 'px';
-        dot.style.height = size + 'px';
-        dot.style.background = colors[placed % colors.length];
-        dot.style.opacity = (0.10 + Math.random() * 0.22).toFixed(2);
-        dot.style.setProperty('--dur', (5 + Math.random() * 5).toFixed(1) + 's');
-        dot.style.setProperty('--delay', (Math.random() * -8).toFixed(1) + 's');
-        field.appendChild(dot);
-        placed++;
-      }
     })();
 
     // Scroll reveal
