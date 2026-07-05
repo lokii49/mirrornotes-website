@@ -1,41 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <script>
-  (function () {
-    try {
-      if (localStorage.getItem('mn-lang-redirected')) return;
-      localStorage.setItem('mn-lang-redirected', '1');
-      var supported = ['es','fr','de','it','pt','ja','ko','ru','zh'];
-      var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
-      for (var i = 0; i < langs.length; i++) {
-        var code = String(langs[i]).toLowerCase().split('-')[0];
-        if (code === 'en') return;
-        if (supported.indexOf(code) !== -1) {
-          window.location.replace('/' + code + '/');
-          return;
-        }
-      }
-    } catch (e) { /* localStorage unavailable (e.g. private mode) - stay on English */ }
-  })();
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MirrorNotes: AI journaling that runs entirely on your iPhone. Your words never leave your device. On-device Gemma 3, daily prompts, mood tracking. Free.">
+  <meta name="description" content="MirrorNotes : le journal IA qui fonctionne entièrement sur votre iPhone. Vos mots ne quittent jamais votre appareil. Gemma 3 sur l'appareil, prompts quotidiens, suivi de l'humeur. Gratuit.">
   <meta name="theme-color" content="#FAF9F6">
-  <title>MirrorNotes: Free Private AI Journaling for iPhone</title>
+  <title>MirrorNotes : journal IA privé et gratuit pour iPhone</title>
 
-  <meta property="og:title" content="MirrorNotes: Private AI Journaling">
-  <meta property="og:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device. Free.">
+  <meta property="og:title" content="MirrorNotes : journal IA privé">
+  <meta property="og:description" content="Journal propulsé par l'IA qui fonctionne entièrement sur votre iPhone. Vos mots ne quittent jamais votre appareil. Gratuit.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mirrornotes.org/og-image.png">
-  <meta property="og:url" content="https://mirrornotes.org">
+  <meta property="og:url" content="https://mirrornotes.org/fr/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MirrorNotes: Private AI Journaling">
-  <meta name="twitter:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device.">
+  <meta name="twitter:title" content="MirrorNotes : journal IA privé">
+  <meta name="twitter:description" content="Journal propulsé par l'IA qui fonctionne entièrement sur votre iPhone. Vos mots ne quittent jamais votre appareil.">
   <meta name="twitter:image" content="https://mirrornotes.org/og-image.png">
   <meta name="google-site-verification" content="r6y-d314u0xezNPKN9lB7S1LJKVik6BIIPhgTKuhrDo">
-  <link rel="canonical" href="https://mirrornotes.org">
+  <link rel="canonical" href="https://mirrornotes.org/fr/">
   <link rel="alternate" hreflang="x-default" href="https://mirrornotes.org/">
   <link rel="alternate" hreflang="en" href="https://mirrornotes.org/">
   <link rel="alternate" hreflang="es" href="https://mirrornotes.org/es/">
@@ -49,7 +31,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/">
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <meta name="keywords" content="private journal app, AI journaling, offline journal, on-device AI, mood tracking, daily diary, MirrorNotes">
+  <meta name="keywords" content="journal intime privé, journal IA, journal hors ligne, IA sur l'appareil, suivi de l'humeur, carnet quotidien, MirrorNotes">
 
   <script type="application/ld+json">
   {
@@ -57,17 +39,17 @@
     "@type": "SoftwareApplication",
     "name": "MirrorNotes",
     "alternateName": "MirrorNotes: AI Journal",
-    "description": "AI-powered journaling that runs entirely on your iPhone. Your words never leave your device. Daily nudges, mood tracking, and Ask your journal, all on-device with Gemma 3. Free.",
+    "description": "Journal propulsé par l'IA qui fonctionne entièrement sur votre iPhone. Vos mots ne quittent jamais votre appareil. Rappels quotidiens, suivi de l'humeur et question à votre journal, le tout sur l'appareil avec Gemma 3. Gratuit.",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": [
-      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Everything is free: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report"}
+      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Tout est gratuit : entrées illimitées, Rappel quotidien, Question au journal, Résumé hebdomadaire, Chronologie de l'humeur, Rapport mensuel"}
     ],
     "url": "https://mirrornotes.org",
     "downloadUrl": "https://apps.apple.com/app/id6769007201",
     "screenshot": "https://mirrornotes.org/og-image.png",
     "author": {"@type": "Person","name": "Lokesh Pudhari"},
-    "releaseNotes": "New app, currently free while we shape the experience with early users."
+    "releaseNotes": "Nouvelle application, actuellement gratuite pendant que nous façonnons l'expérience avec les premiers utilisateurs."
   }
   </script>
 
@@ -590,7 +572,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="/" class="nav-logo">
+    <a href="/fr/" class="nav-logo">
       <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="nb" cx="50%" cy="44%" r="72%">
@@ -619,21 +601,21 @@
       MirrorNotes
     </a>
     <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#prompts">Try a prompt</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="#features">Fonctionnalités</a></li>
+      <li><a href="#prompts">Essayer un prompt</a></li>
+      <li><a href="#pricing">Tarifs</a></li>
+      <li><a href="../privacy.html">Confidentialité</a></li>
     </ul>
     <a href="https://apps.apple.com/app/id6769007201" class="nav-cta nav-links" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Get App
+      Télécharger
     </a>
     <details class="lang-switch">
-      <summary>EN &#9662;</summary>
+      <summary>FR &#9662;</summary>
       <div class="lang-menu">
-        <a href="/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
+        <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
         <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
-        <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
+        <a href="/fr/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
         <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
         <a href="/it/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Italiano</a>
         <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
@@ -648,14 +630,14 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#features">Features</a>
-    <a href="#prompts">Try a prompt</a>
-    <a href="#pricing">Pricing</a>
-    <a href="privacy.html">Privacy</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#prompts">Essayer un prompt</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="../privacy.html">Confidentialité</a>
     <div class="mobile-lang-row">
-      <a href="/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
+      <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
       <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
-      <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
+      <a href="/fr/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
       <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
       <a href="/it/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Italiano</a>
       <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
@@ -664,7 +646,7 @@
       <a href="/ru/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
       <a href="/zh/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">中文</a>
     </div>
-    <a href="https://apps.apple.com/app/id6769007201" class="mobile-menu-cta" target="_blank" rel="noopener">Download Free on App Store</a>
+    <a href="https://apps.apple.com/app/id6769007201" class="mobile-menu-cta" target="_blank" rel="noopener">Télécharger gratuitement sur l'App Store</a>
   </div>
 
   <!-- Hero -->
@@ -682,9 +664,9 @@
           <circle class="hv-dot" style="animation-delay:2.65s,6.1s" cx="365" cy="160" r="12" fill="#30D158" stroke="#FAF9F6" stroke-width="4"/>
           <circle class="hv-dot" style="animation-delay:2.9s,6.6s" cx="410" cy="250" r="11" fill="#0A84FF" stroke="#FAF9F6" stroke-width="4"/>
         </g>
-        <text class="hv-label" x="40"  y="466" text-anchor="middle">mon</text>
-        <text class="hv-label" x="300" y="196" text-anchor="middle">fri</text>
-        <text class="hv-label" x="410" y="286" text-anchor="middle">sun</text>
+        <text class="hv-label" x="40"  y="466" text-anchor="middle">lun</text>
+        <text class="hv-label" x="300" y="196" text-anchor="middle">ven</text>
+        <text class="hv-label" x="410" y="286" text-anchor="middle">dim</text>
         <defs>
           <filter id="hv-shadow" x="-30%" y="-30%" width="160%" height="160%">
             <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#16181A" flood-opacity="0.15"/>
@@ -693,39 +675,39 @@
       </svg>
     </div>
     <div class="container hero-inner">
-    <div class="hero-date" id="hero-date">Today</div>
-    <h1>The journal that<br><em>listens in private.</em></h1>
-    <p class="hero-sub-head">Write anything. The AI that reflects it back lives on your iPhone. Not on someone's server. Not in a data center. Not anywhere your words can travel.</p>
+    <div class="hero-date" id="hero-date">Aujourd'hui</div>
+    <h1>Le journal qui<br><em>vous écoute en privé.</em></h1>
+    <p class="hero-sub-head">Écrivez tout ce que vous voulez. L'IA qui vous répond vit sur votre iPhone. Pas sur un serveur. Pas dans un data center. Nulle part où vos mots pourraient voyager.</p>
     <div class="hero-privacy-counter">
-      <span>bytes sent to any server while you write &#8594;</span>
+      <span>octets envoyés à un serveur pendant que vous écrivez &#8594;</span>
       <span class="counter-num">0</span>
     </div>
     <div class="hero-actions">
       <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download Free on App Store
+        Télécharger gratuitement sur l'App Store
       </a>
-      <a href="#features" class="btn-ghost">See it work &#8594;</a>
+      <a href="#features" class="btn-ghost">Voir comment ça marche &#8594;</a>
     </div>
     <div class="hero-proof">
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--crimson)">&#8734;</div>
-        <div class="pl">Free entries, forever</div>
+        <div class="pl">Entrées gratuites, pour toujours</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--green)">0</div>
-        <div class="pl">Bytes to any server</div>
+        <div class="pl">Octet envoyé à un serveur</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--blue);font-size:20px">Gemma 3</div>
-        <div class="pl">On-device · 1B params · local</div>
+        <div class="pl">Sur l'appareil · 1 Md de paramètres · local</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
-        <div class="pn" style="color:var(--orange);font-size:18px">Editorial</div>
-        <div class="pl">Apple nominated</div>
+        <div class="pn" style="color:var(--orange);font-size:18px">Éditorial</div>
+        <div class="pl">Nominé par Apple</div>
       </div>
     </div>
     </div>
@@ -735,26 +717,26 @@
   <section id="privacy-claim">
     <div class="container">
       <div class="claim-inner reveal">
-        <div class="claim-tag">Not a policy. An architecture.</div>
-        <blockquote>Your journal text <em>cannot</em> leave your phone.<br>There is no server to send it to.</blockquote>
-        <p class="claim-sub">We didn&rsquo;t build a privacy policy around cloud AI. We removed the cloud entirely. Gemma 3 runs on your iPhone&rsquo;s Neural Engine, the same chip that powers Face ID. No network call. Nothing to intercept.</p>
+        <div class="claim-tag">Pas une politique. Une architecture.</div>
+        <blockquote>Votre journal <em>ne peut pas</em> quitter votre téléphone.<br>Il n'y a aucun serveur où l'envoyer.</blockquote>
+        <p class="claim-sub">Nous n'avons pas construit une politique de confidentialité autour d'une IA cloud. Nous avons supprimé le cloud entièrement. Gemma 3 tourne sur le Neural Engine de votre iPhone, la même puce qui alimente Face ID. Aucun appel réseau. Rien à intercepter.</p>
         <div class="arch-strip">
           <div class="arch-node device">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg></div>
-            <div class="arch-node-label">Your iPhone</div>
+            <div class="arch-node-label">Votre iPhone</div>
             <div class="arch-node-sub">Journal + Gemma 3</div>
           </div>
           <div class="arch-arrow">&#8594;</div>
           <div class="arch-node device">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H7a4 4 0 1 1 .6-7.95 5.5 5.5 0 0 1 10.6 1.6 3.2 3.2 0 0 1-.7 6.35z"/></svg></div>
-            <div class="arch-node-label">Your iCloud</div>
-            <div class="arch-node-sub">Private to you</div>
+            <div class="arch-node-label">Votre iCloud</div>
+            <div class="arch-node-sub">Privé, à vous</div>
           </div>
           <div class="arch-arrow blocked">&#10005;</div>
           <div class="arch-node cloud-blocked">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg></div>
-            <div class="arch-node-label">Any Server</div>
-            <div class="arch-node-sub">Never reached</div>
+            <div class="arch-node-label">Tout serveur</div>
+            <div class="arch-node-sub">Jamais atteint</div>
           </div>
         </div>
       </div>
@@ -765,79 +747,79 @@
   <section id="features">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Features</div>
-        <h2>AI that knows you.<br>Stays with you.</h2>
-        <p>A focused set of tools built around the one thing that makes journaling work: honesty. All on-device.</p>
+        <div class="label">Fonctionnalités</div>
+        <h2>Une IA qui vous connaît.<br>Qui reste avec vous.</h2>
+        <p>Un ensemble d'outils ciblé, construit autour de ce qui fait vraiment fonctionner un journal : l'honnêteté. Le tout sur l'appareil.</p>
       </div>
       <div class="bento">
         <div class="bento-card wide reveal" style="transition-delay:0.05s">
           <span class="card-dot cd-red"></span>
-          <h3>Write freely. Your data stays free.</h3>
-          <p>Unlimited entries. No 30-day limit. No paywall on your own history. Every word you&rsquo;ve ever written is readable forever. Your data is never the price of admission.</p>
+          <h3>Écrivez librement. Vos données restent libres.</h3>
+          <p>Entrées illimitées. Aucune limite de 30 jours. Aucun mur payant sur votre propre historique. Chaque mot que vous avez écrit reste lisible pour toujours. Vos données ne sont jamais le prix d'entrée.</p>
           <div class="card-stats">
-            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Entries, forever</span></div>
-            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Day limit</span></div>
-            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">To read your past</span></div>
+            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Entrées, pour toujours</span></div>
+            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Limite de jours</span></div>
+            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">Pour relire votre passé</span></div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.1s">
           <span class="card-dot cd-orange"></span>
-          <h3>Daily Nudge</h3>
-          <p>Each morning: one question drawn from your own patterns. Not generic. Something it noticed in <em>your</em> writing.</p>
+          <h3>Rappel quotidien</h3>
+          <p>Chaque matin : une question tirée de vos propres habitudes d'écriture. Pas générique. Quelque chose que l'app a remarqué dans <em>votre</em> écriture.</p>
           <div class="nudge-preview">
-            <div class="nudge-preview-tag">Today&rsquo;s nudge</div>
-            <div class="nudge-preview-text" id="rotating-nudge">You keep coming back to the word &ldquo;enough.&rdquo; What would enough feel like today?</div>
+            <div class="nudge-preview-tag">Le rappel du jour</div>
+            <div class="nudge-preview-text" id="rotating-nudge">Vous revenez souvent au mot « assez ». À quoi ressemblerait « assez » aujourd'hui ?</div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.15s">
           <span class="card-dot cd-yellow"></span>
-          <h3>Ask your journal</h3>
-          <p>Query your own history in natural language. On-device. Instant. Private.</p>
+          <h3>Posez une question à votre journal</h3>
+          <p>Interrogez votre propre historique en langage naturel. Sur l'appareil. Instantané. Privé.</p>
           <div class="ask-preview">
-            <div class="ask-q">When was the last time I felt excited?</div>
-            <div class="ask-a">Three weeks ago, you wrote about the design project and &ldquo;something finally clicked.&rdquo; You used the word &ldquo;flow&rdquo; twice.</div>
+            <div class="ask-q">Quand me suis-je senti(e) enthousiaste pour la dernière fois ?</div>
+            <div class="ask-a">Il y a trois semaines, vous avez écrit à propos du projet de design et que « quelque chose s'était enfin débloqué ». Vous avez utilisé le mot « flow » deux fois.</div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.2s">
           <span class="card-dot cd-blue"></span>
-          <h3>On-device AI only</h3>
-          <p>Gemma 3 1B runs locally on the Neural Engine. No API calls. No server logs. Real privacy, by architecture.</p>
+          <h3>Uniquement une IA sur l'appareil</h3>
+          <p>Gemma 3 1B tourne localement sur le Neural Engine. Aucun appel API. Aucun journal serveur. Une vraie confidentialité, par architecture.</p>
           <div class="tag-row">
             <span class="tag-chip">Neural Engine</span>
-            <span class="tag-chip">0 network calls</span>
-            <span class="tag-chip">1B params</span>
+            <span class="tag-chip">0 appel réseau</span>
+            <span class="tag-chip">1 Md de paramètres</span>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.25s">
           <span class="card-dot cd-blue"></span>
-          <h3>Full-text search</h3>
-          <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
+          <h3>Recherche en texte intégral</h3>
+          <p>Recherchez dans chaque entrée instantanément. Local. Aucun service d'indexation. Votre téléphone gère tout.</p>
         </div>
         <div class="bento-card wide reveal" style="transition-delay:0.3s">
           <span class="card-dot cd-green"></span>
-          <h3>Mood Timeline &amp; Weekly Digest</h3>
-          <p>Every Sunday: a synthesis of your week, covering themes, emotional shifts, and threads worth returning to. Plus a full mood timeline built from every entry. Generated on your phone. Stays on your phone.</p>
+          <h3>Chronologie de l'humeur &amp; résumé hebdomadaire</h3>
+          <p>Chaque dimanche : une synthèse de votre semaine, couvrant les thèmes, les changements émotionnels et les fils à reprendre. Plus une chronologie complète de l'humeur construite à partir de chaque entrée. Généré sur votre téléphone. Reste sur votre téléphone.</p>
           <div class="mood-bar" id="mood-bar"></div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.35s">
           <span class="card-dot cd-orange"></span>
-          <h3>iCloud backup</h3>
-          <p>Entries sync to <em>your</em> iCloud, private to your Apple ID. We don&rsquo;t have access.</p>
+          <h3>Sauvegarde iCloud</h3>
+          <p>Les entrées se synchronisent avec <em>votre</em> iCloud, privé à votre identifiant Apple. Nous n'y avons pas accès.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.4s">
           <span class="card-dot cd-red"></span>
-          <h3>Voice to journal</h3>
-          <p>Speak your entry. Transcribed locally. No audio sent anywhere. Perfect for mid-walk thoughts.</p>
+          <h3>Journal vocal</h3>
+          <p>Dictez votre entrée. Transcrite localement. Aucun audio envoyé où que ce soit. Parfait pour les pensées en pleine marche.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.45s">
           <span class="card-dot cd-yellow"></span>
-          <h3>Works in airplane mode</h3>
-          <p>The AI doesn&rsquo;t need the internet. Write and reflect anywhere: a flight, a cabin, a dead zone.</p>
+          <h3>Fonctionne en mode avion</h3>
+          <p>L'IA n'a pas besoin d'internet. Écrivez et réfléchissez partout : un vol, un chalet, une zone sans réseau.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.5s">
           <span class="card-dot cd-green"></span>
-          <h3>No account, ever</h3>
-          <p>No email. No password. No sign-in screen. Nothing to breach, because we never asked who you are.</p>
+          <h3>Aucun compte, jamais</h3>
+          <p>Pas d'e-mail. Pas de mot de passe. Pas d'écran de connexion. Rien à pirater, car nous n'avons jamais demandé qui vous êtes.</p>
         </div>
       </div>
     </div>
@@ -847,32 +829,32 @@
   <section id="journey">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">How it works</div>
-        <h2>AI that earns trust<br>before it speaks.</h2>
-        <p>We wait until MirrorNotes has read enough of your writing before surfacing insights. No weak guesses on day one.</p>
+        <div class="label">Comment ça marche</div>
+        <h2>Une IA qui gagne votre confiance<br>avant de parler.</h2>
+        <p>Nous attendons que MirrorNotes ait lu suffisamment de votre écriture avant de faire apparaître des observations. Aucune supposition hasardeuse le premier jour.</p>
       </div>
       <div class="journey-steps reveal">
         <div class="journey-step">
-          <div class="journey-day">Day 0</div>
-          <h3>Get oriented</h3>
-          <p>Three quick questions. Write your first entry. No account, no email, no sign-in.</p>
+          <div class="journey-day">Jour 0</div>
+          <h3>Prendre ses repères</h3>
+          <p>Trois questions rapides. Écrivez votre première entrée. Aucun compte, aucun e-mail, aucune connexion.</p>
         </div>
         <div class="journey-step">
-          <div class="journey-day">Days 1&ndash;3</div>
-          <h3>Mirror is learning</h3>
-          <p>Write freely. No AI yet: we need signal before offering insight. You see a quiet progress bar instead of bad guesses.</p>
+          <div class="journey-day">Jours 1&ndash;3</div>
+          <h3>Mirror apprend</h3>
+          <p>Écrivez librement. Pas encore d'IA : nous avons besoin de signal avant de proposer des observations. Vous voyez une barre de progression discrète plutôt que de mauvaises suppositions.</p>
         </div>
         <div class="journey-step unlocked">
-          <div class="journey-day">Day 4</div>
-          <h3>First Daily Nudge</h3>
-          <p>With 7+ entries, MirrorNotes knows your patterns. Your first nudge appears, specific to what you actually wrote.</p>
-          <span class="journey-unlock-badge">AI unlocks here</span>
+          <div class="journey-day">Jour 4</div>
+          <h3>Premier rappel quotidien</h3>
+          <p>Avec 7 entrées ou plus, MirrorNotes connaît vos habitudes. Votre premier rappel apparaît, spécifique à ce que vous avez réellement écrit.</p>
+          <span class="journey-unlock-badge">L'IA se débloque ici</span>
         </div>
         <div class="journey-step unlocked">
-          <div class="journey-day">Week 2+</div>
-          <h3>Full experience</h3>
-          <p>Daily nudges, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p>
-          <span class="journey-unlock-badge">Full AI features</span>
+          <div class="journey-day">Semaine 2+</div>
+          <h3>Expérience complète</h3>
+          <p>Rappels quotidiens, questions au journal, résumé hebdomadaire, chronologie de l'humeur. L'IA s'affine à mesure que vos archives grandissent.</p>
+          <span class="journey-unlock-badge">Toutes les fonctionnalités IA</span>
         </div>
       </div>
     </div>
@@ -883,18 +865,18 @@
     <div class="container">
       <div class="prompts-inner">
         <div class="section-header reveal">
-          <div class="label">Try a prompt</div>
-          <h2>30 questions that<br>cut through the noise.</h2>
-          <p>These are the kinds of questions MirrorNotes asks, drawn from what you actually wrote. Find one that hits.</p>
+          <div class="label">Essayer un prompt</div>
+          <h2>30 questions qui<br>percent le bruit ambiant.</h2>
+          <p>Voici le genre de questions que pose MirrorNotes, tirées de ce que vous avez réellement écrit. Trouvez-en une qui vous touche.</p>
         </div>
         <div class="prompt-display reveal">
-          <div class="prompt-text" id="prompt-text">What&rsquo;s quietly draining you right now that you haven&rsquo;t named yet?</div>
+          <div class="prompt-text" id="prompt-text">Qu'est-ce qui vous épuise silencieusement en ce moment sans que vous l'ayez encore nommé ?</div>
         </div>
         <div class="prompt-controls">
           <button class="prompt-nav" id="prompt-prev">&#8592;</button>
           <div class="prompt-idx" id="prompt-idx">1 / 30</div>
           <button class="prompt-nav" id="prompt-next">&#8594;</button>
-          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Write to this prompt &#8594;</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Écrire sur ce prompt &#8594;</a>
         </div>
       </div>
     </div>
@@ -904,22 +886,22 @@
   <section id="proof">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Early access</div>
-        <h2>New app. Real privacy.<br>Be among the first.</h2>
+        <div class="label">Accès anticipé</div>
+        <h2>Nouvelle application. Vraie confidentialité.<br>Soyez parmi les premiers.</h2>
       </div>
       <div class="proof-grid">
         <div class="proof-editorial reveal" style="transition-delay:0.05s">
-          <div class="proof-editorial-badge">Apple Editorial</div>
-          <div class="proof-editorial-text"><strong>Nominated for App Store editorial feature</strong>, selected by Apple&rsquo;s editorial team for its privacy-first approach to AI journaling.</div>
+          <div class="proof-editorial-badge">Sélection Apple</div>
+          <div class="proof-editorial-text"><strong>Nominé pour une mise en avant éditoriale de l'App Store</strong>, sélectionné par l'équipe éditoriale d'Apple pour son approche axée sur la confidentialité du journal IA.</div>
         </div>
         <div class="proof-card reveal" style="transition-delay:0.1s">
-          <div class="proof-quote" style="font-size:15px;line-height:1.8">&ldquo;I built this because I wanted to journal honestly, without wondering if someone was reading it. Every journaling app I tried had a server. So I removed the server. The AI runs on your phone. Your words never leave.&rdquo;</div>
-          <div class="proof-author">Lokesh Pudhari &middot; Founder</div>
+          <div class="proof-quote" style="font-size:15px;line-height:1.8">« J'ai créé cette application parce que je voulais tenir un journal honnêtement, sans me demander si quelqu'un le lisait. Chaque application de journal que j'ai essayée avait un serveur. Alors j'ai supprimé le serveur. L'IA tourne sur votre téléphone. Vos mots ne partent jamais. »</div>
+          <div class="proof-author">Lokesh Pudhari &middot; Fondateur</div>
         </div>
         <div class="proof-card reveal" style="transition-delay:0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px">
-          <div style="font-size:36px;font-weight:800;color:var(--crimson-lt);letter-spacing:-0.03em">Be first.</div>
-          <div style="font-size:14px;color:var(--text-2);line-height:1.7">No ratings yet. That means your review shapes what this app becomes. Early users get direct access to the founder.</div>
-          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" style="font-size:13px;padding:10px 20px" target="_blank" rel="noopener">Download Free</a>
+          <div style="font-size:36px;font-weight:800;color:var(--crimson-lt);letter-spacing:-0.03em">Soyez le premier.</div>
+          <div style="font-size:14px;color:var(--text-2);line-height:1.7">Pas encore d'avis. Cela veut dire que votre avis façonne ce que cette application va devenir. Les premiers utilisateurs ont un accès direct au fondateur.</div>
+          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" style="font-size:13px;padding:10px 20px" target="_blank" rel="noopener">Télécharger gratuitement</a>
         </div>
       </div>
     </div>
@@ -929,41 +911,41 @@
   <section id="pricing">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Pricing</div>
-        <h2>Free. All of it.</h2>
-        <p>Every feature is unlocked during early access: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report. No card, no trial, no cap.</p>
+        <div class="label">Tarifs</div>
+        <h2>Gratuit. Tout, absolument tout.</h2>
+        <p>Chaque fonctionnalité est débloquée pendant l'accès anticipé : entrées illimitées, Rappel quotidien, Question au journal, Résumé hebdomadaire, Chronologie de l'humeur, Rapport mensuel. Pas de carte, pas d'essai, pas de plafond.</p>
       </div>
       <div class="pricing-layout">
         <div class="pricing-card popular reveal" style="transition-delay:0.05s">
-          <span class="popular-badge">Early access</span>
+          <span class="popular-badge">Accès anticipé</span>
           <div class="pricing-header">
-            <h3>Everything</h3>
-            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Every feature, no limits</p>
+            <h3>Tout inclus</h3>
+            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Chaque fonctionnalité, sans limite</p>
           </div>
           <div class="pricing-price"><span class="free-tag">$0</span></div>
           <ul class="pricing-features">
-            <li><span class="ck">&#10003;</span>Unlimited journal entries</li>
-            <li><span class="ck">&#10003;</span>All past entries, always</li>
-            <li><span class="ck">&#10003;</span>Full-text local search</li>
-            <li><span class="ck">&#10003;</span>iCloud backup &amp; sync</li>
-            <li><span class="ck">&#10003;</span>Daily Nudge (on-device AI)</li>
-            <li><span class="ck">&#10003;</span>Unlimited Ask</li>
-            <li><span class="ck">&#10003;</span>Weekly Digest every Sunday</li>
-            <li><span class="ck">&#10003;</span>Mood detection, timeline &amp; alerts</li>
-            <li><span class="ck">&#10003;</span>Monthly deep report</li>
-            <li><span class="ck">&#10003;</span>Home screen widget</li>
+            <li><span class="ck">&#10003;</span>Entrées de journal illimitées</li>
+            <li><span class="ck">&#10003;</span>Toutes les entrées passées, toujours</li>
+            <li><span class="ck">&#10003;</span>Recherche locale en texte intégral</li>
+            <li><span class="ck">&#10003;</span>Sauvegarde &amp; synchronisation iCloud</li>
+            <li><span class="ck">&#10003;</span>Rappel quotidien (IA sur l'appareil)</li>
+            <li><span class="ck">&#10003;</span>Questions illimitées au journal</li>
+            <li><span class="ck">&#10003;</span>Résumé hebdomadaire chaque dimanche</li>
+            <li><span class="ck">&#10003;</span>Détection, chronologie &amp; alertes d'humeur</li>
+            <li><span class="ck">&#10003;</span>Rapport mensuel approfondi</li>
+            <li><span class="ck">&#10003;</span>Widget écran d'accueil</li>
           </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Download free</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Télécharger gratuitement</a>
         </div>
         <div class="pricing-why reveal" style="transition-delay:0.1s">
-          <h3>Why is it free?</h3>
-          <p>Most journaling apps pay for cloud AI on every entry you write, so they have to charge you, or worse, monetize you. MirrorNotes runs its AI on the chip already in your pocket. Our marginal cost per user is zero, so early access is too.</p>
+          <h3>Pourquoi c'est gratuit ?</h3>
+          <p>La plupart des applications de journal paient pour une IA cloud à chaque entrée que vous écrivez, elles doivent donc vous facturer, ou pire, monétiser vos données. MirrorNotes fait tourner son IA sur la puce déjà dans votre poche. Notre coût marginal par utilisateur est nul, donc l'accès anticipé l'est aussi.</p>
           <ul class="why-list">
-            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>We can&rsquo;t sell your data.</strong> It never reaches us. There is nothing on our side to sell.</div></li>
-            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>We can&rsquo;t lock your history.</strong> Your entries live in your iCloud, under your Apple&nbsp;ID.</div></li>
-            <li><span class="why-dot" style="background:#30D158"></span><div><strong>We&rsquo;ll never charge you to read your own words.</strong> If paid tiers come later, they gate new AI features, not your archive.</div></li>
+            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>Nous ne pouvons pas vendre vos données.</strong> Elles ne nous parviennent jamais. Il n'y a rien de notre côté à vendre.</div></li>
+            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>Nous ne pouvons pas verrouiller votre historique.</strong> Vos entrées vivent dans votre iCloud, sous votre identifiant Apple.</div></li>
+            <li><span class="why-dot" style="background:#30D158"></span><div><strong>Nous ne vous ferons jamais payer pour relire vos propres mots.</strong> Si des formules payantes arrivent plus tard, elles débloqueront de nouvelles fonctionnalités IA, pas vos archives.</div></li>
           </ul>
-          <p class="trial-note" style="margin-top:28px">No account. No card. Cancel is a non-issue: there&rsquo;s nothing to cancel.</p>
+          <p class="trial-note" style="margin-top:28px">Aucun compte. Aucune carte. Résilier n'est même pas une question : il n'y a rien à résilier.</p>
         </div>
       </div>
     </div>
@@ -973,15 +955,15 @@
   <section id="final-cta">
     <div class="container">
       <div class="final-cta-inner reveal">
-        <div class="label" style="margin-bottom:16px">Start writing</div>
-        <h2>Your most honest thoughts<br>deserve a private space.</h2>
-        <p>No account. No server. No data deal. Just you, your phone, and an AI that stays where it belongs.</p>
+        <div class="label" style="margin-bottom:16px">Commencez à écrire</div>
+        <h2>Vos pensées les plus honnêtes<br>méritent un espace privé.</h2>
+        <p>Aucun compte. Aucun serveur. Aucun deal sur vos données. Juste vous, votre téléphone, et une IA qui reste à sa place.</p>
         <div class="final-cta-row">
           <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Download Free for iPhone
+            Télécharger gratuitement pour iPhone
           </a>
-          <a href="#features" class="btn-ghost">See what it does</a>
+          <a href="#features" class="btn-ghost">Voir ce que ça fait</a>
         </div>
       </div>
     </div>
@@ -1017,47 +999,47 @@
               </svg>
               MirrorNotes
             </div>
-            <p>Private AI journaling. Your words stay on your device.</p>
+            <p>Journal IA privé. Vos mots restent sur votre appareil.</p>
           </div>
           <div class="footer-links">
             <div class="footer-link-group">
-              <h4>Product</h4>
+              <h4>Produit</h4>
               <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#prompts">Try a prompt</a></li>
-                <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Download</a></li>
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
+                <li><a href="#prompts">Essayer un prompt</a></li>
+                <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Télécharger</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Compare</h4>
+              <h4>Comparer</h4>
               <ul>
-                <li><a href="rosebud-alternative.html">vs Rosebud</a></li>
-                <li><a href="day-one-alternative.html">vs Day One</a></li>
-                <li><a href="reflect-alternative.html">vs Reflect</a></li>
-                <li><a href="adhd-journaling-app.html">ADHD journaling</a></li>
+                <li><a href="../rosebud-alternative.html">vs Rosebud</a></li>
+                <li><a href="../day-one-alternative.html">vs Day One</a></li>
+                <li><a href="../reflect-alternative.html">vs Reflect</a></li>
+                <li><a href="../adhd-journaling-app.html">Journal pour TDAH</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Legal</h4>
+              <h4>Légal</h4>
               <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="../privacy.html">Politique de confidentialité</a></li>
+                <li><a href="../terms.html">Conditions d'utilisation</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Support</h4>
+              <h4>Assistance</h4>
               <ul>
-                <li><a href="support.html">Help Center</a></li>
+                <li><a href="../support.html">Centre d'aide</a></li>
                 <li><a href="mailto:hello@mirrornotes.org">Contact</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 MirrorNotes. Made with intention. Privacy first.</p>
-          <p style="font-family:var(--mono);font-size:11px">This page loads zero third-party resources. No analytics, no tracking pixels, no fonts from Google. View source.</p>
-          <p><a href="privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Privacy Policy</a></p>
+          <p>&copy; 2026 MirrorNotes. Fait avec intention. La confidentialité d'abord.</p>
+          <p style="font-family:var(--mono);font-size:11px">Cette page ne charge aucune ressource tierce. Pas d'analytics, pas de pixels de suivi, pas de polices Google. Consultez le code source.</p>
+          <p><a href="../privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Politique de confidentialité</a></p>
         </div>
       </div>
     </div>
@@ -1081,7 +1063,7 @@
     // Journal date line
     (function () {
       const el = document.getElementById('hero-date');
-      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      if (el) el.textContent = new Date().toLocaleDateString('fr-FR', { weekday: 'long', month: 'long', day: 'numeric' });
     })();
 
     // Scroll reveal
@@ -1092,11 +1074,11 @@
 
     // Rotating nudge in feature card
     const SAMPLE_NUDGES = [
-      'You keep coming back to the word "enough." What would enough feel like today?',
-      'Something shifted Tuesday. What actually changed?',
-      'The gap between who you are at work and who you are at home: how wide is it right now?',
-      'What are you protecting yourself from by staying busy?',
-      'You mentioned feeling invisible twice this week. Who do you most want to be seen by?',
+      'Vous revenez souvent au mot « assez ». À quoi ressemblerait « assez » aujourd\'hui ?',
+      'Quelque chose a changé mardi. Qu\'est-ce qui a vraiment changé ?',
+      'L\'écart entre qui vous êtes au travail et qui vous êtes à la maison : à quel point est-il grand en ce moment ?',
+      'De quoi vous protégez-vous en restant occupé(e) ?',
+      'Vous avez mentionné vous sentir invisible deux fois cette semaine. Par qui souhaitez-vous le plus être vu(e) ?',
     ];
     let nudgeIdx = 0;
     const rotatingNudge = document.getElementById('rotating-nudge');
@@ -1135,36 +1117,36 @@
 
     // Prompts carousel
     const PROMPTS = [
-      "What's quietly draining you right now that you haven't named yet?",
-      "What are you avoiding thinking about? Write about that.",
-      "Describe the last moment you felt completely present.",
-      "What would you do differently about yesterday?",
-      "What's something you're pretending is fine?",
-      "Who did you most want to impress this week, and why?",
-      "What's a belief you hold that you've never examined?",
-      "What are you waiting for permission to do?",
-      "Describe a moment from the last week that surprised you.",
-      "What's the kindest thing you did today, and did you notice it?",
-      "What's costing you energy that you could put down?",
-      "What's the gap between who you are and who you're trying to be?",
-      "Write about a small thing that felt meaningful today.",
-      "What conversation do you keep rehearsing in your head?",
-      "What would you tell yourself from six months ago?",
-      "What are you learning right now, even if you didn't sign up to learn it?",
-      "What's pulling at your attention that you keep pushing aside?",
-      "Describe a moment this week when you felt like yourself.",
-      "What are you grateful for that you've never said out loud?",
-      "What does your body feel like right now? Start there.",
-      "What do you need more of? What do you need less of?",
-      "Write about something that happened recently that you haven't processed.",
-      "What pattern keeps repeating in your life?",
-      "What does 'enough' look like for you right now?",
-      "If you could only write one thing today, what would it be?",
-      "What are you afraid someone will find out about you?",
-      "What's the most honest sentence you could write right now?",
-      "What's working in your life that you're not giving yourself credit for?",
-      "Who are you becoming, even if you're not sure you chose it?",
-      "What's the tension you're living inside right now?",
+      "Qu'est-ce qui vous épuise silencieusement en ce moment sans que vous l'ayez encore nommé ?",
+      "Qu'évitez-vous de penser ? Écrivez à ce sujet.",
+      "Décrivez le dernier moment où vous vous êtes senti(e) pleinement présent(e).",
+      "Que feriez-vous différemment par rapport à hier ?",
+      "Qu'est-ce que vous prétendez aller bien alors que ce n'est pas le cas ?",
+      "Qui avez-vous le plus voulu impressionner cette semaine, et pourquoi ?",
+      "Quelle croyance portez-vous sans jamais l'avoir vraiment examinée ?",
+      "Qu'attendez-vous la permission de faire ?",
+      "Décrivez un moment de la semaine dernière qui vous a surpris(e).",
+      "Quelle est la chose la plus gentille que vous ayez faite aujourd'hui, et l'avez-vous remarquée ?",
+      "Qu'est-ce qui vous coûte de l'énergie et que vous pourriez lâcher ?",
+      "Quel est l'écart entre qui vous êtes et qui vous essayez de devenir ?",
+      "Écrivez à propos d'une petite chose qui a compté aujourd'hui.",
+      "Quelle conversation continuez-vous de rejouer dans votre tête ?",
+      "Que diriez-vous à vous-même d'il y a six mois ?",
+      "Qu'êtes-vous en train d'apprendre en ce moment, même si vous ne l'aviez pas cherché ?",
+      "Qu'est-ce qui attire votre attention alors que vous continuez à le repousser ?",
+      "Décrivez un moment cette semaine où vous vous êtes senti(e) vous-même.",
+      "Pour quoi êtes-vous reconnaissant(e) sans jamais l'avoir dit à voix haute ?",
+      "Que ressent votre corps en ce moment ? Commencez par là.",
+      "De quoi avez-vous besoin de plus ? De quoi avez-vous besoin de moins ?",
+      "Écrivez à propos de quelque chose de récent que vous n'avez pas encore digéré.",
+      "Quel schéma continue de se répéter dans votre vie ?",
+      "À quoi ressemble « assez » pour vous en ce moment ?",
+      "Si vous ne pouviez écrire qu'une seule chose aujourd'hui, ce serait quoi ?",
+      "De quoi avez-vous peur que quelqu'un découvre à votre sujet ?",
+      "Quelle est la phrase la plus honnête que vous pourriez écrire là, maintenant ?",
+      "Qu'est-ce qui fonctionne dans votre vie et dont vous ne vous accordez pas le mérite ?",
+      "Qui êtes-vous en train de devenir, même si vous n'êtes pas sûr(e) de l'avoir choisi ?",
+      "Quelle est la tension dans laquelle vous vivez en ce moment ?",
     ];
     let promptIdx = 0;
     const promptText = document.getElementById('prompt-text');

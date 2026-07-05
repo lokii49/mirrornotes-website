@@ -1,41 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <script>
-  (function () {
-    try {
-      if (localStorage.getItem('mn-lang-redirected')) return;
-      localStorage.setItem('mn-lang-redirected', '1');
-      var supported = ['es','fr','de','it','pt','ja','ko','ru','zh'];
-      var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
-      for (var i = 0; i < langs.length; i++) {
-        var code = String(langs[i]).toLowerCase().split('-')[0];
-        if (code === 'en') return;
-        if (supported.indexOf(code) !== -1) {
-          window.location.replace('/' + code + '/');
-          return;
-        }
-      }
-    } catch (e) { /* localStorage unavailable (e.g. private mode) - stay on English */ }
-  })();
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MirrorNotes: AI journaling that runs entirely on your iPhone. Your words never leave your device. On-device Gemma 3, daily prompts, mood tracking. Free.">
+  <meta name="description" content="MirrorNotes: ИИ-дневник, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Gemma 3 на устройстве, ежедневные подсказки, отслеживание настроения. Бесплатно.">
   <meta name="theme-color" content="#FAF9F6">
-  <title>MirrorNotes: Free Private AI Journaling for iPhone</title>
+  <title>MirrorNotes: бесплатный приватный ИИ-дневник для iPhone</title>
 
-  <meta property="og:title" content="MirrorNotes: Private AI Journaling">
-  <meta property="og:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device. Free.">
+  <meta property="og:title" content="MirrorNotes: приватный ИИ-дневник">
+  <meta property="og:description" content="Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Бесплатно.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mirrornotes.org/og-image.png">
-  <meta property="og:url" content="https://mirrornotes.org">
+  <meta property="og:url" content="https://mirrornotes.org/ru/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MirrorNotes: Private AI Journaling">
-  <meta name="twitter:description" content="AI-powered journaling that runs entirely on your iPhone. Your words never leave your device.">
+  <meta name="twitter:title" content="MirrorNotes: приватный ИИ-дневник">
+  <meta name="twitter:description" content="Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство.">
   <meta name="twitter:image" content="https://mirrornotes.org/og-image.png">
   <meta name="google-site-verification" content="r6y-d314u0xezNPKN9lB7S1LJKVik6BIIPhgTKuhrDo">
-  <link rel="canonical" href="https://mirrornotes.org">
+  <link rel="canonical" href="https://mirrornotes.org/ru/">
   <link rel="alternate" hreflang="x-default" href="https://mirrornotes.org/">
   <link rel="alternate" hreflang="en" href="https://mirrornotes.org/">
   <link rel="alternate" hreflang="es" href="https://mirrornotes.org/es/">
@@ -49,7 +31,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/">
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <meta name="keywords" content="private journal app, AI journaling, offline journal, on-device AI, mood tracking, daily diary, MirrorNotes">
+  <meta name="keywords" content="приватный дневник, ИИ-дневник, офлайн дневник, дневник без интернета, ИИ на устройстве, отслеживание настроения, ежедневник, MirrorNotes">
 
   <script type="application/ld+json">
   {
@@ -57,17 +39,17 @@
     "@type": "SoftwareApplication",
     "name": "MirrorNotes",
     "alternateName": "MirrorNotes: AI Journal",
-    "description": "AI-powered journaling that runs entirely on your iPhone. Your words never leave your device. Daily nudges, mood tracking, and Ask your journal, all on-device with Gemma 3. Free.",
+    "description": "Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Ежедневные подсказки, отслеживание настроения и вопросы к дневнику — всё на устройстве с Gemma 3. Бесплатно.",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": [
-      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Everything is free: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report"}
+      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Всё бесплатно: неограниченные записи, ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения, ежемесячный отчёт"}
     ],
     "url": "https://mirrornotes.org",
     "downloadUrl": "https://apps.apple.com/app/id6769007201",
     "screenshot": "https://mirrornotes.org/og-image.png",
     "author": {"@type": "Person","name": "Lokesh Pudhari"},
-    "releaseNotes": "New app, currently free while we shape the experience with early users."
+    "releaseNotes": "Новое приложение, пока бесплатное, пока мы дорабатываем опыт вместе с первыми пользователями."
   }
   </script>
 
@@ -590,7 +572,7 @@
 
   <!-- Nav -->
   <nav>
-    <a href="/" class="nav-logo">
+    <a href="/ru/" class="nav-logo">
       <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="nb" cx="50%" cy="44%" r="72%">
@@ -619,19 +601,19 @@
       MirrorNotes
     </a>
     <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#prompts">Try a prompt</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="#features">Функции</a></li>
+      <li><a href="#prompts">Попробовать подсказку</a></li>
+      <li><a href="#pricing">Цены</a></li>
+      <li><a href="../privacy.html">Конфиденциальность</a></li>
     </ul>
     <a href="https://apps.apple.com/app/id6769007201" class="nav-cta nav-links" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Get App
+      Скачать
     </a>
     <details class="lang-switch">
-      <summary>EN &#9662;</summary>
+      <summary>RU &#9662;</summary>
       <div class="lang-menu">
-        <a href="/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
+        <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
         <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
         <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
         <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
@@ -639,21 +621,21 @@
         <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
         <a href="/ja/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">日本語</a>
         <a href="/ko/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">한국어</a>
-        <a href="/ru/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
+        <a href="/ru/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
         <a href="/zh/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">中文</a>
       </div>
     </details>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
   </nav>
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#features">Features</a>
-    <a href="#prompts">Try a prompt</a>
-    <a href="#pricing">Pricing</a>
-    <a href="privacy.html">Privacy</a>
+    <a href="#features">Функции</a>
+    <a href="#prompts">Попробовать подсказку</a>
+    <a href="#pricing">Цены</a>
+    <a href="../privacy.html">Конфиденциальность</a>
     <div class="mobile-lang-row">
-      <a href="/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
+      <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
       <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
       <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
       <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
@@ -661,10 +643,10 @@
       <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
       <a href="/ja/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">日本語</a>
       <a href="/ko/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">한국어</a>
-      <a href="/ru/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
+      <a href="/ru/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
       <a href="/zh/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">中文</a>
     </div>
-    <a href="https://apps.apple.com/app/id6769007201" class="mobile-menu-cta" target="_blank" rel="noopener">Download Free on App Store</a>
+    <a href="https://apps.apple.com/app/id6769007201" class="mobile-menu-cta" target="_blank" rel="noopener">Скачать бесплатно в App Store</a>
   </div>
 
   <!-- Hero -->
@@ -682,9 +664,9 @@
           <circle class="hv-dot" style="animation-delay:2.65s,6.1s" cx="365" cy="160" r="12" fill="#30D158" stroke="#FAF9F6" stroke-width="4"/>
           <circle class="hv-dot" style="animation-delay:2.9s,6.6s" cx="410" cy="250" r="11" fill="#0A84FF" stroke="#FAF9F6" stroke-width="4"/>
         </g>
-        <text class="hv-label" x="40"  y="466" text-anchor="middle">mon</text>
-        <text class="hv-label" x="300" y="196" text-anchor="middle">fri</text>
-        <text class="hv-label" x="410" y="286" text-anchor="middle">sun</text>
+        <text class="hv-label" x="40"  y="466" text-anchor="middle">пн</text>
+        <text class="hv-label" x="300" y="196" text-anchor="middle">пт</text>
+        <text class="hv-label" x="410" y="286" text-anchor="middle">вс</text>
         <defs>
           <filter id="hv-shadow" x="-30%" y="-30%" width="160%" height="160%">
             <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#16181A" flood-opacity="0.15"/>
@@ -693,39 +675,39 @@
       </svg>
     </div>
     <div class="container hero-inner">
-    <div class="hero-date" id="hero-date">Today</div>
-    <h1>The journal that<br><em>listens in private.</em></h1>
-    <p class="hero-sub-head">Write anything. The AI that reflects it back lives on your iPhone. Not on someone's server. Not in a data center. Not anywhere your words can travel.</p>
+    <div class="hero-date" id="hero-date">Сегодня</div>
+    <h1>Дневник,<br><em>который слушает приватно.</em></h1>
+    <p class="hero-sub-head">Пишите что угодно. ИИ, который отражает ваши мысли, живёт прямо на вашем iPhone. Не на чужом сервере. Не в дата-центре. Нигде, куда могли бы утечь ваши слова.</p>
     <div class="hero-privacy-counter">
-      <span>bytes sent to any server while you write &#8594;</span>
+      <span>байт отправлено на сервер, пока вы пишете &#8594;</span>
       <span class="counter-num">0</span>
     </div>
     <div class="hero-actions">
       <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download Free on App Store
+        Скачать бесплатно в App Store
       </a>
-      <a href="#features" class="btn-ghost">See it work &#8594;</a>
+      <a href="#features" class="btn-ghost">Посмотреть, как это работает &#8594;</a>
     </div>
     <div class="hero-proof">
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--crimson)">&#8734;</div>
-        <div class="pl">Free entries, forever</div>
+        <div class="pl">Бесплатные записи навсегда</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--green)">0</div>
-        <div class="pl">Bytes to any server</div>
+        <div class="pl">Байт на любой сервер</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
         <div class="pn" style="color:var(--blue);font-size:20px">Gemma 3</div>
-        <div class="pl">On-device · 1B params · local</div>
+        <div class="pl">На устройстве · 1 млрд параметров · локально</div>
       </div>
       <div class="proof-sep"></div>
       <div class="hero-proof-item">
-        <div class="pn" style="color:var(--orange);font-size:18px">Editorial</div>
-        <div class="pl">Apple nominated</div>
+        <div class="pn" style="color:var(--orange);font-size:18px">Редакция</div>
+        <div class="pl">Номинация Apple</div>
       </div>
     </div>
     </div>
@@ -735,26 +717,26 @@
   <section id="privacy-claim">
     <div class="container">
       <div class="claim-inner reveal">
-        <div class="claim-tag">Not a policy. An architecture.</div>
-        <blockquote>Your journal text <em>cannot</em> leave your phone.<br>There is no server to send it to.</blockquote>
-        <p class="claim-sub">We didn&rsquo;t build a privacy policy around cloud AI. We removed the cloud entirely. Gemma 3 runs on your iPhone&rsquo;s Neural Engine, the same chip that powers Face ID. No network call. Nothing to intercept.</p>
+        <div class="claim-tag">Не политика. Архитектура.</div>
+        <blockquote>Текст вашего дневника <em>не может</em> покинуть телефон.<br>Отправлять его попросту некуда.</blockquote>
+        <p class="claim-sub">Мы не стали писать политику конфиденциальности вокруг облачного ИИ. Мы просто убрали облако. Gemma 3 работает на Neural Engine вашего iPhone — том же чипе, что отвечает за Face ID. Ни одного сетевого запроса. Перехватывать нечего.</p>
         <div class="arch-strip">
           <div class="arch-node device">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg></div>
-            <div class="arch-node-label">Your iPhone</div>
-            <div class="arch-node-sub">Journal + Gemma 3</div>
+            <div class="arch-node-label">Ваш iPhone</div>
+            <div class="arch-node-sub">Дневник + Gemma 3</div>
           </div>
           <div class="arch-arrow">&#8594;</div>
           <div class="arch-node device">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H7a4 4 0 1 1 .6-7.95 5.5 5.5 0 0 1 10.6 1.6 3.2 3.2 0 0 1-.7 6.35z"/></svg></div>
-            <div class="arch-node-label">Your iCloud</div>
-            <div class="arch-node-sub">Private to you</div>
+            <div class="arch-node-label">Ваш iCloud</div>
+            <div class="arch-node-sub">Приватно для вас</div>
           </div>
           <div class="arch-arrow blocked">&#10005;</div>
           <div class="arch-node cloud-blocked">
             <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg></div>
-            <div class="arch-node-label">Any Server</div>
-            <div class="arch-node-sub">Never reached</div>
+            <div class="arch-node-label">Любой сервер</div>
+            <div class="arch-node-sub">Не задействован</div>
           </div>
         </div>
       </div>
@@ -765,79 +747,79 @@
   <section id="features">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Features</div>
-        <h2>AI that knows you.<br>Stays with you.</h2>
-        <p>A focused set of tools built around the one thing that makes journaling work: honesty. All on-device.</p>
+        <div class="label">Функции</div>
+        <h2>ИИ, который знает вас.<br>И остаётся с вами.</h2>
+        <p>Сфокусированный набор инструментов вокруг единственной вещи, которая делает дневник рабочим: честности. Всё — на устройстве.</p>
       </div>
       <div class="bento">
         <div class="bento-card wide reveal" style="transition-delay:0.05s">
           <span class="card-dot cd-red"></span>
-          <h3>Write freely. Your data stays free.</h3>
-          <p>Unlimited entries. No 30-day limit. No paywall on your own history. Every word you&rsquo;ve ever written is readable forever. Your data is never the price of admission.</p>
+          <h3>Пишите свободно. Ваши данные остаются свободными.</h3>
+          <p>Неограниченные записи. Без лимита в 30 дней. Без платного доступа к собственной истории. Каждое написанное вами слово останется доступным навсегда. Ваши данные никогда не станут платой за вход.</p>
           <div class="card-stats">
-            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Entries, forever</span></div>
-            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Day limit</span></div>
-            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">To read your past</span></div>
+            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Записей навсегда</span></div>
+            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Дневной лимит</span></div>
+            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">За чтение своего прошлого</span></div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.1s">
           <span class="card-dot cd-orange"></span>
-          <h3>Daily Nudge</h3>
-          <p>Each morning: one question drawn from your own patterns. Not generic. Something it noticed in <em>your</em> writing.</p>
+          <h3>Ежедневная подсказка</h3>
+          <p>Каждое утро — один вопрос, основанный на ваших собственных шаблонах. Не общий вопрос, а что-то замеченное именно в <em>ваших</em> записях.</p>
           <div class="nudge-preview">
-            <div class="nudge-preview-tag">Today&rsquo;s nudge</div>
-            <div class="nudge-preview-text" id="rotating-nudge">You keep coming back to the word &ldquo;enough.&rdquo; What would enough feel like today?</div>
+            <div class="nudge-preview-tag">Подсказка на сегодня</div>
+            <div class="nudge-preview-text" id="rotating-nudge">Вы снова и снова возвращаетесь к слову &laquo;достаточно&raquo;. Как бы это чувствовалось сегодня?</div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.15s">
           <span class="card-dot cd-yellow"></span>
-          <h3>Ask your journal</h3>
-          <p>Query your own history in natural language. On-device. Instant. Private.</p>
+          <h3>Спросите свой дневник</h3>
+          <p>Задавайте вопросы своей истории на естественном языке. На устройстве. Мгновенно. Приватно.</p>
           <div class="ask-preview">
-            <div class="ask-q">When was the last time I felt excited?</div>
-            <div class="ask-a">Three weeks ago, you wrote about the design project and &ldquo;something finally clicked.&rdquo; You used the word &ldquo;flow&rdquo; twice.</div>
+            <div class="ask-q">Когда я в последний раз чувствовал воодушевление?</div>
+            <div class="ask-a">Три недели назад вы писали о проекте дизайна и о том, что &laquo;наконец-то всё щёлкнуло&raquo;. Слово &laquo;поток&raquo; вы использовали дважды.</div>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.2s">
           <span class="card-dot cd-blue"></span>
-          <h3>On-device AI only</h3>
-          <p>Gemma 3 1B runs locally on the Neural Engine. No API calls. No server logs. Real privacy, by architecture.</p>
+          <h3>Только ИИ на устройстве</h3>
+          <p>Gemma 3 1B работает локально на Neural Engine. Никаких обращений к API. Никаких серверных логов. Настоящая приватность — по архитектуре.</p>
           <div class="tag-row">
             <span class="tag-chip">Neural Engine</span>
-            <span class="tag-chip">0 network calls</span>
-            <span class="tag-chip">1B params</span>
+            <span class="tag-chip">0 сетевых запросов</span>
+            <span class="tag-chip">1 млрд параметров</span>
           </div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.25s">
           <span class="card-dot cd-blue"></span>
-          <h3>Full-text search</h3>
-          <p>Search every entry instantly. Local. No indexing service. Your phone handles it all.</p>
+          <h3>Полнотекстовый поиск</h3>
+          <p>Мгновенный поиск по всем записям. Локально. Без сервиса индексации. Всё делает ваш телефон.</p>
         </div>
         <div class="bento-card wide reveal" style="transition-delay:0.3s">
           <span class="card-dot cd-green"></span>
-          <h3>Mood Timeline &amp; Weekly Digest</h3>
-          <p>Every Sunday: a synthesis of your week, covering themes, emotional shifts, and threads worth returning to. Plus a full mood timeline built from every entry. Generated on your phone. Stays on your phone.</p>
+          <h3>Шкала настроения и еженедельный дайджест</h3>
+          <p>Каждое воскресенье — обзор недели: темы, эмоциональные изменения и мысли, к которым стоит вернуться. Плюс полная шкала настроения, построенная по всем записям. Создаётся на вашем телефоне. Остаётся на вашем телефоне.</p>
           <div class="mood-bar" id="mood-bar"></div>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.35s">
           <span class="card-dot cd-orange"></span>
-          <h3>iCloud backup</h3>
-          <p>Entries sync to <em>your</em> iCloud, private to your Apple ID. We don&rsquo;t have access.</p>
+          <h3>Резервное копирование в iCloud</h3>
+          <p>Записи синхронизируются с <em>вашим</em> iCloud, приватным для вашего Apple ID. У нас нет доступа.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.4s">
           <span class="card-dot cd-red"></span>
-          <h3>Voice to journal</h3>
-          <p>Speak your entry. Transcribed locally. No audio sent anywhere. Perfect for mid-walk thoughts.</p>
+          <h3>Голосовые записи</h3>
+          <p>Надиктуйте запись. Расшифровка происходит локально. Аудио никуда не отправляется. Идеально для мыслей на ходу.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.45s">
           <span class="card-dot cd-yellow"></span>
-          <h3>Works in airplane mode</h3>
-          <p>The AI doesn&rsquo;t need the internet. Write and reflect anywhere: a flight, a cabin, a dead zone.</p>
+          <h3>Работает в режиме полёта</h3>
+          <p>ИИ не нуждается в интернете. Пишите и размышляйте где угодно: в самолёте, в домике в лесу, вне зоны покрытия.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay:0.5s">
           <span class="card-dot cd-green"></span>
-          <h3>No account, ever</h3>
-          <p>No email. No password. No sign-in screen. Nothing to breach, because we never asked who you are.</p>
+          <h3>Никаких аккаунтов</h3>
+          <p>Никакой почты. Никакого пароля. Никакого экрана входа. Взламывать нечего — мы никогда не спрашивали, кто вы.</p>
         </div>
       </div>
     </div>
@@ -847,32 +829,32 @@
   <section id="journey">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">How it works</div>
-        <h2>AI that earns trust<br>before it speaks.</h2>
-        <p>We wait until MirrorNotes has read enough of your writing before surfacing insights. No weak guesses on day one.</p>
+        <div class="label">Как это работает</div>
+        <h2>ИИ, который сначала заслуживает доверие,<br>а потом говорит.</h2>
+        <p>Мы ждём, пока MirrorNotes не прочитает достаточно ваших записей, прежде чем показывать выводы. Никаких слабых догадок в первый день.</p>
       </div>
       <div class="journey-steps reveal">
         <div class="journey-step">
-          <div class="journey-day">Day 0</div>
-          <h3>Get oriented</h3>
-          <p>Three quick questions. Write your first entry. No account, no email, no sign-in.</p>
+          <div class="journey-day">День 0</div>
+          <h3>Освойтесь</h3>
+          <p>Три коротких вопроса. Напишите первую запись. Без аккаунта, без почты, без входа.</p>
         </div>
         <div class="journey-step">
-          <div class="journey-day">Days 1&ndash;3</div>
-          <h3>Mirror is learning</h3>
-          <p>Write freely. No AI yet: we need signal before offering insight. You see a quiet progress bar instead of bad guesses.</p>
+          <div class="journey-day">Дни 1&ndash;3</div>
+          <h3>Mirror учится</h3>
+          <p>Пишите свободно. ИИ пока молчит: нам нужно немного сигнала, прежде чем предлагать выводы. Вместо неудачных догадок вы видите спокойный индикатор прогресса.</p>
         </div>
         <div class="journey-step unlocked">
-          <div class="journey-day">Day 4</div>
-          <h3>First Daily Nudge</h3>
-          <p>With 7+ entries, MirrorNotes knows your patterns. Your first nudge appears, specific to what you actually wrote.</p>
-          <span class="journey-unlock-badge">AI unlocks here</span>
+          <div class="journey-day">День 4</div>
+          <h3>Первая ежедневная подсказка</h3>
+          <p>С 7+ записями MirrorNotes уже знает ваши шаблоны. Появляется первая подсказка, основанная на том, что вы действительно написали.</p>
+          <span class="journey-unlock-badge">Здесь открывается ИИ</span>
         </div>
         <div class="journey-step unlocked">
-          <div class="journey-day">Week 2+</div>
-          <h3>Full experience</h3>
-          <p>Daily nudges, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p>
-          <span class="journey-unlock-badge">Full AI features</span>
+          <div class="journey-day">Неделя 2+</div>
+          <h3>Полный опыт</h3>
+          <p>Ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения. ИИ становится точнее по мере роста вашего архива.</p>
+          <span class="journey-unlock-badge">Все функции ИИ</span>
         </div>
       </div>
     </div>
@@ -883,18 +865,18 @@
     <div class="container">
       <div class="prompts-inner">
         <div class="section-header reveal">
-          <div class="label">Try a prompt</div>
-          <h2>30 questions that<br>cut through the noise.</h2>
-          <p>These are the kinds of questions MirrorNotes asks, drawn from what you actually wrote. Find one that hits.</p>
+          <div class="label">Попробовать подсказку</div>
+          <h2>30 вопросов,<br>которые пробьются сквозь шум.</h2>
+          <p>Именно такие вопросы задаёт MirrorNotes, основываясь на том, что вы действительно написали. Найдите тот, что зацепит.</p>
         </div>
         <div class="prompt-display reveal">
-          <div class="prompt-text" id="prompt-text">What&rsquo;s quietly draining you right now that you haven&rsquo;t named yet?</div>
+          <div class="prompt-text" id="prompt-text">Что сейчас незаметно выматывает вас, но вы ещё не назвали это словами?</div>
         </div>
         <div class="prompt-controls">
           <button class="prompt-nav" id="prompt-prev">&#8592;</button>
           <div class="prompt-idx" id="prompt-idx">1 / 30</div>
           <button class="prompt-nav" id="prompt-next">&#8594;</button>
-          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Write to this prompt &#8594;</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Написать по этой подсказке &#8594;</a>
         </div>
       </div>
     </div>
@@ -904,22 +886,22 @@
   <section id="proof">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Early access</div>
-        <h2>New app. Real privacy.<br>Be among the first.</h2>
+        <div class="label">Ранний доступ</div>
+        <h2>Новое приложение. Настоящая приватность.<br>Будьте среди первых.</h2>
       </div>
       <div class="proof-grid">
         <div class="proof-editorial reveal" style="transition-delay:0.05s">
-          <div class="proof-editorial-badge">Apple Editorial</div>
-          <div class="proof-editorial-text"><strong>Nominated for App Store editorial feature</strong>, selected by Apple&rsquo;s editorial team for its privacy-first approach to AI journaling.</div>
+          <div class="proof-editorial-badge">Редакция Apple</div>
+          <div class="proof-editorial-text"><strong>Номинировано для редакционной подборки App Store</strong> — выбрано редакцией Apple за подход к ИИ-дневникам, ставящий приватность на первое место.</div>
         </div>
         <div class="proof-card reveal" style="transition-delay:0.1s">
-          <div class="proof-quote" style="font-size:15px;line-height:1.8">&ldquo;I built this because I wanted to journal honestly, without wondering if someone was reading it. Every journaling app I tried had a server. So I removed the server. The AI runs on your phone. Your words never leave.&rdquo;</div>
-          <div class="proof-author">Lokesh Pudhari &middot; Founder</div>
+          <div class="proof-quote" style="font-size:15px;line-height:1.8">&laquo;Я сделал это приложение, потому что хотел вести дневник честно, не думая о том, читает ли его кто-то ещё. У каждого дневникового приложения, которое я пробовал, был сервер. Поэтому я убрал сервер. ИИ работает на вашем телефоне. Ваши слова никуда не уходят.&raquo;</div>
+          <div class="proof-author">Lokesh Pudhari &middot; основатель</div>
         </div>
         <div class="proof-card reveal" style="transition-delay:0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px">
-          <div style="font-size:36px;font-weight:800;color:var(--crimson-lt);letter-spacing:-0.03em">Be first.</div>
-          <div style="font-size:14px;color:var(--text-2);line-height:1.7">No ratings yet. That means your review shapes what this app becomes. Early users get direct access to the founder.</div>
-          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" style="font-size:13px;padding:10px 20px" target="_blank" rel="noopener">Download Free</a>
+          <div style="font-size:36px;font-weight:800;color:var(--crimson-lt);letter-spacing:-0.03em">Будьте первыми.</div>
+          <div style="font-size:14px;color:var(--text-2);line-height:1.7">Пока нет ни одной оценки. А значит, именно ваш отзыв определит, каким станет это приложение. Первые пользователи получают прямой доступ к основателю.</div>
+          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" style="font-size:13px;padding:10px 20px" target="_blank" rel="noopener">Скачать бесплатно</a>
         </div>
       </div>
     </div>
@@ -929,41 +911,41 @@
   <section id="pricing">
     <div class="container">
       <div class="section-header reveal">
-        <div class="label">Pricing</div>
-        <h2>Free. All of it.</h2>
-        <p>Every feature is unlocked during early access: unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, Monthly Report. No card, no trial, no cap.</p>
+        <div class="label">Цены</div>
+        <h2>Бесплатно. Всё целиком.</h2>
+        <p>На этапе раннего доступа открыты все функции: неограниченные записи, ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения, ежемесячный отчёт. Без карты, без пробного периода, без ограничений.</p>
       </div>
       <div class="pricing-layout">
         <div class="pricing-card popular reveal" style="transition-delay:0.05s">
-          <span class="popular-badge">Early access</span>
+          <span class="popular-badge">Ранний доступ</span>
           <div class="pricing-header">
-            <h3>Everything</h3>
-            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Every feature, no limits</p>
+            <h3>Всё</h3>
+            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Все функции, без ограничений</p>
           </div>
           <div class="pricing-price"><span class="free-tag">$0</span></div>
           <ul class="pricing-features">
-            <li><span class="ck">&#10003;</span>Unlimited journal entries</li>
-            <li><span class="ck">&#10003;</span>All past entries, always</li>
-            <li><span class="ck">&#10003;</span>Full-text local search</li>
-            <li><span class="ck">&#10003;</span>iCloud backup &amp; sync</li>
-            <li><span class="ck">&#10003;</span>Daily Nudge (on-device AI)</li>
-            <li><span class="ck">&#10003;</span>Unlimited Ask</li>
-            <li><span class="ck">&#10003;</span>Weekly Digest every Sunday</li>
-            <li><span class="ck">&#10003;</span>Mood detection, timeline &amp; alerts</li>
-            <li><span class="ck">&#10003;</span>Monthly deep report</li>
-            <li><span class="ck">&#10003;</span>Home screen widget</li>
+            <li><span class="ck">&#10003;</span>Неограниченные записи в дневнике</li>
+            <li><span class="ck">&#10003;</span>Все прошлые записи, всегда</li>
+            <li><span class="ck">&#10003;</span>Локальный полнотекстовый поиск</li>
+            <li><span class="ck">&#10003;</span>Резервное копирование и синхронизация iCloud</li>
+            <li><span class="ck">&#10003;</span>Ежедневная подсказка (ИИ на устройстве)</li>
+            <li><span class="ck">&#10003;</span>Неограниченные вопросы к дневнику</li>
+            <li><span class="ck">&#10003;</span>Еженедельный дайджест по воскресеньям</li>
+            <li><span class="ck">&#10003;</span>Определение настроения, шкала и уведомления</li>
+            <li><span class="ck">&#10003;</span>Углублённый ежемесячный отчёт</li>
+            <li><span class="ck">&#10003;</span>Виджет на главном экране</li>
           </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Download free</a>
+          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Скачать бесплатно</a>
         </div>
         <div class="pricing-why reveal" style="transition-delay:0.1s">
-          <h3>Why is it free?</h3>
-          <p>Most journaling apps pay for cloud AI on every entry you write, so they have to charge you, or worse, monetize you. MirrorNotes runs its AI on the chip already in your pocket. Our marginal cost per user is zero, so early access is too.</p>
+          <h3>Почему это бесплатно?</h3>
+          <p>Большинство дневниковых приложений платят за облачный ИИ за каждую написанную вами запись, поэтому им приходится брать деньги с вас — или, что хуже, монетизировать вас самих. MirrorNotes запускает ИИ на чипе, который уже лежит у вас в кармане. Предельные издержки на пользователя у нас нулевые, поэтому и ранний доступ бесплатен.</p>
           <ul class="why-list">
-            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>We can&rsquo;t sell your data.</strong> It never reaches us. There is nothing on our side to sell.</div></li>
-            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>We can&rsquo;t lock your history.</strong> Your entries live in your iCloud, under your Apple&nbsp;ID.</div></li>
-            <li><span class="why-dot" style="background:#30D158"></span><div><strong>We&rsquo;ll never charge you to read your own words.</strong> If paid tiers come later, they gate new AI features, not your archive.</div></li>
+            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>Мы не можем продать ваши данные.</strong> Они никогда не попадают к нам. Продавать попросту нечего.</div></li>
+            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>Мы не можем закрыть доступ к вашей истории.</strong> Ваши записи хранятся в вашем&nbsp;iCloud, под вашим Apple&nbsp;ID.</div></li>
+            <li><span class="why-dot" style="background:#30D158"></span><div><strong>Мы никогда не будем брать плату за чтение ваших же слов.</strong> Если позже появятся платные тарифы, они будут открывать новые функции ИИ, а не доступ к вашему архиву.</div></li>
           </ul>
-          <p class="trial-note" style="margin-top:28px">No account. No card. Cancel is a non-issue: there&rsquo;s nothing to cancel.</p>
+          <p class="trial-note" style="margin-top:28px">Без аккаунта. Без карты. Отменять нечего: подписки попросту нет.</p>
         </div>
       </div>
     </div>
@@ -973,15 +955,15 @@
   <section id="final-cta">
     <div class="container">
       <div class="final-cta-inner reveal">
-        <div class="label" style="margin-bottom:16px">Start writing</div>
-        <h2>Your most honest thoughts<br>deserve a private space.</h2>
-        <p>No account. No server. No data deal. Just you, your phone, and an AI that stays where it belongs.</p>
+        <div class="label" style="margin-bottom:16px">Начните писать</div>
+        <h2>Ваши самые честные мысли<br>заслуживают приватного пространства.</h2>
+        <p>Без аккаунта. Без сервера. Без сделок с вашими данными. Только вы, ваш телефон и ИИ, который остаётся там, где ему место.</p>
         <div class="final-cta-row">
           <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Download Free for iPhone
+            Скачать бесплатно для iPhone
           </a>
-          <a href="#features" class="btn-ghost">See what it does</a>
+          <a href="#features" class="btn-ghost">Посмотреть, что он умеет</a>
         </div>
       </div>
     </div>
@@ -1017,47 +999,47 @@
               </svg>
               MirrorNotes
             </div>
-            <p>Private AI journaling. Your words stay on your device.</p>
+            <p>Приватный дневник с ИИ. Ваши слова остаются на вашем устройстве.</p>
           </div>
           <div class="footer-links">
             <div class="footer-link-group">
-              <h4>Product</h4>
+              <h4>Продукт</h4>
               <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#prompts">Try a prompt</a></li>
-                <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Download</a></li>
+                <li><a href="#features">Функции</a></li>
+                <li><a href="#pricing">Цены</a></li>
+                <li><a href="#prompts">Попробовать подсказку</a></li>
+                <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Скачать</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Compare</h4>
+              <h4>Сравнение</h4>
               <ul>
-                <li><a href="rosebud-alternative.html">vs Rosebud</a></li>
-                <li><a href="day-one-alternative.html">vs Day One</a></li>
-                <li><a href="reflect-alternative.html">vs Reflect</a></li>
-                <li><a href="adhd-journaling-app.html">ADHD journaling</a></li>
+                <li><a href="../rosebud-alternative.html">против Rosebud</a></li>
+                <li><a href="../day-one-alternative.html">против Day One</a></li>
+                <li><a href="../reflect-alternative.html">против Reflect</a></li>
+                <li><a href="../adhd-journaling-app.html">Дневник при СДВГ</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Legal</h4>
+              <h4>Правовая информация</h4>
               <ul>
-                <li><a href="privacy.html">Privacy Policy</a></li>
-                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="../privacy.html">Политика конфиденциальности</a></li>
+                <li><a href="../terms.html">Условия использования</a></li>
               </ul>
             </div>
             <div class="footer-link-group">
-              <h4>Support</h4>
+              <h4>Поддержка</h4>
               <ul>
-                <li><a href="support.html">Help Center</a></li>
-                <li><a href="mailto:hello@mirrornotes.org">Contact</a></li>
+                <li><a href="../support.html">Центр поддержки</a></li>
+                <li><a href="mailto:hello@mirrornotes.org">Написать нам</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 MirrorNotes. Made with intention. Privacy first.</p>
-          <p style="font-family:var(--mono);font-size:11px">This page loads zero third-party resources. No analytics, no tracking pixels, no fonts from Google. View source.</p>
-          <p><a href="privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Privacy Policy</a></p>
+          <p>&copy; 2026 MirrorNotes. Сделано осознанно. Приватность прежде всего.</p>
+          <p style="font-family:var(--mono);font-size:11px">Эта страница не загружает сторонние ресурсы. Никакой аналитики, никаких трекинг-пикселей, никаких шрифтов от Google. Посмотрите исходный код.</p>
+          <p><a href="../privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Политика конфиденциальности</a></p>
         </div>
       </div>
     </div>
@@ -1081,7 +1063,7 @@
     // Journal date line
     (function () {
       const el = document.getElementById('hero-date');
-      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      if (el) el.textContent = new Date().toLocaleDateString('ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
     })();
 
     // Scroll reveal
@@ -1092,11 +1074,11 @@
 
     // Rotating nudge in feature card
     const SAMPLE_NUDGES = [
-      'You keep coming back to the word "enough." What would enough feel like today?',
-      'Something shifted Tuesday. What actually changed?',
-      'The gap between who you are at work and who you are at home: how wide is it right now?',
-      'What are you protecting yourself from by staying busy?',
-      'You mentioned feeling invisible twice this week. Who do you most want to be seen by?',
+      'Вы снова и снова возвращаетесь к слову "достаточно". Как бы это чувствовалось сегодня?',
+      'Во вторник что-то изменилось. Что именно?',
+      'Насколько велик сейчас разрыв между тем, кто вы на работе, и тем, кто вы дома?',
+      'От чего вы защищаете себя, оставаясь постоянно занятым?',
+      'На этой неделе вы дважды упомянули, что чувствуете себя невидимым. Кем вы больше всего хотите быть замеченным?',
     ];
     let nudgeIdx = 0;
     const rotatingNudge = document.getElementById('rotating-nudge');
@@ -1135,36 +1117,36 @@
 
     // Prompts carousel
     const PROMPTS = [
-      "What's quietly draining you right now that you haven't named yet?",
-      "What are you avoiding thinking about? Write about that.",
-      "Describe the last moment you felt completely present.",
-      "What would you do differently about yesterday?",
-      "What's something you're pretending is fine?",
-      "Who did you most want to impress this week, and why?",
-      "What's a belief you hold that you've never examined?",
-      "What are you waiting for permission to do?",
-      "Describe a moment from the last week that surprised you.",
-      "What's the kindest thing you did today, and did you notice it?",
-      "What's costing you energy that you could put down?",
-      "What's the gap between who you are and who you're trying to be?",
-      "Write about a small thing that felt meaningful today.",
-      "What conversation do you keep rehearsing in your head?",
-      "What would you tell yourself from six months ago?",
-      "What are you learning right now, even if you didn't sign up to learn it?",
-      "What's pulling at your attention that you keep pushing aside?",
-      "Describe a moment this week when you felt like yourself.",
-      "What are you grateful for that you've never said out loud?",
-      "What does your body feel like right now? Start there.",
-      "What do you need more of? What do you need less of?",
-      "Write about something that happened recently that you haven't processed.",
-      "What pattern keeps repeating in your life?",
-      "What does 'enough' look like for you right now?",
-      "If you could only write one thing today, what would it be?",
-      "What are you afraid someone will find out about you?",
-      "What's the most honest sentence you could write right now?",
-      "What's working in your life that you're not giving yourself credit for?",
-      "Who are you becoming, even if you're not sure you chose it?",
-      "What's the tension you're living inside right now?",
+      "Что сейчас незаметно выматывает вас, но вы ещё не назвали это словами?",
+      "О чём вы избегаете думать? Напишите об этом.",
+      "Опишите последний момент, когда вы были полностью здесь и сейчас.",
+      "Что бы вы сделали иначе вчера?",
+      "Что вы делаете вид, будто всё в порядке, хотя это не так?",
+      "Кого вы больше всего хотели впечатлить на этой неделе и почему?",
+      "Какое убеждение вы храните, но никогда не подвергали сомнению?",
+      "На что вы ждёте чьего-то разрешения?",
+      "Опишите момент за последнюю неделю, который вас удивил.",
+      "Какой самый добрый поступок вы сделали сегодня — и заметили ли вы это сами?",
+      "Что отнимает у вас энергию, но от чего вы могли бы отказаться?",
+      "Какой разрыв между тем, кто вы есть, и тем, кем вы пытаетесь стать?",
+      "Напишите о маленькой вещи, которая сегодня показалась важной.",
+      "Какой разговор вы снова и снова прокручиваете в голове?",
+      "Что бы вы сказали себе полгода назад?",
+      "Чему вы учитесь прямо сейчас, даже если не выбирали этот урок?",
+      "Что тянет на себя ваше внимание, а вы всё время это отодвигаете?",
+      "Опишите момент на этой неделе, когда вы чувствовали себя настоящим собой.",
+      "За что вы благодарны, но никогда не говорили об этом вслух?",
+      "Что чувствует ваше тело прямо сейчас? Начните с этого.",
+      "Чего вам нужно больше? А чего — меньше?",
+      "Напишите о том, что произошло недавно, но вы ещё не до конца это осмыслили.",
+      "Какой паттерн постоянно повторяется в вашей жизни?",
+      "Как для вас сейчас выглядит «достаточно»?",
+      "Если бы сегодня вы могли написать только одну вещь, что бы это было?",
+      "Что вы боитесь, что кто-то узнает о вас?",
+      "Какое самое честное предложение вы могли бы написать прямо сейчас?",
+      "Что в вашей жизни получается хорошо, но вы себе этого не признаёте?",
+      "Кем вы становитесь, даже если не уверены, что сами это выбрали?",
+      "В каком напряжении вы сейчас живёте?",
     ];
     let promptIdx = 0;
     const promptText = document.getElementById('prompt-text');
