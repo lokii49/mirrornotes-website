@@ -115,7 +115,72 @@
   </url>
   <url>
     <loc>https://mirrornotes.org/privacy.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mirrornotes.org/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mirrornotes.org/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://mirrornotes.org/es/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://mirrornotes.org/fr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://mirrornotes.org/de/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://mirrornotes.org/it/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://mirrornotes.org/pt/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://mirrornotes.org/ja/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mirrornotes.org/ko/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mirrornotes.org/ru/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/privacy.html"/>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/es/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/fr/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/de/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/it/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/pt/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/ja/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/ko/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/ru/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/zh/privacy.html</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

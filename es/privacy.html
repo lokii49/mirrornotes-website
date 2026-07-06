@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Política de Privacidad de MirrorNotes: sus entradas de diario nunca salen de su dispositivo.">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://mirrornotes.org/es/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://mirrornotes.org/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://mirrornotes.org/privacy.html">
+  <link rel="alternate" hreflang="es" href="https://mirrornotes.org/es/privacy.html">
+  <link rel="alternate" hreflang="fr" href="https://mirrornotes.org/fr/privacy.html">
+  <link rel="alternate" hreflang="de" href="https://mirrornotes.org/de/privacy.html">
+  <link rel="alternate" hreflang="it" href="https://mirrornotes.org/it/privacy.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://mirrornotes.org/pt/privacy.html">
+  <link rel="alternate" hreflang="ja" href="https://mirrornotes.org/ja/privacy.html">
+  <link rel="alternate" hreflang="ko" href="https://mirrornotes.org/ko/privacy.html">
+  <link rel="alternate" hreflang="ru" href="https://mirrornotes.org/ru/privacy.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/privacy.html">
+  <title>Política de Privacidad: MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAF9F6;
+      --surface:   #FFFFFF;
+      --surface2:  #F5F3EE;
+      --crimson:   #7A1E2A;
+      --red:       #E8432E;
+      --green:     #1E9E4C;
+      --blue:      #0A6FDB;
+      --orange:    #DB7F00;
+      --text:      #16181A;
+      --text-2:    #55575B;
+      --text-3:    #8B8D90;
+      --border:    rgba(20,18,16,0.07);
+    }
+
+    body {
+      font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(250,249,246,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .nav-sep { color: var(--text-3); }
+
+    .nav-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Layout */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px 120px;
+    }
+
+    /* Header */
+    .page-header {
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      color: var(--text-2);
+      max-width: 580px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: var(--text-3);
+    }
+
+    .meta-item strong { color: var(--text-2); font-weight: 600; }
+
+    /* TL;DR box */
+    .tldr {
+      background: rgba(30,158,76,0.06);
+      border: 1px solid rgba(30,158,76,0.2);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 64px;
+    }
+
+    .tldr h3 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .tldr ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tldr li {
+      display: flex;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text);
+      align-items: flex-start;
+    }
+
+    .tldr li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Sections */
+    .policy-section {
+      margin-bottom: 56px;
+    }
+
+    .policy-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .policy-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 24px 0 10px;
+      color: var(--text);
+    }
+
+    .policy-section p {
+      font-size: 15px;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+
+    .policy-section ul, .policy-section ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .policy-section li {
+      font-size: 15px;
+      color: var(--text-2);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .policy-section li::before {
+      content: '·';
+      position: absolute;
+      left: 6px;
+      color: var(--text-3);
+    }
+
+    .policy-section ol li::before {
+      counter-increment: list;
+      content: counter(list) '.';
+      font-size: 13px;
+      color: var(--text-3);
+      left: 0;
+    }
+
+    .policy-section ol { counter-reset: list; }
+
+    .callout {
+      background: rgba(10,111,219,0.07);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 15px;
+      color: var(--text-2);
+    }
+
+    .callout strong { color: var(--text); }
+
+    .callout-warn {
+      background: rgba(219,127,0,0.07);
+      border-left-color: var(--orange);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .data-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      vertical-align: top;
+    }
+
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .tag-none  { background: rgba(30,158,76,0.12);  color: var(--green);  border: 1px solid rgba(30,158,76,0.25); }
+    .tag-local { background: rgba(10,111,219,0.12); color: var(--blue);   border: 1px solid rgba(10,111,219,0.25);}
+    .tag-third { background: rgba(219,127,0,0.12); color: var(--orange); border: 1px solid rgba(219,127,0,0.25);}
+
+    /* Contact card */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--text-3);
+      margin: 0;
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-nav a {
+      font-size: 13px;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/es/" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Política de Privacidad</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Legal</div>
+      <h1>Política de Privacidad</h1>
+      <p>Sus entradas de diario son suyas. Esta política explica exactamente qué datos recopila MirrorNotes, cuáles no, y por qué, en un lenguaje sencillo.</p>
+      <div class="meta">
+        <div class="meta-item"><strong>Vigente desde:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Última actualización:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Versión de la app:</strong> 1.0</div>
+      </div>
+    </div>
+
+    <!-- TL;DR -->
+    <div class="tldr">
+      <h3>TL;DR: La versión breve</h3>
+      <ul>
+        <li>Sus entradas de diario nunca salen de su dispositivo. Nunca.</li>
+        <li>Toda la inferencia de IA se ejecuta localmente en su iPhone (Gemma 3 1B). Sin IA en la nube.</li>
+        <li>La sincronización de iCloud va a su propia cuenta de Apple. No podemos acceder a ella.</li>
+        <li>Solo recopilamos lo necesario para la gestión de la suscripción (RevenueCat). No se requiere cuenta ni inicio de sesión.</li>
+        <li>No vendemos sus datos, no elaboramos perfiles con ellos ni los usamos para publicidad.</li>
+        <li>Puede eliminar su cuenta y todos los datos asociados en cualquier momento.</li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <div class="policy-section">
+      <h2>1. Quiénes somos</h2>
+      <p>MirrorNotes es una aplicación privada de diario para iOS desarrollada por Lokesh Pudhari ("nosotros", "nos" o "nuestro"). La app está disponible en la App Store de Apple.</p>
+      <p>Para preguntas sobre esta política, contáctenos en: <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a></p>
+    </div>
+
+    <!-- 2 -->
+    <div class="policy-section">
+      <h2>2. La garantía fundamental de privacidad</h2>
+      <p>MirrorNotes está construido sobre un único principio arquitectónico: <strong>el texto de su diario nunca sale de su dispositivo.</strong></p>
+      <p>Esto no es una promesa de política que pueda cambiarse en una futura actualización. Es un hecho técnico sobre cómo está construida la app:</p>
+      <ul>
+        <li>El texto de las entradas de diario se almacena en SwiftData en su dispositivo local.</li>
+        <li>La sincronización de iCloud mediante Apple CloudKit copia sus entradas a su propia cuenta de iCloud, accesible únicamente con sus credenciales de Apple ID. No tenemos ningún acceso a estos datos.</li>
+        <li>El análisis de IA (Aviso Diario, Preguntar, Resumen Semanal) lo realiza Gemma 3 1B, un modelo que se ejecuta enteramente en el Neural Engine de su dispositivo. El texto de sus entradas nunca se envía a ningún servidor para su procesamiento por IA.</li>
+        <li>Las perspectivas generadas (por ejemplo, un Aviso Diario) se almacenan en caché en el dispositivo mediante SwiftData. El texto de las perspectivas no se transmite a nuestros servidores.</li>
+      </ul>
+      <div class="callout">
+        <strong>Máximo de texto enviado al modelo de IA local:</strong> 10,000 characters de sus entradas más recientes. Este procesamiento ocurre enteramente dentro de la memoria de su dispositivo y no se transmite a ningún lugar.
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="policy-section">
+      <h2>3. Qué datos recopilamos y por qué</h2>
+
+      <p>La siguiente tabla resume cada categoría de datos involucrada en el funcionamiento de MirrorNotes:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tipo de dato</th>
+            <th>Propósito</th>
+            <th>Almacenamiento</th>
+            <th>¿Se nos envía?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Entradas de diario</strong><br><small>Todo el texto que escribe</small></td>
+            <td>Producto principal</td>
+            <td>En el dispositivo (SwiftData) + su iCloud</td>
+            <td><span class="tag tag-none">Nunca</span></td>
+          </tr>
+          <tr>
+            <td><strong>Perspectivas generadas por IA</strong><br><small>Avisos, resúmenes, respuestas de Preguntar</small></td>
+            <td>Caché de funciones de IA</td>
+            <td>En el dispositivo (SwiftData)</td>
+            <td><span class="tag tag-none">Nunca</span></td>
+          </tr>
+          <tr>
+            <td><strong>Estado de la suscripción</strong><br><small>Nivel, vencimiento, estado de renovación</small></td>
+            <td>Control de acceso a funciones</td>
+            <td>Servidores de RevenueCat</td>
+            <td><span class="tag tag-third">Sí (RevenueCat)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Recibos de compra</strong><br><small>Transacciones de compra dentro de la app de Apple</small></td>
+            <td>Validación de la suscripción</td>
+            <td>Servidores de RevenueCat + Apple</td>
+            <td><span class="tag tag-third">Apple/RevenueCat</span></td>
+          </tr>
+          <tr>
+            <td><strong>Análisis de uso de la app</strong><br><small>Informes de fallos, si están habilitados</small></td>
+            <td>Corrección de errores</td>
+            <td>Solo datos de fallos anonimizados</td>
+            <td><span class="tag tag-local">Solo anonimizado</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Qué no recopilamos explícitamente</h3>
+      <ul>
+        <li>El texto de las entradas de diario (nunca sale de su dispositivo)</li>
+        <li>Grabaciones de voz (se transcriben localmente; el audio se descarta)</li>
+        <li>Perspectivas de IA o contenido generado</li>
+        <li>Análisis de comportamiento, identificadores publicitarios o píxeles de seguimiento</li>
+        <li>Datos de ubicación</li>
+        <li>Lista de contactos, fotos, micrófono (excepto para la entrada de voz dentro de la app, sin almacenamiento)</li>
+        <li>Ningún dato con fines publicitarios</li>
+      </ul>
+    </div>
+
+    <!-- 4 -->
+    <div class="policy-section">
+      <h2>4. Servicios de terceros</h2>
+
+      <h3>RevenueCat (gestión de suscripciones)</h3>
+      <p>RevenueCat procesa los recibos de compras dentro de la app procedentes de Apple y actualiza el estado de su suscripción. RevenueCat recibe sus recibos de compra de Apple y le asigna un ID de suscriptor. No interviene ningún dato de diario.</p>
+      <p>Política de Privacidad de RevenueCat: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
+
+      <h3>Apple (iCloud + App Store)</h3>
+      <p>Apple CloudKit sincroniza sus entradas entre sus dispositivos mediante su cuenta de iCloud. Apple gestiona todo el procesamiento de pagos de las suscripciones. No se requiere cuenta ni inicio de sesión para usar MirrorNotes.</p>
+      <p>Política de Privacidad de Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
+
+      <div class="callout callout-warn">
+        <strong>Nota sobre CloudKit:</strong> La sincronización de iCloud significa que sus entradas se almacenan en los servidores de Apple bajo su Apple ID. Esto se rige por los términos de Apple, no por los nuestros. No tenemos ninguna capacidad de acceder a los datos de iCloud. Si le preocupa, puede desactivar iCloud para MirrorNotes en Ajustes de iOS → [Su nombre] → iCloud.
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="policy-section">
+      <h2>5. IA en el dispositivo y procesamiento local</h2>
+      <p>Todas las funciones de IA de MirrorNotes (Aviso Diario, Preguntar, Resumen Semanal) funcionan mediante <strong>Gemma 3 1B</strong>, un modelo de lenguaje extenso que se ejecuta enteramente en su dispositivo.</p>
+      <ul>
+        <li>El archivo del modelo se incluye con la app o se descarga mediante ella, y se almacena localmente.</li>
+        <li>La inferencia (generación de respuestas de IA) ocurre en la memoria de su dispositivo.</li>
+        <li>El texto de las entradas que se pasa al modelo nunca sale de la memoria local de su dispositivo.</li>
+        <li>Imponemos un máximo de 10,000 characters en el texto enviado al modelo (truncando primero las entradas más antiguas) para proteger el rendimiento del dispositivo.</li>
+        <li>Las perspectivas generadas se almacenan en caché en el dispositivo y no se regeneran dentro de un período de 24 hours.</li>
+      </ul>
+      <p>No hay llamadas a la API de ningún servicio de IA en la nube (ni OpenAI, Anthropic, Google Cloud AI, etc.) para el procesamiento de IA.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="policy-section">
+      <h2>6. Retención y eliminación de datos</h2>
+
+      <h3>Sus entradas de diario</h3>
+      <p>Se almacenan en el dispositivo. Se eliminan inmediatamente cuando usted las elimina. No existe ninguna copia en servidor. Si elimina la app, SwiftData se borra. Las copias en iCloud se gestionan mediante los ajustes de su Apple ID.</p>
+
+      <h3>Datos de suscripción</h3>
+      <p>El estado de la suscripción se almacena en RevenueCat mientras tenga una suscripción activa. Se elimina dentro de un plazo de 30 days tras una solicitud de eliminación.</p>
+
+      <h3>Cómo eliminar sus datos</h3>
+      <ol>
+        <li>Abra MirrorNotes → Ajustes → Cuenta</li>
+        <li>Toque "Eliminar cuenta"</li>
+        <li>Confirme la eliminación</li>
+      </ol>
+      <p>Esto elimina el estado de su suscripción de RevenueCat. Sus entradas de diario, almacenadas localmente y en su iCloud, deben eliminarse por separado mediante los Ajustes de iOS o eliminando la app.</p>
+
+      <p>También puede contactarnos en <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> para solicitar la eliminación de su cuenta.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="policy-section">
+      <h2>7. Sus derechos</h2>
+      <p>Dependiendo de su ubicación, es posible que tenga ciertos derechos respecto a sus datos personales:</p>
+
+      <ul>
+        <li><strong>Acceso:</strong> Solicitar una copia de los datos personales que conservamos sobre usted (su ID de usuario y estado de suscripción).</li>
+        <li><strong>Corrección:</strong> Solicitar la corrección de datos inexactos.</li>
+        <li><strong>Eliminación:</strong> Solicitar la eliminación de los datos de su cuenta (véase la Sección 6).</li>
+        <li><strong>Portabilidad:</strong> Solicitar sus datos en un formato portátil. Nota: los datos de diario se almacenan en su dispositivo; usted los posee y controla directamente.</li>
+        <li><strong>Exclusión voluntaria:</strong> No participamos en la venta de datos ni en publicidad conductual entre contextos. No hay nada de lo que excluirse en ese sentido.</li>
+      </ul>
+
+      <p>Para ejercer cualquier derecho, contacte a <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>. Responderemos dentro de un plazo de 30 days.</p>
+
+      <h3>Residentes de California (CCPA/CPRA)</h3>
+      <p>No vendemos ni compartimos información personal con fines de publicidad conductual entre contextos. Recopilamos únicamente los datos mínimos necesarios para prestar el servicio. Usted tiene derecho a saber, eliminar y excluirse tal como se describe anteriormente.</p>
+
+      <h3>Residentes europeos (RGPD)</h3>
+      <p>Nuestra base jurídica para el procesamiento de datos de suscripción es la ejecución del contrato (la prestación del servicio que usted contrató). Usted tiene los derechos descritos anteriormente conforme a los Artículos 15 a 22 del RGPD. Para presentar una reclamación, contacte a su Autoridad de Protección de Datos local.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="policy-section">
+      <h2>8. Seguridad</h2>
+      <p>Nos tomamos la seguridad en serio:</p>
+      <ul>
+        <li>Todas las solicitudes de red (a RevenueCat y Apple) utilizan HTTPS/TLS.</li>
+        <li>Dado que los datos de diario nunca salen de su dispositivo, el alcance de cualquier vulneración del lado del servidor se limita únicamente al estado de la suscripción, no a lo que usted escribe.</li>
+      </ul>
+      <p>Si descubre una vulnerabilidad de seguridad, repórtela a <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="policy-section">
+      <h2>9. Privacidad de los menores</h2>
+      <p>MirrorNotes no está dirigida a menores de 13 años (o menores de 16 años en el Espacio Económico Europeo). No recopilamos conscientemente información personal de menores. Si cree que un menor nos ha proporcionado información personal, contáctenos y la eliminaremos de inmediato.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="policy-section">
+      <h2>10. Cambios a esta política</h2>
+      <p>Podemos actualizar esta Política de Privacidad de vez en cuando. Cuando realicemos cambios materiales, se lo notificaremos mediante una notificación dentro de la app y actualizaremos la fecha de "Última actualización" en la parte superior de esta página. El uso continuado de MirrorNotes tras una actualización de la política constituye la aceptación de la política actualizada.</p>
+      <p>Nunca cambiaremos el hecho arquitectónico fundamental de que sus entradas de diario permanecen en su dispositivo sin también darle un aviso previo claro y la posibilidad de exportar sus datos.</p>
+    </div>
+
+    <!-- 11 -->
+    <div class="policy-section">
+      <h2>11. Contáctenos</h2>
+      <div class="contact-card">
+        <h3>¿Preguntas sobre su privacidad?</h3>
+        <p>Somos un equipo pequeño y leemos todos los correos electrónicos.</p>
+        <p>
+          <strong>Correo electrónico:</strong> <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a><br>
+          <strong>Desarrollador:</strong> Lokesh Pudhari<br>
+          <strong>App:</strong> MirrorNotes para iOS
+        </p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Todos los derechos reservados.</p>
+      <div class="footer-nav">
+        <a href="/es/">Inicio</a>
+        <a href="../terms.html">Términos</a>
+        <a href="../support.html">Soporte</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
