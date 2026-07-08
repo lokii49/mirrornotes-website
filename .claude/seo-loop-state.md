@@ -9,7 +9,7 @@ Locales: es, fr, de, it, pt, ja, ko, ru, zh
 Priority order: work through locales left-to-right, one page per locale per pass, then move to the next page.
 
 - [x] day-one-alternative × es (shipped 2026-07-07)
-- [ ] day-one-alternative × fr
+- [x] day-one-alternative × fr (shipped 2026-07-08)
 - [ ] day-one-alternative × de
 - [ ] day-one-alternative × it
 - [ ] day-one-alternative × pt
@@ -68,6 +68,7 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 ## Log
 
 - 2026-07-07: Shipped es/day-one-alternative.html — full Spanish translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy). Structure/CSS byte-identical to English source. Nav-back and footer "Inicio"/"Privacidad" link within es/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages (no es equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+- 2026-07-08: Shipped fr/day-one-alternative.html — full French translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy). Structure/CSS byte-identical to English source. Nav-back and footer "Accueil"/"Confidentialité" link within fr/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no fr equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 
