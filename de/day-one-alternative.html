@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Day One-Alternative mit echten KI-Einblicken: MirrorNotes bietet tägliche KI-Prompts, Stimmungsanalyse und ein Journal, das du befragen kannst – alles auf deinem iPhone, nie in der Cloud, komplett kostenlos.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Day One Alternative mit KI: MirrorNotes, kostenloses privates Journaling</title>
+  <link rel="canonical" href="https://mirrornotes.org/de/day-one-alternative.html">
+  <meta property="og:title" content="Day One Alternative mit KI: MirrorNotes">
+  <meta property="og:description" content="Tägliche KI-Prompts, Stimmungsanalyse und „Frag dein Journal“ – alles auf dem Gerät, nie in der Cloud. Kostenlos.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/de/day-one-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist eine gute Day One-Alternative mit KI-Funktionen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes ist eine Day One-Alternative, die auf KI direkt auf dem Gerät setzt. Sie erstellt täglich personalisierte Prompts, verfolgt Stimmungstrends, fasst deine Woche zusammen und beantwortet Fragen in natürlicher Sprache zu deinen eigenen Einträgen – die gesamte KI läuft lokal auf deinem iPhone (Gemma 3), sodass Journaltext nie an einen Server gesendet wird."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ist MirrorNotes günstiger als Day One Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Day One Premium kostet etwa 34,99 $ pro Jahr. MirrorNotes ist kostenlos: die komplette KI-Ebene, tägliche Prompts, wöchentliche Zusammenfassungen und Fragen zu deinen Einträgen, ganz ohne Kosten, weil KI auf dem Gerät keine Serverrechnung zu decken hat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hat Day One KI auf dem Gerät?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Day One hat nach und nach Intelligenzfunktionen ergänzt, die an Cloud- oder Apple-Intelligence-Dienste gebunden sind. MirrorNotes bringt sein eigenes lokales Modell mit (Gemma 3 über CoreML), sodass jede KI-Funktion – Prompts, Zusammenfassungen, Stimmungsanalyse, Journal-Fragen – offline funktioniert und Journaltext das Gerät nie verlässt."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Day One Alternative</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Vergleich</div>
+      <h1>Eine Day One-Alternative, die auf KI aufbaut</h1>
+      <p>Day One ist die ausgereifteste Journaling-App auf iOS: ein Jahrzehnt an Feinschliff, hervorragende Medienunterstützung, plattformübergreifende Synchronisierung. Was ihr fehlt, ist eine Basis aus KI. MirrorNotes hat genau das: tägliche personalisierte Prompts, Stimmungsanalyse, wöchentliche Zusammenfassungen und ein Journal, das du befragen kannst – alles auf deinem iPhone, nie in der Cloud, und komplett kostenlos.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Kurz gesagt</h3>
+      <ul>
+        <li>Day One = das beste Archiv. MirrorNotes = ein Journal, das dir antwortet.</li>
+        <li>Die KI von MirrorNotes läuft vollständig auf dem Gerät (Gemma 3): Prompts, Zusammenfassungen und „Frag dein Journal“ funktionieren offline, und Einträge erreichen nie einen Server.</li>
+        <li>MirrorNotes ist kostenlos. Day One Premium kostet ca. 34,99 $/Jahr für unbegrenzte Medien und Mehrgeräte-Synchronisierung.</li>
+        <li>Willst du fotoreiches, plattformübergreifendes Journaling? Bleib bei Day One. Willst du kostenlos Erkenntnisse aus dem, was du schreibst? Probier MirrorNotes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Vergleich im Detail</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Funktion</th><th>MirrorNotes</th><th>Day One</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Integrierte KI-Einblicke</strong></td><td class="yes">Kernfunktion: tägliche Prompts, Zusammenfassungen, Stimmungsanalyse, Journal-Fragen</td><td class="no">Eingeschränkt; Intelligenzfunktionen stützen sich auf Cloud-/Apple-Dienste</td></tr>
+          <tr><td><strong>Wo die KI läuft</strong></td><td class="yes">Auf deinem iPhone (Gemma 3 über CoreML)</td><td class="warn">Cloud-unterstützt, wo vorhanden</td></tr>
+          <tr><td><strong>Fragen zu deinen Einträgen stellen</strong></td><td class="yes">„Was stresst mich?“ wird auf dem Gerät beantwortet</td><td class="no">Nein</td></tr>
+          <tr><td><strong>Stimmungsverlauf & Hinweise</strong></td><td class="yes">Ja</td><td class="no">Keine Stimmungsanalyse</td></tr>
+          <tr><td><strong>Fotos, Video, Audio in Einträgen</strong></td><td class="no">Text und Sprache-zu-Text, schreibfokussiert</td><td class="yes">Hervorragende Medienunterstützung</td></tr>
+          <tr><td><strong>Plattformen</strong></td><td class="no">Nur iPhone</td><td class="yes">iOS, Mac, Android, Web</td></tr>
+          <tr><td><strong>Ende-zu-Ende-Verschlüsselung</strong></td><td class="yes">Einträge verlassen nie das Gerät; iCloud-Sync unter deiner eigenen Apple-ID</td><td class="yes">E2E-Verschlüsselung verfügbar</td></tr>
+          <tr><td><strong>Kostenlose Version</strong></td><td class="yes">Alles ist kostenlos: unbegrenzte Einträge, volle KI, komplette Historie, Suche, iCloud-Backup</td><td>Ein Journal, ein Gerät, begrenzte Fotos</td></tr>
+          <tr><td><strong>Preis</strong></td><td class="yes">Kostenlos</td><td>Premium ~34,99 $/Jahr</td></tr>
+          <tr><td><strong>Konto erforderlich</strong></td><td class="yes">Kein Konto, keine Anmeldung</td><td>Konto für Synchronisierung nötig</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Unterschiedliche Aufgaben: Archiv vs. Spiegel</h2>
+      <p>Die Stärke von Day One ist Bewahrung. Dort lebt ein Jahrzehnt an Fotos, Orten und Erinnerungen, wunderschön organisiert. Wenn das dein Verständnis von Journaling ist, ist Day One wirklich schwer zu schlagen, und das werden wir nicht anders behaupten.</p>
+      <p>MirrorNotes ist für eine andere Aufgabe gebaut: Reflexion. Du schreibst; die App liest, was du geschrieben hast, auf deinem Telefon, mit einem lokalen Modell, und gibt dir etwas zurück:</p>
+      <ul>
+        <li><strong>Täglicher Impuls:</strong> der Prompt für morgen früh wird aus dem generiert, worüber du tatsächlich geschrieben hast, kein Zitat des Tages.</li>
+        <li><strong>Frag dein Journal:</strong> „Wann fühle ich mich am lebendigsten?“, „Was vermeide ich?“ Beantwortet aus Monaten deiner eigenen Einträge.</li>
+        <li><strong>Wöchentliche Zusammenfassung:</strong> jeden Sonntag die Themen und Stimmungen der Woche zusammengefasst.</li>
+        <li><strong>Stimmungsverlauf:</strong> emotionale Trends, die dir beim tageweisen Lesen nie auffallen würden, mit Hinweisen, wenn mehrere Einträge in Folge ins Negative tendieren.</li>
+      </ul>
+      <div class="callout">
+        <strong>Der Datenschutzaspekt zählt hier besonders:</strong> Eine KI, die dein Journal liest, ist genau die Art von KI, die nicht in der Cloud laufen sollte. Das Modell von MirrorNotes läuft auf deinem Chip. Es gibt keinen Server, der jemals sieht, was du schreibst – nicht unseren, nicht irgendjemandes.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Häufig gestellte Fragen</h2>
+      <h3>Kann ich beides nutzen?</h3>
+      <p>Viele werden das tun. Day One als langfristiges Medienarchiv; MirrorNotes als tägliche Schreib- und Reflexionsgewohnheit. MirrorNotes ist kostenlos und unbegrenzt, das Ausprobieren kostet also nichts.</p>
+      <h3>Kann ich meine Day One-Einträge importieren?</h3>
+      <p>Noch nicht, der Import ist auf der Roadmap. Neue Einträge, die du in MirrorNotes schreibst, gehören dir: auf dem Gerät in SwiftData gespeichert und mit deinem eigenen iCloud synchronisiert.</p>
+      <h3>Warum nur iPhone?</h3>
+      <p>Die KI auf dem Gerät ist das Produkt. Moderne iPhone-Chips führen Gemma 3 hervorragend aus; sich über mehrere Plattformen zu verteilen würde entweder Cloud-KI bedeuten (was die Datenschutzgarantie bricht) oder eine schlechtere Erfahrung. iPhone-first ist eine bewusste Entscheidung.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Probiere MirrorNotes kostenlos</h3>
+      <p>Jede Funktion, komplett kostenlos. Kein Test, keine Karte, kein Haken.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Im App Store laden</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Alle Rechte vorbehalten.</p>
+      <div class="footer-nav">
+        <a href="index.html">Startseite</a>
+        <a href="../rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">ADHS-Journaling</a>
+        <a href="../offline-journal-app.html">Offline-Journal</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
