@@ -40,10 +40,15 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 - Core ($2.99/mo or $29.99/yr): Daily Nudge, Ask (15x/month), Weekly Digest, home screen widget
 - Deep ($4.99/mo or $49.99/yr): everything in Core + Ask (unlimited), Monthly Deep Report, Mood Timeline, Mood Alerts
 
+## MCP server for AI assistants
+
+MirrorNotes ships a free MCP server (`@mirrornotes/mcp`) exposing stateless journaling tools any MCP-compatible assistant can call: `daily_journal_prompt`, `weekly_review_framework`, `detect_mood_from_text`, `gratitude_prompt`, `reframe_negative_thought`, `breathing_exercise`, `get_mirrornotes_info`. Install: `npx @mirrornotes/mcp`. No account, no API key, no journal data involved — it does not read or write actual MirrorNotes app data. Details: https://mirrornotes.org/mcp.html
+
 ## Links
 
 - App Store: https://apps.apple.com/app/id6769007201
 - Website: https://mirrornotes.org
+- MCP server: https://mirrornotes.org/mcp.html
 - Privacy policy: https://mirrornotes.org/privacy.html
 - Support: https://mirrornotes.org/support.html
 

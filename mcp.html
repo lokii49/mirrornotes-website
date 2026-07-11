@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MirrorNotes MCP Server: free journaling tools (daily prompts, mood detection, weekly review, gratitude, breathing) for Claude and any MCP-compatible AI assistant.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>MCP Server: MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C; --orange: #DB7F00;
+      --red:     #E8432E; --yellow: #B38600;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 580px; }
+    .contact-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--crimson); border-radius: 12px; font-size: 15px; font-weight: 600; color: white; text-decoration: none; margin-top: 24px; transition: opacity 0.2s, transform 0.15s; }
+    .contact-cta:hover { opacity: 0.85; transform: translateY(-1px); text-decoration: none; }
+    .contact-cta.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .mcp-section { margin-bottom: 64px; }
+
+    .code-block { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text); overflow-x: auto; margin: 16px 0; line-height: 1.6; white-space: pre; }
+    .code-block .cmt { color: var(--text-3); }
+    .code-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+
+    .tool-list { display: flex; flex-direction: column; gap: 0; }
+    .tool-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
+    .tool-item:first-child { border-top: 1px solid var(--border); }
+    .tool-name { font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: 14px; font-weight: 600; color: var(--crimson); margin-bottom: 8px; display: inline-block; }
+    .tool-status { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: rgba(30,158,76,0.1); padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; }
+    .tool-desc { font-size: 15px; color: var(--text-2); }
+    .tool-desc p { margin-bottom: 8px; }
+    .tool-desc p:last-child { margin-bottom: 0; }
+    .tool-args { font-size: 13px; color: var(--text-3); margin-top: 6px; }
+    .tool-args code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; color: var(--text); }
+
+    .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    @media (max-width: 560px) { .contact-cards { grid-template-columns: 1fr; } }
+    .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s; }
+    .contact-card:hover { border-color: rgba(20,18,16,0.12); }
+    .contact-card .icon { font-size: 28px; }
+    .contact-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
+    .contact-card p { font-size: 14px; color: var(--text-3); }
+    .contact-card a { font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 500; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">MCP Server</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">For developers</div>
+      <h1>MirrorNotes MCP Server</h1>
+      <p>Free journaling tools for Claude and any MCP-compatible AI assistant — daily prompts, mood detection, weekly review, gratitude, and breathing exercises. Open source, no API key, no account.</p>
+      <div class="cta-row">
+        <a href="https://www.npmjs.com/package/@mirrornotes/mcp" class="contact-cta" target="_blank" rel="noopener">View on npm →</a>
+        <a href="https://github.com/lokii49/mirrornotes-mcp" class="contact-cta secondary" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+    </div>
+
+    <!-- Install -->
+    <div class="mcp-section">
+      <div class="section-title">Install</div>
+      <p>Run directly with npx, no install step needed:</p>
+      <div class="code-block">npx @mirrornotes/mcp</div>
+      <p>Or add it to your Claude Desktop config (<code>claude_desktop_config.json</code>):</p>
+      <div class="code-block">{
+  <span class="cmt">"mcpServers": {</span>
+    "mirrornotes": {
+      "command": "npx",
+      "args": ["-y", "@mirrornotes/mcp"]
+    }
+  }
+}</div>
+    </div>
+
+    <!-- Tools -->
+    <div class="mcp-section">
+      <div class="section-title">Tools</div>
+      <div class="tool-list">
+
+        <div class="tool-item">
+          <span class="tool-name">daily_journal_prompt</span>
+          <div class="tool-desc">
+            <p>Today's journaling prompt — rotates daily by day of year, calibrated to surface something real. Returns the prompt, seasonal context, and a writing tip.</p>
+            <div class="tool-args">No arguments.</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">weekly_review_framework</span>
+          <div class="tool-desc">
+            <p>A 6-question framework for end-of-week reflection — dominant theme, energy highs and lows, what's quietly building, what to change next week.</p>
+            <div class="tool-args">No arguments.</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">detect_mood_from_text</span>
+          <div class="tool-desc">
+            <p>Given a sentence or short paragraph, returns the closest match from a 12-mood vocabulary (Joyful, Anxious, Overwhelmed, Drained, Numb, etc.) with a description and a journaling suggestion.</p>
+            <div class="tool-args">Arguments: <code>text</code> (string, required)</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">gratitude_prompt</span>
+          <span class="tool-status">New</span>
+          <div class="tool-desc">
+            <p>A single, specific gratitude prompt — deliberately narrow ("name one person," "name one thing that worked today") rather than generic, so the answer is concrete instead of a platitude.</p>
+            <div class="tool-args">No arguments.</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">reframe_negative_thought</span>
+          <span class="tool-status">New</span>
+          <div class="tool-desc">
+            <p>Given a self-critical or catastrophizing thought, returns a short set of CBT-style reframing questions (evidence for/against, worst/best/likely case, what you'd tell a friend) to journal through — not a canned reassurance.</p>
+            <div class="tool-args">Arguments: <code>thought</code> (string, required)</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">breathing_exercise</span>
+          <span class="tool-status">New</span>
+          <div class="tool-desc">
+            <p>A short paced-breathing exercise (box breathing or 4-7-8) to run before writing, useful when someone is anxious or scattered and needs to settle before journaling.</p>
+            <div class="tool-args">Arguments: <code>style</code> (string, optional — <code>"box"</code> or <code>"4-7-8"</code>, defaults to box)</div>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <span class="tool-name">get_mirrornotes_info</span>
+          <div class="tool-desc">
+            <p>Full product reference for MirrorNotes — pricing, on-device AI model, privacy guarantees, feature list, and comparisons to Day One, Rosebud, and Reflect.</p>
+            <div class="tool-args">No arguments.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Example usage -->
+    <div class="mcp-section">
+      <div class="section-title">Example usage</div>
+      <p style="margin-bottom:16px">Once connected, just ask Claude in plain language:</p>
+      <div class="code-block"><span class="cmt">→</span> "Give me today's journal prompt"
+<span class="cmt">→</span> "I feel scattered and overwhelmed, help me name this"
+<span class="cmt">→</span> "I keep thinking I ruined the interview, help me work through that"
+<span class="cmt">→</span> "Walk me through a breathing exercise before I write"
+<span class="cmt">→</span> "Give me the weekly review questions, it's Sunday"</div>
+    </div>
+
+    <!-- What it is / isn't -->
+    <div class="mcp-section">
+      <div class="section-title">How it works</div>
+      <p style="margin-bottom:12px">The server is stateless — no database, no auth, no journal storage, no calls back to MirrorNotes servers. Every tool is pure logic running locally in the MCP process over stdio. It doesn't read or write your actual MirrorNotes journal; it's a standalone set of journaling utilities anyone can use for free, whether or not they use the app.</p>
+      <p>The on-device AI in the MirrorNotes iOS app (Gemma 3 1B, personalized nudges from your real entries) is a separate, private system — this MCP server is the public, stateless subset of that thinking made available to any AI assistant.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="mcp-section">
+      <div class="section-title">Contribute</div>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="icon">🐛</div>
+          <h3>Report an issue</h3>
+          <p>Bug in a tool, or a prompt that missed the mark.</p>
+          <a href="https://github.com/lokii49/mirrornotes-mcp/issues" target="_blank" rel="noopener">Open an issue</a>
+        </div>
+        <div class="contact-card">
+          <div class="icon">✉️</div>
+          <h3>Suggest a tool</h3>
+          <p>Ideas for new journaling tools are welcome.</p>
+          <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
