@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Most apps show off AI on day one, even when it has nothing to work with yet. MirrorNotes waits until you have real entries first. Why a weak first impression costs more than a delayed one.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Why We Wait Before Showing You AI — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    .timeline { display: flex; flex-direction: column; gap: 0; margin: 28px 0; }
+    .tl-step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .tl-step:last-child { border-bottom: none; }
+    .tl-day { flex-shrink: 0; width: 76px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--crimson); padding-top: 2px; }
+    .tl-body { font-size: 15px; color: var(--text-2); }
+    .tl-body strong { color: var(--text); }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Product Design</div>
+      <h1>Why We Wait Before Showing You AI</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>Open most AI apps for the first time and the AI is right there on screen one, before you've given it anything to work with. It's an understandable instinct — AI is the feature you paid engineering time to build, so you lead with it. MirrorNotes does the opposite on purpose: no AI feature appears until you've written a handful of real entries. For the first few days, the app is quietly honest about it — <em>mirror is learning, a few more entries until your first insight.</em></p>
+
+      <h2>What a premature AI feature actually costs</h2>
+
+      <p>A reflection engine that reads your journal needs your journal to exist first. Ask a model to generate a "personalized" daily insight from zero or one entries and it can't be personalized — it has nothing to personalize from. What comes out is generic: a stock affirmation, a platitude, something that could apply to anyone. And the first impression of an AI feature is disproportionately sticky. If someone's first interaction with "your journal's AI" is a paragraph that clearly wasn't grounded in anything they wrote, that's the impression that sticks — not the better output the model would produce three weeks later with real material to work from.</p>
+
+      <p class="pull-quote">A weak first impression doesn't get a fair second chance. Most people don't wait around to see if it gets better — they just conclude it isn't good.</p>
+
+      <h2>The actual onboarding sequence</h2>
+
+      <div class="timeline">
+        <div class="tl-step">
+          <div class="tl-day">Day 0</div>
+          <div class="tl-body"><strong>Three short questions</strong>, then you write your first entry immediately. No AI yet — the goal of day zero is just getting real words into the journal.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-day">Days 1–3</div>
+          <div class="tl-body">Still no AI. The app says so plainly: <strong>"mirror is learning — a few more entries to your first insight."</strong> Not hidden behind a spinner pretending to think.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-day">Days 4–7</div>
+          <div class="tl-body">Once there's enough real writing to work from, the <strong>first Daily Nudge unlocks</strong> — an actual observation grounded in what you've actually written, not a placeholder.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-day">Week 2+</div>
+          <div class="tl-body">The full experience opens up, including the <strong>Weekly Digest</strong> on Sundays, once there's a real week of entries behind it.</div>
+        </div>
+      </div>
+
+      <h2>Where the paywall sits, and why</h2>
+
+      <p>This sequencing shapes another decision: MirrorNotes shows its subscription offer <em>after</em> your first real Daily Nudge, not before you've seen any AI at all. Asking someone to pay for a feature they haven't experienced is a harder sell and a worse-feeling one — you're asking for trust on faith. Showing the feature working first, grounded in that person's actual writing, then saying "this is what you get every day" is a fairer trade: you're asking for money for something they've already seen deliver value, not something they're taking on faith.</p>
+
+      <h2>How this connects to running the model on-device</h2>
+
+      <p>This staged rollout is possible in a way a cloud-hosted competitor might not replicate as cleanly, because the constraint is entirely local. There's no server deciding whether to spend an API call on a low-quality generation — the app itself simply doesn't run the model until there's enough on-device context to make it worth running. No wasted inference, no dressed-up placeholder output, no incentive to show something mediocre just to prove the feature exists. The same architecture that keeps your journal <a href="why-ai-should-never-leave-your-phone.html">off any server</a> also makes it easy to be patient about when AI shows up at all.</p>
+
+      <p>Slower first impression, better one. That trade seemed obviously correct once framed that way — the harder part was just having the discipline to actually ship a "not yet" screen instead of a weak "here it is anyway."</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. AI insights unlock once there's something real for them to reflect on.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="index.html" class="cta-btn secondary">More posts</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Blog</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -257,6 +257,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mirrornotes.org/blog/the-case-for-small-ai-models.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/blog/your-therapist-has-confidentiality.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/blog/what-happens-when-the-app-shuts-down.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/blog/why-we-wait-7-days-before-ai.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mirrornotes.org/support.html</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>

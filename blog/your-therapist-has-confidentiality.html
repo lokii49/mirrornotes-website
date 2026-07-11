@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your therapist is bound by confidentiality law before they hear a word. Your journaling app answers to a privacy policy it wrote itself. Why that gap should bother you more than it does.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Your Therapist Has Confidentiality. Does Your Journaling App? — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    table.compare-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; }
+    table.compare-table th, table.compare-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    table.compare-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+    table.compare-table td { color: var(--text-2); }
+    table.compare-table td:first-child { color: var(--text); font-weight: 600; }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Privacy &amp; Law</div>
+      <h1>Your Therapist Has Confidentiality. Does Your Journaling App?</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>Walk into a therapist's office and disclose something you've never told anyone, and that disclosure is protected before you've even finished the sentence — by licensing law, by professional ethics boards, by decades of legal precedent about what confidentiality means and what breaks it. Open a journaling app and write the same disclosure, and the protection you get is whatever's written in a privacy policy the company drafted itself, updates unilaterally, and enforces against no one but itself.</p>
+
+      <p>People often write more honestly in a private journal than they do in therapy — there's no one in the room, no reaction to manage, no session clock. The content is, in a real sense, at least as sensitive. The legal protection around it is nowhere close.</p>
+
+      <h2>What professional confidentiality actually guarantees</h2>
+
+      <p>Therapist-client confidentiality isn't just an office policy — it's backed by structures most consumer software has no equivalent of:</p>
+
+      <ul>
+        <li><strong>Licensing bodies</strong> that can revoke a therapist's ability to practice for breaching confidentiality without cause.</li>
+        <li><strong>Legal privilege</strong> in many jurisdictions — communications can be protected from being compelled in court, with narrow, clearly defined exceptions (like imminent harm).</li>
+        <li><strong>A professional duty that exists independent of the therapist's employer</strong> — even if the practice changes hands, the ethical and legal obligation follows the license, not the business.</li>
+      </ul>
+
+      <h2>What a privacy policy actually guarantees</h2>
+
+      <table class="compare-table">
+        <tr><th>Confidentiality (therapist)</th><th>Privacy policy (typical app)</th></tr>
+        <tr><td>Backed by law and licensing</td><td>A contract the company can amend with notice</td></tr>
+        <tr><td>Survives change of employer</td><td>May not survive acquisition or bankruptcy — data is often a transferable asset</td></tr>
+        <tr><td>Violation risks the professional's license</td><td>Violation risks a support ticket, a lawsuit if you can prove damages, or nothing at all</td></tr>
+        <tr><td>Legal privilege can limit compelled disclosure</td><td>Company must comply with valid subpoenas — no privilege attaches to app data</td></tr>
+      </table>
+
+      <p class="pull-quote">A privacy policy is the company grading its own homework. Confidentiality law is someone else grading it, with real consequences for failing.</p>
+
+      <h2>The honest gap, and the two ways to close it</h2>
+
+      <p>I'm not arguing journaling apps should be regulated like licensed therapy — that's a different conversation with real trade-offs of its own. But if the legal backing isn't there, something else has to substitute for it, or the sensitivity of the content and the strength of its protection are simply mismatched. There are really only two credible substitutes:</p>
+
+      <ol>
+        <li><strong>Trust a specific company's word</strong> — read their privacy policy carefully, trust their current leadership's intent, and hope it doesn't change under acquisition, funding pressure, or a subpoena.</li>
+        <li><strong>Remove the need for trust entirely</strong> — build the app so there's no server-side copy of your journal for a future owner, a breach, or a court order to reach in the first place.</li>
+      </ol>
+
+      <p>MirrorNotes is built around the second option, not because the first is dishonest, but because it's fragile in a way that doesn't match what people write in a journal. Entries live on your device. The AI that reads them runs locally. Sync goes through your own iCloud, not a database I hold. There's no acquisition scenario, no leadership change, no subpoena that reaches a journal that was never on my servers to begin with.</p>
+
+      <p>That's a narrower guarantee than "your therapist is legally bound to protect you" — it doesn't cover advice, doesn't cover crisis support, isn't a replacement for care from an actual clinician. But for the specific question of "who can read what I wrote," it closes the gap that a privacy policy alone leaves open.</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. Your entries are never held anywhere but your own device.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="what-your-journal-app-can-be-forced-to-hand-over.html" class="cta-btn secondary">What apps can be forced to hand over</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Blog</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
