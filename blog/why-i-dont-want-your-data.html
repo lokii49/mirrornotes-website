@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Most privacy policies promise a company won't misuse your data. MirrorNotes is built so that promise is structurally unnecessary — there's nothing to misuse. Why that's a better business, not just a better policy.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Why I Don't Want Your Data — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+    @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+    .compare-col { padding: 20px 22px; border-radius: 12px; font-size: 14px; }
+    .compare-col.them { background: var(--surface2); color: var(--text-2); }
+    .compare-col.us { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+    .compare-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+    .compare-col.them h4 { color: var(--text-3); }
+    .compare-col.us h4 { color: var(--crimson); }
+    .compare-col p { margin-bottom: 0; }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Product &amp; Business</div>
+      <h1>Why I Don't Want Your Data</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>Almost every app's privacy policy makes some version of the same promise: <em>we won't sell your data, we won't misuse it, we take your privacy seriously.</em> I believe most of the people writing those policies mean it. I also think it's a weaker promise than it sounds, because it's a promise about intent — and intent can change with a new CEO, an acquisition, a funding crunch, or a well-lawyered "we've updated our terms" email.</p>
+
+      <p>I didn't want to make that promise. I wanted to build something where the promise wasn't necessary — where there's structurally nothing to sell, misuse, or hand over, regardless of who's running the company or what pressure they're under.</p>
+
+      <h2>The difference between "won't" and "can't"</h2>
+
+      <div class="compare">
+        <div class="compare-col them">
+          <h4>Typical policy</h4>
+          <p>"We collect your journal entries to provide the service, and we promise not to sell or misuse them." This is a statement about current intent. It's a real commitment, but it's revocable — by a new owner, a new terms-of-service update, a data breach, or a government request the company is legally required to comply with.</p>
+        </div>
+        <div class="compare-col us">
+          <h4>Structural guarantee</h4>
+          <p>"Your entries are stored on your device. We never receive them, so there's nothing for us to sell, misuse, or be compelled to hand over — regardless of who runs this company next year." This isn't a promise about behavior. It's a fact about architecture, and it doesn't change even if my intentions did.</p>
+        </div>
+      </div>
+
+      <p class="pull-quote">A privacy policy tells you what a company plans to do. An architecture tells you what a company is even capable of doing.</p>
+
+      <h2>What this means concretely for MirrorNotes</h2>
+
+      <ul>
+        <li><strong>No account.</strong> There's no login, no email collection, no user ID to build a profile around. I don't know who you are.</li>
+        <li><strong>No analytics on journal content.</strong> I can't see what you write, how often, or what mood you're in. There's no dashboard on my end showing "top themes across users" — building that would require reading journals, which the architecture doesn't allow.</li>
+        <li><strong>No third-party AI API.</strong> Your entries never get sent to OpenAI, Anthropic, Google, or anyone else's servers for processing. The model runs on your phone.</li>
+        <li><strong>Sync is your iCloud, not my database.</strong> When entries sync across your devices, that happens through Apple's CloudKit, under your Apple ID, encrypted in a way Apple itself can't read. I never touch that data pipeline.</li>
+      </ul>
+
+      <h2>Then how does this make money?</h2>
+
+      <p>Fair question, since "we don't have your data" usually comes paired with "...so how do you pay for servers?" The honest answer is that MirrorNotes barely has server costs to begin with — there's no AI API bill, because inference runs on your device, not mine. The business model is a plain subscription through Apple's In-App Purchase system (via RevenueCat) for the AI features: Ask, Daily Nudge, Weekly Digest, Monthly Report. You pay for the AI layer directly. Free users keep unlimited writing, full history, search, and iCloud backup, forever — the free tier was never meant to be the bait for a data-driven business, because there isn't one.</p>
+
+      <p>This is a smaller, more boring business than "collect data, sell insights, run ads, or eventually get acquired by someone who monetizes the dataset." I think boring is correct for something that holds people's private thoughts.</p>
+
+      <h2>Trust that doesn't require trusting me</h2>
+
+      <p>The reason I'm comfortable making claims this specific is that they're checkable. The <a href="https://github.com/lokii49/mirror" target="_blank" rel="noopener">app's source is open (AGPL-3.0)</a> — you don't have to take my word for any of this. You can read the code that touches your journal entries and confirm nothing leaves the device. That's a stronger form of "trust me" than any privacy policy can offer, mine included.</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. No account, no server-side journal, nothing to sell.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="https://github.com/lokii49/mirror" class="cta-btn secondary" target="_blank" rel="noopener">View source</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Blog</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

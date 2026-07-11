@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="If a journaling app stores your entries on a server, a court order can compel the company to hand them over. Here's what that actually looks like, and why local-first storage changes the answer.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>What Your Journaling App Can Legally Be Forced to Hand Over — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 15px; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    .note-box { margin: 28px 0; padding: 20px 24px; background: var(--surface2); border-radius: 12px; font-size: 15px; color: var(--text-2); }
+    .note-box strong { color: var(--text); }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Privacy &amp; Law</div>
+      <h1>What Your Journaling App Can Legally Be Forced to Hand Over</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>Most people assume "private" journaling apps means the company just <em>chooses</em> not to look at your entries. That's true for the good ones. But it understates the real question, which isn't about choice at all: if a court orders the company to hand your journal over, <strong>can they?</strong></p>
+
+      <p>If your entries live on a server, in almost every case, the honest answer is yes.</p>
+
+      <h2>How this actually plays out</h2>
+
+      <p>A company that stores your journal entries on its servers is legally a custodian of that data. Custodians can be compelled — by a subpoena, a search warrant, a civil discovery request in a lawsuit you're not even the target of, or a law enforcement request under the country's applicable statute — to produce what they hold. This isn't a hypothetical edge case; cloud-hosted diary and note apps have received exactly these requests, and "we have a strict privacy policy" doesn't create a legal shield against a valid court order. A privacy policy is a promise about ordinary operation. It is not immunity from law.</p>
+
+      <p>The company doesn't have to be acting in bad faith for this to matter. Most of them genuinely don't want to comply — but "we tried to protect your data and lost in court" produces the identical outcome as "we didn't try": your journal is now in someone else's hands.</p>
+
+      <div class="note-box">
+        <strong>The tell to watch for:</strong> if an app's privacy policy has a section titled something like "Legal Requests" or "Disclosure to Law Enforcement," that's not the company being sinister — it's the company being honest about the fact that your data is held somewhere it can be reached. Most cloud apps have this section. It's worth actually reading it.
+      </div>
+
+      <h2>Encryption doesn't fully solve this either</h2>
+
+      <p>"End-to-end encrypted" sounds like the answer, and it helps — but it depends entirely on <em>who holds the key</em>. If the app needs to run AI analysis on your entries (mood detection, a daily reflection, "ask your journal" style search), and that AI runs in the cloud, the server has to decrypt your text to process it. At that moment, in that request, your journal exists as plaintext on hardware you don't control. Even if it's re-encrypted a millisecond later, that window is real, and it's the exact window a legal order or a breach would expose.</p>
+
+      <p class="pull-quote">The only way to close that window completely is to never open it — to make sure the plaintext never exists anywhere but your own device.</p>
+
+      <h2>Why "nothing to subpoena" is a stronger guarantee than "we won't look"</h2>
+
+      <p>This is the actual design reason MirrorNotes runs its AI on-device instead of in the cloud. It's not just a privacy nice-to-have — it changes what's legally possible, not just what's polite.</p>
+
+      <ul>
+        <li>Your entries are stored locally on your phone, and synced only via your own private iCloud account — not a server we operate.</li>
+        <li>The AI (a local Gemma 3 model) reads your entries on your device's Neural Engine. No network request ever contains your journal text.</li>
+        <li>There's no account, so there's no user record tying an identity to a data trove in the first place.</li>
+      </ul>
+
+      <p>If someone showed up with a court order addressed to us, there is nothing to hand over. Not "we'd refuse" — there's no journal database on any server we control for a request to reach. That's a structural guarantee, not a policy one, and it's the difference that matters.</p>
+
+      <h2>What to actually check before trusting a journaling app</h2>
+
+      <p>Not every app needs to go fully local to be trustworthy, but if privacy matters to you, these are the real questions — better ones than "do you sell my data":</p>
+
+      <ol>
+        <li>Does my entry text ever leave my device, for any reason — including AI processing?</li>
+        <li>If it does, is it end-to-end encrypted such that even the company can't read it — or does the AI need plaintext to function?</li>
+        <li>Does the privacy policy have a law-enforcement-disclosure section, and what does it actually commit to?</li>
+        <li>Is an account required, and if so, what's linked to it?</li>
+      </ol>
+
+      <p>Ask those four questions of any app that's going to hold your unfiltered thoughts. The answers tell you more than any trust badge on the App Store listing.</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. Entries stay on your device — there's no server holding your journal for anyone to request.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="https://mirrornotes.org/privacy.html" class="cta-btn secondary">Read the privacy policy</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Blog</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

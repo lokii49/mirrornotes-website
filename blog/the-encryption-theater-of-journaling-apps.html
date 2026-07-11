@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="&quot;Encrypted in transit and at rest&quot; is true of almost every app and protects you from almost nothing if the server still has to decrypt your journal to run AI on it. Here's the gap, explained plainly.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>The Encryption Theater of Journaling Apps — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C; --red: #E8432E;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 15px; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    .flow { display: flex; flex-direction: column; gap: 0; margin: 28px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .flow-step { padding: 16px 20px; font-size: 14px; display: flex; align-items: center; gap: 12px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step.risk { background: rgba(232,67,46,0.06); }
+    .flow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .flow-step.risk .flow-dot { background: var(--red); }
+    .flow-label { color: var(--text-2); }
+    .flow-label strong { color: var(--text); }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Engineering</div>
+      <h1>The Encryption Theater of Journaling Apps</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>"Your data is encrypted in transit and at rest" is printed on the privacy page of nearly every journaling app, and it's almost always true. It's also, on its own, close to meaningless as a privacy guarantee — because it describes protection against everyone except the one party in the best position to read your journal: the app's own server.</p>
+
+      <h2>What "encrypted in transit and at rest" actually covers</h2>
+
+      <p>These two phrases have precise, narrow meanings:</p>
+
+      <ul>
+        <li><strong>In transit</strong> — the connection between your phone and the server is encrypted (TLS/HTTPS), so someone intercepting your Wi-Fi traffic can't read the raw data. This is table stakes; every legitimate app has had this for over a decade.</li>
+        <li><strong>At rest</strong> — the data sitting in the company's database is encrypted on disk, so if someone steals the physical hard drive or gets unauthorized filesystem access, they see ciphertext, not your entries.</li>
+      </ul>
+
+      <p>Both of these protect you from a third party intercepting the connection, or a burglar stealing a server. Neither one protects you from the server itself — the party that holds the decryption key and has to use it to do literally anything with your data, including running the AI feature you signed up for.</p>
+
+      <h2>Where the plaintext actually goes</h2>
+
+      <p>Here's what happens, step by step, when a cloud-AI journaling app generates something like a daily reflection or answers "what's been stressing me out lately":</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">You write an entry. It's encrypted <strong>on your device</strong> before it's sent.</span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">It travels over TLS to the server. <strong>Protected in transit.</strong></span></div>
+        <div class="flow-step"><span class="flow-dot"></span><span class="flow-label">It's written to a database, encrypted on disk. <strong>Protected at rest.</strong></span></div>
+        <div class="flow-step risk"><span class="flow-dot"></span><span class="flow-label"><strong>The AI needs to read your entry to respond to it</strong> — so the server decrypts it back to plaintext, in memory, to hand to the model.</span></div>
+        <div class="flow-step risk"><span class="flow-dot"></span><span class="flow-label">That plaintext usually leaves the company's own infrastructure entirely — sent to a third-party AI API (OpenAI, Anthropic, Google, whoever they've integrated) for inference.</span></div>
+      </div>
+
+      <p>That fourth and fifth step is the actual privacy surface. It's rarely mentioned on the marketing page, because "encrypted in transit and at rest" is true right up until the exact moment your journal needs to be useful — and then it briefly, necessarily, isn't.</p>
+
+      <p class="pull-quote">This isn't a bug in any particular app. It's an unavoidable consequence of running AI in the cloud on encrypted data: the model can't reason about ciphertext.</p>
+
+      <h2>"Zero-knowledge" AI is not really a thing yet</h2>
+
+      <p>There's active research into techniques like homomorphic encryption and secure enclaves that could let a server compute on data without ever seeing it in the clear. It's real, it's promising, and it is nowhere close to running a useful generative language model at consumer scale on a phone-app budget today. Any journaling app claiming "encrypted AI processing" in 2026 is almost certainly describing encryption at rest plus a brief decrypted window during inference — not literal zero-knowledge computation. Worth asking directly if a company's marketing implies otherwise.</p>
+
+      <h2>The only clean fix: don't decrypt anywhere but the device</h2>
+
+      <p>The straightforward way to close this gap is to never let the plaintext exist outside hardware you personally control. That's the entire architectural premise behind MirrorNotes:</p>
+
+      <ul>
+        <li>Entries are encrypted on-device, and the decryption key never leaves the device either.</li>
+        <li>The AI model (Gemma 3, 1B parameters) runs locally, on your phone's Neural Engine — it reads the plaintext only inside your own hardware, and that plaintext is never transmitted anywhere to make that possible.</li>
+        <li>There's no step 4 and step 5 in the diagram above. The "decrypt for the AI" moment happens entirely inside a device you hold, not a server we operate.</li>
+      </ul>
+
+      <p>This is a strictly harder engineering problem than calling a cloud API — a 1B on-device model is a real constraint, and I've written about <a href="why-ai-should-never-leave-your-phone.html">what that trade-off costs</a> elsewhere. But it's the only version of "encrypted" that actually means what people assume it means when they read it on a privacy page.</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. The AI reads your entries only on your device — there's no server-side decryption step at all.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="https://github.com/lokii49/mirror" class="cta-btn secondary" target="_blank" rel="noopener">View source</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="index.html">Blog</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

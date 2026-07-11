@@ -239,6 +239,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mirrornotes.org/blog/what-your-journal-app-can-be-forced-to-hand-over.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/blog/the-encryption-theater-of-journaling-apps.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mirrornotes.org/blog/why-i-dont-want-your-data.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mirrornotes.org/support.html</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
