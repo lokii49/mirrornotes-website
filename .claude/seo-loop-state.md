@@ -12,7 +12,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] day-one-alternative × fr (shipped 2026-07-08)
 - [x] day-one-alternative × de (shipped 2026-07-09)
 - [x] day-one-alternative × it (shipped 2026-07-10)
-- [ ] day-one-alternative × pt
+- [x] day-one-alternative × pt (shipped 2026-07-11)
 - [ ] day-one-alternative × ja
 - [ ] day-one-alternative × ko
 - [ ] day-one-alternative × ru
@@ -71,6 +71,7 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 - 2026-07-08: Shipped fr/day-one-alternative.html — full French translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy). Structure/CSS byte-identical to English source. Nav-back and footer "Accueil"/"Confidentialité" link within fr/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no fr equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-09: Shipped de/day-one-alternative.html — full German translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing de/index.html and de/privacy.html ("Startseite", "Datenschutz"). Structure/CSS byte-identical to English source. Nav-back and footer "Startseite"/"Datenschutz" link within de/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no de equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-10: Shipped it/day-one-alternative.html — full Italian translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing it/index.html ("Diario", "Privacy", "Scarica"). Structure/CSS byte-identical to English source. Nav-back and footer "Home"/"Privacy" link within it/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no it equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+- 2026-07-11: Shipped pt/day-one-alternative.html — full Brazilian Portuguese translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing pt/index.html and pt/privacy.html ("Início", "Privacidade", "Diário", "TDAH" for ADHD). Structure/CSS byte-identical to English source (verified byte-diff on style block). Nav-back and footer "Início"/"Privacidade" link within pt/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no pt equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 
