@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why MirrorNotes runs its journaling AI entirely on-device on a 1B-parameter model, instead of sending your entries to a server — and what that trade-off actually costs.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Why AI Should Never Leave Your Phone — MirrorNotes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border:  rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep  { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 700px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .byline { font-size: 14px; color: var(--text-3); }
+    .byline a { color: var(--text-3); }
+
+    article { font-size: 17px; color: var(--text); }
+    article p { margin-bottom: 22px; }
+    article h2 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: -0.015em; margin: 44px 0 18px; }
+    article ul, article ol { margin: 0 0 22px 22px; }
+    article li { margin-bottom: 8px; }
+    article code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 15px; }
+    article blockquote { border-left: 3px solid var(--crimson); padding-left: 20px; margin: 28px 0; color: var(--text-2); font-style: italic; }
+    article strong { font-weight: 600; }
+
+    .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
+
+    .cta-box { margin-top: 56px; padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Blog</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Engineering &amp; Privacy</div>
+      <h1>Why AI Should Never Leave Your Phone</h1>
+      <div class="byline">Lokesh Pudhari · Solo developer, <a href="https://mirrornotes.org">MirrorNotes</a></div>
+    </div>
+
+    <article>
+      <p>I built a journaling app around one constraint I refused to compromise on: the AI reads your most private writing, so it must never leave the phone. No server sees it. No API call transmits it. Not mine, not anyone's.</p>
+
+      <p>That sentence is easy to say and genuinely hard to build. Most "AI journaling" apps today are a thin notes UI in front of a cloud model — you type, your entry gets shipped to an API somewhere, a response comes back. That's a reasonable architecture for almost any other product. It's a bad one for a diary.</p>
+
+      <h2>The problem with cloud AI and private writing</h2>
+
+      <p>A journal is the one place people write things they wouldn't say out loud. Fears they haven't named yet. Things they're avoiding. Who they're becoming and aren't sure they chose it. That's exactly the content you don't want sitting in a request log on a server you don't control, subject to a privacy policy that can change, a breach that can happen, or a subpoena that can arrive.</p>
+
+      <p>"We encrypt it in transit and at rest" doesn't solve this. The AI still has to <em>read the plaintext</em> to generate a useful response — encryption protects the pipe, not the destination. If a server is doing the thinking, a server is reading your journal.</p>
+
+      <p class="pull-quote">So the only way to make the privacy guarantee real, not just a policy promise, was to make the server disappear entirely.</p>
+
+      <h2>Getting a useful model to run on an iPhone</h2>
+
+      <p>That meant shipping the model itself inside the app: <strong>Gemma 3, 1B parameters</strong>, running on-device via CoreML / llama.cpp, doing inference on the phone's Neural Engine. No network call, no account, works in airplane mode.</p>
+
+      <p>A 1B model is small. It's not going to out-argue GPT-4 on an open-ended prompt. Getting it to produce something a person actually wants to read — a daily reflection prompt that feels specific instead of generic, a mood read that isn't a coin flip, a monthly report that finds a real pattern instead of restating the month — took most of the actual engineering effort. Three things mattered more than model size:</p>
+
+      <ul>
+        <li><strong>Context selection, not context dumping.</strong> Feeding a small model your entire journal history produces mush. MirrorNotes caps what it sends per generation (max 10,000 characters, truncating oldest entries first) and is deliberate about which entries are relevant to which insight — recent entries for a daily nudge, the full week for a digest, mood-tagged entries for a mood alert.</li>
+        <li><strong>Narrow prompts, not open-ended ones.</strong> A small model asked to "reflect on this journal" wanders. A small model asked one specific, scoped question — every system prompt in the app is narrow on purpose — stays coherent.</li>
+        <li><strong>Caching as a design constraint, not an optimization.</strong> Nothing regenerates within 24 hours. Partly for battery and thermal reasons on-device inference isn't free. Partly because re-running the model on a whim produces inconsistent output that undermines trust in the insight itself.</li>
+      </ul>
+
+      <h2>What this costs</h2>
+
+      <p>I'd rather say this plainly than let a marketing page imply otherwise: on-device AI is a real trade-off, not a free upgrade.</p>
+
+      <ul>
+        <li>A 1B local model is not as capable as a frontier cloud model. It will occasionally miss a pattern a bigger model would catch.</li>
+        <li>Inference uses battery and can be slower on older devices — there's no server to absorb that cost for the user.</li>
+        <li>It only works on hardware capable of running the model well, which is part of why this is iOS-first rather than cross-platform from day one.</li>
+      </ul>
+
+      <p>I think that trade is worth it for a diary specifically. I wouldn't necessarily make the same call for a product where the input isn't inherently sensitive.</p>
+
+      <h2>The rest of the privacy design follows from the same rule</h2>
+
+      <p>Once "the AI must run locally" is fixed, a lot of other decisions fall out of it rather than needing separate justification:</p>
+
+      <ul>
+        <li><strong>No account required.</strong> There's no server-side user record to breach because there's no server-side anything.</li>
+        <li><strong>Sync is just iCloud</strong> — CloudKit, under the user's own Apple ID, encrypted, invisible to us. Not a custom sync service we'd have to secure and could get wrong.</li>
+        <li><strong>The free tier keeps everything, forever.</strong> Unlimited entries, full history, full-text search, iCloud backup — never gated, because punishing free users for writing more would be a strange thing to do to someone journaling. Only the AI layer is paid.</li>
+      </ul>
+
+      <h2>If you want to build something similar</h2>
+
+      <p>The app itself is open source (AGPL-3.0): <a href="https://github.com/lokii49/mirror" target="_blank" rel="noopener">github.com/lokii49/mirror</a>. And separately, I pulled the non-personal parts of the journaling logic — daily prompts, mood-vocabulary detection, a weekly review framework, CBT-style reframing questions — into a small MCP server anyone can run locally with any MCP-compatible AI assistant, no MirrorNotes account needed: <a href="https://mirrornotes.org/mcp.html">mirrornotes.org/mcp.html</a>.</p>
+
+      <p>If you're building anything that reads sensitive user input and thinking about whether it has to be a cloud model — it usually doesn't have to be. It's just more work.</p>
+
+      <div class="cta-box">
+        <h3>MirrorNotes</h3>
+        <p>Private AI journaling for iPhone. Every AI feature runs on-device — your entries never leave your phone.</p>
+        <div class="cta-row">
+          <a href="https://apps.apple.com/app/id6769007201" class="cta-btn" target="_blank" rel="noopener">Get the app →</a>
+          <a href="https://github.com/lokii49/mirror" class="cta-btn secondary" target="_blank" rel="noopener">View source</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../mcp.html">MCP Server</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
