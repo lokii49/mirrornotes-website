@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="진짜 AI 인사이트를 갖춘 Day One 대안: MirrorNotes는 매일의 AI 질문, 감정 분석, '저널에게 물어보기'를 아이폰에서 실행합니다. 클라우드 없이, 완전히 무료로.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>AI를 갖춘 Day One 대안: MirrorNotes, 무료 프라이빗 저널링</title>
+  <link rel="canonical" href="https://mirrornotes.org/ko/day-one-alternative.html">
+  <meta property="og:title" content="AI를 갖춘 Day One 대안: MirrorNotes">
+  <meta property="og:description" content="매일의 AI 질문, 감정 분석, '저널에게 물어보기'까지 모두 온디바이스로. 클라우드 없이. 무료.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ko/day-one-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI 기능을 갖춘 좋은 Day One 대안은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes는 온디바이스 AI를 중심으로 만들어진 Day One 대안입니다. 매일 개인화된 질문을 생성하고, 감정 변화 추이를 추적하며, 한 주를 요약하고, 자신의 기록에 대한 자연어 질문에 답합니다. 모든 AI는 아이폰에서 로컬로 실행되므로(Gemma 3), 일기 텍스트가 서버로 전송되는 일은 없습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes는 Day One Premium보다 저렴한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네. Day One Premium은 연 약 $34.99입니다. MirrorNotes는 무료입니다: 전체 AI 기능, 매일의 질문, 위클리 다이제스트, 기록에 대한 질문 답변까지 비용이 들지 않습니다. 온디바이스 추론은 회수해야 할 서버 비용이 없기 때문입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Day One에는 온디바이스 AI가 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Day One은 클라우드 또는 Apple Intelligence 서비스와 연동된 지능형 기능을 추가해 왔습니다. MirrorNotes는 자체 로컬 모델(CoreML 기반 Gemma 3)을 탑재하여, 질문, 요약, 감정 분석, 저널에게 물어보기 등 모든 AI 기능이 오프라인에서 작동하며 일기 텍스트는 기기를 벗어나지 않습니다."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Day One 대안</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">비교</div>
+      <h1>AI를 중심으로 만든 Day One 대안</h1>
+      <p>Day One은 iOS에서 가장 정교하게 다듬어진 일기 앱입니다: 10년간의 개선, 뛰어난 미디어 지원, 멀티 플랫폼 동기화. 다만 AI를 중심으로 설계되지는 않았습니다. MirrorNotes는 다릅니다: 매일 개인화된 질문, 감정 분석, 위클리 다이제스트, 그리고 질문할 수 있는 일기까지, 모두 아이폰에서 실행되며 클라우드로 전송되지 않고 완전히 무료입니다.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>요약</h3>
+      <ul>
+        <li>Day One = 최고의 아카이브. MirrorNotes = 대답하는 일기.</li>
+        <li>MirrorNotes의 AI는 완전히 온디바이스(Gemma 3)로 작동합니다: 질문, 다이제스트, "저널에게 물어보기"는 오프라인에서 동작하며 기록은 서버에 닿지 않습니다.</li>
+        <li>MirrorNotes는 무료입니다. Day One Premium은 무제한 미디어와 멀티 기기 동기화에 연 약 $34.99입니다.</li>
+        <li>사진이 풍부한 멀티 플랫폼 일기를 원하시나요? Day One을 계속 쓰세요. 쓴 글에서 무료로 인사이트를 얻고 싶으신가요? MirrorNotes를 써보세요.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>나란히 비교</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>기능</th><th>MirrorNotes</th><th>Day One</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>내장 AI 인사이트</strong></td><td class="yes">핵심 기능: 매일의 질문, 다이제스트, 감정 분석, 저널에게 물어보기</td><td class="no">제한적; 지능형 기능은 클라우드/Apple 서비스에 의존</td></tr>
+          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (CoreML 기반 Gemma 3)</td><td class="warn">제공되는 경우 클라우드 지원</td></tr>
+          <tr><td><strong>기록에 대해 질문하기</strong></td><td class="yes">"무엇이 나를 스트레스 받게 하나요?" 같은 질문에 온디바이스로 답변</td><td class="no">없음</td></tr>
+          <tr><td><strong>무드 타임라인 &amp; 알림</strong></td><td class="yes">지원</td><td class="no">감정 분석 기능 없음</td></tr>
+          <tr><td><strong>사진, 동영상, 오디오 기록</strong></td><td class="no">텍스트와 음성-텍스트 변환 중심, 글쓰기 우선</td><td class="yes">뛰어난 미디어 지원</td></tr>
+          <tr><td><strong>지원 플랫폼</strong></td><td class="no">아이폰 전용</td><td class="yes">iOS, Mac, Android, 웹</td></tr>
+          <tr><td><strong>종단 간 암호화</strong></td><td class="yes">기록은 기기를 벗어나지 않음; iCloud 동기화는 본인 Apple ID로</td><td class="yes">종단 간 암호화 제공</td></tr>
+          <tr><td><strong>무료 등급</strong></td><td class="yes">모든 것이 무료: 무제한 기록, 전체 AI, 전체 기록 열람, 검색, iCloud 백업</td><td>일기 1개, 기기 1대, 사진 제한</td></tr>
+          <tr><td><strong>가격</strong></td><td class="yes">무료</td><td>Premium 약 $34.99/년</td></tr>
+          <tr><td><strong>계정 필요 여부</strong></td><td class="yes">계정 불필요, 로그인 불필요</td><td>동기화를 위한 계정 필요</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>다른 역할: 아카이브 vs. 거울</h2>
+      <p>Day One의 강점은 보존입니다. 10년치 사진, 위치, 추억이 아름답게 정리되어 있는 곳입니다. 그것이 당신의 일기 쓰기 방식이라면 Day One은 진심으로 이기기 어렵습니다. 그 사실을 부정하지 않겠습니다.</p>
+      <p>MirrorNotes는 다른 역할을 위해 만들어졌습니다: 성찰. 당신이 쓰면, 앱은 당신이 쓴 것을 당신의 폰에서, 로컬 모델로 읽고, 무언가를 돌려줍니다:</p>
+      <ul>
+        <li><strong>데일리 넛지:</strong> 다음 날 아침의 질문은 당신이 실제로 써온 내용에서 생성됩니다. 오늘의 명언이 아닙니다.</li>
+        <li><strong>저널에게 물어보기:</strong> "언제 가장 살아있다고 느끼나요?" "무엇을 회피하고 있나요?" 수개월간의 기록에서 답을 찾습니다.</li>
+        <li><strong>위클리 다이제스트:</strong> 매주 일요일, 한 주의 주제와 감정을 요약해드립니다.</li>
+        <li><strong>무드 타임라인:</strong> 하루하루 읽어서는 알아채기 힘든 감정 변화 추이를, 부정적인 기록이 며칠 연속 이어질 때 알림과 함께 보여드립니다.</li>
+      </ul>
+      <div class="callout">
+        <strong>여기서 프라이버시의 차이가 중요합니다:</strong> 일기를 읽는 AI야말로 클라우드에서 실행되어서는 안 되는 AI입니다. MirrorNotes의 모델은 당신의 칩에서 실행됩니다. 당신의 글을 보는 서버는 존재하지 않습니다. 저희 서버도, 그 누구의 서버도요.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>자주 묻는 질문</h2>
+      <h3>둘 다 써도 되나요?</h3>
+      <p>많은 분들이 그렇게 하실 겁니다. Day One은 장기 미디어 아카이브로, MirrorNotes는 매일의 글쓰기와 성찰 습관으로. MirrorNotes는 무료이고 무제한이니 시도해도 비용이 들지 않습니다.</p>
+      <h3>Day One 기록을 가져올 수 있나요?</h3>
+      <p>아직입니다. 가져오기 기능은 로드맵에 있습니다. MirrorNotes에서 새로 쓰는 기록은 온전히 당신의 것입니다: 온디바이스 SwiftData에 저장되고 본인의 iCloud와 동기화됩니다.</p>
+      <h3>왜 아이폰 전용인가요?</h3>
+      <p>온디바이스 AI가 곧 이 제품의 핵심입니다. 최신 아이폰 칩은 Gemma 3를 잘 구동합니다. 여러 플랫폼으로 분산시키면 클라우드 AI(프라이버시 보장이 깨짐)이거나 더 나쁜 경험 중 하나가 될 수밖에 없습니다. 아이폰 우선은 의도적인 선택입니다.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>MirrorNotes 무료로 써보기</h3>
+      <p>모든 기능이 완전히 무료입니다. 체험판도, 카드 등록도, 함정도 없습니다.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Store에서 다운로드</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">홈</a>
+        <a href="../rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">ADHD 저널링</a>
+        <a href="../offline-journal-app.html">오프라인 일기</a>
+        <a href="privacy.html">개인정보</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
