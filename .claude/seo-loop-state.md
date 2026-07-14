@@ -15,7 +15,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] day-one-alternative × pt (shipped 2026-07-11)
 - [x] day-one-alternative × ja (shipped 2026-07-12)
 - [x] day-one-alternative × ko (shipped 2026-07-13)
-- [ ] day-one-alternative × ru
+- [x] day-one-alternative × ru (shipped 2026-07-14)
 - [ ] day-one-alternative × zh
 - [ ] rosebud-alternative × es
 - [ ] rosebud-alternative × fr
@@ -74,6 +74,8 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 - 2026-07-11: Shipped pt/day-one-alternative.html — full Brazilian Portuguese translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing pt/index.html and pt/privacy.html ("Início", "Privacidade", "Diário", "TDAH" for ADHD). Structure/CSS byte-identical to English source (verified byte-diff on style block). Nav-back and footer "Início"/"Privacidade" link within pt/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no pt equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-12: Shipped ja/day-one-alternative.html — full Japanese translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ja/index.html and ja/privacy.html ("日記", "オンデバイス", "デイリーナッジ", "ホーム", "プライバシー"). Structure/CSS byte-identical to English source (verified byte-diff on style block). Nav-back and footer "ホーム"/"プライバシー" link within ja/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ja equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-13: Shipped ko/day-one-alternative.html — full Korean translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ko/index.html and ko/privacy.html ("일기", "온디바이스", "데일리 넛지", "저널에게 물어보기", "홈", "개인정보"). Structure/CSS byte-identical to English source (verified via python3 html.parser + meta/JSON-LD/link checks). Nav-back and footer "홈"/"개인정보" link within ko/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ko equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+
+- 2026-07-14: Shipped ru/day-one-alternative.html — full Russian translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ru/index.html and ru/privacy.html ("Дневник", "на устройстве", "Ежедневная подсказка", "Спросите свой дневник", "Главная", "Конфиденциальность", "СДВГ" for ADHD). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "Главная"/"Конфиденциальность" link within ru/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ru equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Альтернатива Day One с настоящим ИИ: MirrorNotes даёт ежедневные ИИ-подсказки, анализ настроения и «Спросите свой дневник» — всё работает на вашем iPhone, никогда в облаке, совершенно бесплатно.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Альтернатива Day One с ИИ: MirrorNotes, бесплатный приватный дневник</title>
+  <link rel="canonical" href="https://mirrornotes.org/ru/day-one-alternative.html">
+  <meta property="og:title" content="Альтернатива Day One с ИИ: MirrorNotes">
+  <meta property="og:description" content="Ежедневные ИИ-подсказки, анализ настроения и «Спросите свой дневник» — всё на устройстве, никогда в облаке. Бесплатно.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ru/day-one-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Какая хорошая альтернатива Day One с функциями ИИ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes — это альтернатива Day One, построенная вокруг ИИ на устройстве. Она создаёт ежедневные персонализированные подсказки, отслеживает динамику настроения, подводит итоги недели и отвечает на вопросы о ваших собственных записях на естественном языке. Весь ИИ работает локально на вашем iPhone (Gemma 3), поэтому текст дневника никогда не отправляется на сервер."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes дешевле, чем Day One Premium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Day One Premium стоит около $34,99 в год. MirrorNotes бесплатен: весь слой ИИ, ежедневные подсказки, еженедельные дайджесты и ответы на вопросы по вашим записям — без какой-либо платы, потому что локальный вывод не требует серверных расходов, которые нужно окупать."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Есть ли в Day One ИИ на устройстве?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Day One добавляет функции интеллекта, связанные с облачными сервисами или Apple Intelligence. MirrorNotes поставляется с собственной локальной моделью (Gemma 3 через CoreML), поэтому каждая функция ИИ — подсказки, дайджесты, анализ настроения, «Спросите свой дневник» — работает офлайн, и текст дневника никогда не покидает устройство."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Альтернатива Day One</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Сравнение</div>
+      <h1>Альтернатива Day One, построенная вокруг ИИ</h1>
+      <p>Day One — самый отточенный дневник для iOS: десятилетие доработок, отличная поддержка медиа, синхронизация между платформами. Чего в нём нет — так это ИИ в основе продукта. В MirrorNotes есть: ежедневные персонализированные подсказки, анализ настроения, еженедельные дайджесты и дневник, которому можно задавать вопросы, всё работает на вашем iPhone, никогда в облаке, и совершенно бесплатно.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Кратко</h3>
+      <ul>
+        <li>Day One = лучший архив. MirrorNotes = дневник, который отвечает.</li>
+        <li>ИИ MirrorNotes полностью работает на устройстве (Gemma 3): подсказки, дайджесты и «Спросите свой дневник» работают офлайн, и записи никогда не попадают на сервер.</li>
+        <li>MirrorNotes бесплатен. Day One Premium стоит около $34,99/год за неограниченные медиа и синхронизацию между устройствами.</li>
+        <li>Нужен дневник с фото и синхронизацией между платформами? Оставайтесь с Day One. Хотите бесплатно получать инсайты из того, что пишете? Попробуйте MirrorNotes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Сравнение бок о бок</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Функция</th><th>MirrorNotes</th><th>Day One</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Встроенные ИИ-инсайты</strong></td><td class="yes">Ключевая функция: ежедневные подсказки, дайджесты, анализ настроения, «Спросите свой дневник»</td><td class="no">Ограниченно; интеллектуальные функции опираются на облако/сервисы Apple</td></tr>
+          <tr><td><strong>Где работает ИИ</strong></td><td class="yes">На вашем iPhone (Gemma 3 через CoreML)</td><td class="warn">Там, где есть, — с помощью облака</td></tr>
+          <tr><td><strong>Вопросы по своим записям</strong></td><td class="yes">«Что вызывает у меня стресс?» — ответ на устройстве</td><td class="no">Нет</td></tr>
+          <tr><td><strong>Шкала настроения и уведомления</strong></td><td class="yes">Есть</td><td class="no">Аналитики настроения нет</td></tr>
+          <tr><td><strong>Фото, видео, аудио в записях</strong></td><td class="no">Текст и голос в текст, упор на письмо</td><td class="yes">Отличная поддержка медиа</td></tr>
+          <tr><td><strong>Платформы</strong></td><td class="no">Только iPhone</td><td class="yes">iOS, Mac, Android, веб</td></tr>
+          <tr><td><strong>Сквозное шифрование</strong></td><td class="yes">Записи никогда не покидают устройство; синхронизация iCloud под вашим Apple ID</td><td class="yes">Доступно сквозное шифрование</td></tr>
+          <tr><td><strong>Бесплатный тариф</strong></td><td class="yes">Всё бесплатно: неограниченные записи, полный ИИ, вся история, поиск, резервное копирование в iCloud</td><td>Один дневник, одно устройство, ограничение на фото</td></tr>
+          <tr><td><strong>Цена</strong></td><td class="yes">Бесплатно</td><td>Premium около $34,99/год</td></tr>
+          <tr><td><strong>Нужен ли аккаунт</strong></td><td class="yes">Без аккаунта, без входа</td><td>Аккаунт для синхронизации</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Разные задачи: архив vs. зеркало</h2>
+      <p>Сильная сторона Day One — сохранение. Это место, где десятилетие фото, геометок и воспоминаний хранится красиво организованным. Если для вас ведение дневника — именно это, Day One действительно трудно превзойти, и мы не будем притворяться иначе.</p>
+      <p>MirrorNotes создан для другой задачи: рефлексии. Вы пишете, приложение читает написанное вами на вашем телефоне с помощью локальной модели и возвращает кое-что взамен:</p>
+      <ul>
+        <li><strong>Ежедневная подсказка:</strong> завтрашняя утренняя подсказка формируется на основе того, о чём вы действительно писали, а не «цитаты дня».</li>
+        <li><strong>Спросите свой дневник:</strong> «когда я чувствую себя наиболее живым?», «чего я избегаю?» — ответы находятся среди месяцев ваших собственных записей.</li>
+        <li><strong>Еженедельный дайджест:</strong> каждое воскресенье — итог недели: темы и настроения.</li>
+        <li><strong>Шкала настроения:</strong> эмоциональные тенденции, которые вы никогда не заметите, читая записи день за днём, с уведомлениями, когда несколько записей подряд идут в негативную сторону.</li>
+      </ul>
+      <div class="callout">
+        <strong>Здесь важно различие в приватности:</strong> ИИ, читающий ваш дневник, — это как раз тот ИИ, который не должен работать в облаке. Модель MirrorNotes работает на вашем чипе. Нет сервера, который когда-либо видит ваши записи — ни нашего, ни чьего-либо ещё.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Часто задаваемые вопросы</h2>
+      <h3>Можно ли пользоваться обоими приложениями?</h3>
+      <p>Многие так и делают. Day One — как долгосрочный медиа-архив, MirrorNotes — как ежедневная привычка писать и размышлять. MirrorNotes бесплатен и не ограничен, так что попробовать ничего не стоит.</p>
+      <h3>Можно ли импортировать записи из Day One?</h3>
+      <p>Пока нет, импорт в планах. Новые записи, которые вы пишете в MirrorNotes, принадлежат только вам: хранятся на устройстве в SwiftData и синхронизируются с вашим собственным iCloud.</p>
+      <h3>Почему только iPhone?</h3>
+      <p>ИИ на устройстве — это и есть продукт. Современные чипы iPhone хорошо справляются с Gemma 3; распыление на разные платформы означало бы либо облачный ИИ (что нарушает гарантию приватности), либо худший опыт. Приоритет iPhone — осознанный выбор.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Попробуйте MirrorNotes бесплатно</h3>
+      <p>Каждая функция полностью бесплатна. Без пробного периода, без карты, без подвоха.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Скачать в App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Главная</a>
+        <a href="../rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">Дневник при СДВГ</a>
+        <a href="../offline-journal-app.html">Офлайн-дневник</a>
+        <a href="privacy.html">Конфиденциальность</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
