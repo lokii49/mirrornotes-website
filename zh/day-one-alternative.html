@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="拥有真正 AI 能力的 Day One 替代品：MirrorNotes 提供每日 AI 提示、情绪分析和「向日记提问」，一切都在你的 iPhone 上运行，从不上传云端，完全免费。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>拥有 AI 的 Day One 替代品：MirrorNotes，免费私密日记</title>
+  <link rel="canonical" href="https://mirrornotes.org/zh/day-one-alternative.html">
+  <meta property="og:title" content="拥有 AI 的 Day One 替代品：MirrorNotes">
+  <meta property="og:description" content="每日 AI 提示、情绪分析和「向日记提问」，全部在设备端运行，从不上传云端。完全免费。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/zh/day-one-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "有哪些带 AI 功能的 Day One 替代品值得推荐？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes 是一款围绕设备端 AI 打造的 Day One 替代应用。它会生成每日个性化提示、追踪情绪趋势、总结你的一周，还能用自然语言回答关于你自己日记内容的问题——所有 AI 都在你的 iPhone 上本地运行（Gemma 3），日记文字永远不会发送到服务器。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes 比 Day One Premium 更便宜吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "是的。Day One Premium 每年约 34.99 美元。MirrorNotes 完全免费：完整的 AI 层、每日提示、每周摘要，以及对你日记内容的问答功能，全部免费，因为设备端推理没有服务器成本需要摊销。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Day One 有设备端 AI 吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Day One 正在陆续加入依赖云端或 Apple Intelligence 服务的智能功能。MirrorNotes 则内置了自己的本地模型（通过 CoreML 运行的 Gemma 3），因此每日提示、摘要、情绪分析、提问等所有 AI 功能都能离线工作，日记文字也永远不会离开设备。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Day One 替代品</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">对比</div>
+      <h1>一款围绕 AI 打造的 Day One 替代品</h1>
+      <p>Day One 是 iOS 上最精致的日记应用：十年的打磨、出色的多媒体支持、多平台同步。但它并不是围绕 AI 打造的。MirrorNotes 恰恰相反：每日个性化提示、情绪分析、每周摘要，以及一本你可以提问的日记，一切都在你的 iPhone 上运行，从不上传云端，完全免费。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>太长不看版</h3>
+      <ul>
+        <li>Day One = 最好的存档工具。MirrorNotes = 一本会回应你的日记。</li>
+        <li>MirrorNotes 的 AI 完全在设备端运行（Gemma 3）：提示、摘要和「向日记提问」都能离线工作，日记内容永远不会到达服务器。</li>
+        <li>MirrorNotes 完全免费。Day One Premium 约 34.99 美元/年，用于解锁无限多媒体和多设备同步。</li>
+        <li>需要图文并茂、多平台同步的日记？留在 Day One。想从你写下的文字中获得洞察，还完全免费？试试 MirrorNotes。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>功能对比</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>功能</th><th>MirrorNotes</th><th>Day One</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>内置 AI 洞察</strong></td><td class="yes">核心功能：每日提示、摘要、情绪分析、提问</td><td class="no">有限；智能功能依赖云端/Apple 服务</td></tr>
+          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（通过 CoreML 运行的 Gemma 3）</td><td class="warn">有相关功能时依赖云端</td></tr>
+          <tr><td><strong>对日记内容提问</strong></td><td class="yes">「是什么让我感到压力？」在设备端即可获得答案</td><td class="no">不支持</td></tr>
+          <tr><td><strong>情绪时间线与提醒</strong></td><td class="yes">支持</td><td class="no">没有情绪分析功能</td></tr>
+          <tr><td><strong>日记中的照片、视频、音频</strong></td><td class="no">文字与语音转文字，以书写为主</td><td class="yes">出色的多媒体支持</td></tr>
+          <tr><td><strong>支持平台</strong></td><td class="no">仅限 iPhone</td><td class="yes">iOS、Mac、Android、网页</td></tr>
+          <tr><td><strong>端到端加密</strong></td><td class="yes">日记从不离开设备；iCloud 同步归属于你自己的 Apple ID</td><td class="yes">提供端到端加密</td></tr>
+          <tr><td><strong>免费版</strong></td><td class="yes">一切免费：无限记录、完整 AI、完整历史、搜索、iCloud 备份</td><td>一本日记，一台设备，照片数量有限</td></tr>
+          <tr><td><strong>价格</strong></td><td class="yes">免费</td><td>Premium 约 34.99 美元/年</td></tr>
+          <tr><td><strong>是否需要账户</strong></td><td class="yes">无需账户，无需登录</td><td>同步需要账户</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>不同的定位：存档 vs. 镜子</h2>
+      <p>Day One 的强项在于保存。十年的照片、地点和回忆都被精美地组织在那里。如果这就是你写日记的方式，Day One 确实很难被超越，我们也不会假装它不好。</p>
+      <p>MirrorNotes 服务于一个不同的目的：反思。你写下文字；应用会读懂你写的内容，用一个本地模型，在你的手机上，然后给你一些回应：</p>
+      <ul>
+        <li><strong>每日启发：</strong>明天早晨的提示，是从你实际写过的内容中生成的，而不是随机的每日一句。</li>
+        <li><strong>向日记提问：</strong>「我什么时候感觉最有活力？」「我在逃避什么？」根据你数月来写下的内容作答。</li>
+        <li><strong>每周摘要：</strong>每周日，为这一周的主题和情绪做一次总结。</li>
+        <li><strong>情绪时间线：</strong>你逐日阅读时不会察觉的情绪变化趋势，当连续几篇日记情绪走低时还会提醒你。</li>
+      </ul>
+      <div class="callout">
+        <strong>隐私上的区别在这里很关键：</strong>一个会阅读你日记的 AI，恰恰是最不应该运行在云端的那种 AI。MirrorNotes 的模型运行在你的芯片上。没有任何服务器会看到你写的内容，不是我们的，也不是任何人的。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>常见问题</h2>
+      <h3>我可以两个都用吗？</h3>
+      <p>很多人会这么做。把 Day One 当作长期的多媒体存档；把 MirrorNotes 用作每日书写与反思的习惯。MirrorNotes 完全免费且无限制，尝试它没有任何成本。</p>
+      <h3>我可以导入我在 Day One 里的日记吗？</h3>
+      <p>暂时还不行，导入功能已在计划中。你在 MirrorNotes 中新写的日记都属于你自己：存储在设备端的 SwiftData 中，并同步到你自己的 iCloud。</p>
+      <h3>为什么只支持 iPhone？</h3>
+      <p>设备端 AI 就是这款产品的核心。现代 iPhone 芯片能很好地运行 Gemma 3；如果分散精力去支持多个平台，要么只能依赖云端 AI（打破隐私承诺），要么体验会打折扣。优先支持 iPhone 是一个深思熟虑的取舍。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>免费试用 MirrorNotes</h3>
+      <p>所有功能完全免费。无需试用期，无需绑卡，没有陷阱。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">在 App Store 下载</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">首页</a>
+        <a href="../rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">ADHD 日记</a>
+        <a href="../offline-journal-app.html">离线日记</a>
+        <a href="privacy.html">隐私</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

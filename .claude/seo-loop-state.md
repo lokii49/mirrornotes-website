@@ -16,7 +16,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] day-one-alternative × ja (shipped 2026-07-12)
 - [x] day-one-alternative × ko (shipped 2026-07-13)
 - [x] day-one-alternative × ru (shipped 2026-07-14)
-- [ ] day-one-alternative × zh
+- [x] day-one-alternative × zh (shipped 2026-07-15)
 - [ ] rosebud-alternative × es
 - [ ] rosebud-alternative × fr
 - [ ] rosebud-alternative × de
@@ -76,6 +76,7 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 - 2026-07-13: Shipped ko/day-one-alternative.html — full Korean translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ko/index.html and ko/privacy.html ("일기", "온디바이스", "데일리 넛지", "저널에게 물어보기", "홈", "개인정보"). Structure/CSS byte-identical to English source (verified via python3 html.parser + meta/JSON-LD/link checks). Nav-back and footer "홈"/"개인정보" link within ko/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ko equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 - 2026-07-14: Shipped ru/day-one-alternative.html — full Russian translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ru/index.html and ru/privacy.html ("Дневник", "на устройстве", "Ежедневная подсказка", "Спросите свой дневник", "Главная", "Конфиденциальность", "СДВГ" for ADHD). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "Главная"/"Конфиденциальность" link within ru/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ru equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+- 2026-07-15: Shipped zh/day-one-alternative.html — full Simplified Chinese translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing zh/index.html and zh/privacy.html ("每日启发" for Daily Nudge, "向日记提问" for Ask your journal, "情绪时间线", "每周摘要", "首页", "隐私"). Used full-width Chinese punctuation (，。；：「」) throughout to match zh/index.html style. Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "首页"/"隐私" link within zh/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no zh equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 
