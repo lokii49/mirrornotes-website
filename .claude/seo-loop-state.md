@@ -17,7 +17,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] day-one-alternative × ko (shipped 2026-07-13)
 - [x] day-one-alternative × ru (shipped 2026-07-14)
 - [x] day-one-alternative × zh (shipped 2026-07-15)
-- [ ] rosebud-alternative × es
+- [x] rosebud-alternative × es (shipped 2026-07-16)
 - [ ] rosebud-alternative × fr
 - [ ] rosebud-alternative × de
 - [ ] rosebud-alternative × it
@@ -77,6 +77,7 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 
 - 2026-07-14: Shipped ru/day-one-alternative.html — full Russian translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ru/index.html and ru/privacy.html ("Дневник", "на устройстве", "Ежедневная подсказка", "Спросите свой дневник", "Главная", "Конфиденциальность", "СДВГ" for ADHD). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "Главная"/"Конфиденциальность" link within ru/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no ru equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-15: Shipped zh/day-one-alternative.html — full Simplified Chinese translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing zh/index.html and zh/privacy.html ("每日启发" for Daily Nudge, "向日记提问" for Ask your journal, "情绪时间线", "每周摘要", "首页", "隐私"). Used full-width Chinese punctuation (，。；：「」) throughout to match zh/index.html style. Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "首页"/"隐私" link within zh/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no zh equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+- 2026-07-16: Shipped es/rosebud-alternative.html — full Spanish translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing es/day-one-alternative.html and es/index.html ("Recordatorio Diario" for Daily Nudge, "Pregúntale a tu diario" for Ask your journal, "Resumen Semanal", "Línea de estado de ánimo", "Informe Mensual", "Inicio", "Privacidad", "Diario para TDAH", "Diario sin conexión"). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "Inicio"/"Privacidad" link within es/; footer "vs Day One" now links to es/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no es equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 
