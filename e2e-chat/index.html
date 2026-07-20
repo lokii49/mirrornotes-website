@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>e2e-chat (browser demo)</title>
+<style>
+  body { font-family: monospace; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+  section { border: 1px solid #ccc; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; }
+  h2 { font-size: 1rem; margin-top: 0; }
+  label { display: block; margin: 0.5rem 0 0.15rem; font-size: 0.85rem; }
+  input { width: 100%; box-sizing: border-box; padding: 0.4rem; }
+  button { margin-top: 0.6rem; padding: 0.4rem 0.8rem; }
+  #fingerprint { font-weight: bold; word-break: break-all; }
+  #log { list-style: none; padding: 0; margin: 0; height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 0.5rem; }
+  #log li { margin-bottom: 0.3rem; }
+  .warn { color: #a05a00; }
+  .err { color: #b00020; }
+</style>
+</head>
+<body>
+
+<h1>e2e-chat — browser demo</h1>
+<p>Runs the same X25519 + Double Ratchet code as the CLI, compiled to WebAssembly.
+The relay (a plain WebSocket server) never sees plaintext.</p>
+
+<section id="identity-section">
+  <h2>1. Identity</h2>
+  <label for="nickname">Nickname</label>
+  <input id="nickname" value="anon">
+  <button id="generate-btn">Generate identity</button>
+  <p>Fingerprint: <span id="fingerprint">(none yet)</span></p>
+</section>
+
+<section id="connect-section">
+  <h2>2. Connect</h2>
+  <label for="relay-url">Relay WebSocket URL</label>
+  <input id="relay-url" value="wss://relay.mirrornotes.org">
+  <label for="peer-fp">Peer fingerprint</label>
+  <input id="peer-fp" placeholder="paste the other side's fingerprint">
+  <button id="connect-btn">Connect</button>
+  <p id="status">not connected</p>
+</section>
+
+<section id="chat-section">
+  <h2>3. Chat</h2>
+  <ul id="log"></ul>
+  <label for="message">Message</label>
+  <input id="message" disabled>
+  <button id="send-btn" disabled>Send</button>
+</section>
+
+<script src="wasm_exec.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
