@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suchst du eine Rosebud-Alternative? MirrorNotes bietet kostenloses KI-Journaling statt 12,99 $/Monat, und die KI läuft auf deinem iPhone, sodass Einträge nie einen Server erreichen.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Rosebud Alternative: MirrorNotes, kostenloses privates KI-Journaling</title>
+  <link rel="canonical" href="https://mirrornotes.org/de/rosebud-alternative.html">
+  <meta property="og:title" content="Rosebud Alternative: MirrorNotes, privates KI-Journaling">
+  <meta property="og:description" content="Kostenloses KI-Journaling statt 12,99 $/Monat, mit KI, die auf deinem iPhone läuft, nicht auf einem Server.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/de/rosebud-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Was ist die beste Alternative zum Rosebud-Journal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes ist eine starke Rosebud-Alternative für iPhone-Nutzer, die KI-Journaling ohne Cloud-KI wollen. Es bietet tägliche KI-Prompts, Stimmungstracking und Fragen in natürlicher Sprache zu deinen Einträgen kostenlos, im Vergleich zu Rosebuds 12,99 $/Monat, und die gesamte KI läuft On-Device, sodass Journaltext dein Handy nie verlässt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sendet Rosebud Journaleinträge an einen Server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rosebud nutzt Cloud-KI, das heißt, Einträge werden auf entfernten Servern verarbeitet, um Antworten zu erzeugen. MirrorNotes verfolgt den entgegengesetzten Ansatz: ein lokales Modell (Gemma 3) läuft auf deinem iPhone, sodass Einträge nie zur KI-Verarbeitung übertragen werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist MirrorNotes kostenlos, während Rosebud Geld kostet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cloud-KI-Journale zahlen pro Nutzer Server- und Inferenzkosten und geben sie über den Abopreis weiter. MirrorNotes lässt seine KI auf dem eigenen Chip deines iPhones laufen, sodass keine Serverrechnung anfällt, deshalb kann die KI-Ebene kostenlos sein statt 12,99 $/Monat."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Rosebud Alternative</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Vergleich</div>
+      <h1>Auf der Suche nach einer Rosebud-Alternative?</h1>
+      <p>Rosebud ist ein fähiges KI-Journal, kostet aber 12,99 $/Monat, und seine KI läuft in der Cloud. MirrorNotes bietet dir KI-Journaling kostenlos, mit dem Modell auf deinem iPhone, sodass deine Einträge nie einen Server erreichen. Hier ist ein ehrlicher Vergleich.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Kurz gesagt</h3>
+      <ul>
+        <li>MirrorNotes: kostenlos. Rosebud: 12,99 $/Monat. Gleiche Kernaufgabe: KI, die dir dein Journaling widerspiegelt.</li>
+        <li>Die KI von MirrorNotes läuft zu 100&nbsp;% On-Device (Gemma 3). Rosebud verarbeitet Einträge auf Cloud-Servern.</li>
+        <li>MirrorNotes funktioniert vollständig offline, einschließlich jeder KI-Funktion.</li>
+        <li>Rosebud ist stärker, wenn du geführtes, dialogbasiertes Coaching über Web und Android willst.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Vergleich im Detail</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Funktion</th><th>MirrorNotes</th><th>Rosebud</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>KI-Preis</strong></td><td class="yes">Kostenlos</td><td>12,99 $/Monat</td></tr>
+          <tr><td><strong>Wo die KI läuft</strong></td><td class="yes">Auf deinem iPhone (Gemma 3 über CoreML)</td><td class="warn">Cloud-Server</td></tr>
+          <tr><td><strong>Journaltext verlässt dein Gerät</strong></td><td class="yes">Nie, es gibt keinen Netzwerkpfad</td><td class="warn">Ja, zur KI-Verarbeitung</td></tr>
+          <tr><td><strong>Funktioniert offline</strong></td><td class="yes">Vollständig, inklusive aller KI-Funktionen</td><td class="no">Benötigt Internet für KI</td></tr>
+          <tr><td><strong>Kostenlose Version</strong></td><td class="yes">Alles ist kostenlos: unbegrenztes Schreiben, volle KI, komplette Historie, Suche, iCloud-Backup</td><td>Begrenzte kostenlose Einträge/Funktionen</td></tr>
+          <tr><td><strong>Tägliche KI-Prompts</strong></td><td class="yes">Täglicher Impuls, personalisiert aus deinen Einträgen</td><td class="yes">Ja, dialogbasiert</td></tr>
+          <tr><td><strong>Fragen zu deinen Einträgen stellen</strong></td><td class="yes">„Frag dein Journal", beantwortet On-Device</td><td class="yes">Ja, über Cloud-KI</td></tr>
+          <tr><td><strong>Stimmungstracking</strong></td><td class="yes">Stimmungs-Tags + Stimmungsverlauf + Hinweise</td><td class="yes">Ja</td></tr>
+          <tr><td><strong>Geführte Coaching-Dialoge</strong></td><td class="no">Nein, Journal-first statt Chat-first</td><td class="yes">Ja, interaktive Sitzungen</td></tr>
+          <tr><td><strong>Plattformen</strong></td><td class="no">Nur iPhone</td><td class="yes">iOS, Android, Web</td></tr>
+          <tr><td><strong>Konto erforderlich</strong></td><td class="yes">Kein Konto, keine Anmeldung</td><td>Konto erforderlich</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Der Kernunterschied: wo die KI lebt</h2>
+      <p>Rosebuds interaktives Coaching funktioniert, indem deine Worte an große Cloud-Modelle gesendet werden. So arbeiten die meisten KI-Journale, und deshalb kosten sie, was sie kosten: jede Reflexion, die du erzeugst, kostet das Unternehmen echtes Servergeld, und diese Rechnung wird zu deinem Abopreis.</p>
+      <p>MirrorNotes setzt auf das Gegenteil: ein kleines Sprachmodell (Gemma 3 1B) läuft direkt auf dem Chip deines iPhones. Das Modell liest deine Einträge im Speicher deines Handys, erzeugt die Erkenntnis, und nichts wird übertragen. Daraus folgen zwei Konsequenzen:</p>
+      <ul>
+        <li><strong>Datenschutz ist Architektur, keine Richtlinie.</strong> Es gibt keinen Code-Pfad, der Journaltext an einen Server sendet. Er kann nicht geleakt werden, nicht von uns per Gerichtsbeschluss herausgegeben werden und nicht das Modell von irgendjemandem trainieren, wir haben ihn nie.</li>
+        <li><strong>Es gibt überhaupt keine Preisuntergrenze.</strong> Unsere Inferenzkosten sind null, deshalb ist die KI-Ebene kostenlos statt 12,99 $/Monat.</li>
+      </ul>
+      <div class="callout">
+        <strong>Ehrlicher Kompromiss:</strong> Ein Cloud-Modell wie die von Rosebud genutzten ist größer und gesprächiger als ein On-Device-Modell. Wenn du lange, hin- und hergehende Coaching-Gespräche willst, macht Rosebud das besser. Wenn du ein privates Journal willst, dessen KI Muster erkennt, dich täglich anregt und Fragen zu deinem eigenen Schreiben beantwortet, ist genau das die Stärke eines lokalen Modells.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Was MirrorNotes mit der KI macht</h2>
+      <ul>
+        <li><strong>Täglicher Impuls:</strong> ein personalisierter Reflexions-Prompt für den Morgen, basierend auf deinen letzten Einträgen, kein generisches Zitat.</li>
+        <li><strong>Frag dein Journal:</strong> „Was zehrt ständig an mir?", „Wann war ich diesen Monat am glücklichsten?" Beantwortet aus deinem tatsächlichen Schreiben, On-Device.</li>
+        <li><strong>Wöchentliche Zusammenfassung:</strong> jeden Sonntag eine Übersicht über die Themen, Stimmungen und Muster deiner Woche.</li>
+        <li><strong>Stimmungsverlauf & ausführlicher Monatsbericht:</strong> emotionale Trends über Wochen hinweg, mit Hinweisen, wenn mehrere Einträge in Folge ins Negative tendieren.</li>
+      </ul>
+      <p>Alles ist kostenlos: unbegrenzte Einträge, komplette Historie, Volltextsuche, iCloud-Backup und die komplette KI-Ebene. Keine Testphase, keine Obergrenze.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Häufig gestellte Fragen</h2>
+      <h3>Ist MirrorNotes im Vergleich zu Rosebud wirklich kostenlos?</h3>
+      <p>Ja. MirrorNotes ist kostenlos, verglichen mit Rosebuds 12,99 $/Monat, etwa 155 $/Jahr. Die Lücke ist strukturell: Wir betreiben keine KI-Server, also gibt es keine Inferenzrechnung, die wir an dich weitergeben müssten.</p>
+      <h3>Funktioniert die On-Device-KI wirklich genauso gut?</h3>
+      <p>Fürs Journaling, ja. Um Muster in deinem eigenen Schreiben zu erkennen, braucht es kein Spitzenmodell, sondern deine Einträge und ein kompetentes kleines Modell. Den Unterschied würdest du bei offenem Coaching-Chat bemerken, den MirrorNotes bewusst nicht anbietet.</p>
+      <h3>Kann ich meine Rosebud-Einträge importieren?</h3>
+      <p>Noch nicht, Import-Tools stehen auf der Roadmap. Deine MirrorNotes-Einträge werden in SwiftData auf deinem Gerät gespeichert und mit deiner eigenen iCloud synchronisiert, sodass sie so oder so dir gehören.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Probiere MirrorNotes kostenlos</h3>
+      <p>Jede Funktion, komplett kostenlos. Kein Test, keine Karte, kein Haken.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Im App Store laden</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Alle Rechte vorbehalten.</p>
+      <div class="footer-nav">
+        <a href="index.html">Startseite</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../adhd-journaling-app.html">ADHS-Journaling</a>
+        <a href="../offline-journal-app.html">Offline-Journal</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
