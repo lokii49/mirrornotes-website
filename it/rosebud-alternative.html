@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cerchi un'alternativa a Rosebud? MirrorNotes offre diario con IA gratuito invece di 12,99 $/mese, e l'IA gira sul tuo iPhone, quindi le voci non raggiungono mai un server.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Alternativa a Rosebud: MirrorNotes, diario privato con IA gratuito</title>
+  <link rel="canonical" href="https://mirrornotes.org/it/rosebud-alternative.html">
+  <meta property="og:title" content="Alternativa a Rosebud: MirrorNotes, diario privato con IA">
+  <meta property="og:description" content="Diario con IA gratuito invece di 12,99 $/mese, con l'IA che gira sul tuo iPhone, non su un server.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/it/rosebud-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual è la migliore alternativa al diario Rosebud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes è una solida alternativa a Rosebud per chi usa iPhone e vuole un diario con IA senza IA nel cloud. Offre spunti quotidiani con IA, monitoraggio dell'umore e domande in linguaggio naturale sulle tue voci gratuitamente, contro i 12,99 $/mese di Rosebud, e tutta l'IA gira on-device, quindi il testo del diario non lascia mai il telefono."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rosebud invia le voci del diario a un server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rosebud usa IA nel cloud, il che significa che le voci vengono elaborate su server remoti per generare le sue risposte. MirrorNotes segue l'approccio opposto: un modello locale (Gemma 3) gira sul tuo iPhone, quindi le voci non vengono mai trasmesse per l'elaborazione IA."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Perché MirrorNotes è gratis mentre Rosebud costa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I diari con IA nel cloud pagano costi server e di inferenza per ogni utente e li trasferiscono nel prezzo dell'abbonamento. MirrorNotes esegue la sua IA sul chip del tuo iPhone, quindi non c'è nessuna bolletta server, ed è per questo che il livello IA può essere gratuito invece di costare 12,99 $/mese."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Alternativa a Rosebud</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Confronto</div>
+      <h1>Cerchi un'alternativa a Rosebud?</h1>
+      <p>Rosebud è un diario con IA capace, ma costa 12,99 $/mese e la sua IA gira nel cloud. MirrorNotes ti offre il diario con IA gratis, con il modello che gira sul tuo iPhone così le tue voci non raggiungono mai un server. Ecco un confronto onesto.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>In breve</h3>
+      <ul>
+        <li>MirrorNotes: gratis. Rosebud: 12,99 $/mese. Stesso compito principale: un'IA che ti restituisce ciò che scrivi nel diario.</li>
+        <li>L'IA di MirrorNotes gira al 100% on-device (Gemma 3). Rosebud elabora le voci su server cloud.</li>
+        <li>MirrorNotes funziona completamente offline, incluse tutte le funzionalità IA.</li>
+        <li>Rosebud è più forte se vuoi un coaching guidato e conversazionale su web e Android.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Confronto diretto</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Funzionalità</th><th>MirrorNotes</th><th>Rosebud</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Prezzo dell'IA</strong></td><td class="yes">Gratis</td><td>12,99 $/mese</td></tr>
+          <tr><td><strong>Dove gira l'IA</strong></td><td class="yes">Sul tuo iPhone (Gemma 3 via CoreML)</td><td class="warn">Server cloud</td></tr>
+          <tr><td><strong>Il testo del diario lascia il dispositivo</strong></td><td class="yes">Mai, non esiste un percorso di rete</td><td class="warn">Sì, per l'elaborazione IA</td></tr>
+          <tr><td><strong>Funziona offline</strong></td><td class="yes">Completamente, incluse tutte le funzionalità IA</td><td class="no">Richiede internet per l'IA</td></tr>
+          <tr><td><strong>Piano gratuito</strong></td><td class="yes">Tutto è gratis: scrittura illimitata, IA completa, cronologia completa, ricerca, backup iCloud</td><td>Voci/funzionalità gratuite limitate</td></tr>
+          <tr><td><strong>Spunti quotidiani con IA</strong></td><td class="yes">Spunto Quotidiano, personalizzato dalle tue voci</td><td class="yes">Sì, conversazionale</td></tr>
+          <tr><td><strong>Fai domande sulle tue voci</strong></td><td class="yes">"Chiedi al tuo diario", risposto on-device</td><td class="yes">Sì, tramite IA nel cloud</td></tr>
+          <tr><td><strong>Monitoraggio dell'umore</strong></td><td class="yes">Tag umore + Timeline dell'Umore + avvisi</td><td class="yes">Sì</td></tr>
+          <tr><td><strong>Dialoghi di coaching guidato</strong></td><td class="no">No, incentrato sul diario, non sulla chat</td><td class="yes">Sì, sessioni interattive</td></tr>
+          <tr><td><strong>Piattaforme</strong></td><td class="no">Solo iPhone</td><td class="yes">iOS, Android, web</td></tr>
+          <tr><td><strong>Account richiesto</strong></td><td class="yes">Nessun account, nessun accesso</td><td>Account richiesto</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>La differenza fondamentale: dove vive l'IA</h2>
+      <p>Il coaching interattivo di Rosebud funziona inviando le tue parole a grandi modelli cloud. È così che funzionano la maggior parte dei diari con IA, ed è per questo che costano quanto costano: ogni riflessione che generi costa all'azienda soldi veri di server, e quella bolletta diventa il prezzo del tuo abbonamento.</p>
+      <p>MirrorNotes fa la scommessa opposta: un piccolo modello linguistico (Gemma 3 1B) gira direttamente sul chip del tuo iPhone. Il modello legge le tue voci nella memoria del telefono, genera l'analisi, e nulla viene trasmesso. Ne conseguono due cose:</p>
+      <ul>
+        <li><strong>La privacy è architetturale, non una politica.</strong> Non esiste un percorso di codice che invii il testo del diario a un server. Non può trapelare, non può esserci richiesto con un mandato, non può addestrare il modello di nessun altro: non lo abbiamo mai.</li>
+        <li><strong>Non c'è alcun costo minimo.</strong> Il nostro costo di inferenza è zero, quindi il livello IA è gratis invece di costare 12,99 $/mese.</li>
+      </ul>
+      <div class="callout">
+        <strong>Compromesso onesto:</strong> un modello cloud come quelli usati da Rosebud è più grande e più loquace di un modello on-device. Se vuoi conversazioni di coaching lunghe e a due vie, Rosebud lo fa meglio. Se vuoi un diario privato la cui IA individua schemi, ti stimola ogni giorno e risponde a domande sulla tua stessa scrittura, è esattamente ciò per cui un modello locale è adatto.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Cosa fa MirrorNotes con l'IA</h2>
+      <ul>
+        <li><strong>Spunto Quotidiano:</strong> uno spunto di riflessione mattutino personalizzato in base alle tue voci recenti, non una citazione generica.</li>
+        <li><strong>Chiedi al tuo diario:</strong> "cosa mi sta prosciugando?" "quando sono stato più felice questo mese?" Risposto sulla base della tua scrittura reale, on-device.</li>
+        <li><strong>Digest Settimanale:</strong> un riepilogo della domenica dei temi, degli stati d'animo e degli schemi della settimana.</li>
+        <li><strong>Timeline dell'Umore e Report Mensile Approfondito:</strong> tendenze emotive nell'arco di settimane, con avvisi se più voci di fila mostrano un andamento negativo.</li>
+      </ul>
+      <p>Tutto è gratis: voci illimitate, cronologia completa, ricerca full-text, backup iCloud e l'intero livello IA. Nessuna prova, nessun limite.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Domande frequenti</h2>
+      <h3>MirrorNotes è davvero gratis rispetto a Rosebud?</h3>
+      <p>Sì. MirrorNotes è gratis contro i 12,99 $/mese di Rosebud, circa 155 $/anno. La differenza è strutturale: non gestiamo server IA, quindi non c'è nessuna bolletta di inferenza da trasferire su di te.</p>
+      <h3>L'IA on-device funziona davvero altrettanto bene?</h3>
+      <p>Per il diario, sì. Individuare schemi nella tua stessa scrittura non richiede un modello di frontiera, richiede le tue voci e un modello piccolo ma competente. Dove noteresti la differenza è nella chat di coaching aperta, che MirrorNotes deliberatamente non fa.</p>
+      <h3>Posso importare le mie voci da Rosebud?</h3>
+      <p>Non ancora, gli strumenti di importazione sono nella roadmap. Le tue voci in MirrorNotes sono salvate in SwiftData sul tuo dispositivo e sincronizzate sul tuo iCloud, quindi restano tue in entrambi i casi.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Prova MirrorNotes gratis</h3>
+      <p>Ogni funzionalità, completamente gratis. Nessuna prova, nessuna carta, nessuna fregatura.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Scarica sull'App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Tutti i diritti riservati.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../adhd-journaling-app.html">Diario per ADHD</a>
+        <a href="../offline-journal-app.html">Diario offline</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
