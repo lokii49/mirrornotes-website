@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rosebud 대안을 찾으시나요? MirrorNotes는 $12.99/월 대신 무료 AI 저널링을 제공하며, AI는 아이폰에서 실행되어 기록이 서버에 닿지 않습니다.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Rosebud 대안: MirrorNotes, 무료 프라이빗 AI 저널링</title>
+  <link rel="canonical" href="https://mirrornotes.org/ko/rosebud-alternative.html">
+  <meta property="og:title" content="Rosebud 대안: MirrorNotes, 프라이빗 AI 저널링">
+  <meta property="og:description" content="$12.99/월 대신 무료 AI 저널링. AI는 서버가 아닌 당신의 아이폰에서 실행됩니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ko/rosebud-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Rosebud 일기 앱의 가장 좋은 대안은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes는 클라우드 AI 없이 AI 저널링을 원하는 아이폰 사용자에게 강력한 Rosebud 대안입니다. 매일의 AI 질문, 감정 기록, 자신의 기록에 대한 자연어 질문을 무료로 제공합니다. Rosebud의 월 $12.99와 달리, 모든 AI가 온디바이스로 실행되어 일기 텍스트가 폰을 벗어나지 않습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rosebud는 일기 기록을 서버로 전송하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rosebud는 클라우드 AI를 사용합니다. 즉, 응답을 생성하기 위해 기록이 원격 서버에서 처리됩니다. MirrorNotes는 정반대의 접근 방식을 취합니다: 로컬 모델(Gemma 3)이 당신의 아이폰에서 실행되므로, 기록이 AI 처리를 위해 전송되는 일이 전혀 없습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rosebud가 유료인데 MirrorNotes는 왜 무료인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "클라우드 AI 일기 앱은 사용자당 서버 및 추론 비용을 지불하고, 이를 구독료에 반영합니다. MirrorNotes는 당신의 아이폰 자체 칩에서 AI를 실행하므로 서버 비용이 전혀 발생하지 않습니다. 그래서 AI 레이어가 $12.99/월이 아닌 무료일 수 있습니다."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Rosebud 대안</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">비교</div>
+      <h1>Rosebud 대안을 찾고 계신가요?</h1>
+      <p>Rosebud는 뛰어난 AI 일기 앱이지만, 월 $12.99이며 AI가 클라우드에서 실행됩니다. MirrorNotes는 무료로 AI 저널링을 제공하며, 모델이 당신의 아이폰에서 실행되어 기록이 서버에 닿지 않습니다. 정직하게 비교해 드립니다.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>요약</h3>
+      <ul>
+        <li>MirrorNotes: 무료. Rosebud: 월 $12.99. 핵심 역할은 같습니다: 당신의 글쓰기를 되비춰주는 AI.</li>
+        <li>MirrorNotes의 AI는 100% 온디바이스(Gemma 3)로 작동합니다. Rosebud는 클라우드 서버에서 기록을 처리합니다.</li>
+        <li>MirrorNotes는 모든 AI 기능을 포함해 완전히 오프라인에서 작동합니다.</li>
+        <li>웹과 안드로이드를 아우르는 대화형 코칭을 원한다면 Rosebud가 더 강점을 가집니다.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>나란히 비교</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>기능</th><th>MirrorNotes</th><th>Rosebud</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AI 가격</strong></td><td class="yes">무료</td><td>월 $12.99</td></tr>
+          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (CoreML 기반 Gemma 3)</td><td class="warn">클라우드 서버</td></tr>
+          <tr><td><strong>일기 텍스트가 기기를 벗어남</strong></td><td class="yes">절대 없음, 그런 네트워크 경로 자체가 존재하지 않음</td><td class="warn">AI 처리를 위해 전송됨</td></tr>
+          <tr><td><strong>오프라인 작동</strong></td><td class="yes">모든 AI 기능을 포함해 완전히 작동</td><td class="no">AI 사용에 인터넷 필요</td></tr>
+          <tr><td><strong>무료 등급</strong></td><td class="yes">모든 것이 무료: 무제한 글쓰기, 전체 AI, 전체 기록 열람, 검색, iCloud 백업</td><td>제한된 무료 기록/기능</td></tr>
+          <tr><td><strong>매일의 AI 질문</strong></td><td class="yes">데일리 넛지, 당신의 기록에서 개인화</td><td class="yes">예, 대화형</td></tr>
+          <tr><td><strong>기록에 대해 질문하기</strong></td><td class="yes">"저널에게 물어보기", 온디바이스로 답변</td><td class="yes">예, 클라우드 AI로</td></tr>
+          <tr><td><strong>감정 기록</strong></td><td class="yes">무드 태그 + 무드 타임라인 + 알림</td><td class="yes">지원</td></tr>
+          <tr><td><strong>가이드형 코칭 대화</strong></td><td class="no">없음, 채팅 우선이 아닌 일기 우선</td><td class="yes">예, 대화형 세션</td></tr>
+          <tr><td><strong>지원 플랫폼</strong></td><td class="no">아이폰 전용</td><td class="yes">iOS, Android, 웹</td></tr>
+          <tr><td><strong>계정 필요 여부</strong></td><td class="yes">계정 불필요, 로그인 불필요</td><td>계정 필요</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>핵심 차이: AI가 어디에 있는가</h2>
+      <p>Rosebud의 대화형 코칭은 당신의 글을 대형 클라우드 모델로 전송하는 방식으로 작동합니다. 대부분의 AI 일기 앱이 이렇게 동작하며, 이것이 요금이 발생하는 이유입니다: 생성되는 응답 하나하나가 실제 서버 비용으로 이어지고, 그 비용이 구독료로 전가됩니다.</p>
+      <p>MirrorNotes는 정반대의 방식을 택했습니다: 소형 언어 모델(Gemma 3 1B)이 당신의 아이폰 칩에서 직접 실행됩니다. 모델은 폰의 메모리 안에서 당신의 기록을 읽고, 인사이트를 생성하며, 아무것도 전송되지 않습니다. 여기서 두 가지 결과가 따라옵니다:</p>
+      <ul>
+        <li><strong>프라이버시는 정책이 아니라 구조입니다.</strong> 일기 텍스트를 서버로 보내는 코드 경로 자체가 존재하지 않습니다. 유출될 수도, 저희에게 소환장이 발부될 수도, 누군가의 모델 학습에 쓰일 수도 없습니다. 애초에 저희가 그 데이터를 가진 적이 없으니까요.</li>
+        <li><strong>가격의 하한선이 아예 없습니다.</strong> 저희의 추론 비용은 0이므로, AI 레이어가 월 $12.99가 아닌 무료입니다.</li>
+      </ul>
+      <div class="callout">
+        <strong>정직한 트레이드오프:</strong> Rosebud가 사용하는 것 같은 클라우드 모델은 온디바이스 모델보다 더 크고 더 수다스럽습니다. 길고 오가는 코칭 대화를 원한다면 Rosebud가 더 낫습니다. 패턴을 짚어주고, 매일 질문을 건네고, 자신의 글에 대한 질문에 답해주는 프라이빗한 일기를 원한다면, 그것이야말로 로컬 모델이 잘하는 일입니다.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>MirrorNotes가 AI로 하는 일</h2>
+      <ul>
+        <li><strong>데일리 넛지:</strong> 최근 기록을 바탕으로 만들어진 개인화된 아침 성찰 질문. 뻔한 명언이 아닙니다.</li>
+        <li><strong>저널에게 물어보기:</strong> "무엇이 나를 계속 지치게 하나요?" "이번 달 언제 가장 행복했나요?" 실제 글쓰기에서 온디바이스로 답을 찾습니다.</li>
+        <li><strong>위클리 다이제스트:</strong> 일요일마다 받아보는 한 주의 주제, 감정, 패턴 요약.</li>
+        <li><strong>무드 타임라인 &amp; 먼슬리 딥 리포트:</strong> 몇 주에 걸친 감정 추이, 부정적인 기록이 연속될 경우 알림과 함께.</li>
+      </ul>
+      <p>모든 것이 무료입니다: 무제한 기록, 전체 기록 열람, 전문 검색, iCloud 백업, 그리고 전체 AI 레이어까지. 체험판도, 상한선도 없습니다.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>자주 묻는 질문</h2>
+      <h3>MirrorNotes가 Rosebud보다 정말로 무료인가요?</h3>
+      <p>네. MirrorNotes는 Rosebud의 월 $12.99, 연간 약 $155에 비해 무료입니다. 이 차이는 구조적입니다: 저희는 AI 서버를 운영하지 않으므로 당신에게 전가할 추론 비용 자체가 없습니다.</p>
+      <h3>온디바이스 AI가 실제로도 잘 작동하나요?</h3>
+      <p>저널링에서는 그렇습니다. 자신의 글에서 패턴을 짚어내는 데는 최첨단 모델이 필요하지 않습니다. 당신의 기록과 유능한 소형 모델이면 충분합니다. 차이를 느끼실 부분은 개방형 코칭 대화이며, MirrorNotes는 의도적으로 이를 지원하지 않습니다.</p>
+      <h3>Rosebud 기록을 가져올 수 있나요?</h3>
+      <p>아직입니다. 가져오기 도구는 로드맵에 있습니다. MirrorNotes의 기록은 당신의 기기에서 SwiftData에 저장되고 본인의 iCloud와 동기화되므로, 어느 쪽이든 온전히 당신의 것으로 남습니다.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>MirrorNotes 무료로 써보기</h3>
+      <p>모든 기능이 완전히 무료입니다. 체험판도, 카드 등록도, 함정도 없습니다.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Store에서 다운로드</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">홈</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../adhd-journaling-app.html">ADHD 저널링</a>
+        <a href="../offline-journal-app.html">오프라인 일기</a>
+        <a href="privacy.html">개인정보</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

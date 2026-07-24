@@ -23,7 +23,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] rosebud-alternative × it (shipped 2026-07-21)
 - [x] rosebud-alternative × pt (shipped 2026-07-22)
 - [x] rosebud-alternative × ja (shipped 2026-07-23)
-- [ ] rosebud-alternative × ko
+- [x] rosebud-alternative × ko (shipped 2026-07-24)
 - [ ] rosebud-alternative × ru
 - [ ] rosebud-alternative × zh
 - [ ] reflect-alternative × es
@@ -85,6 +85,8 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 - 2026-07-22: Shipped pt/rosebud-alternative.html — full Brazilian Portuguese translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing pt/day-one-alternative.html ("Lembrete Diário", "Pergunte ao seu diário", "Resumo Semanal", "Linha do Tempo de Humor", "Comparação", "Resumo", "Perguntas frequentes") and pt/index.html/pt/privacy.html ("Início", "Privacidade"). Prices kept in USD to match existing pt pages. Structure/CSS byte-identical to English source (verified via python3 diff on style block + html.parser + JSON-LD parse). Nav-back and footer "Início"/"Privacidade" link within pt/ (both exist); footer "vs Day One" links to pt/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no pt equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 - 2026-07-23: Shipped ja/rosebud-alternative.html — full Japanese translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ja/day-one-alternative.html ("デイリーナッジ", "日記に問いかける", "ウィークリーダイジェスト", "気分タイムライン", "要点まとめ", "徹底比較", "よくある質問") and ja/index.html/ja/privacy.html ("ホーム", "プライバシー"). Price kept as $12.99/mo (USD) to match existing locale pages. Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "ホーム"/"プライバシー" link within ja/ (both exist); footer "vs Day One" links to ja/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no ja equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+
+- 2026-07-24: Shipped ko/rosebud-alternative.html — full Korean translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ko/day-one-alternative.html ("데일리 넛지", "저널에게 물어보기", "위클리 다이제스트", "무드 타임라인") and ko/index.html/ko/privacy.html ("홈", "개인정보"). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "홈"/"개인정보" link within ko/ (both exist); footer "vs Day One" links to ko/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no ko equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 ## Blocked
 
