@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="正在寻找 Rosebud 替代品？MirrorNotes 提供免费的 AI 日记功能，而不是每月 12.99 美元，AI 完全在你的 iPhone 上运行，日记内容永远不会上传到服务器。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Rosebud 替代品：MirrorNotes，免费私密 AI 日记</title>
+  <link rel="canonical" href="https://mirrornotes.org/zh/rosebud-alternative.html">
+  <meta property="og:title" content="Rosebud 替代品：MirrorNotes，私密 AI 日记">
+  <meta property="og:description" content="免费的 AI 日记功能，而不是每月 12.99 美元，AI 运行在你的 iPhone 上，而不是服务器上。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/zh/rosebud-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Rosebud 日记的最佳替代品是什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "对于想要 AI 日记功能又不想用云端 AI 的 iPhone 用户来说，MirrorNotes 是一个强有力的 Rosebud 替代品。它免费提供每日 AI 提示、情绪追踪，以及用自然语言对你日记内容提问的功能，而 Rosebud 需要每月 12.99 美元；而且所有 AI 都在设备端运行，日记文字永远不会离开你的手机。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Rosebud 会把日记内容发送到服务器吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rosebud 使用云端 AI，这意味着日记内容会在远程服务器上被处理以生成回应。MirrorNotes 采用了相反的方式：一个本地模型（Gemma 3）运行在你的 iPhone 上，因此日记内容永远不会被传输用于 AI 处理。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "为什么 Rosebud 收费而 MirrorNotes 免费？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "云端 AI 日记应用需要为每位用户支付服务器和推理成本，并将这些成本转嫁到订阅价格中。MirrorNotes 的 AI 运行在你 iPhone 自身的芯片上，因此没有服务器账单，这就是为什么 AI 层可以免费，而不是每月 12.99 美元。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Rosebud 替代品</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">对比</div>
+      <h1>正在寻找 Rosebud 替代品？</h1>
+      <p>Rosebud 是一款出色的 AI 日记应用，但它每月收费 12.99 美元，且 AI 在云端运行。MirrorNotes 让你免费获得 AI 日记功能，模型运行在你的 iPhone 上，日记内容永远不会到达服务器。以下是一份诚实的对比。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>太长不看版</h3>
+      <ul>
+        <li>MirrorNotes：免费。Rosebud：每月 12.99 美元。核心功能相同：用 AI 把你的日记反映给你自己看。</li>
+        <li>MirrorNotes 的 AI 100% 在设备端运行（Gemma 3）。Rosebud 在云端服务器上处理日记内容。</li>
+        <li>MirrorNotes 完全离线可用，包括所有 AI 功能。</li>
+        <li>如果你想要引导式的对话教练体验，并且需要网页和 Android 支持，Rosebud 更有优势。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>功能对比</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>功能</th><th>MirrorNotes</th><th>Rosebud</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AI 价格</strong></td><td class="yes">免费</td><td>每月 12.99 美元</td></tr>
+          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（通过 CoreML 运行的 Gemma 3）</td><td class="warn">云端服务器</td></tr>
+          <tr><td><strong>日记内容是否离开设备</strong></td><td class="yes">从不，不存在任何网络传输路径</td><td class="warn">是，用于 AI 处理</td></tr>
+          <tr><td><strong>是否支持离线使用</strong></td><td class="yes">完全支持，包括所有 AI 功能</td><td class="no">AI 功能需要联网</td></tr>
+          <tr><td><strong>免费版</strong></td><td class="yes">一切免费：无限记录、完整 AI、完整历史、搜索、iCloud 备份</td><td>免费条目和功能有限</td></tr>
+          <tr><td><strong>每日 AI 提示</strong></td><td class="yes">每日启发，根据你的日记个性化生成</td><td class="yes">支持，对话形式</td></tr>
+          <tr><td><strong>对日记内容提问</strong></td><td class="yes">「向日记提问」，在设备端作答</td><td class="yes">支持，通过云端 AI</td></tr>
+          <tr><td><strong>情绪追踪</strong></td><td class="yes">情绪标签 + 情绪时间线 + 提醒</td><td class="yes">支持</td></tr>
+          <tr><td><strong>引导式对话教练</strong></td><td class="no">不支持，以日记为主，而非聊天为主</td><td class="yes">支持，交互式会话</td></tr>
+          <tr><td><strong>支持平台</strong></td><td class="no">仅限 iPhone</td><td class="yes">iOS、Android、网页</td></tr>
+          <tr><td><strong>是否需要账户</strong></td><td class="yes">无需账户，无需登录</td><td>需要账户</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>核心区别：AI 运行在哪里</h2>
+      <p>Rosebud 的交互式教练功能依靠把你写的文字发送给大型云端模型来实现。这是大多数 AI 日记应用的工作方式，也是它们收费的原因：你生成的每一次反馈都要花费公司真实的服务器成本，而这笔账单最终变成了你的订阅费用。</p>
+      <p>MirrorNotes 走的是相反的路线：一个小型语言模型（Gemma 3 1B）直接运行在你 iPhone 的芯片上。模型在手机内存中读取你的日记，生成洞察，没有任何内容被传输出去。由此带来两个结果：</p>
+      <ul>
+        <li><strong>隐私是架构层面的，而不是一项政策。</strong>不存在任何将日记文字发送到服务器的代码路径。它无法泄露，无法被传票要求我们提供，也无法被用来训练别人的模型——因为我们从来就没有它。</li>
+        <li><strong>完全没有价格门槛。</strong>我们的推理成本为零，所以 AI 层可以免费提供，而不是每月 12.99 美元。</li>
+      </ul>
+      <div class="callout">
+        <strong>诚实的取舍：</strong>像 Rosebud 使用的那种云端模型，比设备端模型更大、更健谈。如果你想要长篇、来回互动的教练式对话，Rosebud 在这方面做得更好。如果你想要一本私密日记，它的 AI 能发现规律、每天提示你写作、并回答关于你自己文字的问题，那正是本地模型擅长的事。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>MirrorNotes 用 AI 做了什么</h2>
+      <ul>
+        <li><strong>每日启发：</strong>基于你最近日记生成的个性化早晨反思提示，而不是一句泛泛的名言。</li>
+        <li><strong>向日记提问：</strong>「是什么在持续消耗我？」「这个月我什么时候最开心？」答案来自你真实写下的内容，在设备端生成。</li>
+        <li><strong>每周摘要：</strong>每周日为你总结这一周的主题、情绪和规律。</li>
+        <li><strong>情绪时间线与每月深度报告：</strong>跨越数周的情绪趋势，若连续几篇日记情绪走低还会提醒你。</li>
+      </ul>
+      <p>一切都免费：无限记录、完整历史、全文搜索、iCloud 备份，以及完整的 AI 层。没有试用期，没有上限。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>常见问题</h2>
+      <h3>MirrorNotes 真的比 Rosebud 免费吗？</h3>
+      <p>是的。MirrorNotes 免费，而 Rosebud 每月 12.99 美元，一年大约 155 美元。这个差距是结构性的：我们不运行 AI 服务器，因此没有推理账单需要转嫁给你。</p>
+      <h3>设备端 AI 真的能达到同样的效果吗？</h3>
+      <p>对于写日记来说，可以。在自己的文字中发现规律并不需要一个前沿大模型，只需要你的日记内容和一个称职的小模型。你会感受到差距的地方是开放式的教练聊天，而这正是 MirrorNotes 刻意不去做的事。</p>
+      <h3>我可以导入我在 Rosebud 里的日记吗？</h3>
+      <p>暂时还不行，导入工具已在计划中。你在 MirrorNotes 中的日记存储在设备端的 SwiftData 中，并同步到你自己的 iCloud，无论如何都始终属于你。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>免费试用 MirrorNotes</h3>
+      <p>所有功能完全免费。无需试用期，无需绑卡，没有陷阱。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">在 App Store 下载</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">首页</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../adhd-journaling-app.html">ADHD 日记</a>
+        <a href="../offline-journal-app.html">离线日记</a>
+        <a href="privacy.html">隐私</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

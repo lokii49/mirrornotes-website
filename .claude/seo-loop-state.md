@@ -25,7 +25,7 @@ Priority order: work through locales left-to-right, one page per locale per pass
 - [x] rosebud-alternative × ja (shipped 2026-07-23)
 - [x] rosebud-alternative × ko (shipped 2026-07-24)
 - [x] rosebud-alternative × ru (shipped 2026-07-25)
-- [ ] rosebud-alternative × zh
+- [x] rosebud-alternative × zh (shipped 2026-07-26)
 - [ ] reflect-alternative × es
 - [ ] reflect-alternative × fr
 - [ ] reflect-alternative × de
@@ -89,6 +89,8 @@ Once locale matrix is full, move to new English keyword pages (candidates: apple
 - 2026-07-24: Shipped ko/rosebud-alternative.html — full Korean translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ko/day-one-alternative.html ("데일리 넛지", "저널에게 물어보기", "위클리 다이제스트", "무드 타임라인") and ko/index.html/ko/privacy.html ("홈", "개인정보"). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "홈"/"개인정보" link within ko/ (both exist); footer "vs Day One" links to ko/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no ko equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 
 - 2026-07-25: Shipped ru/rosebud-alternative.html — full Russian translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing ru/day-one-alternative.html ("Ежедневная подсказка", "Спросите свой дневник", "Еженедельный дайджест", "Шкала настроения", "Кратко", "Сравнение", "Часто задаваемые вопросы") and ru/index.html/ru/privacy.html ("Главная", "Конфиденциальность"). Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "Главная"/"Конфиденциальность" link within ru/ (both exist); footer "vs Day One" links to ru/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no ru equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
+
+- 2026-07-26: Shipped zh/rosebud-alternative.html — full Simplified Chinese translation of rosebud-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing zh/day-one-alternative.html ("每日启发" for Daily Nudge, "向日记提问" for Ask your journal, "每周摘要", "情绪时间线", "每月深度报告", "首页", "隐私") and zh/index.html. Structure/CSS byte-identical to English source (verified via diff on style block + python3 html.parser + JSON-LD parse). Nav-back and footer "首页"/"隐私" link within zh/ (both exist); footer "vs Day One" links to zh/day-one-alternative.html since it already exists; ADHD/Offline footer links point to English root pages via ../ (no zh equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint. This completes the rosebud-alternative row of the locale matrix (all 9 locales shipped); next up is reflect-alternative × es.
 
 ## Blocked
 
