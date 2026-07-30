@@ -180,6 +180,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mirrornotes.org/it/reflect-alternative.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mirrornotes.org/pt/rosebud-alternative.html</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
