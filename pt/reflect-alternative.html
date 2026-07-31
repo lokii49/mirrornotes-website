@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Procurando uma alternativa ao Reflect? O MirrorNotes oferece diário com IA no dispositivo, totalmente grátis: sem nuvem, sem servidor, o texto do seu diário nunca sai do seu iPhone.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Alternativa ao Reflect: MirrorNotes, Diário Privado com IA Grátis no iPhone</title>
+  <link rel="canonical" href="https://mirrornotes.org/pt/reflect-alternative.html">
+  <meta property="og:title" content="Alternativa ao Reflect: MirrorNotes, Diário com IA no Dispositivo">
+  <meta property="og:description" content="Diário com IA grátis, com o modelo rodando no seu iPhone, não em um servidor. Sem conta, sem IA na nuvem, funciona offline.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/pt/reflect-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual é uma boa alternativa ao aplicativo Reflect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O MirrorNotes é uma alternativa ao Reflect construída em torno de IA no dispositivo. Enquanto o Reflect envia suas anotações para a nuvem para processamento de IA, o MirrorNotes roda o Gemma 3 localmente no seu iPhone, então prompts diários, análise de humor, Pergunte ao seu diário e resumos semanais funcionam offline, sem que nenhum dado saia do seu aparelho."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O MirrorNotes é mais barato que o Reflect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. O Reflect cobra cerca de US$ 10 a US$ 15 por mês pelos recursos completos de IA. O MirrorNotes é grátis: todos os recursos, sem assinatura, porque a inferência no dispositivo não tem custo de servidor para repassar aos usuários."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O Reflect tem IA no dispositivo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O Reflect usa IA na nuvem para seus recursos de inteligência, o que significa que suas anotações são processadas em servidores externos. O MirrorNotes roda o Gemma 3 via CoreML inteiramente no seu iPhone, sem chamadas de API, sem servidor, sem dados transmitidos. Todo recurso de IA funciona em modo avião."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O MirrorNotes pode substituir o Reflect para diário?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para diário pessoal focado com insights de IA, sim. O MirrorNotes oferece prompts diários de reflexão, consultas via 'Pergunte ao seu diário', registro de humor, resumos semanais e relatórios mensais aprofundados, tudo no dispositivo. Se você usa o Reflect principalmente como uma base de conhecimento com anotações vinculadas ou ferramenta de equipe, o MirrorNotes é um produto diferente, focado em diário pessoal."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Alternativa ao Reflect</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Comparação</div>
+      <h1>Uma alternativa ao Reflect em que a IA fica no seu telefone</h1>
+      <p>O Reflect é uma ferramenta competente de anotações e diário. O problema: seus recursos de IA enviam suas anotações para a nuvem para processamento. O MirrorNotes faz o oposto. O Gemma 3 roda localmente no seu iPhone, então prompts diários, análise de humor e consultas ao diário funcionam offline, sem que o texto chegue a um servidor.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Resumo</h3>
+      <ul>
+        <li>A IA do Reflect roda na nuvem. A IA do MirrorNotes roda no seu iPhone: nenhum dado é transmitido, nunca.</li>
+        <li>O MirrorNotes é grátis. O Reflect custa US$ 10 a US$ 15/mês. Inferência no dispositivo significa zero custo de servidor a repassar.</li>
+        <li>Todo recurso funciona offline: escrever, receber insights de IA, fazer perguntas, em um avião, no metrô, em qualquer lugar.</li>
+        <li>Sem conta, sem login. Seu diário sincroniza pelo seu próprio iCloud.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Comparação lado a lado</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Recurso</th><th>MirrorNotes</th><th>Reflect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Onde a IA roda</strong></td><td class="yes">No seu iPhone (Gemma 3 via CoreML)</td><td class="warn">Servidores na nuvem</td></tr>
+          <tr><td><strong>Texto do diário sai do dispositivo</strong></td><td class="yes">Nunca</td><td class="warn">Sim, para processamento de IA</td></tr>
+          <tr><td><strong>Funciona offline</strong></td><td class="yes">Totalmente, incluindo todos os recursos de IA</td><td class="no">IA exige internet</td></tr>
+          <tr><td><strong>Prompts diários de reflexão com IA</strong></td><td class="yes">Sim, personalizados a partir das suas anotações recentes</td><td class="no">Não</td></tr>
+          <tr><td><strong>Pergunte ao seu diário</strong></td><td class="yes">"O que me estressa?" respondido no dispositivo</td><td class="warn">Chat de IA, processado na nuvem</td></tr>
+          <tr><td><strong>Registro de humor e linha do tempo</strong></td><td class="yes">Sim, detecção no dispositivo</td><td class="no">Sem análise de humor</td></tr>
+          <tr><td><strong>Resumos semanais e mensais com IA</strong></td><td class="yes">Resumo Semanal + Relatório Mensal Aprofundado</td><td class="no">Não</td></tr>
+          <tr><td><strong>Conta necessária</strong></td><td class="yes">Sem conta, sem login</td><td class="warn">Conta necessária</td></tr>
+          <tr><td><strong>Plano gratuito</strong></td><td class="yes">Tudo é grátis: escrita ilimitada, IA completa, histórico completo, busca, backup no iCloud</td><td class="no">Plano gratuito limitado</td></tr>
+          <tr><td><strong>Preço</strong></td><td class="yes">Grátis</td><td class="warn">~US$ 10&ndash;15/mês</td></tr>
+          <tr><td><strong>Plataformas</strong></td><td class="no">Somente iPhone</td><td class="yes">iOS, Mac, web</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>A diferença de privacidade é arquitetural</h2>
+      <p>A maioria dos diários com IA, incluindo o Reflect, processa sua escrita em um servidor. Isso não é uma crítica às políticas de privacidade deles; é uma consequência técnica de rodar IA na nuvem. O modelo precisa ver o texto para processá-lo.</p>
+      <p>O MirrorNotes traz seu próprio modelo. O Gemma 3 1B roda via CoreML no Neural Engine do seu iPhone. Quando você escreve uma anotação, a IA lê no seu chip, gera um insight, e o texto fica no seu dispositivo. Não é transmitido, não é registrado, não é armazenado em nenhum lugar fora do seu iCloud.</p>
+      <div class="callout">
+        <strong>A garantia de privacidade é arquitetural, não uma promessa de política.</strong> Não existe caminho de código para a nuvem no aplicativo. Ele não pode enviar seu diário para um servidor porque não há servidor para enviar.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>O que o MirrorNotes faz de diferente</h2>
+      <ul>
+        <li><strong>Lembrete Diário:</strong> toda manhã, um prompt de reflexão personalizado gerado a partir das suas anotações recentes. Não é uma frase. Não é um modelo genérico. É algo baseado no que você realmente tem escrito.</li>
+        <li><strong>Pergunte ao seu diário:</strong> consulte meses da sua própria escrita. "Quando me sinto mais criativo?" "O que estou evitando?" "Como lidei com o estresse no mês passado?" Respondido no dispositivo, a partir das suas anotações reais.</li>
+        <li><strong>Linha do Tempo de Humor:</strong> acompanha o tom emocional entre anotações, mostra padrões ao longo de semanas e meses. Avisa você quando três anotações seguidas mostram tendência negativa.</li>
+        <li><strong>Relatório Mensal Aprofundado:</strong> no dia 1º de cada mês, uma reflexão completa: o tema do seu mês, a tensão central, um momento que mudou algo, em quem você está se tornando.</li>
+      </ul>
+
+      <h3>O que o Reflect faz melhor</h3>
+      <p>O Reflect é mais forte em gestão de conhecimento: anotações vinculadas, backlinks, web clipper, sincronização multiplataforma. Se você está construindo uma wiki pessoal ou precisa de anotações no Mac e no iOS simultaneamente, o Reflect é uma opção melhor. O MirrorNotes é focado em uma coisa: diário pessoal com IA privada que devolve insight para você.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Perguntas frequentes</h2>
+      <h3>Posso migrar do Reflect para o MirrorNotes?</h3>
+      <p>Você pode começar a escrever no MirrorNotes imediatamente, tudo é grátis e ilimitado. A importação de diário do Reflect ainda não está disponível, mas suas anotações existentes no Reflect continuam lá enquanto você cria um hábito no MirrorNotes.</p>
+      <h3>O MirrorNotes tem anotações vinculadas ou backlinks?</h3>
+      <p>Não. O MirrorNotes é um aplicativo de diário focado, não uma base de conhecimento. A IA lê todas as suas anotações para revelar padrões, mas não há um sistema manual de vinculação. Se você precisa disso, o Reflect ou o Obsidian são ferramentas melhores.</p>
+      <h3>Por que o MirrorNotes é grátis?</h3>
+      <p>A inferência no dispositivo tem custo marginal zero. Diários com IA na nuvem pagam por token a um provedor de modelo ou mantêm sua própria infraestrutura de GPU, e esse custo é repassado a você. O modelo do MirrorNotes roda no seu próprio chip, então não há nada a repassar.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Experimente o MirrorNotes grátis</h3>
+      <p>Todos os recursos, totalmente grátis. Sem teste, sem cartão, sem pegadinha.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Baixar na App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Todos os direitos reservados.</p>
+      <div class="footer-nav">
+        <a href="index.html">Início</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">Diário para TDAH</a>
+        <a href="../offline-journal-app.html">Diário Offline</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
