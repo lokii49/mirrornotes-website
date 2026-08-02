@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reflect 앱 대안을 찾으시나요? MirrorNotes는 완전 무료 온디바이스 AI 저널링을 제공합니다: 클라우드 없이, 서버 없이, 일기 텍스트가 아이폰을 벗어나지 않습니다.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Reflect 대안: MirrorNotes, 무료 프라이빗 AI 저널링</title>
+  <link rel="canonical" href="https://mirrornotes.org/ko/reflect-alternative.html">
+  <meta property="og:title" content="Reflect 대안: MirrorNotes, 온디바이스 AI 저널">
+  <meta property="og:description" content="AI가 서버가 아닌 아이폰에서 실행되는 무료 AI 저널링. 계정 불필요, 클라우드 AI 없음, 오프라인 작동.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ko/reflect-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "좋은 Reflect 앱 대안은 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes는 온디바이스 AI를 중심으로 만들어진 Reflect 대안입니다. Reflect가 AI 처리를 위해 기록을 클라우드로 전송하는 반면, MirrorNotes는 Gemma 3를 아이폰에서 로컬로 실행하므로 매일의 질문, 감정 분석, 저널에게 물어보기, 위클리 다이제스트 모두 오프라인에서 작동하며 데이터가 기기를 벗어나는 일이 없습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes가 Reflect보다 저렴한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네. Reflect는 전체 AI 기능에 월 $10~15를 청구합니다. MirrorNotes는 무료입니다: 모든 기능, 구독 없음. 온디바이스 추론은 사용자에게 전가할 서버 비용이 전혀 없기 때문입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Reflect에는 온디바이스 AI가 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reflect는 지능형 기능에 클라우드 AI를 사용하므로 기록이 외부 서버에서 처리됩니다. MirrorNotes는 CoreML을 통해 Gemma 3를 아이폰에서 완전히 실행합니다. API 호출도, 서버도, 전송되는 데이터도 없습니다. 모든 AI 기능이 비행기 모드에서도 작동합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "저널링 용도로 MirrorNotes가 Reflect를 대체할 수 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AI 인사이트를 갖춘 집중형 개인 저널링이라면, 그렇습니다. MirrorNotes는 매일의 성찰 질문, '저널에게 물어보기' 질의, 감정 기록, 위클리 다이제스트, 먼슬리 딥 리포트를 모두 온디바이스로 제공합니다. Reflect를 주로 연결된 노트 기반 지식 베이스나 팀 도구로 사용한다면, MirrorNotes는 개인 저널링에 집중한 다른 종류의 제품입니다."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Reflect 대안</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">비교</div>
+      <h1>AI가 당신의 폰에 머무는 Reflect 대안</h1>
+      <p>Reflect는 뛰어난 노트 작성 및 저널링 도구입니다. 다만 AI 기능이 기록을 클라우드로 전송해 처리한다는 점이 걸림돌입니다. MirrorNotes는 정반대의 접근 방식을 택했습니다. Gemma 3가 당신의 아이폰에서 로컬로 실행되므로, 매일의 질문, 감정 분석, 저널 질의응답 모두 오프라인에서 작동하며 텍스트가 서버에 닿는 일은 전혀 없습니다.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>요약</h3>
+      <ul>
+        <li>Reflect의 AI는 클라우드에서 실행됩니다. MirrorNotes의 AI는 당신의 아이폰에서 실행됩니다: 어떤 데이터도 전송되지 않습니다.</li>
+        <li>MirrorNotes는 무료입니다. Reflect는 월 $10~15입니다. 온디바이스 추론은 전가할 서버 비용이 전혀 없다는 뜻입니다.</li>
+        <li>모든 기능이 오프라인에서 작동합니다: 비행기 안에서도, 지하에서도, 어디서든 글쓰기와 AI 인사이트, 질문하기까지.</li>
+        <li>계정도, 로그인도 필요 없습니다. 일기는 본인의 iCloud를 통해 동기화됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>나란히 비교</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>기능</th><th>MirrorNotes</th><th>Reflect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (CoreML 기반 Gemma 3)</td><td class="warn">클라우드 서버</td></tr>
+          <tr><td><strong>일기 텍스트가 기기를 벗어남</strong></td><td class="yes">절대 없음</td><td class="warn">AI 처리를 위해 전송됨</td></tr>
+          <tr><td><strong>오프라인 작동</strong></td><td class="yes">모든 AI 기능을 포함해 완전히 작동</td><td class="no">AI 사용에 인터넷 필요</td></tr>
+          <tr><td><strong>매일의 AI 성찰 질문</strong></td><td class="yes">예, 최근 기록에 맞춰 개인화</td><td class="no">없음</td></tr>
+          <tr><td><strong>저널에게 물어보기</strong></td><td class="yes">"무엇이 나를 스트레스 받게 하나요?" 같은 질문에 온디바이스로 답변</td><td class="warn">AI 채팅, 클라우드 처리</td></tr>
+          <tr><td><strong>감정 기록 &amp; 타임라인</strong></td><td class="yes">예, 온디바이스 감지</td><td class="no">감정 분석 기능 없음</td></tr>
+          <tr><td><strong>주간 &amp; 월간 AI 요약</strong></td><td class="yes">위클리 다이제스트 + 먼슬리 딥 리포트</td><td class="no">없음</td></tr>
+          <tr><td><strong>계정 필요 여부</strong></td><td class="yes">계정 불필요, 로그인 불필요</td><td class="warn">계정 필요</td></tr>
+          <tr><td><strong>무료 등급</strong></td><td class="yes">모든 것이 무료: 무제한 글쓰기, 전체 AI 기능, 전체 기록 열람, 검색, iCloud 백업</td><td class="no">제한된 무료 등급</td></tr>
+          <tr><td><strong>가격</strong></td><td class="yes">무료</td><td class="warn">월 $10&ndash;15</td></tr>
+          <tr><td><strong>지원 플랫폼</strong></td><td class="no">아이폰 전용</td><td class="yes">iOS, Mac, 웹</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>프라이버시의 차이는 구조에서 나옵니다</h2>
+      <p>Reflect를 포함한 대부분의 AI 저널링 앱은 당신의 글을 서버에서 처리합니다. 이는 그들의 개인정보 정책을 비판하려는 것이 아니라, 클라우드 AI를 실행하는 데 따르는 기술적 결과입니다. 모델이 텍스트를 처리하려면 텍스트를 봐야만 하기 때문입니다.</p>
+      <p>MirrorNotes는 자체 모델을 탑재하고 있습니다. Gemma 3 1B가 아이폰의 Neural Engine에서 CoreML을 통해 실행됩니다. 기록을 작성하면 AI가 당신의 칩에서 이를 읽고 인사이트를 생성하며, 텍스트는 당신의 기기에 머뭅니다. 전송되지도, 기록되지도, iCloud 밖 어디에도 저장되지 않습니다.</p>
+      <div class="callout">
+        <strong>프라이버시 보장은 정책상의 약속이 아니라 구조적인 사실입니다.</strong> 앱에는 클라우드로 향하는 코드 경로 자체가 없습니다. 보낼 서버가 없으니 일기를 서버로 전송할 수도 없습니다.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>MirrorNotes가 다르게 하는 것</h2>
+      <ul>
+        <li><strong>데일리 넛지:</strong> 매일 아침, 최근 기록을 바탕으로 만들어진 개인화된 성찰 질문. 명언이 아닙니다. 템플릿도 아닙니다. 실제로 당신이 써온 내용에 기반한 질문입니다.</li>
+        <li><strong>저널에게 물어보기:</strong> 수개월간의 기록을 질문으로 탐색하세요. "언제 가장 창의적인가요?" "무엇을 회피하고 있나요?" "지난달 스트레스를 어떻게 다뤘나요?" 실제 기록을 바탕으로 온디바이스에서 답합니다.</li>
+        <li><strong>무드 타임라인:</strong> 기록 전반의 감정 톤을 추적해 몇 주, 몇 달에 걸친 패턴을 보여줍니다. 부정적인 기록이 세 번 연속 이어지면 알림을 보냅니다.</li>
+        <li><strong>먼슬리 딥 리포트:</strong> 매달 1일, 전체적인 성찰을 전달합니다: 그 달의 주제, 핵심 갈등, 무언가를 바꾼 순간, 당신이 되어가고 있는 모습까지.</li>
+      </ul>
+
+      <h3>Reflect가 더 잘하는 것</h3>
+      <p>Reflect는 지식 관리에 더 강점을 가집니다: 연결된 노트, 백링크, 웹 클리퍼, 멀티 플랫폼 동기화까지. 개인 위키를 구축하거나 Mac과 iOS에서 동시에 노트를 써야 한다면 Reflect가 더 적합합니다. MirrorNotes는 한 가지에 집중합니다: 인사이트를 되돌려주는 프라이빗 AI를 갖춘 개인 저널링.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>자주 묻는 질문</h2>
+      <h3>Reflect에서 MirrorNotes로 전환할 수 있나요?</h3>
+      <p>지금 바로 MirrorNotes에서 글쓰기를 시작할 수 있습니다. 모든 기능이 무료이고 무제한입니다. Reflect에서의 가져오기 기능은 아직 제공되지 않지만, MirrorNotes에서 습관을 만드는 동안 Reflect의 기존 기록은 그대로 남아 있습니다.</p>
+      <h3>MirrorNotes에는 연결된 노트나 백링크가 있나요?</h3>
+      <p>아니요. MirrorNotes는 지식 베이스가 아니라 집중형 저널링 앱입니다. AI가 모든 기록을 읽어 패턴을 찾아내지만, 수동으로 연결하는 시스템은 없습니다. 그런 기능이 필요하다면 Reflect나 Obsidian이 더 나은 도구입니다.</p>
+      <h3>MirrorNotes는 왜 무료인가요?</h3>
+      <p>온디바이스 추론은 한계 비용이 0입니다. 클라우드 AI 일기 앱은 모델 제공사에 토큰당 비용을 지불하거나 자체 GPU 인프라를 운영하며, 그 비용이 당신에게 전가됩니다. MirrorNotes의 모델은 당신의 칩에서 실행되므로 전가할 비용 자체가 없습니다.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>MirrorNotes 무료로 써보기</h3>
+      <p>모든 기능이 완전히 무료입니다. 체험판도, 카드 등록도, 함정도 없습니다.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Store에서 다운로드</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">홈</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">ADHD 저널링</a>
+        <a href="../offline-journal-app.html">오프라인 일기</a>
+        <a href="privacy.html">개인정보</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
