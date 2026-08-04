@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="正在寻找 Reflect 的替代品？MirrorNotes 提供完全免费的设备端 AI 日记功能：没有云端，没有服务器，日记内容永远不会离开你的 iPhone。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Reflect 替代品：MirrorNotes，免费私密 AI 日记</title>
+  <link rel="canonical" href="https://mirrornotes.org/zh/reflect-alternative.html">
+  <meta property="og:title" content="Reflect 替代品：MirrorNotes，设备端 AI 日记">
+  <meta property="og:description" content="免费的 AI 日记功能，模型运行在你的 iPhone 上，而不是服务器上。无需账户，无需联网。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/zh/reflect-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "有什么好用的 Reflect 替代品？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes 是一个围绕设备端 AI 打造的 Reflect 替代品。Reflect 会把你的笔记发送到云端处理，而 MirrorNotes 让 Gemma 3 直接在你的 iPhone 上本地运行，因此每日提示、情绪分析、向日记提问和每周摘要都可以离线使用，数据永远不会离开你的设备。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes 比 Reflect 更便宜吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "是的。Reflect 的完整 AI 功能每月收费约 10 到 15 美元。MirrorNotes 完全免费：所有功能，无需订阅，因为设备端推理没有服务器成本需要转嫁给用户。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Reflect 有设备端 AI 吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reflect 的智能功能使用云端 AI，这意味着你的笔记会在外部服务器上被处理。MirrorNotes 通过 CoreML 让 Gemma 3 完全在你的 iPhone 上运行，没有 API 调用，没有服务器，没有任何数据被传输。所有 AI 功能在飞行模式下也能使用。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes 能替代 Reflect 用于写日记吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "如果你专注于带有 AI 洞察的个人日记写作，可以。MirrorNotes 提供每日反思提示、「向日记提问」查询、情绪追踪、每周摘要和每月深度报告，全部在设备端完成。如果你主要把 Reflect 当作链接笔记知识库或团队工具使用，那么 MirrorNotes 是专注于个人日记写作的另一类产品。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Reflect 替代品</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">对比</div>
+      <h1>一个让 AI 留在你手机上的 Reflect 替代品</h1>
+      <p>Reflect 是一款出色的笔记与日记工具，但它的 AI 功能会把你的笔记发送到云端处理。MirrorNotes 走的是相反的路线：Gemma 3 在你的 iPhone 上本地运行，因此每日提示、情绪分析和日记查询都可以离线使用，文字内容永远不会到达服务器。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>太长不看版</h3>
+      <ul>
+        <li>Reflect 的 AI 运行在云端。MirrorNotes 的 AI 运行在你的 iPhone 上：数据永远不会被传输。</li>
+        <li>MirrorNotes 免费。Reflect 每月收费 10 到 15 美元。设备端推理没有服务器成本需要转嫁给用户。</li>
+        <li>所有功能都能离线使用：写日记、获取 AI 洞察、提问，无论在飞机上、地下，还是任何地方。</li>
+        <li>无需账户，无需登录。你的日记通过你自己的 iCloud 同步。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>功能对比</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>功能</th><th>MirrorNotes</th><th>Reflect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（通过 CoreML 运行的 Gemma 3）</td><td class="warn">云端服务器</td></tr>
+          <tr><td><strong>日记内容是否离开设备</strong></td><td class="yes">从不</td><td class="warn">是，用于 AI 处理</td></tr>
+          <tr><td><strong>是否支持离线使用</strong></td><td class="yes">完全支持，包括所有 AI 功能</td><td class="no">AI 功能需要联网</td></tr>
+          <tr><td><strong>每日 AI 反思提示</strong></td><td class="yes">支持，根据你最近的日记个性化生成</td><td class="no">不支持</td></tr>
+          <tr><td><strong>向日记提问</strong></td><td class="yes">「我最近在为什么焦虑？」，在设备端作答</td><td class="warn">AI 对话，云端处理</td></tr>
+          <tr><td><strong>情绪追踪与时间线</strong></td><td class="yes">支持，设备端识别</td><td class="no">无情绪分析</td></tr>
+          <tr><td><strong>每周与每月 AI 摘要</strong></td><td class="yes">每周摘要 + 每月深度报告</td><td class="no">不支持</td></tr>
+          <tr><td><strong>是否需要账户</strong></td><td class="yes">无需账户，无需登录</td><td class="warn">需要账户</td></tr>
+          <tr><td><strong>免费版</strong></td><td class="yes">一切免费：无限记录、完整 AI、完整历史、搜索、iCloud 备份</td><td class="no">免费版功能有限</td></tr>
+          <tr><td><strong>价格</strong></td><td class="yes">免费</td><td class="warn">约每月 10&ndash;15 美元</td></tr>
+          <tr><td><strong>支持平台</strong></td><td class="no">仅限 iPhone</td><td class="yes">iOS、Mac、网页</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>隐私差异是架构层面的</h2>
+      <p>包括 Reflect 在内的大多数 AI 日记应用都在服务器上处理你写的内容。这并不是在批评它们的隐私政策，而是运行云端 AI 的技术性后果：模型必须先看到文字才能处理它。</p>
+      <p>MirrorNotes 自带模型。Gemma 3 1B 通过 CoreML 运行在你 iPhone 的神经网络引擎上。当你写下一篇日记时，AI 在你的芯片上读取它、生成洞察，文字内容始终留在你的设备上。不会被传输，不会被记录，也不会被存储在你自己的 iCloud 之外的任何地方。</p>
+      <div class="callout">
+        <strong>这份隐私保证来自架构本身，而不是一项政策承诺。</strong> 应用中不存在任何云端代码路径。它无法把你的日记发送到服务器，因为根本就没有服务器可以发送。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>MirrorNotes 有何不同</h2>
+      <ul>
+        <li><strong>每日启发：</strong>每天早晨，根据你最近的日记生成一条个性化反思提示。不是一句名言，也不是模板，而是基于你真实写过的内容。</li>
+        <li><strong>向日记提问：</strong>查询你自己数月来写下的内容。「我什么时候最有创造力？」「我在回避什么？」「上个月我是怎么应对压力的？」答案来自你真实写下的日记，在设备端生成。</li>
+        <li><strong>情绪时间线：</strong>追踪日记中的情绪基调，展示数周乃至数月间的规律。如果连续三篇日记情绪走低，会提醒你。</li>
+        <li><strong>每月深度报告：</strong>每月 1 日，一份完整的反思报告：这个月的主题、核心张力、一个改变了什么的瞬间，以及你正在成为怎样的人。</li>
+      </ul>
+
+      <h3>Reflect 做得更好的地方</h3>
+      <p>在知识管理方面 Reflect 更强：链接笔记、反向链接、网页剪藏、多平台同步。如果你在搭建个人知识库，或者需要 Mac 和 iOS 同时使用笔记，Reflect 更适合你。MirrorNotes 专注于一件事：用私密 AI 写日记，并把洞察反馈给你。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>常见问题</h2>
+      <h3>我可以从 Reflect 换到 MirrorNotes 吗？</h3>
+      <p>你可以立即在 MirrorNotes 中开始写日记，所有功能免费且无限制。目前还不支持从 Reflect 导入日记，但你在 Reflect 中已有的日记会继续留在那里，同时你可以在 MirrorNotes 中养成新的写作习惯。</p>
+      <h3>MirrorNotes 有链接笔记或反向链接吗？</h3>
+      <p>没有。MirrorNotes 是一款专注的日记应用，不是知识库。AI 会读取你所有的日记来发现规律，但没有手动链接系统。如果你需要那样的功能，Reflect 或 Obsidian 是更好的工具。</p>
+      <h3>为什么 MirrorNotes 是免费的？</h3>
+      <p>设备端推理的边际成本为零。云端 AI 日记应用需要为模型提供商按 token 付费，或自建 GPU 基础设施，这笔成本最终会转嫁给你。MirrorNotes 的模型运行在你自己的芯片上，因此没有什么需要转嫁的成本。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>免费试用 MirrorNotes</h3>
+      <p>所有功能完全免费。无需试用期，无需绑卡，没有陷阱。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">在 App Store 下载</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">首页</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="../adhd-journaling-app.html">ADHD 日记</a>
+        <a href="../offline-journal-app.html">离线日记</a>
+        <a href="privacy.html">隐私</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
