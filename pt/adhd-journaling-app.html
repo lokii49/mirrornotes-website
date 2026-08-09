@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Um app de diário que funciona do jeito que um cérebro com TDAH funciona: captura instantânea, entrada por voz, tags de humor e uma IA que lembra dos seus padrões para você não precisar. Privado, no dispositivo.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>App de Diário para TDAH: MirrorNotes, Memória Externa que Responde</title>
+  <link rel="canonical" href="https://mirrornotes.org/pt/adhd-journaling-app.html">
+  <meta property="og:title" content="App de Diário para TDAH: MirrorNotes">
+  <meta property="og:description" content="Captura instantânea, entrada por voz, tags de humor e uma IA que lembra dos seus padrões para você não precisar.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/pt/adhd-journaling-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Escrever um diário é bom para o TDAH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Muitas pessoas com TDAH usam o diário como um sistema de memória externa, um lugar para despejar pensamentos acelerados, acompanhar humores e notar padrões que a memória de trabalho deixa escapar. A parte difícil é a fricção e a consistência, e é exatamente isso que um app de diário pensado para o TDAH deve minimizar: captura instantânea, entrada por voz, prompts diários gentis e uma forma de recuperar o que você escreveu sem reler tudo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que torna o MirrorNotes bom para cérebros com TDAH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O MirrorNotes abre direto no teclado para despejos de pensamento instantâneos, aceita entrada por voz, marca o humor em cada anotação e envia um prompt diário gentil para dar estrutura. O recurso 'Pergunte ao seu diário' funciona como memória de trabalho externa: pergunte 'o que me empolgou no mês passado?' ou 'o que fica me esgotando?' e receba respostas a partir das suas próprias anotações, sem reler meses de texto. Todo recurso é grátis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O MirrorNotes é privado o suficiente para pensamentos sensíveis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Toda a IA roda no dispositivo (Gemma 3 via CoreML). O texto do diário nunca é enviado a um servidor; não existe backend de IA na nuvem. As anotações ficam no seu iPhone e sincronizam apenas com a sua própria conta iCloud."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .callout-warn { background: rgba(219,127,0,0.07); border-left-color: var(--orange); }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Diário para TDAH</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Guia</div>
+      <h1>Um app de diário que funciona do jeito que um cérebro com TDAH funciona</h1>
+      <p>Os pensamentos chegam rápido, na ordem errada, na hora errada, e o insight que você teve há duas semanas já se foi. O MirrorNotes foi feito exatamente para isso: capture em segundos, marque o humor e deixe uma IA no dispositivo lembrar dos padrões para você não precisar.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Por que cérebros com TDAH gostam</h3>
+      <ul>
+        <li>Captura sem fricção: o teclado já aparece no momento em que o app abre. Digite ou fale.</li>
+        <li>Tags de humor em cada anotação: veja seus padrões emocionais reais, não a sua memória deles.</li>
+        <li>"Pergunte ao seu diário" = memória de trabalho externa: "o que me empolgou no mês passado?" respondido com suas próprias palavras.</li>
+        <li>Um prompt diário gentil para dar estrutura. Sem sequências de culpa, sem spam de notificação.</li>
+        <li>100% privado: a IA roda no seu iPhone. Seus pensamentos sem filtro nunca chegam a um servidor.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>O problema real não é escrever, é recuperar</h2>
+      <p>A maioria dos conselhos sobre diário falha com cérebros com TDAH nos mesmos dois pontos. Primeiro, a fricção: se capturar um pensamento exige quatro toques e uma decisão sobre em qual caderno ele deveria ficar, o pensamento já se foi. Segundo, a recuperação: você até escreveu em algum lugar, mas reler meses de anotações para encontrar um padrão é exatamente o tipo de tarefa entediante e de atenção sustentada que simplesmente não acontece.</p>
+      <p>O MirrorNotes ataca as duas pontas:</p>
+      <h3>Capture em segundos</h3>
+      <ul>
+        <li>Abra o app, o teclado já está pronto. Sem pastas, sem modelos, sem decisões. Despeje o pensamento e feche.</li>
+        <li>Entrada por voz para quando digitar é demais. A fala é transcrita no dispositivo; o áudio é descartado.</li>
+        <li>Marque o humor com um toque: Ansioso, Empolgado, Esgotado, Calmo, criando uma linha do tempo como efeito colateral.</li>
+      </ul>
+      <h3>Recuperação sem reler</h3>
+      <ul>
+        <li><strong>Pergunte ao seu diário:</strong> "o que fica me esgotando?" "no que eu estava hiperfocado em maio?" "quando foi a última vez que me senti assim?" A IA no dispositivo responde a partir das suas anotações reais.</li>
+        <li><strong>Resumo Semanal:</strong> um resumo de domingo dos temas e humores da semana, a revisão que você nunca faria manualmente.</li>
+        <li><strong>Linha do Tempo de Humor:</strong> tendências ao longo das semanas, visíveis num relance, com um alerta se várias anotações seguidas mostrarem tendência negativa.</li>
+      </ul>
+      <div class="callout">
+        <strong>Pense nisso como uma memória de trabalho externa que responde.</strong> Você já externaliza tarefas em apps de lista. O MirrorNotes faz o mesmo para pensamentos e sentimentos, e diferente de um diário de papel, ele consegue responder perguntas.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Estrutura sem culpa</h2>
+      <p>Um prompt personalizado por dia, o Lembrete Diário, gerado a partir do que você realmente tem escrito. É uma porta, não uma tarefa de casa. Pule uma semana e nada te repreende; seu histórico continua intacto e o app retoma de onde você está, não de onde um contador de sequência diz que você deveria estar.</p>
+      <p>O app também espera deliberadamente até você ter escrito algumas anotações antes de mostrar qualquer insight de IA. Conselhos genéricos no primeiro dia não ajudam ninguém; no quinto dia, os prompts já são sobre <em>a sua</em> vida.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Privado o suficiente para a versão sem filtro</h2>
+      <p>Um diário só funciona se você escrever a coisa real: a espiral de sensibilidade à rejeição, a parede do terceiro dia de medicação, aquilo que você não consegue dizer em voz alta. Isso não é texto para mandar para uma IA na nuvem.</p>
+      <p>O MirrorNotes roda sua IA (Gemma 3) inteiramente no seu iPhone via CoreML. Não existe backend de IA na nuvem, nem chamada de API, nem conta. O texto do diário nunca sai do aparelho; a sincronização vai apenas para o seu próprio iCloud. A garantia de privacidade é arquitetural: não existe caminho de rede para as suas palavras percorrerem.</p>
+      <div class="callout callout-warn">
+        <strong>Nota honesta:</strong> o MirrorNotes é uma ferramenta de diário, não um dispositivo médico, e não substitui tratamento ou terapia para TDAH. É a camada de memória externa que fica ao lado de tudo o mais que funciona para você.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Perguntas frequentes</h2>
+      <h3>Quanto custa?</h3>
+      <p>Nada. Anotações ilimitadas, histórico completo, busca, backup no iCloud e toda a camada de IA (Lembrete Diário, Perguntar, Resumo Semanal, Linha do Tempo de Humor, Relatórios Mensais) são todos grátis, sem teste, sem limite.</p>
+      <h3>Eu abandono todo app de diário. Por que esse seria diferente?</h3>
+      <p>Talvez não seja, mas o design remove os pontos de falha mais comuns: sem configuração, sem estrutura para manter, sem culpa de sequência quebrada, e uma recompensa diária (o Lembrete) que fica mais pessoal quanto mais você escreve. Ser grátis significa que abandonar e voltar não custa nada.</p>
+      <h3>A entrada por voz funciona offline?</h3>
+      <p>Sim. Tudo, escrita, transcrição de voz e todos os recursos de IA, funciona sem nenhum sinal.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Despeje seus pensamentos em 10 segundos. Pergunte qualquer coisa depois.</h3>
+      <p>Todos os recursos, totalmente grátis. Sem teste, sem cartão, sem pegadinha.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Baixar na App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Todos os direitos reservados.</p>
+      <div class="footer-nav">
+        <a href="index.html">Início</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../offline-journal-app.html">Diário Offline</a>
+        <a href="privacy.html">Privacidade</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
