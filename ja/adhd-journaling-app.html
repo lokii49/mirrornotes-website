@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ADHD脳に寄り添う日記アプリ:一瞬でキャプチャ、音声入力、気分タグ、そしてあなたの代わりにパターンを覚えているAI。プライベートで、すべてオンデバイスです。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>ADHD向け日記アプリ:MirrorNotes、話しかけてくる外部記憶</title>
+  <link rel="canonical" href="https://mirrornotes.org/ja/adhd-journaling-app.html">
+  <meta property="og:title" content="ADHD向け日記アプリ:MirrorNotes">
+  <meta property="og:description" content="一瞬でキャプチャ、音声入力、気分タグ、そしてあなたの代わりにパターンを覚えているAI。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ja/adhd-journaling-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "ADHDに日記は効果がありますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ADHDを持つ多くの人が、日記を外部記憶システムとして使っています。次々と浮かぶ思考を吐き出し、気分を記録し、ワーキングメモリが取りこぼすパターンに気づく場所として。難しいのは摩擦と継続性で、ADHDに優しい日記アプリはそこを最小化する必要があります:一瞬でのキャプチャ、音声入力、やさしいデイリープロンプト、そしてすべてを読み返さずに書いたことを取り出せる方法です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotesはなぜADHD脳に向いていますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotesはアプリを開くと同時にキーボードが立ち上がり、一瞬の頭の中の吐き出しに対応します。音声入力に対応し、すべてのエントリーに気分タグを付け、構造のためのやさしいデイリープロンプトを1つ送ります。「日記に問いかける」機能は外部ワーキングメモリのように働きます:「先月何にワクワクしていた?」「何が私を消耗させ続けている?」と尋ねれば、自分のエントリーから答えが返ってきます。何か月分もの文章を読み返す必要はありません。すべての機能が無料です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotesは繊細な内容を書いても大丈夫なくらいプライベートですか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "はい。すべてのAIはオンデバイスで動作します(CoreML経由のGemma 3)。日記のテキストがサーバーに送信されることは一切なく、クラウドAIのバックエンドはそもそも存在しません。エントリーはあなたのiPhone上にあり、同期先はあなた自身のiCloudアカウントだけです。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .callout-warn { background: rgba(219,127,0,0.07); border-left-color: var(--orange); }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">ADHD向け日記</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">ガイド</div>
+      <h1>ADHD脳の働き方に寄り添う日記アプリ</h1>
+      <p>思考は速く、順番はバラバラで、タイミングも悪いタイミングでやってきます。そして2週間前に気づいたはずのひらめきはもう消えています。MirrorNotesはまさにそのために作られました:数秒でキャプチャし、気分にタグを付け、あとはオンデバイスAIにパターンを覚えさせておけばいい。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>ADHD脳が気に入る理由</h3>
+      <ul>
+        <li>摩擦ゼロのキャプチャ:アプリを開いた瞬間にキーボードが立ち上がります。書くか、話すか。</li>
+        <li>すべてのエントリーに気分タグ:記憶の中の感情ではなく、実際の感情パターンを見られます。</li>
+        <li>「日記に問いかける」= 外部ワーキングメモリ:「先月何にワクワクしていた?」も自分の言葉から答えが返ってきます。</li>
+        <li>構造のためのやさしいデイリープロンプトを1つだけ。罪悪感を煽るストリークも、通知の嵐もありません。</li>
+        <li>100%プライベート:AIはあなたのiPhone上で動作します。飾らない、フィルターのかかっていない思考がサーバーに届くことはありません。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>本当の問題は「書くこと」ではなく「取り出すこと」</h2>
+      <p>ほとんどの日記術のアドバイスは、ADHD脳に対して同じ2つのポイントで失敗します。1つ目は摩擦:思考を記録するのに4回のタップとどのノートに入れるかの判断が必要なら、その思考はもう消えています。2つ目は取り出し:どこかには書いたはずなのに、パターンを見つけるために何か月分ものエントリーを読み返すのは、まさに退屈で持続的な注意力を要するタスクであり、実際には起こりません。</p>
+      <p>MirrorNotesは両端に働きかけます:</p>
+      <h3>数秒でキャプチャ</h3>
+      <ul>
+        <li>アプリを開けば、キーボードはすでに立ち上がっています。フォルダなし、テンプレートなし、判断なし。頭の中を吐き出して閉じるだけ。</li>
+        <li>タイピングが負担なときは音声入力。音声はオンデバイスで文字起こしされ、音声データは破棄されます。</li>
+        <li>気分をワンタップでタグ付け:不安、ハイテンション、消耗、穏やか。それだけでタイムラインが自然にできあがります。</li>
+      </ul>
+      <h3>読み返さずに取り出す</h3>
+      <ul>
+        <li><strong>日記に問いかける:</strong>「何が私を消耗させ続けている?」「5月は何にハイパーフォーカスしていた?」「最後にこんな気分になったのはいつ?」オンデバイスAIがあなたの実際のエントリーから答えます。</li>
+        <li><strong>ウィークリーダイジェスト:</strong>その週のテーマと気分をまとめた日曜日のサマリー。あなたが手動では絶対にやらない振り返りです。</li>
+        <li><strong>気分タイムライン:</strong>数週間にわたる傾向がひと目でわかり、ネガティブな傾向が連続した場合にはアラートも。</li>
+      </ul>
+      <div class="callout">
+        <strong>話しかけてくる外部ワーキングメモリだと考えてください。</strong>あなたはすでにタスクをTo-Doアプリに外部化しています。MirrorNotesは思考や感情に対して同じことをします。しかも紙の日記と違い、質問に答えてくれます。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>恥のない構造</h2>
+      <p>1日1つのパーソナライズされたプロンプト、デイリーナッジは、あなたが実際に書いてきた内容から生成されます。それは宿題ではなく、ドアです。1週間書かなくても誰も叱りません。履歴はそのまま残り、アプリはストリークカウンターが示す地点ではなく、あなたが今いる地点から再開します。</p>
+      <p>アプリはまた、AIのインサイトを表示する前に、いくつかエントリーを書くまで意図的に待ちます。初日の一般的なアドバイスは誰の役にも立ちません。5日目になれば、ナッジは<em>あなた自身</em>の人生についてのものになります。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>飾らない本音を書けるだけのプライバシー</h2>
+      <p>日記が機能するのは、本当のことを書いたときだけです。拒絶に敏感な渦、薬の効き始めの3日目の壁、声に出しては言えないこと。それはクラウドAIに送るべきテキストではありません。</p>
+      <p>MirrorNotesはAI(Gemma 3)をCoreML経由で完全にあなたのiPhone上で動かします。クラウドAIのバックエンドはなく、APIコールもアカウントもありません。日記のテキストが端末から出ることはなく、同期先はあなた自身のiCloudだけです。プライバシーの保証はポリシーではなく構造そのものです:あなたの言葉が通る通信経路がそもそも存在しません。</p>
+      <div class="callout callout-warn">
+        <strong>正直な注記:</strong>MirrorNotesは日記ツールであり、医療機器ではありません。ADHDの治療やセラピーの代わりにはなりません。あなたにとって他に効果のある方法と並んで機能する、外部記憶のレイヤーです。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>よくある質問</h2>
+      <h3>料金はいくらですか?</h3>
+      <p>無料です。無制限のエントリー、全履歴、検索、iCloudバックアップ、そしてAIレイヤー全体(デイリーナッジ、Ask、ウィークリーダイジェスト、気分タイムライン、月間レポート)まで、すべて無料でトライアルも上限もありません。</p>
+      <h3>どの日記アプリも続きません。今回はなぜ続くのですか?</h3>
+      <p>続かないかもしれません。ですが、この設計はよくある挫折ポイントを取り除いています:セットアップ不要、維持すべき構造もなく、ストリークの罪悪感もなく、書けば書くほどパーソナルになるデイリーの見返り(ナッジ)があります。無料なので、やめてまた戻ってきても何も失いません。</p>
+      <h3>音声入力はオフラインでも使えますか?</h3>
+      <p>はい。書くこと、音声の文字起こし、すべてのAI機能を含め、電波が一切なくても動作します。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>10秒で頭の中を吐き出す。あとで何でも聞ける。</h3>
+      <p>すべての機能が完全無料。トライアルなし、カード登録なし、裏なし。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Storeでダウンロード</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. 無断複写・転載を禁じます。</p>
+      <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../offline-journal-app.html">オフライン日記</a>
+        <a href="privacy.html">プライバシー</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
