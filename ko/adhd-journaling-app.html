@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ADHD 뇌에 맞는 저널링 앱: 즉각적인 기록, 음성 입력, 감정 태그, 그리고 당신 대신 패턴을 기억하는 AI. 프라이빗하고 온디바이스로 작동합니다.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>ADHD 저널링 앱: MirrorNotes, 대답하는 외부 기억장치</title>
+  <link rel="canonical" href="https://mirrornotes.org/ko/adhd-journaling-app.html">
+  <meta property="og:title" content="ADHD 저널링 앱: MirrorNotes">
+  <meta property="og:description" content="즉각적인 기록, 음성 입력, 감정 태그, 그리고 당신 대신 패턴을 기억하는 AI.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ko/adhd-journaling-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "저널링은 ADHD에 도움이 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "많은 ADHD인들이 저널링을 외부 기억 시스템으로 활용합니다. 빠르게 스쳐가는 생각을 쏟아내고, 감정을 기록하며, 작업 기억이 놓치는 패턴을 알아차리는 공간으로요. 어려운 부분은 마찰과 꾸준함입니다. ADHD 친화적인 저널링 앱이라면 바로 이 부분을 최소화해야 합니다: 즉각적인 기록, 음성 입력, 부담 없는 매일의 질문, 그리고 전부 다시 읽지 않고도 쓴 것을 다시 찾아볼 수 있는 방법까지."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes가 ADHD 뇌에 좋은 이유는 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes는 앱을 열면 바로 키보드가 뜨기 때문에 즉시 생각을 쏟아낼 수 있고, 음성 입력을 지원하며, 모든 기록에 감정 태그를 붙이고, 구조를 위한 부담 없는 매일의 질문 하나를 보내드립니다. '저널에게 물어보기' 기능은 외부 작업 기억처럼 작동합니다: \"지난달에 무엇에 설렜었지?\"나 \"무엇이 나를 계속 지치게 하지?\"라고 물으면, 수개월치 글을 다시 읽지 않고도 당신 자신의 기록에서 답을 찾아드립니다. 모든 기능이 무료입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes는 민감한 생각을 적기에 충분히 프라이빗한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "네. 모든 AI는 온디바이스로 실행됩니다(CoreML 기반 Gemma 3). 일기 텍스트는 어떤 서버로도 전송되지 않으며, 클라우드 AI 백엔드 자체가 존재하지 않습니다. 기록은 당신의 아이폰에 저장되고, 오직 본인의 iCloud 계정으로만 동기화됩니다."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .callout-warn { background: rgba(219,127,0,0.07); border-left-color: var(--orange); }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">ADHD 저널링</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">가이드</div>
+      <h1>ADHD 뇌가 작동하는 방식 그대로 작동하는 저널링 앱</h1>
+      <p>생각은 빠르게, 잘못된 순서로, 잘못된 타이밍에 찾아오고, 2주 전에 떠올랐던 통찰은 이미 사라진 뒤입니다. MirrorNotes는 바로 이런 순간을 위해 만들어졌습니다: 몇 초 만에 기록하고, 감정을 태그하고, 온디바이스 AI가 당신 대신 패턴을 기억하게 하세요.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>ADHD 뇌가 이 앱을 좋아하는 이유</h3>
+      <ul>
+        <li>마찰 없는 기록: 앱을 열면 바로 키보드가 뜹니다. 타이핑하거나 말하세요.</li>
+        <li>모든 기록에 감정 태그: 기억이 아니라 실제 감정 패턴을 확인하세요.</li>
+        <li>"저널에게 물어보기" = 외부 작업 기억: "지난달에 무엇에 설렜었지?" 같은 질문에 당신 자신의 글로 답해드립니다.</li>
+        <li>구조를 위한 부담 없는 매일의 질문 하나. 죄책감을 유발하는 연속 기록도, 알림 폭탄도 없습니다.</li>
+        <li>100% 프라이빗: AI는 당신의 아이폰에서 실행됩니다. 꾸미지 않은, 걸러지지 않은 생각이 서버에 닿는 일은 없습니다.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>진짜 문제는 쓰기가 아니라 다시 찾기입니다</h2>
+      <p>대부분의 저널링 조언은 ADHD 뇌 앞에서 늘 같은 두 지점에서 무너집니다. 첫째는 마찰입니다. 생각을 기록하는 데 네 번의 탭과 어느 노트에 넣을지 결정하는 과정이 필요하다면, 그 생각은 이미 사라진 뒤입니다. 둘째는 다시 찾기입니다. 분명 어딘가에 적어두긴 했지만, 패턴을 찾기 위해 수개월치 기록을 다시 읽는 일은 지속적인 주의력을 요구하는, 그래서 결코 일어나지 않는 종류의 지루한 작업입니다.</p>
+      <p>MirrorNotes는 이 두 지점 모두를 공략합니다:</p>
+      <h3>몇 초 만에 기록</h3>
+      <ul>
+        <li>앱을 열면 키보드가 이미 떠 있습니다. 폴더도, 템플릿도, 결정할 것도 없습니다. 생각을 쏟아내고 닫으세요.</li>
+        <li>타이핑조차 버거울 땐 음성 입력을. 음성은 온디바이스에서 텍스트로 변환되며, 오디오는 즉시 폐기됩니다.</li>
+        <li>한 번의 탭으로 감정 태그: 불안함, 신남, 지침, 차분함. 그 자체로 타임라인이 쌓입니다.</li>
+      </ul>
+      <h3>다시 읽지 않고도 다시 찾기</h3>
+      <ul>
+        <li><strong>저널에게 물어보기:</strong> "무엇이 나를 계속 지치게 하지?" "5월엔 무엇에 과몰입했었지?" "이 느낌을 마지막으로 느낀 게 언제였지?" 온디바이스 AI가 실제 기록에서 답을 찾아드립니다.</li>
+        <li><strong>위클리 다이제스트:</strong> 일요일마다 받아보는 한 주의 주제와 감정 요약. 직접 하려면 절대 하지 않을 리뷰입니다.</li>
+        <li><strong>무드 타임라인:</strong> 몇 주에 걸친 감정 추이를 한눈에. 부정적인 기록이 며칠 연속 이어지면 알림도 보내드립니다.</li>
+      </ul>
+      <div class="callout">
+        <strong>대답하는 외부 작업 기억이라고 생각하세요.</strong> 당신은 이미 할 일을 투두 앱으로 외부화하고 있습니다. MirrorNotes는 생각과 감정에 대해 같은 일을 하며, 종이 일기와 달리 질문에 답할 수 있습니다.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>죄책감 없는 구조</h2>
+      <p>하루에 하나, 데일리 넛지라는 개인화된 질문이 당신이 실제로 써온 내용에서 생성됩니다. 숙제가 아니라 문을 여는 손잡이입니다. 일주일을 건너뛰어도 아무도 나무라지 않습니다. 기록은 그대로 남아 있고, 앱은 연속 기록 카운터가 요구하는 지점이 아니라 지금 당신이 있는 지점에서 다시 시작합니다.</p>
+      <p>또한 앱은 몇 개의 기록이 쌓이기 전까지는 의도적으로 AI 인사이트를 보여주지 않습니다. 첫날의 일반적인 조언은 누구에게도 도움이 되지 않습니다. 다섯 번째 날이 되면, 넛지는 <em>당신의</em> 삶에 관한 것이 됩니다.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>걸러지지 않은 진심을 적기에 충분히 프라이빗</h2>
+      <p>일기는 진짜를 써야만 의미가 있습니다: 거절에 예민해지는 소용돌이, 약물 복용 3일째의 벽, 입 밖으로 낼 수 없는 그 이야기. 그런 텍스트를 클라우드 AI로 보낼 순 없습니다.</p>
+      <p>MirrorNotes는 AI(Gemma 3)를 CoreML을 통해 전적으로 당신의 아이폰에서 실행합니다. 클라우드 AI 백엔드도, API 호출도, 계정도 없습니다. 일기 텍스트는 절대 기기를 벗어나지 않으며, 동기화는 오직 본인의 iCloud로만 이루어집니다. 프라이버시 보장은 정책이 아니라 구조입니다: 당신의 글이 지나갈 네트워크 경로 자체가 존재하지 않습니다.</p>
+      <div class="callout callout-warn">
+        <strong>솔직한 안내:</strong> MirrorNotes는 저널링 도구이지 의료 기기가 아니며, ADHD 치료나 상담을 대체하지 않습니다. 이미 당신에게 효과가 있는 다른 방법들과 함께 쓰이는 외부 기억 레이어입니다.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>자주 묻는 질문</h2>
+      <h3>비용은 얼마인가요?</h3>
+      <p>무료입니다. 무제한 기록, 전체 기록 열람, 검색, iCloud 백업, 그리고 전체 AI 레이어(데일리 넛지, 저널에게 물어보기, 위클리 다이제스트, 무드 타임라인, 먼슬리 리포트)까지 모두 무료이며, 체험판도 상한선도 없습니다.</p>
+      <h3>저는 어떤 저널링 앱도 오래 못 씁니다. 이건 왜 다를까요?</h3>
+      <p>이 앱도 그럴 수 있습니다. 하지만 설계 자체가 흔한 실패 지점들을 없앴습니다: 설정할 것도, 유지해야 할 구조도, 연속 기록에 대한 죄책감도 없고, 쓸수록 더 개인화되는 매일의 보상(넛지)이 있습니다. 무료이기 때문에 그만뒀다가 다시 돌아와도 아무 비용이 들지 않습니다.</p>
+      <h3>음성 입력은 오프라인에서도 작동하나요?</h3>
+      <p>네. 글쓰기, 음성 변환, 모든 AI 기능까지, 신호가 전혀 없어도 전부 작동합니다.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>10초 만에 생각을 쏟아내세요. 나중에 무엇이든 물어보세요.</h3>
+      <p>모든 기능이 완전히 무료입니다. 체험판도, 카드 등록도, 함정도 없습니다.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Store에서 다운로드</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">홈</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../offline-journal-app.html">오프라인 일기</a>
+        <a href="privacy.html">개인정보</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
