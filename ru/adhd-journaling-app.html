@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Дневник для мозга с СДВГ: мгновенная запись, голосовой ввод, метки настроения и ИИ, который запоминает ваши паттерны за вас. Приватно, на устройстве.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Дневник для СДВГ: MirrorNotes, внешняя память, которая отвечает</title>
+  <link rel="canonical" href="https://mirrornotes.org/ru/adhd-journaling-app.html">
+  <meta property="og:title" content="Дневник для СДВГ: MirrorNotes">
+  <meta property="og:description" content="Мгновенная запись, голосовой ввод, метки настроения и ИИ, который запоминает ваши паттерны за вас.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ru/adhd-journaling-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Полезно ли ведение дневника при СДВГ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Многие люди с СДВГ используют дневник как систему внешней памяти — место, куда можно выгрузить скачущие мысли, отслеживать настроение и замечать закономерности, которые теряет рабочая память. Сложность в трении и постоянстве, и именно это должно минимизировать дружественное к СДВГ приложение для дневника: мгновенная запись, голосовой ввод, мягкие ежедневные подсказки и способ найти написанное без перечитывания всего подряд."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Почему MirrorNotes подходит мозгу с СДВГ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes открывается сразу с клавиатурой для мгновенной выгрузки мыслей, поддерживает голосовой ввод, помечает настроение в каждой записи и присылает одну мягкую ежедневную подсказку для структуры. Функция «Спросите свой дневник» работает как внешняя рабочая память: спросите «что меня радовало в прошлом месяце?» или «что меня выматывает?» — и получите ответ по своим собственным записям, без перечитывания месяцев текста. Все функции бесплатны."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Достаточно ли приватен MirrorNotes для чувствительных мыслей?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Весь ИИ работает на устройстве (Gemma 3 через CoreML). Текст дневника никогда не отправляется на сервер — облачного ИИ-бэкенда просто не существует. Записи хранятся на вашем iPhone и синхронизируются только с вашим собственным аккаунтом iCloud."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .callout-warn { background: rgba(219,127,0,0.07); border-left-color: var(--orange); }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Дневник при СДВГ</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Руководство</div>
+      <h1>Дневник, который работает так же, как работает мозг с СДВГ</h1>
+      <p>Мысли приходят быстро, не в том порядке, не вовремя, а идея, которая была две недели назад, уже пропала. MirrorNotes создан именно для этого: запись за секунды, метка настроения и ИИ на устройстве, который запоминает закономерности за вас.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Почему это нравится мозгу с СДВГ</h3>
+      <ul>
+        <li>Запись без трения: клавиатура открыта в тот момент, когда открывается приложение. Печатайте или говорите.</li>
+        <li>Метки настроения в каждой записи: видны реальные эмоциональные паттерны, а не воспоминания о них.</li>
+        <li>«Спросите свой дневник» = внешняя рабочая память: «что меня радовало в прошлом месяце?» — ответ по вашим собственным словам.</li>
+        <li>Одна мягкая ежедневная подсказка для структуры. Без чувства вины за пропущенные серии, без спама уведомлений.</li>
+        <li>100% приватно: ИИ работает на вашем iPhone. Ваши немаскированные, неотфильтрованные мысли никогда не попадают на сервер.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Настоящая проблема не в письме, а в поиске</h2>
+      <p>Большинство советов по ведению дневника подводят мозг с СДВГ в двух одинаковых местах. Во-первых, трение: если запись мысли требует четырёх нажатий и решения, в какую тетрадь она попадёт, мысль уже потеряна. Во-вторых, поиск: вы всё-таки где-то её записали, но перечитывать месяцы записей ради поиска закономерности — это как раз та скучная задача на длительное внимание, которая просто не происходит.</p>
+      <p>MirrorNotes решает обе проблемы:</p>
+      <h3>Запись за секунды</h3>
+      <ul>
+        <li>Открываете приложение — клавиатура уже готова. Без папок, без шаблонов, без решений. Выгрузили мысли и закрыли.</li>
+        <li>Голосовой ввод, когда печатать — это слишком много. Речь распознаётся на устройстве; аудио удаляется.</li>
+        <li>Отметьте настроение одним нажатием: Тревожно, На подъёме, Истощён, Спокойно — так, между делом, строится шкала настроения.</li>
+      </ul>
+      <h3>Поиск без перечитывания</h3>
+      <ul>
+        <li><strong>Спросите свой дневник:</strong> «что меня выматывает?», «на чём я был сфокусирован в мае?», «когда я в последний раз чувствовал себя так же?» ИИ на устройстве отвечает по вашим настоящим записям.</li>
+        <li><strong>Еженедельный дайджест:</strong> воскресный обзор тем и настроений недели — тот самый обзор, который вы бы никогда не сделали вручную.</li>
+        <li><strong>Шкала настроения:</strong> тенденции за недели, видны с одного взгляда, с уведомлением, если несколько записей подряд идут в негативную сторону.</li>
+      </ul>
+      <div class="callout">
+        <strong>Думайте об этом как о внешней рабочей памяти, которая отвечает.</strong> Вы уже выносите задачи во внешние приложения-планировщики. MirrorNotes делает то же самое с мыслями и чувствами, и в отличие от бумажного дневника умеет отвечать на вопросы.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Структура без чувства вины</h2>
+      <p>Одна персонализированная подсказка в день, Ежедневная подсказка, формируется на основе того, о чём вы действительно писали. Это дверь, а не домашнее задание. Пропустите неделю — и ничто не будет вас упрекать; ваша история остаётся нетронутой, а приложение продолжает с того места, где вы находитесь, а не с того, где по мнению счётчика серий вы должны быть.</p>
+      <p>Приложение также намеренно ждёт, пока вы не напишете несколько записей, прежде чем показать любой инсайт от ИИ. Общие советы в первый день никому не помогают; к пятому дню подсказки уже о <em>вашей</em> жизни.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Достаточно приватно для неотфильтрованной версии</h2>
+      <p>Дневник работает только тогда, когда вы пишете настоящее: спираль чувствительности к отвержению, стену на третий день после приёма лекарств, то, что нельзя сказать вслух. Это не тот текст, который стоит отправлять в облачный ИИ.</p>
+      <p>MirrorNotes запускает свой ИИ (Gemma 3) полностью на вашем iPhone через CoreML. Нет облачного ИИ-бэкенда, нет вызова API, нет аккаунта. Текст дневника никогда не покидает устройство; синхронизация идёт только в ваш собственный iCloud. Гарантия приватности заложена архитектурно: для ваших слов просто не существует сетевого пути.</p>
+      <div class="callout callout-warn">
+        <strong>Честное примечание:</strong> MirrorNotes — это инструмент для ведения дневника, а не медицинское устройство, и он не заменяет лечение СДВГ или терапию. Это слой внешней памяти, который дополняет всё остальное, что вам помогает.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Часто задаваемые вопросы</h2>
+      <h3>Сколько это стоит?</h3>
+      <p>Ничего. Неограниченные записи, полная история, поиск, резервное копирование в iCloud и весь слой ИИ (Ежедневная подсказка, «Спросите свой дневник», Еженедельный дайджест, Шкала настроения, Ежемесячные отчёты) — всё бесплатно, без пробного периода, без ограничений.</p>
+      <h3>Я бросаю каждое приложение для дневника. Почему это будет иначе?</h3>
+      <p>Может, и не будет, но дизайн убирает привычные точки провала: без настройки, без структуры, которую нужно поддерживать, без чувства вины за серию, и с ежедневной наградой (Подсказкой), которая становится тем персональнее, чем больше вы пишете. Поскольку всё бесплатно, бросить и вернуться ничего не стоит.</p>
+      <h3>Работает ли голосовой ввод офлайн?</h3>
+      <p>Да. Всё — письмо, распознавание речи и все функции ИИ — работает вообще без сигнала.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Выгрузите мысли за 10 секунд. Спросите обо всём позже.</h3>
+      <p>Каждая функция полностью бесплатна. Без пробного периода, без карты, без подвоха.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Скачать в App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Главная</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="../offline-journal-app.html">Офлайн-дневник</a>
+        <a href="privacy.html">Конфиденциальность</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
