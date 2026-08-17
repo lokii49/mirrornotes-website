@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ein Offline-Journal, bei dem sogar die KI ohne Internet funktioniert. MirrorNotes betreibt Gemma 3 auf deinem iPhone: schreiben, reflektieren und Einblicke erhalten, im Flugmodus. Kostenlos.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Offline-Journal-App mit KI: MirrorNotes funktioniert ohne Internet</title>
+  <link rel="canonical" href="https://mirrornotes.org/de/offline-journal-app.html">
+  <meta property="og:title" content="Offline-Journal-App mit KI: MirrorNotes">
+  <meta property="og:description" content="Sogar die KI funktioniert ohne Internet. Schreiben, reflektieren und Einblicke erhalten, im Flugmodus.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/de/offline-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Gibt es eine Journal-App, die vollständig offline funktioniert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes funktioniert vollständig offline, einschließlich seiner KI-Funktionen. Das Modell (Gemma 3) läuft direkt auf dem iPhone, sodass tägliche Prompts, Stimmungsanalyse, wöchentliche Zusammenfassungen und Fragen an dein Journal alle im Flugmodus ohne Internetverbindung funktionieren. Die meisten Journaling-Apps sind nur zum Schreiben offline nutzbar; ihre KI-Funktionen benötigen eine Verbindung, weil die KI auf entfernten Servern läuft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Warum ist Offline-KI für ein Journal wichtig?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zwei Gründe: Verfügbarkeit und Datenschutz. Verfügbarkeit: Dein Journal funktioniert im Flugzeug, auf Wanderungen, in der U-Bahn und überall ohne Empfang. Datenschutz: Wenn die KI nie eine Internetverbindung braucht, verlässt dein Journaltext nie das Gerät über das Netz. Eine offlinefähige KI ist der strukturelle Beweis, dass Einträge nicht an einen Server gesendet werden."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Synchronisiert MirrorNotes zwischen Geräten ohne die Cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes speichert alles auf dem Gerät und synchronisiert optional über dein persönliches iCloud-Konto (Apple CloudKit). Die Synchronisierung ist optional: Die App ist auch ohne sie voll funktionsfähig, und wenn sie aktiviert ist, gehen Daten nur an deine eigene Apple-ID, auf die der Entwickler keinen Zugriff hat."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Offline-Journal</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Ratgeber</div>
+      <h1>Ein Offline-Journal, bei dem sogar die KI im Flugmodus funktioniert</h1>
+      <p>Viele Journaling-Apps lassen dich offline schreiben. MirrorNotes geht weiter: Die KI selbst, tägliche Prompts, Stimmungsanalyse, wöchentliche Zusammenfassungen, Fragen an deine Einträge, läuft auf dem Chip deines iPhones, keine Verbindung nötig. Im Flugzeug, auf dem Trail, unter der Erde: alles funktioniert.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Kurz gesagt</h3>
+      <ul>
+        <li>Jede Funktion funktioniert offline: Schreiben, Sprachtranskription und die gesamte KI.</li>
+        <li>Das Modell (Gemma 3 1B) lebt auf deinem iPhone und läuft über CoreML. Keine API-Aufrufe, niemals.</li>
+        <li>Offline-KI ist zugleich eine Datenschutzgarantie: Text, der nie ins Internet muss, gelangt auch nie dorthin.</li>
+        <li>Optionale iCloud-Synchronisierung mit deiner eigenen Apple-ID, sobald du wieder online bist. Kein Konto, kein Login.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>„Offline" hat meist ein Sternchen</h2>
+      <p>Die meisten Journaling-Apps sind offline wie ein Webbrowser offline ist: Man sieht, was zwischengespeichert ist, und Geschriebenes wartet in einer Warteschlange auf später. Aber sobald KI im Spiel ist, taucht das Sternchen auf: Prompts, Einblicke und Zusammenfassungen kommen von einem Server, brauchen also eine Verbindung. Dein „Offline-Journal" wird still und leise zu einem Online-Dienst mit lokalem Cache.</p>
+      <p>MirrorNotes hat kein Sternchen, weil es keinen Server gibt:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Funktion</th><th>Offline in MirrorNotes?</th><th>Typisches KI-Journal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Einträge schreiben</strong></td><td class="yes">Ja</td><td class="yes">Meist</td></tr>
+          <tr><td><strong>Verlauf lesen & Suche</strong></td><td class="yes">Ja, auf dem Gerät gespeichert</td><td class="warn">Abhängig vom Cache</td></tr>
+          <tr><td><strong>Sprache-zu-Text</strong></td><td class="yes">Ja, lokal transkribiert</td><td class="warn">Oft Cloud-Transkription</td></tr>
+          <tr><td><strong>Täglicher KI-Prompt</strong></td><td class="yes">Ja, on-device erzeugt</td><td class="no">Braucht Verbindung</td></tr>
+          <tr><td><strong>KI-Fragen zu Einträgen</strong></td><td class="yes">Ja, lokale Inferenz</td><td class="no">Braucht Verbindung</td></tr>
+          <tr><td><strong>Wöchentliche Zusammenfassung / Stimmungsanalyse</strong></td><td class="yes">Ja</td><td class="no">Braucht Verbindung</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Offline-First ist Datenschutz-First</h2>
+      <p>Diese beiden Eigenschaften sind dieselbe technische Entscheidung. Eine KI, die im Flugmodus funktioniert, ist eine KI, die nachweislich deine Worte nirgendwohin sendet. Du kannst es selbst überprüfen: Schalter umlegen und zusehen, wie jede Funktion weiterhin funktioniert.</p>
+      <ul>
+        <li>Einträge werden in SwiftData auf deinem iPhone gespeichert.</li>
+        <li>KI-Inferenz läuft im Speicher deines Telefons über die Neural Engine. Das Modell liest deinen Eintrag, erzeugt den Einblick, und nichts wird übertragen.</li>
+        <li>Es gibt kein Konto. Es gibt nichts, in das man sich einloggen könnte, und kein serverseitiges Profil von dir.</li>
+        <li>Sobald du wieder online bist, kopiert die optionale CloudKit-Synchronisierung Einträge in deine eigene iCloud, unter deiner Apple-ID, für uns nicht zugänglich.</li>
+      </ul>
+      <div class="callout">
+        <strong>Probier den Test:</strong> Versetz dein Telefon in den Flugmodus, schreib einen Eintrag und stell deinem Journal eine Frage. Es antwortet. Das ist die ganze Datenschutzerklärung, in zehn Sekunden demonstriert. Details in unserer <a href="privacy.html">Datenschutzerklärung</a>.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Was du bekommst</h2>
+      <ul>
+        <li><strong>Täglicher Impuls:</strong> ein personalisierter Reflexions-Prompt jeden Morgen, erstellt aus deinen letzten Einträgen.</li>
+        <li><strong>Frag dein Journal:</strong> Fragen in natürlicher Sprache zu Monaten deiner eigenen Texte.</li>
+        <li><strong>Wöchentliche Zusammenfassung:</strong> Sonntagsüberblick über Themen, Stimmungen und Muster.</li>
+        <li><strong>Stimmungsverlauf & Monatsberichte:</strong> langfristige emotionale Trends.</li>
+      </ul>
+      <p>Alles ist kostenlos: unbegrenzte Einträge, vollständiger Verlauf, Volltextsuche, iCloud-Backup und die gesamte KI-Ebene. Kein Test, keine Obergrenze.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Häufig gestellte Fragen</h2>
+      <h3>Wie groß ist das KI-Modell? Belastet es Speicherplatz oder Akku?</h3>
+      <p>Gemma 3 1B ist ein für heutige Verhältnisse kleines Modell, genau für diese Art der On-Device-Nutzung entwickelt. Die Inferenz läuft auf der Neural Engine, erzeugt einen kurzen Einblick und stoppt; sie läuft nicht im Hintergrund. Einblicke werden zwischengespeichert, sodass innerhalb von 24 Stunden nichts neu erzeugt wird.</p>
+      <h3>Welches iPhone brauche ich?</h3>
+      <p>MirrorNotes erfordert iOS 17 oder neuer. Aktuelle iPhones betreiben das Modell problemlos; neuere Chips sind einfach schneller.</p>
+      <h3>Wenn ich mein Telefon verliere, sind meine Einträge dann weg?</h3>
+      <p>Aktiviere die iCloud-Synchronisierung, und deine Einträge werden in deiner eigenen Apple-ID gesichert und auf einem neuen Gerät wiederherstellbar. Ohne Synchronisierung existieren Einträge nur auf dem Gerät: maximaler Datenschutz, deine Entscheidung.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Überall journaln. Überall reflektieren.</h3>
+      <p>Jede Funktion, komplett kostenlos. Kein Test, keine Karte, kein Haken.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Im App Store laden</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Alle Rechte vorbehalten.</p>
+      <div class="footer-nav">
+        <a href="index.html">Startseite</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="adhd-journaling-app.html">ADHS-Journaling</a>
+        <a href="privacy.html">Datenschutz</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
