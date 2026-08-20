@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AIさえもインターネットなしで動作するオフライン日記アプリ。MirrorNotesはGemma 3をiPhone上で実行:機内モードでも書いて、振り返り、インサイトが得られます。無料。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>AI搭載のオフライン日記アプリ:MirrorNotesはインターネットなしで動作</title>
+  <link rel="canonical" href="https://mirrornotes.org/ja/offline-journal-app.html">
+  <meta property="og:title" content="オフライン日記アプリ(AI搭載):MirrorNotes">
+  <meta property="og:description" content="AIさえもインターネットなしで動作。機内モードでも書いて、振り返り、インサイトを得られます。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ja/offline-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "完全にオフラインで動作する日記アプリはありますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotesはAI機能を含め、完全にオフラインで動作します。モデル(Gemma 3)はiPhone自体で動作するため、デイリープロンプト、気分分析、ウィークリーダイジェスト、日記への質問応答はすべて、インターネット接続のない機内モードでも機能します。ほとんどの日記アプリは書くことだけがオフラインで動作し、AI機能はリモートサーバーで動作するため接続が必要です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "日記にとって、オフラインAIが重要な理由は?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "理由は2つあります:可用性とプライバシーです。可用性:あなたの日記は、飛行機の中でも、ハイキング中でも、地下鉄でも、電波のないどこでも機能します。プライバシー:AIがインターネットを一切必要としないなら、あなたの日記のテキストがそこを通ることもありません。オフラインで動作できるAIは、エントリーがサーバーに送信されていないことの構造的な証明です。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotesはクラウドなしで端末間の同期ができますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotesはすべてをオンデバイスに保存し、オプションであなた個人のiCloudアカウント(Apple CloudKit)経由で同期します。同期はオプションです:同期なしでもアプリは完全に機能し、有効にした場合もデータはあなた自身のApple IDにのみ送られ、開発者はアクセスできません。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">オフライン日記</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">ガイド</div>
+      <h1>AIさえも機内モードで動くオフライン日記</h1>
+      <p>オフラインで書ける日記アプリはたくさんあります。MirrorNotesはさらに踏み込みます:AIそのもの、デイリープロンプト、気分分析、ウィークリーサマリー、エントリーへの質問応答まで、すべてiPhoneのチップ上で動作し、接続は一切不要です。飛行機の中でも、トレイルでも、地下鉄でも:すべてが機能します。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>すべての機能がオフラインで動作します:書くこと、音声の文字起こし、そしてすべてのAI。</li>
+        <li>モデル(Gemma 3 1B)はあなたのiPhone上にあり、CoreML経由で動作します。APIコールは一切ありません。</li>
+        <li>オフラインAIはプライバシーの保証も兼ねています:インターネットを必要としないテキストは、決してそこを通過しません。</li>
+        <li>オンラインに戻ったときは、あなた自身のApple IDへのオプションのiCloud同期。アカウント不要、サインイン不要。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>「オフライン」には、たいてい注釈がつく</h2>
+      <p>ほとんどの日記アプリは、ウェブブラウザと同じ意味で「オフライン」です:キャッシュされたものは見られるし、書いたものは後で送信するためにキューに入ります。しかしAIが関わった瞬間、注釈が現れます:プロンプト、インサイト、サマリーはサーバーから届くため、接続が必要になるのです。あなたの「オフライン日記」は、いつの間にかローカルキャッシュ付きのオンラインサービスになっています。</p>
+      <p>MirrorNotesに注釈がないのは、そもそもサーバーが存在しないからです:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>機能</th><th>MirrorNotesではオフラインで動作?</th><th>一般的なAI日記アプリ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>エントリーを書く</strong></td><td class="yes">はい</td><td class="yes">たいてい</td></tr>
+          <tr><td><strong>全履歴の閲覧・検索</strong></td><td class="yes">はい、オンデバイスに保存</td><td class="warn">キャッシュ次第</td></tr>
+          <tr><td><strong>音声入力</strong></td><td class="yes">はい、ローカルで文字起こし</td><td class="warn">多くはクラウド文字起こし</td></tr>
+          <tr><td><strong>デイリーAIプロンプト</strong></td><td class="yes">はい、オンデバイスで生成</td><td class="no">接続が必要</td></tr>
+          <tr><td><strong>エントリーへのAI質問応答</strong></td><td class="yes">はい、ローカル推論</td><td class="no">接続が必要</td></tr>
+          <tr><td><strong>ウィークリーダイジェスト/気分分析</strong></td><td class="yes">はい</td><td class="no">接続が必要</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>オフラインファーストは、プライバシーファースト</h2>
+      <p>この2つの性質は、実は同じ設計判断です。機内モードで動作するAIは、あなたの言葉をどこにも送っていないことを実証できるAIです。スイッチを切り替えて、すべての機能が動き続けるのを見れば、自分自身で確認できます。</p>
+      <ul>
+        <li>エントリーはあなたのiPhone上のSwiftDataに保存されます。</li>
+        <li>AI推論はNeural Engine経由で、あなたの端末のメモリ内で行われます。モデルはエントリーを読み、インサイトを生成しますが、何も送信されません。</li>
+        <li>アカウントは存在しません。サインインする対象も、サーバー側にあなたのプロフィールもありません。</li>
+        <li>オンラインに戻ったときは、オプションのCloudKit同期によってエントリーがあなた自身のiCloud、あなたのApple ID配下にコピーされます。開発者からはアクセスできません。</li>
+      </ul>
+      <div class="callout">
+        <strong>試してみてください:</strong>端末を機内モードにして、エントリーを書き、日記に質問してみましょう。ちゃんと答えます。それが、10秒で実証されるプライバシーポリシーのすべてです。詳細は<a href="privacy.html">プライバシーポリシー</a>をご覧ください。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>できること</h2>
+      <ul>
+        <li><strong>デイリーナッジ:</strong>毎朝届く、あなたの最近のエントリーから作られたパーソナライズされたリフレクションプロンプト。</li>
+        <li><strong>日記に問いかける:</strong>何か月分もの自分の文章に対して、自然言語で質問できます。</li>
+        <li><strong>ウィークリーダイジェスト:</strong>テーマ、気分、パターンをまとめた日曜日のサマリー。</li>
+        <li><strong>気分タイムライン&amp;月間レポート:</strong>数週間〜数か月にわたる感情の傾向。</li>
+      </ul>
+      <p>すべて無料です:無制限のエントリー、全履歴、全文検索、iCloudバックアップ、そしてAIレイヤー全体。トライアルなし、上限なし。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>よくある質問</h2>
+      <h3>AIモデルはどれくらいの大きさですか?ストレージやバッテリーを消費しますか?</h3>
+      <p>Gemma 3 1Bは、現代の基準では小さなモデルで、まさにこの種のオンデバイス利用のために設計されています。推論はNeural Engine上で実行され、短いインサイトを生成したら停止します。バックグラウンドで動き続けることはありません。インサイトはキャッシュされるため、24時間以内に再生成されることもありません。</p>
+      <h3>どのiPhoneが必要ですか?</h3>
+      <p>MirrorNotesはiOS 17以降が必要です。最近のiPhoneならモデルを問題なく動作させられます。新しいチップほど、単純に高速です。</p>
+      <h3>端末を紛失したら、エントリーは失われますか?</h3>
+      <p>iCloud同期を有効にしておけば、エントリーはあなた自身のApple IDにバックアップされ、新しい端末で復元できます。同期を使わない場合、エントリーは端末上にのみ存在します:最大限のプライバシーか、その選択はあなた次第です。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>どこでも書ける。どこでも振り返れる。</h3>
+      <p>すべての機能が完全無料。トライアルなし、カード登録なし、裏なし。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Storeでダウンロード</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. 無断複写・転載を禁じます。</p>
+      <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="adhd-journaling-app.html">ADHD向け日記</a>
+        <a href="privacy.html">プライバシー</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
