@@ -216,6 +216,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mirrornotes.org/zh/offline-journal-app.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mirrornotes.org/it/rosebud-alternative.html</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
