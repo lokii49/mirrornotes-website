@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La app de diario más privada para iPhone: MirrorNotes ejecuta la IA en el dispositivo, así que el texto de tu diario nunca sale de tu teléfono. Sin nube, sin servidor, sin cuenta necesaria.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>La App de Diario Más Privada para iPhone: MirrorNotes</title>
+  <link rel="canonical" href="https://mirrornotes.org/es/private-journal-app.html">
+  <meta property="og:title" content="La App de Diario Más Privada para iPhone: MirrorNotes">
+  <meta property="og:description" content="IA en el dispositivo. Tu texto nunca sale de tu teléfono. Sin nube, sin servidor, sin cuenta.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/es/private-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuál es la app de diario más privada para iPhone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes es la app de diario más privada para iPhone porque la garantía de privacidad es arquitectónica: el texto de tu diario nunca sale de tu dispositivo. No hay servidor, no hay IA en la nube y no se necesita cuenta. Toda la IA, las preguntas diarias, el análisis de ánimo, Pregúntale a tu diario, los resúmenes semanales, se ejecuta en el dispositivo usando Gemma 3 vía CoreML. Incluso el modelo de IA se ejecuta localmente, así que no se transmite nada a ningún sitio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Las apps de diario leen tu diario?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La mayoría de las apps de diario con funciones de IA envían tus entradas a un servidor para procesarlas: tu texto es leído por un modelo de IA que se ejecuta en su infraestructura. MirrorNotes es diferente: el modelo de IA (Gemma 3) se ejecuta en el chip de tu iPhone, así que lee tus entradas localmente sin transmitirlas jamás. Tus palabras no van a ningún sitio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es privado un diario en iCloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes usa iCloud para la copia de seguridad y la sincronización entre tus dispositivos Apple. Los datos de iCloud están cifrados y son accesibles solo bajo tu ID de Apple; Apple no puede leer el contenido de tu diario. Y lo más importante: la IA nunca usa iCloud, lee tus entradas directamente desde el almacenamiento del dispositivo usando el modelo local."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué app de diario privada funciona sin conexión?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes funciona completamente sin conexión, incluidas todas sus funciones de IA. Como Gemma 3 se ejecuta en el Neural Engine de tu iPhone, puedes escribir entradas y recibir ideas de IA sin conexión a internet. Funciona en un vuelo, bajo tierra, en la montaña o en cualquier lugar sin señal."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .privacy-item .icon { font-size: 24px; margin-bottom: 10px; }
+    .privacy-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .privacy-item p { font-size: 13px; color: var(--text-2); margin: 0; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--red); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Diario Privado</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Privacidad</div>
+      <h1>La app de diario más privada para iPhone</h1>
+      <p>La mayoría de las apps de diario guardan tus entradas en un servidor. La mayoría de las apps de diario con IA envían tus pensamientos privados a OpenAI o a su propia nube. MirrorNotes no hace ninguna de las dos cosas. La IA se ejecuta en tu iPhone. El texto de tu diario no va a ningún sitio.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Garantías de privacidad</h3>
+      <ul>
+        <li>El texto del diario nunca se transmite: sin servidor, sin IA en la nube, sin llamadas a ninguna API</li>
+        <li>Toda la IA se ejecuta en el chip de tu iPhone (Gemma 3 vía CoreML), no en el servidor de otra persona</li>
+        <li>Sin cuenta, sin inicio de sesión necesario: nada que vulnerar</li>
+        <li>Sincronización con iCloud cifrada bajo tu ID de Apple: no podemos leerla</li>
+        <li>Funciona en modo avión: ninguna función necesita conexión</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Por qué la mayoría de las apps «privadas» no lo son en realidad</h2>
+      <p>Las políticas de privacidad dicen «no vendemos tus datos». Eso es distinto de «no vemos tus datos». La mayoría de las apps de diario guardan tus entradas en sus servidores, aunque prometan no usarlas mal. Cuando hay funciones de IA de por medio, tu texto es procesado por un modelo en la nube, lo que significa que viaja por internet y a través de la infraestructura de otra persona.</p>
+      <p>Esto no es una crítica a las intenciones de esas empresas. Es una consecuencia técnica de cómo funciona la IA en la nube: el modelo tiene que recibir tu texto para procesarlo.</p>
+      <div class="callout">
+        <strong>La privacidad de MirrorNotes es arquitectónica.</strong> No existe ninguna ruta de código que transmita el texto de tu diario. El modelo vive en tu dispositivo y lee tus entradas en tu chip. Nada que interceptar. Nada que vulnerar. Nada que pueda reclamarse por orden judicial.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Cómo funciona la privacidad técnicamente</h2>
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <div class="icon">📱</div>
+          <h4>IA en el dispositivo</h4>
+          <p>Gemma 3 1B se ejecuta vía CoreML en el Neural Engine de tu iPhone. Sin llamadas a ninguna API, sin tokens consumidos, sin datos enviados.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🔒</div>
+          <h4>Almacenamiento en SwiftData</h4>
+          <p>Las entradas se guardan localmente en SwiftData en tu dispositivo. Cifradas en reposo por iOS. No tenemos ninguna base de datos con tus entradas.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">☁️</div>
+          <h4>Sincronización con iCloud</h4>
+          <p>La copia de seguridad opcional en iCloud sincroniza las entradas entre tus dispositivos Apple. Cifrada bajo tu ID de Apple. No podemos acceder a ella.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">✈️</div>
+          <h4>Sin conexión primero</h4>
+          <p>Todas las funciones, escribir, leer, buscar, toda la IA, funcionan sin conexión a internet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Cómo se compara MirrorNotes con otras apps privadas</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>App</th><th>Diario guardado en el dispositivo</th><th>IA en el dispositivo</th><th>Cuenta necesaria</th><th>Funciona sin conexión</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Sí</td><td class="yes">Sí, Gemma 3</td><td class="yes">No</td><td class="yes">Completamente</td></tr>
+          <tr><td>Day One</td><td class="warn">iCloud + sus servidores</td><td class="no">IA en la nube</td><td class="no">Necesaria</td><td class="warn">Solo escritura</td></tr>
+          <tr><td>Rosebud</td><td class="no">Sus servidores</td><td class="no">IA en la nube</td><td class="no">Necesaria</td><td class="no">No</td></tr>
+          <tr><td>Reflect</td><td class="warn">Sus servidores</td><td class="no">IA en la nube</td><td class="no">Necesaria</td><td class="warn">Solo escritura</td></tr>
+          <tr><td>Apple Journal</td><td class="yes">En el dispositivo</td><td class="warn">Apple Intelligence (nube)</td><td class="no">ID de Apple</td><td class="warn">Solo escritura</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Lo que obtienes con un diario privado</h2>
+      <p>Privacidad no significa menos funciones. MirrorNotes ofrece la experiencia completa de diario con IA, de forma privada y gratuita:</p>
+      <ul>
+        <li><strong>Recordatorio Diario:</strong> una pregunta de reflexión matutina personalizada según lo que has estado escribiendo. Generada en tu chip, y solo tú la ves.</li>
+        <li><strong>Pregúntale a tu diario:</strong> haz preguntas abiertas sobre meses de entradas: «¿cuándo estoy más ansioso?», «¿qué patrones se repiten?». Respondidas en el dispositivo.</li>
+        <li><strong>Línea de estado de ánimo:</strong> seguimiento emocional a lo largo de tus entradas, con alertas cuando llevas varios días difíciles seguidos.</li>
+        <li><strong>Resumen Semanal:</strong> cada domingo, un resumen de 7 días de tus temas, energía y ánimo, generado localmente.</li>
+        <li><strong>Informe Mensual:</strong> el día 1 de cada mes, una reflexión profunda sobre en quién te estás convirtiendo y qué significó este mes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Preguntas frecuentes</h2>
+      <h3>¿Puede MirrorNotes ver mi diario?</h3>
+      <p>No. Las entradas se guardan en tu dispositivo en SwiftData (un framework de Apple) y, opcionalmente, se sincronizan a través de tu propio iCloud. No tenemos ningún servidor que reciba el texto del diario, ninguna base de datos de entradas y ninguna forma de leer lo que escribes.</p>
+      <h3>¿Qué pasa si borro la app?</h3>
+      <p>Las entradas guardadas localmente se borran junto con la app. Las copias en iCloud se conservan hasta que las borres desde iCloud, algo que controlas tú desde los Ajustes de iOS. Nosotros no conservamos nada de nuestro lado.</p>
+      <h3>¿Hay una política de privacidad?</h3>
+      <p>Sí, <a href="privacy.html">lee la política de privacidad completa</a>. La versión corta: no recopilamos el contenido del diario, no vendemos datos y no hay analítica sobre lo que escribes.</p>
+      <h3>¿Por qué no hacer la app de código abierto?</h3>
+      <p>El código abierto está en la hoja de ruta. La arquitectura en el dispositivo significa que, incluso sin código abierto, la privacidad es verificable: ejecuta un monitor de red mientras usas MirrorNotes y verás cero solicitudes de red relacionadas con el diario.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Diario privado, empezando ahora</h3>
+      <p>Todas las funciones, completamente gratis. Sin prueba, sin tarjeta, sin trampa.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Descargar en la App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. Todos los derechos reservados.</p>
+      <div class="footer-nav">
+        <a href="index.html">Inicio</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="reflect-alternative.html">vs Reflect</a>
+        <a href="offline-journal-app.html">Diario sin conexión</a>
+        <a href="privacy.html">Privacidad</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
