@@ -330,6 +330,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mirrornotes.org/pt/private-journal-app.html</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mirrornotes.org/fr/offline-journal-app.html</loc>
     <lastmod>2026-08-16</lastmod>
     <changefreq>monthly</changefreq>
