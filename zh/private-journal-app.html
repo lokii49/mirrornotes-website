@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="iPhone 上最私密的日记应用：MirrorNotes 让 AI 完全在设备端运行，你的日记文字永远不会离开手机。没有云端，没有服务器，无需账户。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>iPhone 上最私密的日记应用：MirrorNotes</title>
+  <link rel="canonical" href="https://mirrornotes.org/zh/private-journal-app.html">
+  <meta property="og:title" content="iPhone 上最私密的日记应用：MirrorNotes">
+  <meta property="og:description" content="设备端 AI 日记应用。你的文字永远不会离开手机。没有云端，没有服务器，无需账户。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/zh/private-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "iPhone 上最私密的日记应用是什么？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes 是 iPhone 上最私密的日记应用，因为它的隐私保证是架构层面的：你的日记文字永远不会离开你的设备。没有服务器，没有云端 AI 后端，也不需要账户。所有 AI 功能——每日提示、情绪分析、向日记提问、每周摘要——都通过 Gemma 3 借助 CoreML 在设备端运行。就连 AI 模型本身也运行在本地，因此没有任何内容会被传输到任何地方。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "日记应用会读取你的日记内容吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "大多数带 AI 功能的日记应用会把你的条目发送到服务器进行处理，你的文字会被运行在他们基础设施上的 AI 模型读取。MirrorNotes 不同：AI 模型（Gemma 3）运行在你 iPhone 的芯片上，因此它在本地读取你的条目，从不传输它们。你写下的文字哪里也不会去。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "iCloud 中的日记私密吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes 使用 iCloud 在你的 Apple 设备之间进行备份和同步。iCloud 数据经过加密，只能通过你自己的 Apple ID 访问；Apple 无法读取你的日记内容。更重要的是，AI 从不使用 iCloud：它直接从设备端存储读取你的条目，使用的是本地模型。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "哪款私密日记应用可以离线使用？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes 完全可以离线使用，包括所有 AI 功能。因为 Gemma 3 运行在你 iPhone 的神经网络引擎上，你可以在没有网络连接的情况下书写条目并获得 AI 洞察。无论是在飞机上、地下，还是在山区，任何没有信号的地方都能使用。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .privacy-item .icon { font-size: 24px; margin-bottom: 10px; }
+    .privacy-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .privacy-item p { font-size: 13px; color: var(--text-2); margin: 0; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--red); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">私密日记</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">隐私</div>
+      <h1>iPhone 上最私密的日记应用</h1>
+      <p>大多数日记应用把你的条目存储在服务器上。大多数 AI 日记应用会把你的私人想法发送给 OpenAI 或它们自己的云端。MirrorNotes 两者都不做。AI 运行在你的 iPhone 上。你的日记文字哪里也不会去。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>隐私保证</h3>
+      <ul>
+        <li>日记文字从不被传输：没有服务器，没有云端 AI，没有 API 调用</li>
+        <li>所有 AI 都运行在你 iPhone 的芯片上（通过 CoreML 运行的 Gemma 3），而不是别人的服务器上</li>
+        <li>无需账户，无需登录：没有什么可以被入侵</li>
+        <li>iCloud 同步在你自己的 Apple ID 下加密：我们无法读取</li>
+        <li>支持飞行模式：任何功能都不需要联网</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>为什么大多数「私密」应用其实并不私密</h2>
+      <p>隐私政策会说「我们不出售你的数据」。这和「我们看不到你的数据」是两回事。大多数日记应用会把你的条目存储在他们的服务器上，即使他们承诺不会滥用。当涉及 AI 功能时，你的文字会由云端模型处理，这意味着它会经过互联网，穿过别人的基础设施。</p>
+      <p>这并不是在批评这些公司的初衷。这是云端 AI 工作方式带来的技术性后果。模型必须先收到你的文字，才能处理它。</p>
+      <div class="callout">
+        <strong>MirrorNotes 的隐私是架构层面的。</strong>不存在任何会传输你日记文字的代码路径。模型就在你的设备上，直接在你的芯片上读取你的条目。没有什么可以被拦截，没有什么可以被入侵，也没有什么可以被传票要求提供。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>隐私在技术上是如何实现的</h2>
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <div class="icon">📱</div>
+          <h4>设备端 AI</h4>
+          <p>Gemma 3 1B 通过 CoreML 运行在你 iPhone 的神经网络引擎上。没有 API 调用，不消耗任何 token，不发送任何数据。</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🔒</div>
+          <h4>SwiftData 存储</h4>
+          <p>日记条目本地存储在你设备上的 SwiftData 中。iOS 会对静态数据加密。我们没有你条目的任何数据库。</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">☁️</div>
+          <h4>iCloud 同步</h4>
+          <p>可选的 iCloud 备份会在你的 Apple 设备之间同步条目。在你自己的 Apple ID 下加密。我们无法访问它。</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">✈️</div>
+          <h4>离线优先</h4>
+          <p>每一项功能——书写、阅读、搜索、所有 AI 功能——都能在没有网络连接的情况下使用。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>MirrorNotes 与其他私密应用的对比</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>应用</th><th>日记是否存储在设备端</th><th>AI 是否在设备端运行</th><th>是否需要账户</th><th>是否支持离线使用</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">是</td><td class="yes">是，Gemma 3</td><td class="yes">否</td><td class="yes">完全支持</td></tr>
+          <tr><td>Day One</td><td class="warn">iCloud + 他们的服务器</td><td class="no">云端 AI</td><td class="no">需要</td><td class="warn">仅书写功能</td></tr>
+          <tr><td>Rosebud</td><td class="no">他们的服务器</td><td class="no">云端 AI</td><td class="no">需要</td><td class="no">否</td></tr>
+          <tr><td>Reflect</td><td class="warn">他们的服务器</td><td class="no">云端 AI</td><td class="no">需要</td><td class="warn">仅书写功能</td></tr>
+          <tr><td>Apple Journal</td><td class="yes">设备端</td><td class="warn">Apple Intelligence（云端）</td><td class="no">Apple ID</td><td class="warn">仅书写功能</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>私密日记能带来什么</h2>
+      <p>隐私不代表功能更少。MirrorNotes 提供完整的 AI 日记体验——私密，且免费：</p>
+      <ul>
+        <li><strong>每日启发：</strong>根据你最近写下的内容生成的个性化早晨反思提示。在你的芯片上生成，只有你能看到。</li>
+        <li><strong>向日记提问：</strong>就数月来的条目提出开放式问题：「我什么时候最焦虑？」「哪些模式反复出现？」在设备端作答。</li>
+        <li><strong>情绪时间线：</strong>跨条目的情绪追踪，当你连续经历几个艰难的日子时会提醒你。</li>
+        <li><strong>每周摘要：</strong>每周日，本地生成一份关于你这一周主题、精力和情绪的 7 天总结。</li>
+        <li><strong>每月深度报告：</strong>每月 1 日，深入反思你正在成为怎样的人，以及这个月意味着什么。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>常见问题</h2>
+      <h3>MirrorNotes 能看到我的日记吗？</h3>
+      <p>不能。条目存储在你设备上的 SwiftData（一个 Apple 框架）中，并可以选择通过你自己的 iCloud 同步。我们没有任何接收日记文字的服务器，没有条目数据库，也没有能力读取你写下的内容。</p>
+      <h3>如果我删除应用会怎样？</h3>
+      <p>本地存储的条目会随应用一起被删除。iCloud 中的副本会保留，直到你从 iCloud 中删除它们——这由你在 iOS 设置中自行控制。我们这边不会保留任何内容。</p>
+      <h3>有隐私政策吗？</h3>
+      <p>有，<a href="privacy.html">阅读完整的隐私政策</a>。简而言之：我们不收集日记内容，不出售数据，也不会对你写的内容进行任何分析。</p>
+      <h3>为什么不开源这款应用？</h3>
+      <p>开源已经在计划之中。设备端架构意味着即使还没有开源，隐私性也是可以验证的：在使用 MirrorNotes 时运行一个网络监控工具，你会看到零个与日记相关的网络请求。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>私密日记，现在就开始</h3>
+      <p>每一项功能，完全免费。无需试用，无需绑卡，没有任何隐藏条件。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">在 App Store 下载</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">首页</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="reflect-alternative.html">vs Reflect</a>
+        <a href="offline-journal-app.html">离线日记</a>
+        <a href="privacy.html">隐私</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
