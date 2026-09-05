@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Journey app alternative with real AI insights: MirrorNotes gives you daily AI prompts, mood analysis, and 'Ask your journal', all running on your iPhone, never in the cloud, completely free.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Journey App Alternative with AI: MirrorNotes, Free Private Journaling</title>
+  <link rel="canonical" href="https://mirrornotes.org/journey-alternative.html">
+  <meta property="og:title" content="Journey App Alternative with AI: MirrorNotes">
+  <meta property="og:description" content="Daily AI prompts, mood analysis, and 'Ask your journal', all on-device, never in the cloud. Free.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/journey-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good Journey app alternative with AI features?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes is a Journey app alternative built around on-device AI rather than cross-platform breadth. It generates daily personalized prompts, tracks mood trends, summarizes your week, and answers natural-language questions about your own entries, with all AI running locally on your iPhone (Gemma 3), so journal text is never sent to a server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MirrorNotes cheaper than Journey?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Journey's cross-platform membership runs about $29.99 per year (it also offers a one-time Premium license per platform). MirrorNotes is free: the full AI layer, daily prompts, weekly digests, and question-answering over your entries, at no cost, because on-device inference has no server bill to recoup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Journey have on-device AI that reads your entries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Journey focuses on guided coach programs, location and weather tagging, and multi-platform sync rather than a model that analyzes your writing. MirrorNotes ships its own local model (Gemma 3 via CoreML) that generates prompts, mood analysis, weekly digests, and answers to questions, all from what you've actually written, entirely on-device."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Journey Alternative</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Comparison</div>
+      <h1>A Journey app alternative built around AI</h1>
+      <p>Journey is the journaling app for people who write from more than one device: iPhone, Android, Windows, Mac, the web, even Chrome OS, with maps, weather tagging, and guided coach programs along the way. What it isn't built around is a model that reads what you write. MirrorNotes is: daily personalized prompts, mood analysis, weekly digests, and a journal you can ask questions, all running on your iPhone, never in the cloud, and completely free.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>Journey = the most cross-platform journal, with maps, weather, and guided programs. MirrorNotes = a journal that talks back.</li>
+        <li>MirrorNotes AI is fully on-device (Gemma 3): prompts, digests, and "Ask your journal" work offline and entries never reach a server.</li>
+        <li>MirrorNotes is free. Journey's cross-platform membership runs about $29.99/yr (or a one-time Premium license per platform).</li>
+        <li>Write from five different devices and want maps of everywhere you've journaled? Stay with Journey. Want insight from what you write, for free? Try MirrorNotes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Side-by-side comparison</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Feature</th><th>MirrorNotes</th><th>Journey</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Built-in AI insights</strong></td><td class="yes">Core feature: daily prompts, digests, mood analysis, Ask</td><td class="no">No analysis of your writing</td></tr>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Gemma 3 via CoreML)</td><td class="no">No on-device model; guided coach programs are pre-written, not generated from your entries</td></tr>
+          <tr><td><strong>Ask questions over your entries</strong></td><td class="yes">"What stresses me out?" answered on-device</td><td class="no">No</td></tr>
+          <tr><td><strong>Mood timeline & trends</strong></td><td class="yes">Yes, generated from your writing</td><td class="no">No mood analytics</td></tr>
+          <tr><td><strong>Location & weather tagging</strong></td><td class="no">Not a focus</td><td class="yes">Automatic location, weather, and atlas map view</td></tr>
+          <tr><td><strong>Photos, video, audio in entries</strong></td><td class="no">Text and voice-to-text, writing-first</td><td class="yes">Rich media, plus fitness and calendar import</td></tr>
+          <tr><td><strong>Platforms</strong></td><td class="no">iPhone only</td><td class="yes">iOS, Android, macOS, Windows, web, Chrome OS</td></tr>
+          <tr><td><strong>Export options</strong></td><td class="no">Not yet</td><td class="yes">PDF, ePub, and more</td></tr>
+          <tr><td><strong>End-to-end encryption</strong></td><td class="yes">Entries never leave device; iCloud sync under your Apple ID</td><td class="yes">Optional end-to-end encryption available</td></tr>
+          <tr><td><strong>Free tier</strong></td><td class="yes">Everything is free: unlimited entries, full AI, full history, search, iCloud backup</td><td class="warn">Limited free tier; full sync and features need membership</td></tr>
+          <tr><td><strong>Price</strong></td><td class="yes">Free</td><td>~$29.99/yr membership, or one-time Premium license per platform</td></tr>
+          <tr><td><strong>Account required</strong></td><td class="yes">No account, no sign-in</td><td>Account for cross-device sync</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Different jobs: everywhere-journal vs. mirror</h2>
+      <p>Journey's strength is that it goes wherever you go. Write on your iPhone at breakfast, pick it up on Windows at your desk, review it on the web from someone else's laptop. Automatic weather and location tagging, an atlas map of everywhere you've written, guided coach programs on gratitude and self-care, and solid export options make it a genuinely capable, long-running journal. If cross-device breadth and a mapped life are what you want, Journey is a strong, honest choice, and we won't pretend otherwise.</p>
+      <p>MirrorNotes is built for a different job: reflection, on one device, with a model that actually reads what you wrote and gives something back:</p>
+      <ul>
+        <li><strong>Daily Nudge:</strong> tomorrow morning's prompt is generated from what you've actually been writing about, not a fixed coach-program script.</li>
+        <li><strong>Ask your journal:</strong> "when do I feel most alive?" "what am I avoiding?" Answered from months of your own entries.</li>
+        <li><strong>Weekly Digest:</strong> every Sunday, the week's themes and moods summarized.</li>
+        <li><strong>Mood Timeline:</strong> emotional trends you'd never notice reading day by day, with alerts when several entries in a row trend negative.</li>
+      </ul>
+      <div class="callout">
+        <strong>The privacy story is similar, but not identical:</strong> Journey offers optional end-to-end encryption for your synced entries across its many platforms. MirrorNotes takes a narrower approach: there's no cross-platform sync to secure in the first place, because the AI and your writing never leave your iPhone's Neural Engine. Fewer devices, but nothing to intercept in transit, ever.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Frequently asked questions</h2>
+      <h3>Can I use both?</h3>
+      <p>Sure. Journey as the cross-platform archive with maps and photos; MirrorNotes as the daily writing and reflection habit on your iPhone. MirrorNotes is free and unlimited, so trying it costs nothing.</p>
+      <h3>Can I import my Journey entries?</h3>
+      <p>Not yet, import is on the roadmap. New entries you write in MirrorNotes are yours: stored on-device in SwiftData and synced to your own iCloud.</p>
+      <h3>Why iPhone only?</h3>
+      <p>The on-device AI is the product. Modern iPhone chips run Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Try MirrorNotes free</h3>
+      <p>Every feature, completely free. No trial, no card, no catch.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="adhd-journaling-app.html">ADHD Journaling</a>
+        <a href="offline-journal-app.html">Offline Journal</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
