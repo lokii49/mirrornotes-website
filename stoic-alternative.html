@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stoic app alternative that keeps AI on your phone: MirrorNotes gives you daily prompts, mood analysis, and 'Ask your journal', all running on-device, never sent to a third-party AI service, and completely free.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Stoic App Alternative with On-Device AI: MirrorNotes, Free Private Journaling</title>
+  <link rel="canonical" href="https://mirrornotes.org/stoic-alternative.html">
+  <meta property="og:title" content="Stoic App Alternative with On-Device AI: MirrorNotes">
+  <meta property="og:description" content="Daily AI prompts, mood analysis, and 'Ask your journal', all on-device, never sent to a third-party AI service. Free.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/stoic-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good Stoic app alternative that keeps AI on-device?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes is a Stoic app alternative built around on-device AI reflection instead of cloud-based AI Mentors. It generates daily personalized prompts from your own entries, tracks mood trends, summarizes your week, and answers natural-language questions about your own writing, with all AI running locally on your iPhone (Gemma 3), so journal text is never sent to a server or a third-party AI provider."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MirrorNotes better than the Stoic app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They're built for different goals. Stoic is a broader wellness toolkit: mood tracking, CBT thought exercises, meditation and breathing sessions, and AI Mentors modeled on different coaching styles, plus Stoic-philosophy prompts and quotes, with most of it behind a premium subscription. MirrorNotes is narrower and free: it reads what you've actually written and reflects it back through daily prompts, a mood timeline, weekly digests, and Ask, entirely on-device. If you want a full self-improvement program with coaching personas, Stoic goes further. If you want your own words analyzed without leaving your phone, and don't want to pay a subscription for it, MirrorNotes is built for that."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Stoic app send your journal entries to the cloud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "According to Stoic's own privacy documentation, entries are stored on-device or in your personal iCloud by default, but using its AI features means your historical journal content is shared with third-party AI service providers over the network to generate prompts, insights, and AI Mentor responses. MirrorNotes takes a different approach: its AI (Gemma 3) runs entirely on your iPhone's Neural Engine, so there is no server or third-party AI provider your journal text is ever sent to, whether or not you use the AI features."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Stoic Alternative</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Comparison</div>
+      <h1>A Stoic app alternative that keeps AI on your phone</h1>
+      <p>Stoic is a well-built wellness app: mood tracking, CBT thought exercises, meditation and breathing sessions, and AI Mentors modeled on different coaching styles, wrapped in Stoic-philosophy prompts and quotes. To power its AI Mentors and insights, it shares your historical journal content with third-party AI services. MirrorNotes takes a narrower, on-device approach: daily prompts drawn from your own writing, mood analysis, weekly digests, and a journal you can ask questions, with the AI running entirely on your iPhone and completely free.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>Stoic = a full wellness toolkit (mood tracking, CBT exercises, meditation, 10 AI Mentor personas) built around cloud AI. MirrorNotes = a narrower journal that reflects your own writing back, with AI that never leaves your phone.</li>
+        <li>Stoic's AI features share your journal history with third-party AI providers to generate mentor responses and insights. MirrorNotes runs Gemma 3 locally on your iPhone's Neural Engine, so there's no server or provider your entries are ever sent to.</li>
+        <li>Stoic's premium tier (most prompts, exercises, and AI Mentors) runs around $49.99/year. MirrorNotes is free, with unlimited entries and every AI feature included.</li>
+        <li>Want guided CBT exercises, meditations, and a choice of AI coaching personas? Stoic's toolkit is broader. Want your own words actually analyzed, on-device, at no cost? MirrorNotes is built for that.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Side-by-side comparison</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Feature</th><th>MirrorNotes</th><th>Stoic</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Daily prompts from your own entries</strong></td><td class="yes">Daily Nudge, generated from your own patterns</td><td class="warn">Morning/evening prompts, mostly template-based Stoic exercises</td></tr>
+          <tr><td><strong>AI coaching personas</strong></td><td class="no">No coaching personas, just reflection</td><td class="yes">10 AI Mentors with different coaching styles</td></tr>
+          <tr><td><strong>Ask questions over your entries</strong></td><td class="yes">"What stresses me out?" answered on-device</td><td class="no">No natural-language Q&amp;A over your own history</td></tr>
+          <tr><td><strong>Mood timeline & trends</strong></td><td class="yes">Yes, generated from your writing</td><td class="yes">Yes, mood tracking with trend history</td></tr>
+          <tr><td><strong>CBT exercises & templates</strong></td><td class="no">Not the focus</td><td class="yes">Thought dumps, therapy-prep templates, dream journaling</td></tr>
+          <tr><td><strong>Meditation & breathing</strong></td><td class="no">Not included</td><td class="yes">Guided meditation and breathing sessions</td></tr>
+          <tr><td><strong>Weekly digest / summary</strong></td><td class="yes">Every Sunday, on-device</td><td class="no">No structured weekly digest</td></tr>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">Gemma 3 on your iPhone (Neural Engine), no network call</td><td class="no">Third-party AI services in the cloud, per Stoic's own privacy docs</td></tr>
+          <tr><td><strong>Platforms</strong></td><td class="no">iPhone only</td><td class="yes">iOS and Android</td></tr>
+          <tr><td><strong>Price</strong></td><td class="yes">Free, unlimited</td><td class="warn">Free tier is limited; Premium ~$49.99/yr</td></tr>
+          <tr><td><strong>Account required</strong></td><td class="yes">No account, no sign-in</td><td class="no">Account required for sync and Premium</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Different jobs: a coaching program vs. an on-device mirror</h2>
+      <p>Stoic's strength is breadth. It bundles Stoic philosophy (morning intention-setting, evening review, quotes from Marcus Aurelius), CBT-style thought exercises, meditation and breathing sessions, and AI Mentors that coach from different perspectives, all in one app with over 4 million users. If you want a structured self-improvement program with variety and guidance, Stoic offers more moving parts than MirrorNotes does, and we won't pretend otherwise.</p>
+      <p>MirrorNotes does one thing: it reads what you've actually written, on your phone, and reflects it back.</p>
+      <ul>
+        <li><strong>Daily Nudge:</strong> tomorrow morning's prompt is generated from what you've actually been writing about, not a template exercise.</li>
+        <li><strong>Ask your journal:</strong> "when do I feel most alive?" "what am I avoiding?" Answered from months of your own entries, without any of that history leaving your device.</li>
+        <li><strong>Weekly Digest:</strong> every Sunday, the week's themes and moods summarized.</li>
+        <li><strong>Mood Timeline:</strong> emotional trends you'd never notice reading day by day.</li>
+      </ul>
+      <div class="callout">
+        <strong>The privacy story is the real difference:</strong> Stoic stores your entries on-device or in your personal iCloud by default, but using its AI Mentors and insights means sharing your historical journal content with third-party AI service providers over the network to generate those responses. MirrorNotes' AI (Gemma 3) runs entirely on your iPhone's Neural Engine, so there is no server or provider your journal text is ever sent to, whether or not you use the AI features.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Frequently asked questions</h2>
+      <h3>Can I use both?</h3>
+      <p>Yes. Stoic's meditation, breathing, and CBT exercises are a fine complement to a journal, and MirrorNotes is free and unlimited, so trying it alongside costs nothing.</p>
+      <h3>Can I import my Stoic entries?</h3>
+      <p>Not yet, import is on the roadmap. New entries you write in MirrorNotes are yours: stored on-device in SwiftData and synced to your own iCloud.</p>
+      <h3>Why iPhone only?</h3>
+      <p>The on-device AI is the product. Modern iPhone chips run Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Try MirrorNotes free</h3>
+      <p>Every feature, completely free. No trial, no card, no catch.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="adhd-journaling-app.html">ADHD Journaling</a>
+        <a href="offline-journal-app.html">Offline Journal</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
