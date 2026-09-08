@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MirrorNotes is an AI journal app that runs entirely on your iPhone. Daily AI prompts, mood analysis, and 'Ask your journal', all on-device with Gemma 3, never sent to a server. Free.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Best AI Journal App for iPhone: MirrorNotes, On-Device &amp; Free</title>
+  <link rel="canonical" href="https://mirrornotes.org/ai-journal-app.html">
+  <meta property="og:title" content="Best AI Journal App for iPhone: MirrorNotes">
+  <meta property="og:description" content="Daily AI prompts, mood analysis, and 'Ask your journal', all on-device with Gemma 3, never sent to a server. Free.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ai-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an AI journal app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An AI journal app uses artificial intelligence to analyze what you write: generating prompts, tracking mood, summarizing entries, or answering questions about your own history. Most AI journal apps do this by sending your entries to a cloud AI service. MirrorNotes is different: it runs its AI model (Gemma 3) directly on your iPhone, so the same features work without your journal text ever leaving your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MirrorNotes' AI journal app free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every feature, unlimited entries, Daily Nudge, Ask your journal, Weekly Digest, Mood Timeline, is free with no subscription, trial, or paywall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the AI journal app work without internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Because MirrorNotes' AI (Gemma 3) runs on your iPhone's Neural Engine rather than a server, every AI feature works in airplane mode, on a flight, or anywhere with no signal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What AI model powers MirrorNotes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes runs Gemma 3, a small on-device language model, via CoreML on your iPhone's Neural Engine. It reads your entries locally to generate prompts, summaries, and answers, with no API calls to any external AI provider."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .privacy-item .icon { font-size: 24px; margin-bottom: 10px; }
+    .privacy-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .privacy-item p { font-size: 13px; color: var(--text-2); margin: 0; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--red); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">AI Journal App</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">AI Journaling</div>
+      <h1>The AI journal app that keeps its brain on your phone</h1>
+      <p>Most AI journal apps work the same way: you write, your entry is sent to a server, and a cloud model (often OpenAI's) generates a prompt or summary back. MirrorNotes generates the same kind of daily prompts, mood analysis, and answers, but the model runs on your iPhone's own chip. Your entries never have to leave your device to be understood.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>MirrorNotes is an AI journal app where the AI (Gemma 3) runs entirely on-device, not in the cloud.</li>
+        <li>You get daily personalized prompts, mood tracking, weekly digests, and natural-language Q&amp;A over your own entries, the same category of features other AI journal apps offer.</li>
+        <li>Because there's no server processing your text, every AI feature works offline, and there's no journal content for a breach, subpoena, or model-training policy to ever touch.</li>
+        <li>Free and unlimited: no subscription tier gates the AI features.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>What makes an app an "AI journal app"?</h2>
+      <p>The label covers a wide range of apps, but the common thread is that the app does more than store text: it reads what you wrote and generates something back, a prompt, a mood score, a summary, an answer to a question. That reading step is where the apps differ most.</p>
+      <p>Cloud-based AI journal apps send your entry to a server running a large model (frequently a third-party API like OpenAI's), get a response, and display it. That's simple to build and produces strong results, but it means your private writing is transmitted and processed off-device, often by a company that isn't the one you downloaded the app from.</p>
+      <div class="callout">
+        <strong>MirrorNotes takes the on-device route.</strong> Gemma 3 runs locally via CoreML on your iPhone's Neural Engine. It's a smaller model than the cloud giants, but it's tuned for exactly this job: reading your own entries and reflecting them back, without a network call.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>How MirrorNotes compares to other AI journal apps</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>App</th><th>AI runs on-device</th><th>Daily AI prompts</th><th>Ask your journal</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Yes, Gemma 3</td><td class="yes">Daily Nudge, from your own entries</td><td class="yes">Yes, on-device</td><td class="yes">Free, unlimited</td></tr>
+          <tr><td>Day One</td><td class="no">Cloud AI</td><td class="warn">AI reflections and prompts, cloud-based</td><td class="no">No</td><td class="warn">Free tier limited; Premium subscription</td></tr>
+          <tr><td>Rosebud</td><td class="no">Cloud AI</td><td class="yes">Daily guided prompts</td><td class="warn">Limited Q&amp;A over recent entries</td><td class="warn">Free tier limited; subscription for full AI</td></tr>
+          <tr><td>Reflect</td><td class="no">Cloud AI</td><td class="yes">AI-generated daily prompts</td><td class="no">No</td><td class="warn">Subscription-based</td></tr>
+          <tr><td>Apple Journal</td><td class="warn">Apple Intelligence (cloud for on-demand summaries)</td><td class="warn">On-device suggestions from Photos/location, not AI-written prompts</td><td class="no">No</td><td class="yes">Free</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>What the on-device AI actually does</h2>
+      <p>On-device doesn't mean fewer features. It means the same category of AI journaling features, running somewhere else:</p>
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <div class="icon">💭</div>
+          <h4>Daily Nudge</h4>
+          <p>Each morning, one prompt generated from patterns in your own recent writing, not a static question bank.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🔍</div>
+          <h4>Ask your journal</h4>
+          <p>Ask things like "when do I feel most anxious?" and get an answer pulled from months of your own entries.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">📈</div>
+          <h4>Mood Timeline</h4>
+          <p>Emotional trends tracked automatically across every entry, surfaced without you having to tag anything.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🗞️</div>
+          <h4>Weekly Digest</h4>
+          <p>Every Sunday, a synthesis of your week's themes and shifts, generated entirely on your phone.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Frequently asked questions</h2>
+      <h3>Is on-device AI as good as cloud AI?</h3>
+      <p>For general-purpose tasks, large cloud models are more capable. For a narrow job, reading your own entries and reflecting patterns back, a well-tuned small model like Gemma 3 does the job without the round trip, the server cost, or the privacy trade-off.</p>
+      <h3>Do I need an account to use the AI features?</h3>
+      <p>No. There's no sign-in and no account. Open the app and write; the AI features unlock automatically once there's enough of your own writing to draw from.</p>
+      <h3>Can I turn the AI off?</h3>
+      <p>You can simply ignore the prompts and Ask feature and use MirrorNotes as a plain journal. Nothing about the AI is required to write and keep entries.</p>
+      <h3>Is there a free trial or paywall?</h3>
+      <p>No. Every AI feature, unlimited entries, Daily Nudge, Ask, Weekly Digest, Mood Timeline, is free with no subscription.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Try an AI journal that stays on your phone</h3>
+      <p>Every feature, completely free. No trial, no card, no catch.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="private-journal-app.html">Private Journal App</a>
+        <a href="offline-journal-app.html">Offline Journal</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
