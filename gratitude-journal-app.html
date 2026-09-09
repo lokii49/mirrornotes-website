@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MirrorNotes is a free gratitude journal app for iPhone with on-device AI prompts, mood tracking, and Ask your journal. No account, no subscription, nothing ever leaves your device.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Best Gratitude Journal App for iPhone: MirrorNotes, Free &amp; Private</title>
+  <link rel="canonical" href="https://mirrornotes.org/gratitude-journal-app.html">
+  <meta property="og:title" content="Best Gratitude Journal App for iPhone: MirrorNotes">
+  <meta property="og:description" content="Free gratitude journal app with on-device AI prompts, mood tracking, and Ask your journal. No account, no subscription, nothing leaves your device.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/gratitude-journal-app.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes MirrorNotes a good gratitude journal app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes isn't a gratitude-only app with fixed prompts like \"list three things.\" It's a general journal where the on-device AI (Gemma 3) generates a Daily Nudge from your own recent writing, so gratitude prompts show up when your entries suggest they'd help, alongside mood tracking and a searchable history of everything you're thankful for."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is MirrorNotes free to use as a gratitude journal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every feature, unlimited entries, Daily Nudge, Ask your journal, Weekly Digest, Mood Timeline, is free with no subscription, trial, or paywall."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I look back at everything I've been grateful for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every entry is saved and searchable, and you can ask your journal directly, for example \"what have I been grateful for this year?\", and get an answer pulled from your own past entries, generated on-device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does gratitude journaling in MirrorNotes require an internet connection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Because the AI (Gemma 3) runs on your iPhone's Neural Engine rather than a server, writing entries and generating prompts both work fully offline."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .privacy-item .icon { font-size: 24px; margin-bottom: 10px; }
+    .privacy-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .privacy-item p { font-size: 13px; color: var(--text-2); margin: 0; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--red); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Gratitude Journal App</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Gratitude Journaling</div>
+      <h1>A gratitude journal that notices what you're actually thankful for</h1>
+      <p>Most gratitude journal apps hand you the same fixed prompt every day: "list three things you're grateful for." MirrorNotes is a general journal whose on-device AI reads your own recent entries and nudges you toward gratitude when it fits, not on a fixed script, plus mood tracking and the ability to ask your own journal what you've been grateful for over time.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>TL;DR</h3>
+      <ul>
+        <li>MirrorNotes isn't a single-purpose gratitude app: it's a full journal, so gratitude entries sit alongside everything else you write, searchable together.</li>
+        <li>The Daily Nudge is generated from your own recent writing by an on-device AI, so it can point toward gratitude, a difficult day, or a pattern worth noticing, whichever fits.</li>
+        <li>Ask your journal lets you query your own gratitude history directly, for example "what have I been grateful for this month?"</li>
+        <li>Everything runs on your iPhone (Gemma 3, on-device), so your reflections never leave your device, and the app works fully offline.</li>
+        <li>Free and unlimited: no subscription tier, no entry cap, no account required.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Why a fixed gratitude prompt isn't always the right prompt</h2>
+      <p>Dedicated gratitude journal apps are built around a template: three good things, every day, no variation. That works well for building a habit, but it treats every day the same, whether you had a genuinely great week or you're struggling and gratitude feels forced.</p>
+      <p>MirrorNotes takes a different approach. Because the AI reads what you've actually been writing, the Daily Nudge adapts: some days it surfaces something to be grateful for that you mentioned in passing three entries ago; other days it asks about something else entirely. Gratitude becomes one thread in an ongoing conversation with your own writing, not a daily form to fill out.</p>
+      <div class="callout">
+        <strong>You can still journal gratitude directly.</strong> Write "three things I'm grateful for today" any time you want, MirrorNotes doesn't require the AI prompts to journal. The Daily Nudge is there when you want a starting point, not a requirement.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>How MirrorNotes compares to dedicated gratitude journal apps</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>App</th><th>Prompt style</th><th>AI runs on-device</th><th>Ask your journal</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Adaptive, from your own entries</td><td class="yes">Yes, Gemma 3</td><td class="yes">Yes, on-device</td><td class="yes">Free, unlimited</td></tr>
+          <tr><td>Day One</td><td class="warn">Free-form, with cloud AI reflections</td><td class="no">Cloud AI</td><td class="no">No</td><td class="warn">Free tier limited; Premium subscription</td></tr>
+          <tr><td>Rosebud</td><td class="yes">Daily guided prompts, incl. gratitude</td><td class="no">Cloud AI</td><td class="warn">Limited Q&amp;A over recent entries</td><td class="warn">Free tier limited; subscription for full AI</td></tr>
+          <tr><td>Reflect</td><td class="yes">AI-generated daily prompts</td><td class="no">Cloud AI</td><td class="no">No</td><td class="warn">Subscription-based</td></tr>
+          <tr><td>Apple Journal</td><td class="warn">On-device suggestions from Photos/location, not gratitude-specific</td><td class="warn">Apple Intelligence (cloud for on-demand summaries)</td><td class="no">No</td><td class="yes">Free</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>What's in MirrorNotes for gratitude journaling</h2>
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <div class="icon">💭</div>
+          <h4>Daily Nudge</h4>
+          <p>An AI-generated prompt each morning, drawn from your own recent writing, not a fixed gratitude template.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🔍</div>
+          <h4>Ask your journal</h4>
+          <p>Ask "what have I been grateful for lately?" and get an answer pulled from months of your own entries.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">📈</div>
+          <h4>Mood Timeline</h4>
+          <p>See how your mood tracks alongside the moments you wrote about gratitude, without tagging anything yourself.</p>
+        </div>
+        <div class="privacy-item">
+          <div class="icon">🗞️</div>
+          <h4>Weekly Digest</h4>
+          <p>Every Sunday, a synthesis of your week's themes, including what you were thankful for, generated on your phone.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Frequently asked questions</h2>
+      <h3>What makes MirrorNotes a good gratitude journal app?</h3>
+      <p>It isn't a gratitude-only app with fixed prompts. It's a general journal where the on-device AI generates a Daily Nudge from your own recent writing, so gratitude prompts show up when your entries suggest they'd help, alongside mood tracking and a searchable history of everything you're thankful for.</p>
+      <h3>Is MirrorNotes free to use as a gratitude journal?</h3>
+      <p>Yes. Every feature, unlimited entries, Daily Nudge, Ask your journal, Weekly Digest, Mood Timeline, is free with no subscription, trial, or paywall.</p>
+      <h3>Can I look back at everything I've been grateful for?</h3>
+      <p>Yes. Every entry is saved and searchable, and you can ask your journal directly, for example "what have I been grateful for this year?", and get an answer pulled from your own past entries, generated on-device.</p>
+      <h3>Does gratitude journaling in MirrorNotes require an internet connection?</h3>
+      <p>No. Because the AI (Gemma 3) runs on your iPhone's Neural Engine rather than a server, writing entries and generating prompts both work fully offline.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Start a gratitude journal that adapts to you</h3>
+      <p>Every feature, completely free. No trial, no card, no catch.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="ai-journal-app.html">AI Journal App</a>
+        <a href="offline-journal-app.html">Offline Journal</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
