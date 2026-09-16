@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="本物のAIインサイトを備えたApple Journal代替アプリ:MirrorNotesは毎日のAIプロンプト、気分分析、「日記に問いかける」機能を、すべてあなたのiPhoneの中で、クラウドを使わず、完全無料で提供します。">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>AI搭載のApple Journal代替アプリ:MirrorNotes、無料のプライベート日記</title>
+  <link rel="canonical" href="https://mirrornotes.org/ja/apple-journal-alternative.html">
+  <meta property="og:title" content="AI搭載のApple Journal代替アプリ:MirrorNotes">
+  <meta property="og:description" content="毎日のAIプロンプト、気分分析、「日記に問いかける」。すべてオンデバイスで、クラウドは使いません。無料。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ja/apple-journal-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI機能を備えたApple Journalの良い代替アプリはありますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotesは、受動的な提案の代わりに能動的なAIによる内省を軸に設計されたApple Journalの代替アプリです。毎日パーソナライズされたプロンプトを生成し、気分の傾向を追跡し、1週間をまとめ、自分のエントリーについて自然な言葉での質問に答えます。すべてのAIはあなたのiPhone上でローカルに動作するため(Gemma 3)、日記のテキストがサーバーに送信されることは一切ありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotesはApple Journalより優れていますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "それぞれ役割が異なります。Apple Journalは、写真・行動・位置情報からのオンデバイス提案を使って瞬間を記録する、シンプルで無料の、真にプライベートな方法です。MirrorNotesは、あなたが書いたものを実際に読み、それを返してくれるモデルを中心に設計されています:自分自身のパターンから引き出されたデイリープロンプト、気分タイムライン、ウィークリーダイジェスト、そして自分の過去について質問できる機能です。自分の文章に働きかけてくれる日記が欲しいなら、単に書くことを思い出させてくれるだけでなく、MirrorNotesの方が一歩先を行きます。可能な限りシンプルな内蔵日記が欲しいなら、Apple Journalに勝るものはありません。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Apple Journalにはエントリーを読み取るAIがありますか?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple Journalはオンデバイスの提案(写真、場所、ワークアウト、連絡先)を使って執筆を促し、対応端末ではApple Intelligenceのライティング機能も利用できます。ただし、気分の傾向を分析したり、自分の文章について質問したりすることはできません。MirrorNotesは独自のローカルモデル(CoreML経由のGemma 3)を搭載しており、まさにそれを行います:プロンプト、気分分析、ウィークリーダイジェスト、Askのすべてが、実際に書いた内容から、完全にオンデバイスで生成されます。"
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Apple Journal の代替アプリ</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">比較</div>
+      <h1>書いた内容を読んでくれるApple Journal代替アプリ</h1>
+      <p>Apple Journalは無料でシンプル、そして本当にプライベートです:あなたのiPhoneの中で完結し、写真・場所・行動からのオンデバイス提案を使って執筆を促してくれます。ただし、書き終えた後にその内容に働きかけることはありません。MirrorNotesはそこが違います:自分自身のパターンから引き出されたデイリープロンプト、気分分析、ウィークリーダイジェスト、そして日記に問いかけられる機能。すべてオンデバイスで、完全に無料です。</p>
+    </div>
+
+    <div class="tldr">
+      <h3>要点まとめ</h3>
+      <ul>
+        <li>Apple Journal = 可能な限りシンプルな内蔵日記。MirrorNotes = あなたが実際に書いた内容を読んでくれる日記。</li>
+        <li>Apple Journalは書くべき瞬間を提案します(写真、場所、ワークアウト)。MirrorNotesはすでに書いた内容を分析し、プロンプト、気分タイムライン、「日記に問いかける」という形で返してくれます。</li>
+        <li>どちらもオンデバイスで動作し、どちらも無料です。MirrorNotesのAIレイヤー(Gemma 3)はプロダクトそのものであり、執筆プロンプトのおまけ機能ではありません。</li>
+        <li>セットアップ不要の内蔵標準アプリが欲しいなら、Apple Journalがすぐそこにあります。自分のエントリーに実際に働きかけてくれるモデルが欲しいなら、MirrorNotesを試してみてください。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>徹底比較</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>機能</th><th>MirrorNotes</th><th>Apple Journal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>内蔵AIインサイト</strong></td><td class="yes">コア機能:デイリープロンプト、ダイジェスト、気分分析、Ask</td><td class="no">文章の分析なし</td></tr>
+          <tr><td><strong>執筆の提案</strong></td><td class="warn">あなた自身の過去のエントリーから生成されるプロンプト</td><td class="yes">写真、場所、ワークアウト、連絡先からの瞬間を提案</td></tr>
+          <tr><td><strong>エントリーへの質問</strong></td><td class="yes">「何にストレスを感じている?」にオンデバイスで回答</td><td class="no">なし</td></tr>
+          <tr><td><strong>気分タイムライン&amp;傾向分析</strong></td><td class="yes">あり、あなたの文章から生成</td><td class="no">気分分析なし</td></tr>
+          <tr><td><strong>ウィークリーダイジェスト/要約</strong></td><td class="yes">毎週日曜日、オンデバイスで</td><td class="no">なし</td></tr>
+          <tr><td><strong>エントリー内の写真・動画・音声</strong></td><td class="no">テキストと音声入力、書くことが中心</td><td class="yes">優れたメディア対応</td></tr>
+          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上のGemma 3(Neural Engine)</td><td class="yes">オンデバイス提案。対応端末ではApple Intelligenceのライティング機能も</td></tr>
+          <tr><td><strong>対応プラットフォーム</strong></td><td class="no">iPhoneのみ</td><td class="yes">iPhone(Apple製品連携によるiPad/Macサポートあり)</td></tr>
+          <tr><td><strong>エンドツーエンド暗号化</strong></td><td class="yes">エントリーは端末から出ません。あなたのApple IDでiCloud同期</td><td class="yes">Face ID/Touch IDでロック。エンドツーエンド暗号化されたiCloud同期</td></tr>
+          <tr><td><strong>料金</strong></td><td class="yes">無料</td><td class="yes">無料、iOSに標準搭載</td></tr>
+          <tr><td><strong>アカウント</strong></td><td class="yes">アカウント登録・サインイン不要</td><td class="yes">個別アカウント不要(同期にはあなたのApple IDを使用)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>役割の違い:優しい後押しか、能動的な鏡か</h2>
+      <p>Apple Journalの強みは、すでにあなたの携帯電話に入っていて、無料で、邪魔にならないことです。その提案は習慣づくりに本当に役立ちます:ハイキング中の一枚の写真、終えたばかりのワークアウト、訪れた場所、それぞれが静かに執筆へと誘ってくれます。デフォルトでプライベートであり、よくできた日記アプリ以上のものであろうとはしません。そのシンプルさこそ求めているものなら、Apple Journalは強力で正直な選択肢であり、私たちもそれを否定するつもりはありません。</p>
+      <p>MirrorNotesはApple Journalが止まるところから始まります:何かを書き終えた後です。あなたの携帯電話の中でローカルモデルがそれを読み、何かを返してくれます:</p>
+      <ul>
+        <li><strong>デイリーナッジ:</strong>明日の朝のプロンプトは、カメラロールの写真ではなく、あなたが実際に書いてきた内容から生成されます。</li>
+        <li><strong>日記に問いかける:</strong>「一番生き生きしていると感じるのはいつ?」「何を避けている?」何か月分もの自分のエントリーから答えが返ってきます。</li>
+        <li><strong>ウィークリーダイジェスト:</strong>毎週日曜日に、その週のテーマと気分がまとめられます。</li>
+        <li><strong>気分タイムライン:</strong>一日ずつ読んでいては気づけない感情の傾向を可視化。ネガティブな傾向が連続した場合にはアラートも。</li>
+      </ul>
+      <div class="callout">
+        <strong>プライバシーのあり方は似ていますが、同じではありません:</strong>Apple Journalのオンデバイス提案も、MirrorNotesのオンデバイスモデルも、あなたのデータが携帯電話から出る必要がないという点は同じです。違うのは、AIが実際にあなたの文章に対して何をするかです:Apple Journalはインサイトを生成するためにあなたのエントリーを読むことはありません。MirrorNotesの製品全体が、それを行うローカルモデルそのものであり、そのために外部と通信することもありません。
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>よくある質問</h2>
+      <h3>両方使うことはできますか?</h3>
+      <p>はい、そうする人もいるでしょう。写真やヘルスケアデータを添えて瞬間を記録するにはApple Journalが良い場所です。何かをじっくり考えて振り返りを得るために書くならMirrorNotesです。MirrorNotesは無料かつ無制限なので、試すのに何も失うものはありません。</p>
+      <h3>Apple Journalのエントリーをインポートできますか?</h3>
+      <p>まだできません。インポート機能はロードマップに含まれています。MirrorNotesで新しく書くエントリーはあなたのものです:端末上のSwiftDataに保存され、あなた自身のiCloudに同期されます。</p>
+      <h3>なぜiPhone専用なのですか?</h3>
+      <p>オンデバイスAIこそがこの製品の核です。最新のiPhoneチップはGemma 3を快適に動作させられます。複数プラットフォームに手を広げれば、クラウドAI(プライバシー保証を損なう)か、質の劣る体験のどちらかになってしまいます。iPhoneを優先するのは意図的な選択です。</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>MirrorNotesを無料で試す</h3>
+      <p>すべての機能が完全無料。トライアルなし、カード登録なし、裏なし。</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">App Storeで無料ダウンロード</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. 無断複写・転載を禁じます。</p>
+      <div class="footer-nav">
+        <a href="index.html">ホーム</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="adhd-journaling-app.html">ADHD向け日記</a>
+        <a href="offline-journal-app.html">オフライン日記</a>
+        <a href="privacy.html">プライバシー</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
