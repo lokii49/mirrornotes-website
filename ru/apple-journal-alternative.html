@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Альтернатива Apple Journal с настоящими ИИ-инсайтами: MirrorNotes даёт ежедневные ИИ-подсказки, анализ настроения и «Спросите свой дневник» — всё работает на вашем iPhone, никогда в облаке, совершенно бесплатно.">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Альтернатива Apple Journal с ИИ: MirrorNotes, бесплатный приватный дневник</title>
+  <link rel="canonical" href="https://mirrornotes.org/ru/apple-journal-alternative.html">
+  <meta property="og:title" content="Альтернатива Apple Journal с ИИ: MirrorNotes">
+  <meta property="og:description" content="Ежедневные ИИ-подсказки, анализ настроения и «Спросите свой дневник» — всё на устройстве, никогда в облаке. Бесплатно.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image.png">
+  <meta property="og:url" content="https://mirrornotes.org/ru/apple-journal-alternative.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Какая хорошая альтернатива Apple Journal с функциями ИИ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MirrorNotes — это альтернатива Apple Journal, построенная вокруг активной ИИ-рефлексии вместо пассивных подсказок. Она создаёт ежедневные персонализированные подсказки, отслеживает тенденции настроения, подводит итоги недели и отвечает на вопросы на естественном языке о ваших собственных записях, а весь ИИ работает локально на вашем iPhone (Gemma 3), поэтому текст дневника никогда не отправляется на сервер."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "MirrorNotes лучше, чем Apple Journal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "У них разные задачи. Apple Journal — простой, бесплатный и по-настоящему приватный способ фиксировать моменты с помощью подсказок на устройстве на основе фото, активности и геолокации. MirrorNotes построен вокруг модели, которая реально читает то, что вы пишете, и отражает это обратно: ежедневные подсказки на основе ваших собственных паттернов, шкала настроения, еженедельные дайджесты и возможность задавать вопросы о собственной истории записей. Если вам нужен дневник, который вовлекается в ваше письмо, а не просто напоминает писать, MirrorNotes идёт дальше. Если вам нужен максимально простой встроенный дневник, Apple Journal трудно превзойти."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Есть ли в Apple Journal ИИ, который читает ваши записи?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apple Journal использует подсказки на устройстве (фото, места, тренировки, контакты), чтобы предложить вам написать что-то, а на поддерживаемых устройствах Apple Intelligence может предлагать инструменты для письма. Но он не анализирует ваши записи на предмет тенденций настроения и не позволяет задавать вопросы о собственных текстах. MirrorNotes использует собственную локальную модель (Gemma 3 через CoreML), которая делает именно это: подсказки, анализ настроения, еженедельные дайджесты и «Спросите свой дневник» — всё создаётся на основе того, что вы реально написали, полностью на устройстве."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
+      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
+      --border: rgba(20,18,16,0.07);
+    }
+    body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { opacity: 0.8; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 24px; height: 60px; display: flex; align-items: center; gap: 16px; background: rgba(250,249,246,0.85); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 64px 24px 120px; }
+    .page-header { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
+    .page-header h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 16px; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 620px; }
+    .tldr { background: rgba(30,158,76,0.06); border: 1px solid rgba(30,158,76,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 56px; }
+    .tldr h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .tldr ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tldr li { display: flex; gap: 12px; font-size: 15px; color: var(--text); align-items: flex-start; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .policy-section { margin-bottom: 56px; }
+    .policy-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .policy-section h3 { font-size: 16px; font-weight: 600; margin: 24px 0 10px; color: var(--text); }
+    .policy-section p { font-size: 15px; color: var(--text-2); margin-bottom: 14px; }
+    .policy-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 15px; color: var(--text-2); padding-left: 20px; position: relative; }
+    .policy-section li::before { content: '·'; position: absolute; left: 6px; color: var(--text-3); }
+    .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
+    .callout strong { color: var(--text); }
+    .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .yes { color: var(--green); font-weight: 600; }
+    .no { color: var(--text-3); }
+    .warn { color: var(--orange); font-weight: 600; }
+    .cta-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; margin: 48px 0; }
+    .cta-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .cta-card p { font-size: 14px; color: var(--text-3); margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: var(--text); color: var(--bg); font-size: 15px; font-weight: 600; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-2); }
+
+    /* editorial voice (matches index) */
+    h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    @media (max-width: 680px) { body::after { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">Альтернатива Apple Journal</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Сравнение</div>
+      <h1>Альтернатива Apple Journal, которая читает то, что вы пишете</h1>
+      <p>Apple Journal бесплатен, прост и по-настоящему приватен: он живёт на вашем iPhone и подталкивает вас писать с помощью подсказок на устройстве на основе фото, мест и активности. Чего он не делает — так это не вовлекается в то, что вы уже написали. MirrorNotes делает это: ежедневные подсказки на основе ваших собственных паттернов, анализ настроения, еженедельные дайджесты и дневник, которому можно задавать вопросы, всё на устройстве и совершенно бесплатно.</p>
+    </div>
+
+    <div class="tldr">
+      <h3>Кратко</h3>
+      <ul>
+        <li>Apple Journal = максимально простой встроенный дневник. MirrorNotes = дневник, который читает то, что вы реально написали.</li>
+        <li>Apple Journal предлагает моменты для записи (фото, места, тренировки). MirrorNotes анализирует уже написанное и отражает это обратно — подсказками, шкалой настроения и функцией «Спросите свой дневник».</li>
+        <li>Оба работают на устройстве и оба бесплатны. Слой ИИ в MirrorNotes (Gemma 3) — это весь продукт, а не дополнение в виде подсказок для письма.</li>
+        <li>Нужен встроенный вариант по умолчанию без настройки? Apple Journal уже у вас под рукой. Нужна модель, которая реально вовлекается в ваши записи? Попробуйте MirrorNotes.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Сравнение бок о бок</h2>
+      <table class="data-table">
+        <thead>
+          <tr><th>Функция</th><th>MirrorNotes</th><th>Apple Journal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Встроенные ИИ-инсайты</strong></td><td class="yes">Ключевая функция: ежедневные подсказки, дайджесты, анализ настроения, «Спросите свой дневник»</td><td class="no">Анализа ваших записей нет</td></tr>
+          <tr><td><strong>Подсказки для письма</strong></td><td class="warn">Подсказки создаются на основе ваших прошлых записей</td><td class="yes">Предлагает моменты из фото, мест, тренировок, контактов</td></tr>
+          <tr><td><strong>Вопросы по своим записям</strong></td><td class="yes">«Что вызывает у меня стресс?» — ответ на устройстве</td><td class="no">Нет</td></tr>
+          <tr><td><strong>Шкала настроения и тенденции</strong></td><td class="yes">Есть, формируется на основе ваших записей</td><td class="no">Аналитики настроения нет</td></tr>
+          <tr><td><strong>Еженедельный дайджест / итоги</strong></td><td class="yes">Каждое воскресенье, на устройстве</td><td class="no">Нет</td></tr>
+          <tr><td><strong>Фото, видео, аудио в записях</strong></td><td class="no">Текст и голос в текст, упор на письмо</td><td class="yes">Богатая поддержка медиавложений</td></tr>
+          <tr><td><strong>Где работает ИИ</strong></td><td class="yes">Gemma 3 на вашем iPhone (Neural Engine)</td><td class="yes">Подсказки на устройстве; инструменты письма Apple Intelligence на поддерживаемых устройствах</td></tr>
+          <tr><td><strong>Платформы</strong></td><td class="no">Только iPhone</td><td class="yes">iPhone (с поддержкой iPad/Mac через экосистему Apple)</td></tr>
+          <tr><td><strong>Сквозное шифрование</strong></td><td class="yes">Записи никогда не покидают устройство; синхронизация iCloud под вашим Apple ID</td><td class="yes">Защищён Face ID/Touch ID; сквозное шифрование при синхронизации iCloud</td></tr>
+          <tr><td><strong>Цена</strong></td><td class="yes">Бесплатно</td><td class="yes">Бесплатно, встроен в iOS</td></tr>
+          <tr><td><strong>Нужен ли аккаунт</strong></td><td class="yes">Без аккаунта, без входа</td><td class="yes">Отдельный аккаунт не нужен (для синхронизации используется Apple ID)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="policy-section">
+      <h2>Разные задачи: мягкий стимул vs. активное зеркало</h2>
+      <p>Сила Apple Journal в том, что он уже на вашем телефоне, ничего не стоит и не мешает. Его подсказки реально полезны для выработки привычки: фото с похода, только что законченная тренировка, посещённое место — каждое становится тихим приглашением написать. Он приватен по умолчанию и не пытается быть чем-то большим, чем хорошо сделанное приложение для дневника. Если вам нужна именно эта простота, Apple Journal — сильный и честный выбор, и мы не будем притворяться иначе.</p>
+      <p>MirrorNotes начинается там, где Apple Journal останавливается: после того, как вы что-то написали. Локальная модель читает это прямо на вашем телефоне и даёт что-то взамен:</p>
+      <ul>
+        <li><strong>Ежедневная подсказка:</strong> завтрашняя утренняя подсказка формируется на основе того, о чём вы действительно писали, а не фото из камеры.</li>
+        <li><strong>Спросите свой дневник:</strong> «когда я чувствую себя наиболее живым?», «чего я избегаю?» — ответы находятся среди месяцев ваших собственных записей.</li>
+        <li><strong>Еженедельный дайджест:</strong> каждое воскресенье — итог недели: темы и настроения.</li>
+        <li><strong>Шкала настроения:</strong> эмоциональные тенденции, которые вы никогда не заметите, читая записи день за днём, с уведомлениями, когда несколько записей подряд идут в негативную сторону.</li>
+      </ul>
+      <div class="callout">
+        <strong>История приватности похожа, но не идентична:</strong> и подсказки Apple Journal на устройстве, и модель MirrorNotes на устройстве означают, что ваши данные не обязаны покидать телефон. Разница в том, что ИИ реально делает с вашими записями после этого: Apple Journal не читает ваши записи, чтобы создавать инсайты. Весь продукт MirrorNotes — это локальная модель, которая делает именно это, и при этом никогда не связывается с сервером.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>Часто задаваемые вопросы</h2>
+      <h3>Можно ли пользоваться обоими?</h3>
+      <p>Да, и некоторые так и делают. Apple Journal хорошо подходит для фиксации моментов с приложенными фото и данными о здоровье; MirrorNotes — место, где вы пишете, чтобы реально что-то обдумать и получить рефлексию в ответ. MirrorNotes бесплатен и не ограничен, так что попробовать ничего не стоит.</p>
+      <h3>Можно ли импортировать записи из Apple Journal?</h3>
+      <p>Пока нет, импорт в планах. Новые записи, которые вы пишете в MirrorNotes, принадлежат только вам: хранятся на устройстве в SwiftData и синхронизируются с вашим собственным iCloud.</p>
+      <h3>Почему только iPhone?</h3>
+      <p>ИИ на устройстве — это и есть продукт. Современные чипы iPhone хорошо справляются с Gemma 3; распыление на разные платформы означало бы либо облачный ИИ (что нарушает гарантию приватности), либо худший опыт. Приоритет iPhone — осознанный выбор.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Попробуйте MirrorNotes бесплатно</h3>
+      <p>Каждая функция полностью бесплатна. Без пробного периода, без карты, без подвоха.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Скачать в App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Главная</a>
+        <a href="day-one-alternative.html">vs Day One</a>
+        <a href="rosebud-alternative.html">vs Rosebud</a>
+        <a href="adhd-journaling-app.html">Дневник при СДВГ</a>
+        <a href="offline-journal-app.html">Офлайн-дневник</a>
+        <a href="privacy.html">Конфиденциальность</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
