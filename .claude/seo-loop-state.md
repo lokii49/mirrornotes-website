@@ -1,5 +1,86 @@
 # SEO Loop State
 
+## Pacing
+
+Process 3-5 items per run/day (item = one backlog checkbox, new-locale shipment or resync patch), not one. Work the Resync backlog first — it fixes a live inaccuracy in already-published pages — then fall back to the new-locale Backlog below once Resync is empty.
+
+## Resync backlog — Foundation Models retrofit (added 2026-09-22)
+
+On 2026-09-22 the English source pages were updated: MirrorNotes' on-device AI is now described as Apple's Foundation Models framework on Apple Intelligence-eligible iPhones (iOS 26+), falling back to the bundled Gemma 3 1B model on every other supported iPhone. Previously every page described Gemma 3 as the only model. Every locale cell below was translated from the English page *before* that update and still says Gemma 3 only — factually stale, including in privacy/legal-adjacent claims ("AI never leaves your device").
+
+Do NOT retranslate these pages wholesale. Patch only the AI-model-description sentences/table-cells (the ones naming "Gemma 3" as if it's the only engine) to match the current English source, in that page's language, using the same targeted-sentence pattern as the English retrofit commits `37c2391` and `c4774c0` on this repo. Preserve everything else in the translated page byte-for-byte. Mark a cell `[x]` only after the patched page is committed and pushed.
+
+Reference for exact target wording per page: re-read the current English version of that page (root `<page>.html`) — it already contains the corrected sentences to translate from.
+
+- [ ] day-one-alternative × es
+- [ ] day-one-alternative × fr
+- [ ] day-one-alternative × de
+- [ ] day-one-alternative × it
+- [ ] day-one-alternative × pt
+- [ ] day-one-alternative × ja
+- [ ] day-one-alternative × ko
+- [ ] day-one-alternative × ru
+- [ ] day-one-alternative × zh
+- [ ] rosebud-alternative × es
+- [ ] rosebud-alternative × fr
+- [ ] rosebud-alternative × de
+- [ ] rosebud-alternative × it
+- [ ] rosebud-alternative × pt
+- [ ] rosebud-alternative × ja
+- [ ] rosebud-alternative × ko
+- [ ] rosebud-alternative × ru
+- [ ] rosebud-alternative × zh
+- [ ] reflect-alternative × es
+- [ ] reflect-alternative × fr
+- [ ] reflect-alternative × de
+- [ ] reflect-alternative × it
+- [ ] reflect-alternative × pt
+- [ ] reflect-alternative × ja
+- [ ] reflect-alternative × ko
+- [ ] reflect-alternative × ru
+- [ ] reflect-alternative × zh
+- [ ] adhd-journaling-app × es
+- [ ] adhd-journaling-app × fr
+- [ ] adhd-journaling-app × de
+- [ ] adhd-journaling-app × it
+- [ ] adhd-journaling-app × pt
+- [ ] adhd-journaling-app × ja
+- [ ] adhd-journaling-app × ko
+- [ ] adhd-journaling-app × ru
+- [ ] adhd-journaling-app × zh
+- [ ] offline-journal-app × es
+- [ ] offline-journal-app × fr
+- [ ] offline-journal-app × de
+- [ ] offline-journal-app × it
+- [ ] offline-journal-app × pt
+- [ ] offline-journal-app × ja
+- [ ] offline-journal-app × ko
+- [ ] offline-journal-app × ru
+- [ ] offline-journal-app × zh
+- [ ] private-journal-app × es
+- [ ] private-journal-app × fr
+- [ ] private-journal-app × de
+- [ ] private-journal-app × it
+- [ ] private-journal-app × pt
+- [ ] private-journal-app × ja
+- [ ] private-journal-app × ko
+- [ ] private-journal-app × ru
+- [ ] private-journal-app × zh
+- [ ] apple-journal-alternative × es
+- [ ] apple-journal-alternative × fr
+- [ ] apple-journal-alternative × de
+- [ ] apple-journal-alternative × it
+- [ ] apple-journal-alternative × pt
+- [ ] apple-journal-alternative × ja
+- [ ] apple-journal-alternative × ko
+- [ ] apple-journal-alternative × ru
+- [ ] apple-journal-alternative × zh
+- [ ] journey-alternative × es
+- [ ] journey-alternative × fr
+- [ ] journey-alternative × de
+
+Note: journey-alternative × it/pt/ja/ko/ru/zh are NOT in this resync list — they haven't shipped yet (see Backlog below), so they'll pick up the corrected English wording automatically when translated. stoic-alternative, ai-journal-app, and gratitude-journal-app also need no resync entry for the same reason: no locale translations exist yet for any of them.
+
 ## Backlog
 
 Locale gap matrix — English SEO pages × locale dirs missing translations.
