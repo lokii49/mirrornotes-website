@@ -22,7 +22,7 @@
         "name": "What is a good Journey app alternative with AI features?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes is a Journey app alternative built around on-device AI rather than cross-platform breadth. It generates daily personalized prompts, tracks mood trends, summarizes your week, and answers natural-language questions about your own entries, with all AI running locally on your iPhone (Gemma 3), so journal text is never sent to a server."
+          "text": "MirrorNotes is a Journey app alternative built around on-device AI rather than cross-platform breadth. It generates daily personalized prompts, tracks mood trends, summarizes your week, and answers natural-language questions about your own entries, with all AI running locally on your iPhone — Apple's own Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 model otherwise — so journal text is never sent to a server."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Does Journey have on-device AI that reads your entries?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Journey focuses on guided coach programs, location and weather tagging, and multi-platform sync rather than a model that analyzes your writing. MirrorNotes ships its own local model (Gemma 3 via CoreML) that generates prompts, mood analysis, weekly digests, and answers to questions, all from what you've actually written, entirely on-device."
+          "text": "Journey focuses on guided coach programs, location and weather tagging, and multi-platform sync rather than a model that analyzes your writing. MirrorNotes runs its own on-device AI — Apple's Foundation Models on Apple Intelligence-eligible iPhones, or its bundled Gemma 3 model via CoreML otherwise — that generates prompts, mood analysis, weekly digests, and answers to questions, all from what you've actually written, entirely on-device."
         }
       }
     ]
@@ -124,7 +124,7 @@
       <h3>TL;DR</h3>
       <ul>
         <li>Journey = the most cross-platform journal, with maps, weather, and guided programs. MirrorNotes = a journal that talks back.</li>
-        <li>MirrorNotes AI is fully on-device (Gemma 3): prompts, digests, and "Ask your journal" work offline and entries never reach a server.</li>
+        <li>MirrorNotes AI is fully on-device (Apple's Foundation Models, or Gemma 3 as a fallback): prompts, digests, and "Ask your journal" work offline and entries never reach a server.</li>
         <li>MirrorNotes is free. Journey's cross-platform membership runs about $29.99/yr (or a one-time Premium license per platform).</li>
         <li>Write from five different devices and want maps of everywhere you've journaled? Stay with Journey. Want insight from what you write, for free? Try MirrorNotes.</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>Built-in AI insights</strong></td><td class="yes">Core feature: daily prompts, digests, mood analysis, Ask</td><td class="no">No analysis of your writing</td></tr>
-          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Gemma 3 via CoreML)</td><td class="no">No on-device model; guided coach programs are pre-written, not generated from your entries</td></tr>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Apple Foundation Models or Gemma 3)</td><td class="no">No on-device model; guided coach programs are pre-written, not generated from your entries</td></tr>
           <tr><td><strong>Ask questions over your entries</strong></td><td class="yes">"What stresses me out?" answered on-device</td><td class="no">No</td></tr>
           <tr><td><strong>Mood timeline & trends</strong></td><td class="yes">Yes, generated from your writing</td><td class="no">No mood analytics</td></tr>
           <tr><td><strong>Location & weather tagging</strong></td><td class="no">Not a focus</td><td class="yes">Automatic location, weather, and atlas map view</td></tr>
@@ -164,7 +164,7 @@
         <li><strong>Mood Timeline:</strong> emotional trends you'd never notice reading day by day, with alerts when several entries in a row trend negative.</li>
       </ul>
       <div class="callout">
-        <strong>The privacy story is similar, but not identical:</strong> Journey offers optional end-to-end encryption for your synced entries across its many platforms. MirrorNotes takes a narrower approach: there's no cross-platform sync to secure in the first place, because the AI and your writing never leave your iPhone's Neural Engine. Fewer devices, but nothing to intercept in transit, ever.
+        <strong>The privacy story is similar, but not identical:</strong> Journey offers optional end-to-end encryption for your synced entries across its many platforms. MirrorNotes takes a narrower approach: there's no cross-platform sync to secure in the first place, because the AI and your writing never leave your iPhone's own chip, whether that's Apple's Foundation Models or MirrorNotes' bundled Gemma 3 model. Fewer devices, but nothing to intercept in transit, ever.
       </div>
     </div>
 
@@ -175,7 +175,7 @@
       <h3>Can I import my Journey entries?</h3>
       <p>Not yet, import is on the roadmap. New entries you write in MirrorNotes are yours: stored on-device in SwiftData and synced to your own iCloud.</p>
       <h3>Why iPhone only?</h3>
-      <p>The on-device AI is the product. Modern iPhone chips run Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
+      <p>The on-device AI is the product. Modern iPhone chips run Apple's Foundation Models or Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
     </div>
 
     <div class="cta-card">

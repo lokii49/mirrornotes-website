@@ -22,7 +22,7 @@
         "name": "What is the most private journaling app for iPhone?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes is the most private journaling app for iPhone because the privacy guarantee is architectural: your journal text never leaves your device. There is no server, no cloud AI backend, and no account required. All AI, daily prompts, mood analysis, Ask your journal, weekly digests, runs on-device using Gemma 3 via CoreML. Even the AI model runs locally, so nothing is transmitted anywhere."
+          "text": "MirrorNotes is the most private journaling app for iPhone because the privacy guarantee is architectural: your journal text never leaves your device. There is no server, no cloud AI backend, and no account required. All AI, daily prompts, mood analysis, Ask your journal, weekly digests, runs on-device, using Apple's Foundation Models on Apple Intelligence-eligible iPhones or the bundled Gemma 3 model via CoreML otherwise. Even the AI model runs locally, so nothing is transmitted anywhere."
         }
       },
       {
@@ -30,7 +30,7 @@
         "name": "Do journaling apps read your diary?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most journaling apps with AI features send your entries to a server for processing, your text is read by an AI model running on their infrastructure. MirrorNotes is different: the AI model (Gemma 3) runs on your iPhone's chip, so it reads your entries locally without ever transmitting them. Your words go nowhere."
+          "text": "Most journaling apps with AI features send your entries to a server for processing, your text is read by an AI model running on their infrastructure. MirrorNotes is different: the AI model — Apple's own Foundation Models, or the bundled Gemma 3 model as a fallback — runs on your iPhone's chip, so it reads your entries locally without ever transmitting them. Your words go nowhere."
         }
       },
       {
@@ -46,7 +46,7 @@
         "name": "What private journaling app works offline?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes works fully offline, including all AI features. Because Gemma 3 runs on your iPhone's Neural Engine, you can write entries and receive AI insights with no internet connection. It works on a plane, underground, in the mountains, or anywhere with no signal."
+          "text": "MirrorNotes works fully offline, including all AI features. Because the model — Apple's Foundation Models or the bundled Gemma 3 fallback — runs on your iPhone itself, you can write entries and receive AI insights with no internet connection. It works on a plane, underground, in the mountains, or anywhere with no signal."
         }
       }
     ]
@@ -137,7 +137,7 @@
       <h3>Privacy guarantees</h3>
       <ul>
         <li>Journal text never transmitted: no server, no cloud AI, no API calls</li>
-        <li>All AI runs on your iPhone's chip (Gemma 3 via CoreML), not on someone else's server</li>
+        <li>All AI runs on your iPhone's chip (Apple's Foundation Models on Apple Intelligence-eligible devices, Gemma 3 via CoreML otherwise), not on someone else's server</li>
         <li>No account, no sign-in required: nothing to breach</li>
         <li>iCloud sync encrypted under your Apple ID: we can't read it</li>
         <li>Works in airplane mode: no network needed for any feature</li>
@@ -159,7 +159,7 @@
         <div class="privacy-item">
           <div class="icon">📱</div>
           <h4>On-device AI</h4>
-          <p>Gemma 3 1B runs via CoreML on your iPhone's Neural Engine. No API calls, no tokens consumed, no data sent.</p>
+          <p>Apple's Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 1B model via CoreML otherwise. Either way: no API calls, no tokens consumed, no data sent, and never Apple's cloud-based Private Cloud Compute.</p>
         </div>
         <div class="privacy-item">
           <div class="icon">🔒</div>
@@ -186,11 +186,11 @@
           <tr><th>App</th><th>Journal stored on-device</th><th>AI on-device</th><th>Account required</th><th>Works offline</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Yes</td><td class="yes">Yes, Gemma 3</td><td class="yes">No</td><td class="yes">Fully</td></tr>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Yes</td><td class="yes">Yes, on-device only (Foundation Models or Gemma 3)</td><td class="yes">No</td><td class="yes">Fully</td></tr>
           <tr><td>Day One</td><td class="warn">iCloud + their servers</td><td class="no">Cloud AI</td><td class="no">Required</td><td class="warn">Writing only</td></tr>
           <tr><td>Rosebud</td><td class="no">Their servers</td><td class="no">Cloud AI</td><td class="no">Required</td><td class="no">No</td></tr>
           <tr><td>Reflect</td><td class="warn">Their servers</td><td class="no">Cloud AI</td><td class="no">Required</td><td class="warn">Writing only</td></tr>
-          <tr><td>Apple Journal</td><td class="yes">On-device</td><td class="warn">Apple Intelligence (cloud)</td><td class="no">Apple ID</td><td class="warn">Writing only</td></tr>
+          <tr><td>Apple Journal</td><td class="yes">On-device</td><td class="warn">Apple Intelligence, can use cloud Private Cloud Compute for larger requests</td><td class="no">Apple ID</td><td class="warn">Writing only</td></tr>
         </tbody>
       </table>
     </div>

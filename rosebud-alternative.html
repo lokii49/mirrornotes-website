@@ -30,7 +30,7 @@
         "name": "Does Rosebud send journal entries to a server?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rosebud uses cloud AI, which means entries are processed on remote servers to generate its responses. MirrorNotes takes the opposite approach: a local model (Gemma 3) runs on your iPhone, so entries are never transmitted for AI processing."
+          "text": "Rosebud uses cloud AI, which means entries are processed on remote servers to generate its responses. MirrorNotes takes the opposite approach: a local model — Apple's own Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 model otherwise — runs on your iPhone, so entries are never transmitted for AI processing."
         }
       },
       {
@@ -124,7 +124,7 @@
       <h3>TL;DR</h3>
       <ul>
         <li>MirrorNotes: free. Rosebud: $12.99/mo. Same core job: AI that reflects your journaling back to you.</li>
-        <li>MirrorNotes AI runs 100% on-device (Gemma 3). Rosebud processes entries on cloud servers.</li>
+        <li>MirrorNotes AI runs 100% on-device (Apple's Foundation Models, or Gemma 3 as a fallback). Rosebud processes entries on cloud servers.</li>
         <li>MirrorNotes works fully offline, including every AI feature.</li>
         <li>Rosebud is stronger if you want guided, conversational coaching across web and Android.</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>AI price</strong></td><td class="yes">Free</td><td>$12.99/mo</td></tr>
-          <tr><td><strong>Where the AI runs</strong></td><td class="yes">On your iPhone (Gemma 3 via CoreML)</td><td class="warn">Cloud servers</td></tr>
+          <tr><td><strong>Where the AI runs</strong></td><td class="yes">On your iPhone (Apple Foundation Models or Gemma 3)</td><td class="warn">Cloud servers</td></tr>
           <tr><td><strong>Journal text leaves your device</strong></td><td class="yes">Never, no network path exists</td><td class="warn">Yes, for AI processing</td></tr>
           <tr><td><strong>Works offline</strong></td><td class="yes">Fully, including all AI features</td><td class="no">Requires internet for AI</td></tr>
           <tr><td><strong>Free tier</strong></td><td class="yes">Everything is free: unlimited writing, full AI, full history, search, iCloud backup</td><td>Limited free entries/features</td></tr>
@@ -155,7 +155,7 @@
     <div class="policy-section">
       <h2>The core difference: where the AI lives</h2>
       <p>Rosebud's interactive coaching works by sending your words to large cloud models. That's how most AI journals work, and it's why they cost what they cost: every reflection you generate costs the company real server money, and that bill becomes your subscription price.</p>
-      <p>MirrorNotes makes the opposite bet: a small language model (Gemma 3 1B) runs directly on your iPhone's chip. The model reads your entries in your phone's memory, generates the insight, and nothing is transmitted. Two consequences follow:</p>
+      <p>MirrorNotes makes the opposite bet: a small language model runs directly on your iPhone's chip — Apple's own Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 1B model otherwise. The model reads your entries in your phone's memory, generates the insight, and nothing is transmitted. Two consequences follow:</p>
       <ul>
         <li><strong>Privacy is architectural, not a policy.</strong> There is no code path that sends journal text to a server. It can't leak, be subpoenaed from us, or train someone's model, we never have it.</li>
         <li><strong>There's no price floor at all.</strong> Our inference cost is zero, so the AI layer is free instead of $12.99/month.</li>

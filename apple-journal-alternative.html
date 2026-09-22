@@ -22,7 +22,7 @@
         "name": "What is a good Apple Journal alternative with AI features?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes is an Apple Journal alternative built around active AI reflection instead of passive suggestions. It generates daily personalized prompts, tracks mood trends, summarizes your week, and answers natural-language questions about your own entries, with all AI running locally on your iPhone (Gemma 3), so journal text is never sent to a server."
+          "text": "MirrorNotes is an Apple Journal alternative built around active AI reflection instead of passive suggestions. It generates daily personalized prompts, tracks mood trends, summarizes your week, and answers natural-language questions about your own entries, with all AI running locally on your iPhone — Apple's own Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 model on every other supported iPhone — so journal text is never sent to a server either way."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Does Apple Journal have AI that reads your entries?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Apple Journal uses on-device suggestions (photos, places, workouts, contacts) to prompt you to write, and Apple Intelligence can offer writing tools on supported devices. It doesn't analyze your entries for mood trends or let you ask questions about your own writing. MirrorNotes ships its own local model (Gemma 3 via CoreML) that does exactly that: prompts, mood analysis, weekly digests, and Ask, all generated from what you've actually written, entirely on-device."
+          "text": "Apple Journal uses on-device suggestions (photos, places, workouts, contacts) to prompt you to write, and Apple Intelligence can offer writing tools on supported devices. It doesn't analyze your entries for mood trends or let you ask questions about your own writing. MirrorNotes uses that same on-device Foundation Models framework where it's available, plus its own bundled Gemma 3 model as a fallback on every other supported iPhone, to do exactly that: prompts, mood analysis, weekly digests, and Ask, all generated from what you've actually written, entirely on-device."
         }
       }
     ]
@@ -125,7 +125,7 @@
       <ul>
         <li>Apple Journal = the simplest possible built-in journal. MirrorNotes = a journal that reads what you actually wrote.</li>
         <li>Apple Journal suggests moments to write about (photos, places, workouts). MirrorNotes analyzes what you've already written and reflects it back, with prompts, a mood timeline, and "Ask your journal".</li>
-        <li>Both run on-device and both are free. MirrorNotes' AI layer (Gemma 3) is the whole product, not a writing-prompt add-on.</li>
+        <li>Both are free, and both can use Apple's on-device Foundation Models. MirrorNotes' AI layer — Foundation Models where available, its own bundled Gemma 3 model everywhere else — is the whole product: active mood analysis, digests, and Ask, not a writing-prompt add-on.</li>
         <li>Want the built-in default with zero setup? Apple Journal is right there. Want a model that actually engages with your entries? Try MirrorNotes.</li>
       </ul>
     </div>
@@ -143,7 +143,7 @@
           <tr><td><strong>Mood timeline & trends</strong></td><td class="yes">Yes, generated from your writing</td><td class="no">No mood analytics</td></tr>
           <tr><td><strong>Weekly digest / summary</strong></td><td class="yes">Every Sunday, on-device</td><td class="no">No</td></tr>
           <tr><td><strong>Photos, video, audio in entries</strong></td><td class="no">Text and voice-to-text, writing-first</td><td class="yes">Rich media attachments</td></tr>
-          <tr><td><strong>Where AI runs</strong></td><td class="yes">Gemma 3 on your iPhone (Neural Engine)</td><td class="yes">On-device suggestions; Apple Intelligence writing tools on supported devices</td></tr>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone: Apple Foundation Models where eligible, Gemma 3 fallback everywhere else</td><td class="warn">On-device suggestions; Apple Intelligence writing tools on supported devices, which can use cloud Private Cloud Compute for larger requests</td></tr>
           <tr><td><strong>Platforms</strong></td><td class="no">iPhone only</td><td class="yes">iPhone (with iPad/Mac support via Apple ecosystem)</td></tr>
           <tr><td><strong>End-to-end encryption</strong></td><td class="yes">Entries never leave device; iCloud sync under your Apple ID</td><td class="yes">Locked with Face ID/Touch ID; end-to-end encrypted iCloud sync</td></tr>
           <tr><td><strong>Price</strong></td><td class="yes">Free</td><td class="yes">Free, built into iOS</td></tr>
@@ -163,7 +163,7 @@
         <li><strong>Mood Timeline:</strong> emotional trends you'd never notice reading day by day, with alerts when several entries in a row trend negative.</li>
       </ul>
       <div class="callout">
-        <strong>The privacy story is similar, but not identical:</strong> Apple Journal's on-device suggestions and MirrorNotes' on-device model both mean your data never has to leave your phone. The difference is what the AI actually does with your writing once it's there: Apple Journal doesn't read your entries to generate insight. MirrorNotes' entire product is a local model that does, and never phones home to do it.
+        <strong>The privacy story is similar, but not identical:</strong> Apple Journal's on-device suggestions and MirrorNotes' on-device AI both mean your data never has to leave your phone for that part. The difference is what the AI actually does with your writing once it's there: Apple Journal doesn't read your entries to generate insight, and its broader Apple Intelligence writing tools can reach for cloud Private Cloud Compute on bigger requests. MirrorNotes' entire product is reading your writing to generate insight, and it never phones home to do it, whether it's using Apple's on-device Foundation Models or its own bundled Gemma 3 model.
       </div>
     </div>
 
@@ -174,7 +174,7 @@
       <h3>Can I import my Apple Journal entries?</h3>
       <p>Not yet, import is on the roadmap. New entries you write in MirrorNotes are yours: stored on-device in SwiftData and synced to your own iCloud.</p>
       <h3>Why iPhone only?</h3>
-      <p>The on-device AI is the product. Modern iPhone chips run Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
+      <p>The on-device AI is the product. Modern iPhone chips run Apple's Foundation Models or Gemma 3 well; spreading thin across platforms would mean either cloud AI (breaking the privacy guarantee) or a worse experience. iPhone-first is a deliberate trade.</p>
     </div>
 
     <div class="cta-card">

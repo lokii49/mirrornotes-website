@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="An offline journal app where even the AI works without internet. MirrorNotes runs Gemma 3 on your iPhone: write, reflect, and get insights in airplane mode. Free.">
+  <meta name="description" content="An offline journal app where even the AI works without internet. MirrorNotes runs Apple's Foundation Models or Gemma 3 on your iPhone: write, reflect, and get insights in airplane mode. Free.">
   <meta name="theme-color" content="#FFFFFF">
   <title>Offline Journal App with AI: MirrorNotes Works Without Internet</title>
   <link rel="canonical" href="https://mirrornotes.org/offline-journal-app.html">
@@ -22,7 +22,7 @@
         "name": "Is there a journal app that works completely offline?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes works completely offline, including its AI features. The model (Gemma 3) runs on the iPhone itself, so daily prompts, mood analysis, weekly digests, and journal questions all work in airplane mode with no internet connection. Most journaling apps work offline for writing only; their AI features require a connection because the AI runs on remote servers."
+          "text": "MirrorNotes works completely offline, including its AI features. The model — Apple's Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 model otherwise — runs on the iPhone itself, so daily prompts, mood analysis, weekly digests, and journal questions all work in airplane mode with no internet connection. Most journaling apps work offline for writing only; their AI features require a connection because the AI runs on remote servers."
         }
       },
       {
@@ -124,7 +124,7 @@
       <h3>TL;DR</h3>
       <ul>
         <li>Every feature works offline: writing, voice transcription, and all AI.</li>
-        <li>The model (Gemma 3 1B) lives on your iPhone and runs via CoreML. No API calls, ever.</li>
+        <li>The model lives on your iPhone — Apple's Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 1B model via CoreML otherwise. No API calls, ever.</li>
         <li>Offline AI doubles as a privacy guarantee: text that never needs the internet never crosses it.</li>
         <li>Optional iCloud sync to your own Apple ID when you're back online. No account, no sign-in.</li>
       </ul>
@@ -154,7 +154,7 @@
       <p>These two properties are the same engineering decision. An AI that works in airplane mode is an AI that demonstrably doesn't send your words anywhere. You can verify it yourself by flipping the switch and watching every feature keep working.</p>
       <ul>
         <li>Entries are stored in SwiftData on your iPhone.</li>
-        <li>AI inference happens in your phone's memory via the Neural Engine. The model reads your entry, generates the insight, and nothing is transmitted.</li>
+        <li>AI inference happens in your phone's memory, on your iPhone's own chip. The model reads your entry, generates the insight, and nothing is transmitted.</li>
         <li>No account exists. There's nothing to sign into and no server-side profile of you.</li>
         <li>When you're back online, optional CloudKit sync copies entries to your own iCloud, under your Apple ID, inaccessible to us.</li>
       </ul>
@@ -177,9 +177,9 @@
     <div class="policy-section">
       <h2>Frequently asked questions</h2>
       <h3>How big is the AI model? Does it eat my storage or battery?</h3>
-      <p>Gemma 3 1B is a small model by modern standards, designed for exactly this kind of on-device use. Inference runs on the Neural Engine, generates a short insight, and stops; it's not running in the background. Insights are cached so nothing is regenerated within 24 hours.</p>
+      <p>On Apple Intelligence-eligible iPhones, MirrorNotes uses Apple's Foundation Models, already built into iOS. Everywhere else it falls back to Gemma 3 1B, a small model by modern standards, designed for exactly this kind of on-device use. Either way, inference runs on the Neural Engine, generates a short insight, and stops; nothing runs in the background. Insights are cached so nothing is regenerated within 24 hours.</p>
       <h3>What iPhone do I need?</h3>
-      <p>MirrorNotes requires iOS 17 or later. Recent iPhones run the model comfortably; newer chips are simply faster.</p>
+      <p>MirrorNotes requires iOS 17 or later. On iPhones that also support Apple Intelligence (iOS 26+, Apple Intelligence turned on), MirrorNotes uses Apple's own on-device model; every other supported iPhone uses the bundled Gemma 3 model. Recent iPhones run either model comfortably; newer chips are simply faster.</p>
       <h3>If I lose my phone, are my entries gone?</h3>
       <p>Enable iCloud sync and your entries are backed up to your own Apple ID and restorable on a new device. Without sync, entries exist only on the device: maximum privacy, your call.</p>
     </div>

@@ -22,7 +22,7 @@
         "name": "What is a good Reflect app alternative?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes is a Reflect alternative built around on-device AI. Where Reflect sends your notes to a cloud for AI processing, MirrorNotes runs Gemma 3 locally on your iPhone, so daily prompts, mood analysis, Ask your journal, and weekly digests all work offline with no data ever leaving your device."
+          "text": "MirrorNotes is a Reflect alternative built around on-device AI. Where Reflect sends your notes to a cloud for AI processing, MirrorNotes runs its AI locally on your iPhone — Apple's own Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 model otherwise — so daily prompts, mood analysis, Ask your journal, and weekly digests all work offline with no data ever leaving your device."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Does Reflect have on-device AI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Reflect uses cloud AI for its intelligence features, which means your notes are processed on external servers. MirrorNotes runs Gemma 3 via CoreML entirely on your iPhone, no API calls, no server, no data transmitted. Every AI feature works in airplane mode."
+          "text": "Reflect uses cloud AI for its intelligence features, which means your notes are processed on external servers. MirrorNotes runs entirely on your iPhone: Apple's own Foundation Models on Apple Intelligence-eligible devices, or the bundled Gemma 3 model via CoreML otherwise. No API calls, no server, no data transmitted, no Private Cloud Compute. Every AI feature works in airplane mode."
         }
       },
       {
@@ -125,7 +125,7 @@
     <div class="page-header">
       <div class="label">Comparison</div>
       <h1>A Reflect alternative where the AI stays on your phone</h1>
-      <p>Reflect is a capable note-taking and journaling tool. The catch: its AI features send your notes to a cloud for processing. MirrorNotes takes the opposite approach. Gemma 3 runs locally on your iPhone, so daily prompts, mood analysis, and journal queries work offline, with no text ever reaching a server.</p>
+      <p>Reflect is a capable note-taking and journaling tool. The catch: its AI features send your notes to a cloud for processing. MirrorNotes takes the opposite approach. AI runs locally on your iPhone — Apple's own Foundation Models where available, Gemma 3 as a fallback — so daily prompts, mood analysis, and journal queries work offline, with no text ever reaching a server.</p>
     </div>
 
     <div class="tldr">
@@ -145,7 +145,7 @@
           <tr><th>Feature</th><th>MirrorNotes</th><th>Reflect</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Gemma 3 via CoreML)</td><td class="warn">Cloud servers</td></tr>
+          <tr><td><strong>Where AI runs</strong></td><td class="yes">On your iPhone (Apple Foundation Models or Gemma 3)</td><td class="warn">Cloud servers</td></tr>
           <tr><td><strong>Journal text leaves device</strong></td><td class="yes">Never</td><td class="warn">Yes, for AI processing</td></tr>
           <tr><td><strong>Works offline</strong></td><td class="yes">Fully, including all AI features</td><td class="no">AI requires internet</td></tr>
           <tr><td><strong>Daily AI reflection prompts</strong></td><td class="yes">Yes, personalized to your recent entries</td><td class="no">No</td></tr>
@@ -163,7 +163,7 @@
     <div class="policy-section">
       <h2>The privacy difference is architectural</h2>
       <p>Most AI journaling apps, including Reflect, process your writing on a server. That's not a criticism of their privacy policies; it's a technical consequence of running cloud AI. The model has to see the text to process it.</p>
-      <p>MirrorNotes ships its own model. Gemma 3 1B runs via CoreML on your iPhone's Neural Engine. When you write an entry, the AI reads it on your chip, generates an insight, and the text stays on your device. Not transmitted, not logged, not stored anywhere outside your iCloud.</p>
+      <p>MirrorNotes runs its AI on your iPhone's own chip: Apple's Foundation Models on Apple Intelligence-eligible devices, or its own bundled Gemma 3 1B model via CoreML otherwise. When you write an entry, the AI reads it on your chip, generates an insight, and the text stays on your device. Not transmitted, not logged, not stored anywhere outside your iCloud.</p>
       <div class="callout">
         <strong>The privacy guarantee is architectural, not a policy promise.</strong> There's no cloud code path in the app. It can't send your journal to a server because there's no server to send it to.
       </div>
