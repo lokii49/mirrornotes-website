@@ -374,7 +374,7 @@
       <h3>TL;DR: The short version</h3>
       <ul>
         <li>Your journal entries never leave your device. Ever.</li>
-        <li>All AI inference runs locally on your iPhone (Gemma 3 1B). No cloud AI.</li>
+        <li>All AI inference runs locally on your iPhone — Apple's Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 1B model otherwise. No cloud AI, either way.</li>
         <li>iCloud sync goes to your own Apple account. We cannot access it.</li>
         <li>We collect only what's needed for subscription management (RevenueCat). No account or sign-in required.</li>
         <li>We do not sell your data, profile you, or use your data for advertising.</li>
@@ -397,7 +397,7 @@
       <ul>
         <li>Journal entry text is stored in SwiftData on your local device.</li>
         <li>iCloud sync via Apple CloudKit copies your entries to your own iCloud account, accessible only with your Apple ID credentials. We have zero access to this data.</li>
-        <li>AI analysis (Daily Nudge, Ask, Weekly Digest) is performed by Gemma 3 1B, a model that runs entirely on your device's Neural Engine. Your entry text is never sent to any server for AI processing.</li>
+        <li>AI analysis (Daily Nudge, Ask, Weekly Digest) is performed on your device: by Apple's on-device Foundation Models framework on Apple Intelligence-eligible iPhones running iOS 26+, or by the bundled Gemma 3 1B model otherwise. Your entry text is never sent to any server for AI processing.</li>
         <li>Generated insights (e.g., a Daily Nudge) are cached on-device in SwiftData. Insight text is not transmitted to our servers.</li>
       </ul>
       <div class="callout">
@@ -486,15 +486,15 @@
     <!-- 5 -->
     <div class="policy-section">
       <h2>5. On-device AI and local processing</h2>
-      <p>All AI features in MirrorNotes (Daily Nudge, Ask, Weekly Digest) are powered by <strong>Gemma 3 1B</strong>, a large language model that runs entirely on your device.</p>
+      <p>All AI features in MirrorNotes (Daily Nudge, Ask, Weekly Digest) run entirely on your device. On Apple Intelligence-eligible iPhones running iOS 26 or later, MirrorNotes uses Apple's own on-device <strong>Foundation Models</strong> framework. On every other supported iPhone, or when Apple Intelligence is unavailable, MirrorNotes uses its own bundled model, <strong>Gemma 3 1B</strong>.</p>
       <ul>
-        <li>The model file is bundled with or downloaded by the app and stored locally.</li>
-        <li>Inference (generating AI responses) happens in memory on your device.</li>
-        <li>Entry text passed to the model never leaves your device's local memory.</li>
+        <li>Apple's Foundation Models framework is built into iOS; the Gemma 3 1B model file is bundled with or downloaded by the app and stored locally.</li>
+        <li>Inference (generating AI responses) happens in memory on your device, regardless of which model is used.</li>
+        <li>Entry text passed to either model never leaves your device's local memory.</li>
         <li>We impose a 10,000-character maximum on text sent to the model (truncating oldest entries first) to protect device performance.</li>
         <li>Generated insights are cached on-device and not regenerated within 24 hours.</li>
       </ul>
-      <p>There are no API calls to any AI cloud service (no OpenAI, Anthropic, Google Cloud AI, etc.) for AI processing.</p>
+      <p>There are no API calls to any AI cloud service (no OpenAI, Anthropic, Google Cloud AI, etc.) for AI processing. Apple's on-device Foundation Models framework does not use Apple's cloud-based Private Cloud Compute — it only runs the compact, on-device model.</p>
     </div>
 
     <!-- 6 -->

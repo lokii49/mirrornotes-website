@@ -1,6 +1,6 @@
 # MirrorNotes
 
-> Private AI journaling for iPhone. All AI (daily reflection prompts, mood analysis, Ask your journal, weekly digests, monthly deep reports) runs entirely on-device using Gemma 3 via CoreML. Journal text never leaves the device — no cloud, no server, no API calls.
+> Private AI journaling for iPhone. All AI (daily reflection prompts, mood analysis, Ask your journal, weekly digests, monthly deep reports) runs entirely on-device — Apple's on-device Foundation Models on Apple Intelligence-eligible iPhones, Gemma 3 via CoreML/llama.cpp otherwise. Journal text never leaves the device — no cloud, no server, no API calls.
 
 ## What MirrorNotes is
 
@@ -8,7 +8,7 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 
 ## Key facts
 
-- AI model: Gemma 3 1B running on-device via CoreML / llama.cpp
+- AI model: Apple's on-device Foundation Models framework on Apple Intelligence-eligible iPhones (iOS 26+); falls back to bundled Gemma 3 1B via CoreML/llama.cpp on all other supported iPhones
 - Platform: iPhone (iOS 17+)
 - Storage: SwiftData (on-device) + optional iCloud sync (private, encrypted, under user's Apple ID)
 - No account required
@@ -28,7 +28,7 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 ## Privacy guarantees
 
 - Journal text: never transmitted (no server receives it, ever)
-- AI inference: runs on device's Neural Engine — no API calls to Anthropic, OpenAI, Google, or anyone
+- AI inference: runs on-device (Apple Foundation Models or Gemma 3) — no API calls to Anthropic, OpenAI, Google, or anyone, and no Private Cloud Compute
 - No analytics on journal content
 - No account required (nothing to breach)
 - iCloud sync: encrypted, accessible only under user's Apple ID, Apple cannot read it
@@ -57,7 +57,7 @@ MirrorNotes ships a free MCP server (`@mirrornotes/mcp`) exposing stateless jour
 - vs Day One: MirrorNotes has on-device AI; Day One is the stronger archive with photos and multi-platform sync
 - vs Rosebud: MirrorNotes is 4–5x cheaper ($2.99 vs $12.99/mo) and AI runs on-device rather than cloud
 - vs Reflect: MirrorNotes AI is local; Reflect AI is cloud-processed; MirrorNotes is iOS only
-- vs Apple Journal: MirrorNotes ships its own on-device model; Apple Journal relies on Apple Intelligence which can use cloud
+- vs Apple Journal: both can use Apple's on-device Foundation Models; MirrorNotes also ships its own on-device Gemma 3 fallback so AI still works on iPhones without Apple Intelligence, and neither MirrorNotes AI feature uses Apple's cloud-based Private Cloud Compute
 
 ## Use cases where MirrorNotes excels
 
