@@ -22,7 +22,7 @@
         "name": "AI機能を備えたDay Oneの良い代替アプリはありますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotesは、オンデバイスAIを中心に設計されたDay Oneの代替アプリです。毎日パーソナライズされたプロンプトを生成し、気分の傾向を追跡し、1週間をまとめ、自分のエントリーについて自然な言葉での質問に答えます。すべてのAIはあなたのiPhone上でローカルに動作するため(Gemma 3)、日記のテキストがサーバーに送信されることは一切ありません。"
+          "text": "MirrorNotesは、オンデバイスAIを中心に設計されたDay Oneの代替アプリです。毎日パーソナライズされたプロンプトを生成し、気分の傾向を追跡し、1週間をまとめ、自分のエントリーについて自然な言葉での質問に答えます。すべてのAIはあなたのiPhone上でローカルに動作します — Apple Intelligence対応iPhoneではAppleのFoundation Models、それ以外の機種では内蔵のGemma 3モデルを使用するため、日記のテキストがサーバーに送信されることは一切ありません。"
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Day Oneにはオンデバイスの機能はありますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Day Oneはクラウドや Apple Intelligence サービスに連携したインテリジェンス機能を追加してきています。MirrorNotesは独自のローカルモデル(CoreML経由のGemma 3)を搭載しているため、プロンプト、要約、気分分析、AskといったすべてのAI機能がオフラインで動作し、日記のテキストが端末から出ることは一切ありません。"
+          "text": "Day Oneはクラウド AI サービスに連携したインテリジェンス機能を追加してきています。MirrorNotesは完全にオンデバイスで動作します:Apple Intelligence対応iPhoneではApple自身のFoundation Models、それ以外の機種では内蔵のGemma 3モデルをフォールバックとして使用するため、プロンプト、要約、気分分析、AskといったすべてのAI機能がオフラインで動作し、日記のテキストが端末から出ることは一切ありません。"
         }
       }
     ]
@@ -124,7 +124,7 @@
       <h3>要点まとめ</h3>
       <ul>
         <li>Day One = 最高のアーカイブ。MirrorNotes = 語りかけてくる日記。</li>
-        <li>MirrorNotesのAIは完全にオンデバイス(Gemma 3):プロンプト、ダイジェスト、「日記に問いかける」はすべてオフラインで動作し、エントリーがサーバーに届くことはありません。</li>
+        <li>MirrorNotesのAIは完全にオンデバイス(AppleのFoundation Models、フォールバックとしてGemma 3):プロンプト、ダイジェスト、「日記に問いかける」はすべてオフラインで動作し、エントリーがサーバーに届くことはありません。</li>
         <li>MirrorNotesは無料です。Day One Premiumは無制限のメディアと複数端末同期のために年間約$34.99かかります。</li>
         <li>写真中心でマルチプラットフォームな日記が欲しいなら、Day Oneのままで。書いた内容から気づきを得たいなら、無料のMirrorNotesを試してみてください。</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>内蔵AIインサイト</strong></td><td class="yes">コア機能:デイリープロンプト、ダイジェスト、気分分析、Ask</td><td class="no">限定的。インテリジェンス機能はクラウドやAppleのサービスに依存</td></tr>
-          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(CoreML経由のGemma 3)</td><td class="warn">存在する場合はクラウド連携</td></tr>
+          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(Apple Foundation ModelsまたはGemma 3)、AppleのクラウドPrivate Cloud Computeは使用しません</td><td class="warn">存在する場合はクラウド連携</td></tr>
           <tr><td><strong>エントリーへの質問</strong></td><td class="yes">「何にストレスを感じている?」にオンデバイスで回答</td><td class="no">なし</td></tr>
           <tr><td><strong>気分タイムライン&amp;アラート</strong></td><td class="yes">あり</td><td class="no">気分分析なし</td></tr>
           <tr><td><strong>エントリー内の写真・動画・音声</strong></td><td class="no">テキストと音声入力、書くことが中心</td><td class="yes">優れたメディア対応</td></tr>
@@ -173,7 +173,7 @@
       <h3>Day Oneのエントリーをインポートできますか?</h3>
       <p>まだできません。インポート機能はロードマップに含まれています。MirrorNotesで新しく書くエントリーはあなたのものです:端末上のSwiftDataに保存され、あなた自身のiCloudに同期されます。</p>
       <h3>なぜiPhone専用なのですか?</h3>
-      <p>オンデバイスAIこそがこの製品の核です。最新のiPhoneチップはGemma 3を快適に動作させられます。複数プラットフォームに手を広げれば、クラウドAI(プライバシー保証を損なう)か、質の劣る体験のどちらかになってしまいます。iPhoneを優先するのは意図的な選択です。</p>
+      <p>オンデバイスAIこそがこの製品の核です。最新のiPhoneチップはAppleのFoundation ModelsやGemma 3を快適に動作させられます。複数プラットフォームに手を広げれば、クラウドAI(プライバシー保証を損なう)か、質の劣る体験のどちらかになってしまいます。iPhoneを優先するのは意図的な選択です。</p>
     </div>
 
     <div class="cta-card">
