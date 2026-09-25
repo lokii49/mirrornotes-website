@@ -22,7 +22,7 @@
         "name": "AI 기능을 갖춘 좋은 Day One 대안은 무엇인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes는 온디바이스 AI를 중심으로 만들어진 Day One 대안입니다. 매일 개인화된 질문을 생성하고, 감정 변화 추이를 추적하며, 한 주를 요약하고, 자신의 기록에 대한 자연어 질문에 답합니다. 모든 AI는 아이폰에서 로컬로 실행되므로(Gemma 3), 일기 텍스트가 서버로 전송되는 일은 없습니다."
+          "text": "MirrorNotes는 온디바이스 AI를 중심으로 만들어진 Day One 대안입니다. 매일 개인화된 질문을 생성하고, 감정 변화 추이를 추적하며, 한 주를 요약하고, 자신의 기록에 대한 자연어 질문에 답합니다. 모든 AI는 아이폰에서 로컬로 실행됩니다 — Apple Intelligence 지원 아이폰에서는 Apple의 Foundation Models를, 그 외 기종에서는 내장된 Gemma 3 모델을 사용하므로, 일기 텍스트가 서버로 전송되는 일은 없습니다."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Day One에는 온디바이스 AI가 있나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Day One은 클라우드 또는 Apple Intelligence 서비스와 연동된 지능형 기능을 추가해 왔습니다. MirrorNotes는 자체 로컬 모델(CoreML 기반 Gemma 3)을 탑재하여, 질문, 요약, 감정 분석, 저널에게 물어보기 등 모든 AI 기능이 오프라인에서 작동하며 일기 텍스트는 기기를 벗어나지 않습니다."
+          "text": "Day One은 클라우드 AI 서비스와 연동된 지능형 기능을 추가해 왔습니다. MirrorNotes는 완전히 온디바이스로 작동합니다: Apple Intelligence 지원 아이폰에서는 Apple 자체의 Foundation Models를, 그 외 모든 기종에서는 내장된 Gemma 3 모델을 대체 수단으로 사용하여, 질문, 요약, 감정 분석, 저널에게 물어보기 등 모든 AI 기능이 오프라인에서 작동하며 일기 텍스트는 기기를 벗어나지 않습니다."
         }
       }
     ]
@@ -124,7 +124,7 @@
       <h3>요약</h3>
       <ul>
         <li>Day One = 최고의 아카이브. MirrorNotes = 대답하는 일기.</li>
-        <li>MirrorNotes의 AI는 완전히 온디바이스(Gemma 3)로 작동합니다: 질문, 다이제스트, "저널에게 물어보기"는 오프라인에서 동작하며 기록은 서버에 닿지 않습니다.</li>
+        <li>MirrorNotes의 AI는 완전히 온디바이스(Apple의 Foundation Models, 대체 수단으로 Gemma 3)로 작동합니다: 질문, 다이제스트, "저널에게 물어보기"는 오프라인에서 동작하며 기록은 서버에 닿지 않습니다.</li>
         <li>MirrorNotes는 무료입니다. Day One Premium은 무제한 미디어와 멀티 기기 동기화에 연 약 $34.99입니다.</li>
         <li>사진이 풍부한 멀티 플랫폼 일기를 원하시나요? Day One을 계속 쓰세요. 쓴 글에서 무료로 인사이트를 얻고 싶으신가요? MirrorNotes를 써보세요.</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>내장 AI 인사이트</strong></td><td class="yes">핵심 기능: 매일의 질문, 다이제스트, 감정 분석, 저널에게 물어보기</td><td class="no">제한적; 지능형 기능은 클라우드/Apple 서비스에 의존</td></tr>
-          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (CoreML 기반 Gemma 3)</td><td class="warn">제공되는 경우 클라우드 지원</td></tr>
+          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (Apple Foundation Models 또는 Gemma 3), Apple의 클라우드 Private Cloud Compute는 사용하지 않음</td><td class="warn">제공되는 경우 클라우드 지원</td></tr>
           <tr><td><strong>기록에 대해 질문하기</strong></td><td class="yes">"무엇이 나를 스트레스 받게 하나요?" 같은 질문에 온디바이스로 답변</td><td class="no">없음</td></tr>
           <tr><td><strong>무드 타임라인 &amp; 알림</strong></td><td class="yes">지원</td><td class="no">감정 분석 기능 없음</td></tr>
           <tr><td><strong>사진, 동영상, 오디오 기록</strong></td><td class="no">텍스트와 음성-텍스트 변환 중심, 글쓰기 우선</td><td class="yes">뛰어난 미디어 지원</td></tr>
@@ -173,7 +173,7 @@
       <h3>Day One 기록을 가져올 수 있나요?</h3>
       <p>아직입니다. 가져오기 기능은 로드맵에 있습니다. MirrorNotes에서 새로 쓰는 기록은 온전히 당신의 것입니다: 온디바이스 SwiftData에 저장되고 본인의 iCloud와 동기화됩니다.</p>
       <h3>왜 아이폰 전용인가요?</h3>
-      <p>온디바이스 AI가 곧 이 제품의 핵심입니다. 최신 아이폰 칩은 Gemma 3를 잘 구동합니다. 여러 플랫폼으로 분산시키면 클라우드 AI(프라이버시 보장이 깨짐)이거나 더 나쁜 경험 중 하나가 될 수밖에 없습니다. 아이폰 우선은 의도적인 선택입니다.</p>
+      <p>온디바이스 AI가 곧 이 제품의 핵심입니다. 최신 아이폰 칩은 Apple의 Foundation Models나 Gemma 3를 잘 구동합니다. 여러 플랫폼으로 분산시키면 클라우드 AI(프라이버시 보장이 깨짐)이거나 더 나쁜 경험 중 하나가 될 수밖에 없습니다. 아이폰 우선은 의도적인 선택입니다.</p>
     </div>
 
     <div class="cta-card">
