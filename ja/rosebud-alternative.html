@@ -30,7 +30,7 @@
         "name": "Rosebudは日記のエントリーをサーバーに送信しますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rosebudはクラウドの AI を使用しており、応答を生成するためにエントリーがリモートサーバーで処理されます。MirrorNotesはその逆のアプローチを取っています:ローカルモデル(Gemma 3)があなたのiPhone上で動作するため、エントリーがAI処理のために送信されることは一切ありません。"
+          "text": "Rosebudはクラウドの AI を使用しており、応答を生成するためにエントリーがリモートサーバーで処理されます。MirrorNotesはその逆のアプローチを取っています:ローカルモデル — Apple Intelligence対応のiPhoneではApple純正のFoundation Models、それ以外のiPhoneでは同梱のGemma 3モデル — があなたのiPhone上で動作するため、エントリーがAI処理のために送信されることは一切ありません。"
         }
       },
       {
@@ -124,7 +124,7 @@
       <h3>要点まとめ</h3>
       <ul>
         <li>MirrorNotes:無料。Rosebud:月額$12.99。目指す役割は同じ:あなたの日記を映し返すAI。</li>
-        <li>MirrorNotesのAIは100%オンデバイス(Gemma 3)。Rosebudはクラウドサーバーでエントリーを処理します。</li>
+        <li>MirrorNotesのAIは100%オンデバイス(Apple純正のFoundation Models、非対応機種ではGemma 3にフォールバック)。Rosebudはクラウドサーバーでエントリーを処理します。</li>
         <li>MirrorNotesはAI機能を含め、完全にオフラインで動作します。</li>
         <li>WebとAndroidにまたがるガイド付きの会話型コーチングを求めるなら、Rosebudのほうが優れています。</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>AIの料金</strong></td><td class="yes">無料</td><td>月額$12.99</td></tr>
-          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(CoreML経由のGemma 3)</td><td class="warn">クラウドサーバー</td></tr>
+          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(Apple Foundation ModelsまたはGemma 3)</td><td class="warn">クラウドサーバー</td></tr>
           <tr><td><strong>日記のテキストが端末外に出る</strong></td><td class="yes">一切なし、送信経路自体が存在しません</td><td class="warn">あり、AI処理のため送信されます</td></tr>
           <tr><td><strong>オフラインで動作</strong></td><td class="yes">完全に動作、AI機能も含む</td><td class="no">AI利用にはインターネットが必要</td></tr>
           <tr><td><strong>無料プラン</strong></td><td class="yes">すべて無料:無制限のエントリー、フルAI、全履歴、検索、iCloudバックアップ</td><td>無料エントリー数・機能に制限あり</td></tr>
@@ -155,7 +155,7 @@
     <div class="policy-section">
       <h2>核心的な違い:AIがどこで動くか</h2>
       <p>Rosebudの対話型コーチングは、あなたの言葉を大規模なクラウドモデルに送信することで成り立っています。ほとんどのAI日記アプリはこの仕組みで動いており、それが料金の理由でもあります:反応を1つ生成するたびに実際のサーバー費用がかかり、その請求があなたのサブスクリプション料金になります。</p>
-      <p>MirrorNotesはその逆の賭けに出ました:小型の言語モデル(Gemma 3 1B)があなたのiPhoneのチップ上で直接動作します。モデルはあなたの携帯電話のメモリ上でエントリーを読み取り、インサイトを生成し、何も送信されません。ここから2つの帰結が生まれます:</p>
+      <p>MirrorNotesはその逆の賭けに出ました:小型の言語モデルがあなたのiPhoneのチップ上で直接動作します — Apple Intelligence対応のiPhoneではApple純正のFoundation Models、それ以外のiPhoneでは同梱のGemma 3 1Bモデルです。モデルはあなたの携帯電話のメモリ上でエントリーを読み取り、インサイトを生成し、何も送信されません。ここから2つの帰結が生まれます:</p>
       <ul>
         <li><strong>プライバシーはポリシーではなく、構造そのものです。</strong>日記のテキストをサーバーに送信するコードパスは存在しません。漏洩することも、私たちに召喚状を送られて開示させられることも、誰かのモデルの学習データになることもありません。私たちがそもそもデータを持っていないからです。</li>
         <li><strong>価格の下限がそもそも存在しません。</strong>私たちの推論コストはゼロなので、AI機能は月額$12.99ではなく無料で提供できます。</li>
