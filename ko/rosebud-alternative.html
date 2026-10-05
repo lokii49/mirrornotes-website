@@ -30,7 +30,7 @@
         "name": "Rosebud는 일기 기록을 서버로 전송하나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rosebud는 클라우드 AI를 사용합니다. 즉, 응답을 생성하기 위해 기록이 원격 서버에서 처리됩니다. MirrorNotes는 정반대의 접근 방식을 취합니다: 로컬 모델(Gemma 3)이 당신의 아이폰에서 실행되므로, 기록이 AI 처리를 위해 전송되는 일이 전혀 없습니다."
+          "text": "Rosebud는 클라우드 AI를 사용합니다. 즉, 응답을 생성하기 위해 기록이 원격 서버에서 처리됩니다. MirrorNotes는 정반대의 접근 방식을 취합니다: 로컬 모델 — Apple Intelligence 지원 아이폰에서는 Apple 자체의 Foundation Models를, 그 외 기종에서는 내장된 Gemma 3 모델을 — 당신의 아이폰에서 실행하므로, 기록이 AI 처리를 위해 전송되는 일이 전혀 없습니다."
         }
       },
       {
@@ -124,7 +124,7 @@
       <h3>요약</h3>
       <ul>
         <li>MirrorNotes: 무료. Rosebud: 월 $12.99. 핵심 역할은 같습니다: 당신의 글쓰기를 되비춰주는 AI.</li>
-        <li>MirrorNotes의 AI는 100% 온디바이스(Gemma 3)로 작동합니다. Rosebud는 클라우드 서버에서 기록을 처리합니다.</li>
+        <li>MirrorNotes의 AI는 100% 온디바이스(Apple의 Foundation Models, 대체 수단으로 Gemma 3)로 작동합니다. Rosebud는 클라우드 서버에서 기록을 처리합니다.</li>
         <li>MirrorNotes는 모든 AI 기능을 포함해 완전히 오프라인에서 작동합니다.</li>
         <li>웹과 안드로이드를 아우르는 대화형 코칭을 원한다면 Rosebud가 더 강점을 가집니다.</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>AI 가격</strong></td><td class="yes">무료</td><td>월 $12.99</td></tr>
-          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (CoreML 기반 Gemma 3)</td><td class="warn">클라우드 서버</td></tr>
+          <tr><td><strong>AI가 실행되는 위치</strong></td><td class="yes">당신의 아이폰에서 (Apple Foundation Models 또는 Gemma 3)</td><td class="warn">클라우드 서버</td></tr>
           <tr><td><strong>일기 텍스트가 기기를 벗어남</strong></td><td class="yes">절대 없음, 그런 네트워크 경로 자체가 존재하지 않음</td><td class="warn">AI 처리를 위해 전송됨</td></tr>
           <tr><td><strong>오프라인 작동</strong></td><td class="yes">모든 AI 기능을 포함해 완전히 작동</td><td class="no">AI 사용에 인터넷 필요</td></tr>
           <tr><td><strong>무료 등급</strong></td><td class="yes">모든 것이 무료: 무제한 글쓰기, 전체 AI, 전체 기록 열람, 검색, iCloud 백업</td><td>제한된 무료 기록/기능</td></tr>
@@ -155,7 +155,7 @@
     <div class="policy-section">
       <h2>핵심 차이: AI가 어디에 있는가</h2>
       <p>Rosebud의 대화형 코칭은 당신의 글을 대형 클라우드 모델로 전송하는 방식으로 작동합니다. 대부분의 AI 일기 앱이 이렇게 동작하며, 이것이 요금이 발생하는 이유입니다: 생성되는 응답 하나하나가 실제 서버 비용으로 이어지고, 그 비용이 구독료로 전가됩니다.</p>
-      <p>MirrorNotes는 정반대의 방식을 택했습니다: 소형 언어 모델(Gemma 3 1B)이 당신의 아이폰 칩에서 직접 실행됩니다. 모델은 폰의 메모리 안에서 당신의 기록을 읽고, 인사이트를 생성하며, 아무것도 전송되지 않습니다. 여기서 두 가지 결과가 따라옵니다:</p>
+      <p>MirrorNotes는 정반대의 방식을 택했습니다: 소형 언어 모델 — Apple Intelligence 지원 아이폰에서는 Apple의 Foundation Models, 그 외 기종에서는 내장된 Gemma 3 1B 모델 — 이 당신의 아이폰 칩에서 직접 실행됩니다. 모델은 폰의 메모리 안에서 당신의 기록을 읽고, 인사이트를 생성하며, 아무것도 전송되지 않습니다. 여기서 두 가지 결과가 따라옵니다:</p>
       <ul>
         <li><strong>프라이버시는 정책이 아니라 구조입니다.</strong> 일기 텍스트를 서버로 보내는 코드 경로 자체가 존재하지 않습니다. 유출될 수도, 저희에게 소환장이 발부될 수도, 누군가의 모델 학습에 쓰일 수도 없습니다. 애초에 저희가 그 데이터를 가진 적이 없으니까요.</li>
         <li><strong>가격의 하한선이 아예 없습니다.</strong> 저희의 추론 비용은 0이므로, AI 레이어가 월 $12.99가 아닌 무료입니다.</li>
