@@ -30,7 +30,7 @@
         "name": "Rosebud 会把日记内容发送到服务器吗？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rosebud 使用云端 AI，这意味着日记内容会在远程服务器上被处理以生成回应。MirrorNotes 采用了相反的方式：一个本地模型（Gemma 3）运行在你的 iPhone 上，因此日记内容永远不会被传输用于 AI 处理。"
+          "text": "Rosebud 使用云端 AI，这意味着日记内容会在远程服务器上被处理以生成回应。MirrorNotes 采用了相反的方式：本地模型——支持 Apple Intelligence 的 iPhone 使用 Apple 的 Foundation Models，其余机型则使用内置的 Gemma 3 模型——直接运行在你的 iPhone 上，因此日记内容永远不会被传输用于 AI 处理。"
         }
       },
       {
@@ -124,7 +124,7 @@
       <h3>太长不看版</h3>
       <ul>
         <li>MirrorNotes：免费。Rosebud：每月 12.99 美元。核心功能相同：用 AI 把你的日记反映给你自己看。</li>
-        <li>MirrorNotes 的 AI 100% 在设备端运行（Gemma 3）。Rosebud 在云端服务器上处理日记内容。</li>
+        <li>MirrorNotes 的 AI 100% 在设备端运行（Apple 的 Foundation Models，后备为 Gemma 3）。Rosebud 在云端服务器上处理日记内容。</li>
         <li>MirrorNotes 完全离线可用，包括所有 AI 功能。</li>
         <li>如果你想要引导式的对话教练体验，并且需要网页和 Android 支持，Rosebud 更有优势。</li>
       </ul>
@@ -138,7 +138,7 @@
         </thead>
         <tbody>
           <tr><td><strong>AI 价格</strong></td><td class="yes">免费</td><td>每月 12.99 美元</td></tr>
-          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（通过 CoreML 运行的 Gemma 3）</td><td class="warn">云端服务器</td></tr>
+          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（Apple Foundation Models 或 Gemma 3）</td><td class="warn">云端服务器</td></tr>
           <tr><td><strong>日记内容是否离开设备</strong></td><td class="yes">从不，不存在任何网络传输路径</td><td class="warn">是，用于 AI 处理</td></tr>
           <tr><td><strong>是否支持离线使用</strong></td><td class="yes">完全支持，包括所有 AI 功能</td><td class="no">AI 功能需要联网</td></tr>
           <tr><td><strong>免费版</strong></td><td class="yes">一切免费：无限记录、完整 AI、完整历史、搜索、iCloud 备份</td><td>免费条目和功能有限</td></tr>
@@ -155,7 +155,7 @@
     <div class="policy-section">
       <h2>核心区别：AI 运行在哪里</h2>
       <p>Rosebud 的交互式教练功能依靠把你写的文字发送给大型云端模型来实现。这是大多数 AI 日记应用的工作方式，也是它们收费的原因：你生成的每一次反馈都要花费公司真实的服务器成本，而这笔账单最终变成了你的订阅费用。</p>
-      <p>MirrorNotes 走的是相反的路线：一个小型语言模型（Gemma 3 1B）直接运行在你 iPhone 的芯片上。模型在手机内存中读取你的日记，生成洞察，没有任何内容被传输出去。由此带来两个结果：</p>
+      <p>MirrorNotes 走的是相反的路线：一个小型语言模型直接运行在你 iPhone 的芯片上——支持 Apple Intelligence 的 iPhone 使用 Apple 的 Foundation Models，其余机型则使用内置的 Gemma 3 1B 模型作为后备。模型在手机内存中读取你的日记，生成洞察，没有任何内容被传输出去。由此带来两个结果：</p>
       <ul>
         <li><strong>隐私是架构层面的，而不是一项政策。</strong>不存在任何将日记文字发送到服务器的代码路径。它无法泄露，无法被传票要求我们提供，也无法被用来训练别人的模型——因为我们从来就没有它。</li>
         <li><strong>完全没有价格门槛。</strong>我们的推理成本为零，所以 AI 层可以免费提供，而不是每月 12.99 美元。</li>
