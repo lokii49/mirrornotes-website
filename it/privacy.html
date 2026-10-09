@@ -397,11 +397,11 @@
       <ul>
         <li>Il testo delle voci del diario è memorizzato in SwiftData sul suo dispositivo locale.</li>
         <li>La sincronizzazione iCloud tramite Apple CloudKit copia le sue voci sul suo account iCloud personale, accessibile solo con le sue credenziali Apple ID. Non abbiamo alcun accesso a questi dati.</li>
-        <li>L'analisi AI (Daily Nudge, Ask, Weekly Digest) è eseguita da Gemma 3 1B, un modello che funziona interamente sul Neural Engine del suo dispositivo. Il testo delle sue voci non viene mai inviato ad alcun server per l'elaborazione AI.</li>
+        <li>L'analisi AI (Daily Nudge, Ask, Weekly Digest) avviene sul suo dispositivo: tramite il framework Foundation Models di Apple sul dispositivo negli iPhone compatibili con Apple Intelligence con iOS 26 o successivo, altrimenti tramite il modello Gemma 3 1B incluso. Il testo delle sue voci non viene mai inviato ad alcun server per l'elaborazione AI.</li>
         <li>Gli insight generati (ad es. un Daily Nudge) vengono memorizzati nella cache sul dispositivo in SwiftData. Il testo degli insight non viene trasmesso ai nostri server.</li>
       </ul>
       <div class="callout">
-        <strong>Testo massimo inviato al modello AI locale:</strong> 10,000 characters dalle sue voci più recenti. Questa elaborazione avviene interamente nella memoria del suo dispositivo e non viene trasmessa da nessuna parte.
+        <strong>Testo massimo inviato al modello AI locale:</strong> 10.000 caratteri dalle sue voci più recenti. Questa elaborazione avviene interamente nella memoria del suo dispositivo e non viene trasmessa da nessuna parte.
       </div>
     </div>
 
@@ -490,13 +490,13 @@
     <!-- 5 -->
     <div class="policy-section">
       <h2>5. AI on-device ed elaborazione locale</h2>
-      <p>Tutte le funzionalità AI di MirrorNotes (Daily Nudge, Ask, Weekly Digest) sono basate su <strong>Gemma 3 1B</strong>, un modello linguistico di grandi dimensioni che funziona interamente sul suo dispositivo.</p>
+      <p>Tutte le funzionalità AI di MirrorNotes (Daily Nudge, Ask, Weekly Digest) funzionano interamente sul suo dispositivo. Negli iPhone compatibili con Apple Intelligence con iOS 26 o successivo, MirrorNotes usa il framework <strong>Foundation Models</strong> di Apple sul dispositivo. Su tutti gli altri iPhone supportati, o quando Apple Intelligence non è disponibile, MirrorNotes usa il proprio modello incluso, <strong>Gemma 3 1B</strong>.</p>
       <ul>
-        <li>Il file del modello è incluso nell'app o scaricato dall'app e archiviato localmente.</li>
-        <li>L'inferenza (la generazione delle risposte AI) avviene in memoria sul suo dispositivo.</li>
-        <li>Il testo delle voci inviato al modello non lascia mai la memoria locale del suo dispositivo.</li>
-        <li>Imponiamo un limite massimo di 10,000 characters di testo inviato al modello (troncando prima le voci più vecchie) per proteggere le prestazioni del dispositivo.</li>
-        <li>Gli insight generati vengono memorizzati nella cache sul dispositivo e non vengono rigenerati entro 24 hours.</li>
+        <li>Il framework Foundation Models di Apple è integrato in iOS; il file del modello Gemma 3 1B è incluso nell'app o scaricato dall'app e archiviato localmente.</li>
+        <li>L'inferenza (la generazione delle risposte AI) avviene in memoria sul suo dispositivo, qualunque sia il modello usato.</li>
+        <li>Il testo delle voci inviato a uno dei due modelli non lascia mai la memoria locale del suo dispositivo.</li>
+        <li>Imponiamo un limite massimo di 10.000 caratteri di testo inviato al modello (troncando prima le voci più vecchie) per proteggere le prestazioni del dispositivo.</li>
+        <li>Gli insight generati vengono memorizzati nella cache sul dispositivo e non vengono rigenerati entro 24 ore.</li>
       </ul>
       <h3>Ricerca intelligente per Ask (facoltativa)</h3>
       <p>Ask può usare un modello di ricerca facoltativo sul dispositivo, EmbeddingGemma 300M di Google, per trovare le voci che corrispondono a ciò che intende, non solo alle parole che scrive. Resta disattivato finché non sceglie Scarica, in Ask o in Impostazioni → Ricerca intelligente.</p>
@@ -548,7 +548,7 @@
       <p>Non vendiamo né condividiamo informazioni personali per finalità di pubblicità comportamentale intersettoriale. Raccogliamo solo i dati minimi necessari per fornire il servizio. Ha il diritto di conoscere, eliminare e opporsi come descritto sopra.</p>
 
       <h3>Residenti europei (GDPR)</h3>
-      <p>La nostra base giuridica per il trattamento dei dati dell'abbonamento è l'esecuzione del contratto (la fornitura del servizio a cui ha aderito). Ha i diritti descritti sopra ai sensi degli articoli 15-22 del GDPR. Per presentare un reclamo, contatti la Sua Autorità di controllo locale per la protezione dei dati.</p>
+      <p>La nostra base giuridica per il trattamento dei dati dell'abbonamento è l'esecuzione del contratto (la fornitura del servizio a cui ha aderito). Ha i diritti descritti sopra ai sensi degli articoli 15-22 del GDPR. Per presentare un reclamo, contatti la Sua Autorità di controllo locale per la protezione dei dati. Il framework Foundation Models di Apple sul dispositivo non usa Private Cloud Compute, il cloud di Apple: esegue solo il modello compatto sul dispositivo.</p>
     </div>
 
     <!-- 8 -->

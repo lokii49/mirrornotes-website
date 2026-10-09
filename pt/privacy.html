@@ -397,7 +397,7 @@
       <ul>
         <li>O texto das anotações de diário é armazenado no SwiftData, localmente no seu dispositivo.</li>
         <li>A sincronização via Apple CloudKit copia suas anotações para a sua própria conta iCloud, acessível apenas com suas credenciais de Apple ID. Não temos nenhum acesso a esses dados.</li>
-        <li>A análise por IA (Lembrete Diário, Perguntar, Resumo Semanal) é realizada pelo Gemma 3 1B, um modelo que roda inteiramente no Neural Engine do seu dispositivo. O texto das suas anotações nunca é enviado a nenhum servidor para processamento de IA.</li>
+        <li>A análise por IA (Lembrete Diário, Perguntar, Resumo Semanal) é feita no seu dispositivo: pelo framework Foundation Models da Apple, no dispositivo, em iPhones compatíveis com Apple Intelligence com iOS 26 ou posterior, ou pelo modelo Gemma 3 1B incluído nos demais casos. O texto das suas anotações nunca é enviado a nenhum servidor para processamento de IA.</li>
         <li>Os insights gerados (por exemplo, um Lembrete Diário) são armazenados em cache localmente no SwiftData. O texto do insight não é transmitido aos nossos servidores.</li>
       </ul>
       <div class="callout">
@@ -490,11 +490,11 @@
     <!-- 5 -->
     <div class="policy-section">
       <h2>5. IA no dispositivo e processamento local</h2>
-      <p>Todos os recursos de IA do MirrorNotes (Lembrete Diário, Perguntar, Resumo Semanal) são fornecidos pelo <strong>Gemma 3 1B</strong>, um modelo de linguagem de grande porte que roda inteiramente no seu dispositivo.</p>
+      <p>Todos os recursos de IA do MirrorNotes (Lembrete Diário, Perguntar, Resumo Semanal) rodam inteiramente no seu dispositivo. Em iPhones compatíveis com Apple Intelligence com iOS 26 ou posterior, o MirrorNotes usa o framework <strong>Foundation Models</strong> da Apple, no dispositivo. Em qualquer outro iPhone compatível, ou quando o Apple Intelligence não está disponível, o MirrorNotes usa seu próprio modelo incluído, o <strong>Gemma 3 1B</strong>.</p>
       <ul>
-        <li>O arquivo do modelo é incluído no aplicativo ou baixado por ele e armazenado localmente.</li>
-        <li>A inferência (geração das respostas de IA) ocorre na memória do seu dispositivo.</li>
-        <li>O texto das anotações enviado ao modelo nunca sai da memória local do seu dispositivo.</li>
+        <li>O framework Foundation Models da Apple é integrado ao iOS; o arquivo do modelo Gemma 3 1B é incluído no aplicativo ou baixado por ele e armazenado localmente.</li>
+        <li>A inferência (geração das respostas de IA) ocorre na memória do seu dispositivo, seja qual for o modelo usado.</li>
+        <li>O texto das anotações enviado a qualquer um dos dois modelos nunca sai da memória local do seu dispositivo.</li>
         <li>Impomos um limite máximo de 10.000 caracteres no texto enviado ao modelo (truncando primeiro as anotações mais antigas) para proteger o desempenho do dispositivo.</li>
         <li>Os insights gerados são armazenados em cache no dispositivo e não são regenerados dentro de um período de 24 horas.</li>
       </ul>
@@ -548,7 +548,7 @@
       <p>Não vendemos nem compartilhamos informações pessoais para publicidade comportamental entre contextos. Coletamos apenas o mínimo de dados necessário para fornecer o serviço. Você tem o direito de saber, excluir e optar por não participar, conforme descrito acima.</p>
 
       <h3>Residentes europeus (GDPR)</h3>
-      <p>Nossa base legal para o processamento de dados de assinatura é a execução do contrato (a prestação do serviço que você contratou). Você tem os direitos descritos acima nos termos dos Artigos 15 a 22 do GDPR. Para registrar uma reclamação, entre em contato com a Autoridade de Proteção de Dados do seu país.</p>
+      <p>Nossa base legal para o processamento de dados de assinatura é a execução do contrato (a prestação do serviço que você contratou). Você tem os direitos descritos acima nos termos dos Artigos 15 a 22 do GDPR. Para registrar uma reclamação, entre em contato com a Autoridade de Proteção de Dados do seu país. O framework Foundation Models da Apple no dispositivo não usa o Private Cloud Compute, a nuvem da Apple: ele só executa o modelo compacto no dispositivo.</p>
     </div>
 
     <!-- 8 -->

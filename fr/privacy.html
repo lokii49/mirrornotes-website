@@ -397,11 +397,11 @@
       <ul>
         <li>Le texte des entrées de journal est stocké dans SwiftData sur votre appareil local.</li>
         <li>La synchronisation iCloud via Apple CloudKit copie vos entrées vers votre propre compte iCloud, accessible uniquement avec vos identifiants Apple ID. Nous n'avons aucun accès à ces données.</li>
-        <li>L'analyse par IA (Rappel quotidien, Ask, Résumé hebdomadaire) est effectuée par Gemma 3 1B, un modèle qui s'exécute entièrement sur le Neural Engine de votre appareil. Le texte de vos entrées n'est jamais envoyé à un serveur pour un traitement par IA.</li>
+        <li>L'analyse par IA (Rappel quotidien, Ask, Résumé hebdomadaire) est effectuée sur votre appareil : par le framework Foundation Models d'Apple, embarqué, sur les iPhone compatibles Apple Intelligence sous iOS 26 ou version ultérieure, et sinon par le modèle Gemma 3 1B intégré. Le texte de vos entrées n'est jamais envoyé à un serveur pour un traitement par IA.</li>
         <li>Les insights générés (par exemple, un Rappel quotidien) sont mis en cache localement dans SwiftData. Le texte des insights n'est pas transmis à nos serveurs.</li>
       </ul>
       <div class="callout">
-        <strong>Texte maximal envoyé au modèle d'IA local :</strong> 10,000 characters provenant de vos entrées récentes. Ce traitement s'effectue entièrement dans la mémoire de votre appareil et n'est transmis nulle part.
+        <strong>Texte maximal envoyé au modèle d'IA local :</strong> 10 000 caractères provenant de vos entrées récentes. Ce traitement s'effectue entièrement dans la mémoire de votre appareil et n'est transmis nulle part.
       </div>
     </div>
 
@@ -490,13 +490,13 @@
     <!-- 5 -->
     <div class="policy-section">
       <h2>5. IA embarquée et traitement local</h2>
-      <p>Toutes les fonctionnalités d'IA de MirrorNotes (Rappel quotidien, Ask, Résumé hebdomadaire) sont propulsées par <strong>Gemma 3 1B</strong>, un grand modèle de langage qui s'exécute entièrement sur votre appareil.</p>
+      <p>Toutes les fonctionnalités d'IA de MirrorNotes (Rappel quotidien, Ask, Résumé hebdomadaire) s'exécutent entièrement sur votre appareil. Sur les iPhone compatibles Apple Intelligence sous iOS 26 ou version ultérieure, MirrorNotes utilise le framework <strong>Foundation Models</strong> d'Apple, embarqué. Sur tous les autres iPhone pris en charge, ou lorsque Apple Intelligence n'est pas disponible, MirrorNotes utilise son propre modèle intégré, <strong>Gemma 3 1B</strong>.</p>
       <ul>
-        <li>Le fichier du modèle est intégré à l'application ou téléchargé par celle-ci, puis stocké localement.</li>
-        <li>L'inférence (génération des réponses de l'IA) se déroule en mémoire sur votre appareil.</li>
-        <li>Le texte des entrées transmis au modèle ne quitte jamais la mémoire locale de votre appareil.</li>
-        <li>Nous imposons un maximum de 10,000 characters de texte envoyé au modèle (en tronquant d'abord les entrées les plus anciennes) afin de préserver les performances de l'appareil.</li>
-        <li>Les insights générés sont mis en cache sur l'appareil et ne sont pas régénérés dans les 24 hours.</li>
+        <li>Le framework Foundation Models d'Apple est intégré à iOS ; le fichier du modèle Gemma 3 1B est intégré à l'application ou téléchargé par celle-ci, puis stocké localement.</li>
+        <li>L'inférence (génération des réponses de l'IA) se déroule en mémoire sur votre appareil, quel que soit le modèle utilisé.</li>
+        <li>Le texte des entrées transmis à l'un ou l'autre modèle ne quitte jamais la mémoire locale de votre appareil.</li>
+        <li>Nous imposons un maximum de 10 000 caractères de texte envoyé au modèle (en tronquant d'abord les entrées les plus anciennes) afin de préserver les performances de l'appareil.</li>
+        <li>Les insights générés sont mis en cache sur l'appareil et ne sont pas régénérés dans les 24 heures.</li>
       </ul>
       <h3>Recherche intelligente pour Ask (facultative)</h3>
       <p>Ask peut utiliser un modèle de recherche facultatif sur l'appareil, EmbeddingGemma 300M de Google, pour trouver les entrées qui correspondent à ce que vous voulez dire, pas seulement aux mots que vous tapez. Il reste désactivé tant que vous ne choisissez pas Télécharger, dans Ask ou dans Réglages → Recherche intelligente.</p>
@@ -548,7 +548,7 @@
       <p>Nous ne vendons ni ne partageons d'informations personnelles à des fins de publicité comportementale intercontextuelle. Nous ne collectons que le minimum de données nécessaire à la fourniture du service. Vous disposez du droit de savoir, de supprimer et de vous opposer, comme décrit ci-dessus.</p>
 
       <h3>Résidents européens (RGPD)</h3>
-      <p>Notre base légale pour le traitement des données d'abonnement est l'exécution du contrat (la fourniture du service auquel vous avez souscrit). Vous disposez des droits décrits ci-dessus en vertu des articles 15 à 22 du RGPD. Pour déposer une plainte, contactez votre autorité de protection des données locale.</p>
+      <p>Notre base légale pour le traitement des données d'abonnement est l'exécution du contrat (la fourniture du service auquel vous avez souscrit). Vous disposez des droits décrits ci-dessus en vertu des articles 15 à 22 du RGPD. Pour déposer une plainte, contactez votre autorité de protection des données locale. Le framework Foundation Models d'Apple, embarqué, n'utilise pas Private Cloud Compute, le cloud d'Apple : il n'exécute que le modèle compact sur l'appareil.</p>
     </div>
 
     <!-- 8 -->

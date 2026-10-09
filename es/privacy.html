@@ -397,11 +397,11 @@
       <ul>
         <li>El texto de las entradas de diario se almacena en SwiftData en su dispositivo local.</li>
         <li>La sincronización de iCloud mediante Apple CloudKit copia sus entradas a su propia cuenta de iCloud, accesible únicamente con sus credenciales de Apple ID. No tenemos ningún acceso a estos datos.</li>
-        <li>El análisis de IA (Aviso Diario, Preguntar, Resumen Semanal) lo realiza Gemma 3 1B, un modelo que se ejecuta enteramente en el Neural Engine de su dispositivo. El texto de sus entradas nunca se envía a ningún servidor para su procesamiento por IA.</li>
+        <li>El análisis de IA (Aviso Diario, Preguntar, Resumen Semanal) se realiza en su dispositivo: mediante el framework Foundation Models de Apple en el dispositivo en iPhones compatibles con Apple Intelligence con iOS 26 o posterior, o mediante el modelo Gemma 3 1B incluido en los demás casos. El texto de sus entradas nunca se envía a ningún servidor para su procesamiento por IA.</li>
         <li>Las perspectivas generadas (por ejemplo, un Aviso Diario) se almacenan en caché en el dispositivo mediante SwiftData. El texto de las perspectivas no se transmite a nuestros servidores.</li>
       </ul>
       <div class="callout">
-        <strong>Máximo de texto enviado al modelo de IA local:</strong> 10,000 characters de sus entradas más recientes. Este procesamiento ocurre enteramente dentro de la memoria de su dispositivo y no se transmite a ningún lugar.
+        <strong>Máximo de texto enviado al modelo de IA local:</strong> 10.000 caracteres de sus entradas más recientes. Este procesamiento ocurre enteramente dentro de la memoria de su dispositivo y no se transmite a ningún lugar.
       </div>
     </div>
 
@@ -490,13 +490,13 @@
     <!-- 5 -->
     <div class="policy-section">
       <h2>5. IA en el dispositivo y procesamiento local</h2>
-      <p>Todas las funciones de IA de MirrorNotes (Aviso Diario, Preguntar, Resumen Semanal) funcionan mediante <strong>Gemma 3 1B</strong>, un modelo de lenguaje extenso que se ejecuta enteramente en su dispositivo.</p>
+      <p>Todas las funciones de IA de MirrorNotes (Aviso Diario, Preguntar, Resumen Semanal) se ejecutan enteramente en su dispositivo. En iPhones compatibles con Apple Intelligence con iOS 26 o posterior, MirrorNotes usa el framework <strong>Foundation Models</strong> de Apple en el dispositivo. En cualquier otro iPhone compatible, o cuando Apple Intelligence no está disponible, MirrorNotes usa su propio modelo incluido, <strong>Gemma 3 1B</strong>.</p>
       <ul>
-        <li>El archivo del modelo se incluye con la app o se descarga mediante ella, y se almacena localmente.</li>
-        <li>La inferencia (generación de respuestas de IA) ocurre en la memoria de su dispositivo.</li>
-        <li>El texto de las entradas que se pasa al modelo nunca sale de la memoria local de su dispositivo.</li>
-        <li>Imponemos un máximo de 10,000 characters en el texto enviado al modelo (truncando primero las entradas más antiguas) para proteger el rendimiento del dispositivo.</li>
-        <li>Las perspectivas generadas se almacenan en caché en el dispositivo y no se regeneran dentro de un período de 24 hours.</li>
+        <li>El framework Foundation Models de Apple está integrado en iOS; el archivo del modelo Gemma 3 1B se incluye con la app o se descarga mediante ella, y se almacena localmente.</li>
+        <li>La inferencia (generación de respuestas de IA) ocurre en la memoria de su dispositivo, sea cual sea el modelo utilizado.</li>
+        <li>El texto de las entradas que se pasa a cualquiera de los dos modelos nunca sale de la memoria local de su dispositivo.</li>
+        <li>Imponemos un máximo de 10.000 caracteres en el texto enviado al modelo (truncando primero las entradas más antiguas) para proteger el rendimiento del dispositivo.</li>
+        <li>Las perspectivas generadas se almacenan en caché en el dispositivo y no se regeneran dentro de un período de 24 horas.</li>
       </ul>
       <h3>Búsqueda inteligente en Preguntar (opcional)</h3>
       <p>Preguntar puede usar un modelo de búsqueda opcional en el dispositivo, EmbeddingGemma 300M de Google, para encontrar las entradas que coinciden con lo que usted quiere decir, no solo con las palabras que escribe. Permanece desactivado hasta que elija Descargar, en Preguntar o en Ajustes → Búsqueda inteligente.</p>
@@ -548,7 +548,7 @@
       <p>No vendemos ni compartimos información personal con fines de publicidad conductual entre contextos. Recopilamos únicamente los datos mínimos necesarios para prestar el servicio. Usted tiene derecho a saber, eliminar y excluirse tal como se describe anteriormente.</p>
 
       <h3>Residentes europeos (RGPD)</h3>
-      <p>Nuestra base jurídica para el procesamiento de datos de suscripción es la ejecución del contrato (la prestación del servicio que usted contrató). Usted tiene los derechos descritos anteriormente conforme a los Artículos 15 a 22 del RGPD. Para presentar una reclamación, contacte a su Autoridad de Protección de Datos local.</p>
+      <p>Nuestra base jurídica para el procesamiento de datos de suscripción es la ejecución del contrato (la prestación del servicio que usted contrató). Usted tiene los derechos descritos anteriormente conforme a los Artículos 15 a 22 del RGPD. Para presentar una reclamación, contacte a su Autoridad de Protección de Datos local. El framework Foundation Models de Apple en el dispositivo no usa Private Cloud Compute, la nube de Apple: solo ejecuta el modelo compacto en el dispositivo.</p>
     </div>
 
     <!-- 8 -->

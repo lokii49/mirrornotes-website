@@ -79,6 +79,8 @@ Reference for exact target wording per page: re-read the current English version
 - [ ] journey-alternative × fr
 - [x] journey-alternative × de (resynced 2026-09-26)
 
+- [x] privacy × de/es/fr/it/pt/ru/ja/ko/zh (resynced 2026-10-09, outside the loop: section 2 + 5 AI-model sentences now match English, Private Cloud Compute sentence added, and the untranslated "10,000 characters"/"24 hours" fixed in de/es/fr/it)
+
 Note: journey-alternative × it/pt/ja/ko/ru/zh are NOT in this resync list — they haven't shipped yet (see Backlog below), so they'll pick up the corrected English wording automatically when translated. stoic-alternative, ai-journal-app, and gratitude-journal-app also need no resync entry for the same reason: no locale translations exist yet for any of them.
 
 ## Backlog
