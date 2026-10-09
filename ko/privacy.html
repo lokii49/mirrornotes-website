@@ -478,8 +478,8 @@
       <p>Apple CloudKit은 귀하의 iCloud 계정을 이용해 귀하의 기기 간에 항목을 동기화합니다. Apple은 구독에 대한 모든 결제 처리를 담당합니다. MirrorNotes 이용에는 계정 생성이나 로그인이 필요하지 않습니다.</p>
       <p>Apple 개인정보 처리방침: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org (선택 사항인 검색 모델, Cloudflare 호스팅)</h3>
-      <p>Ask 스마트 검색을 켜면 앱이 models.mirrornotes.org에서 검색 모델 파일을 한 번 다운로드합니다. 이 파일은 당사를 대신해 Cloudflare가 호스팅합니다. 일반적인 다운로드와 마찬가지로 Cloudflare는 파일을 전달하기 위해 기기의 IP 주소와 파일 요청을 받습니다. 요청에는 일기 데이터, 계정, 기기 식별자가 포함되지 않습니다. 이 기능을 켜지 않으면 앱은 이 주소에 절대 접속하지 않습니다.</p>
+      <h3>models.mirrornotes.org (AI 모델 다운로드, Cloudflare 호스팅)</h3>
+      <p>앱은 두 가지 경우에 models.mirrornotes.org에서 AI 모델 파일을 다운로드합니다. Gemma 3 1B 모델(섹션 5 참조)은 이 모델이 필요한 기기에서 모델 다운로드를 탭할 때 한 번, 검색 모델은 Ask 스마트 검색을 켤 때 한 번 다운로드됩니다. 이 파일은 당사를 대신해 Cloudflare가 호스팅합니다. 일반적인 다운로드와 마찬가지로 Cloudflare는 파일을 전달하기 위해 기기의 IP 주소와 파일 요청을 받습니다. 요청에는 일기 데이터, 계정, 기기 식별자가 포함되지 않습니다. 두 다운로드 중 어느 것도 시작하지 않으면 앱은 이 주소에 절대 접속하지 않습니다.</p>
       <p>Cloudflare 개인정보처리방침: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>당사는 보안을 중요하게 다룹니다:</p>
       <ul>
         <li>모든 네트워크 요청(RevenueCat 및 Apple에 대한)은 HTTPS/TLS를 사용합니다.</li>
-        <li>선택 사항인 검색 모델은 models.mirrornotes.org에서 HTTPS로 다운로드되며, 앱이 사용하기 전에 고정된 SHA-256 지문으로 검증됩니다.</li>
+        <li>AI 모델 파일(Gemma 3 1B 및 선택 사항인 검색 모델)은 models.mirrornotes.org에서 HTTPS로 다운로드되며, 앱이 사용하기 전에 고정된 SHA-256 지문으로 검증됩니다.</li>
         <li>일기 데이터가 절대 기기를 벗어나지 않으므로, 서버 측 유출 발생 시 그 영향 범위는 구독 상태에 국한되며 귀하의 글에는 미치지 않습니다.</li>
       </ul>
       <p>보안 취약점을 발견하신 경우 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>로 신고해 주십시오.</p>

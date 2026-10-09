@@ -478,8 +478,8 @@
       <p>O Apple CloudKit sincroniza suas anotações entre seus dispositivos usando sua conta iCloud. A Apple processa todos os pagamentos das assinaturas. Nenhuma conta ou login é exigido para usar o MirrorNotes.</p>
       <p>Política de Privacidade da Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org (modelo de busca opcional, hospedado pela Cloudflare)</h3>
-      <p>Se você ativar a busca inteligente no Perguntar, o app baixa uma única vez um arquivo de modelo de busca de models.mirrornotes.org. O arquivo é hospedado para nós pela Cloudflare. Como em qualquer download, a Cloudflare recebe o endereço IP do seu dispositivo e a solicitação do arquivo para entregá-lo. A solicitação não contém dados do diário, nenhuma conta e nenhum identificador do dispositivo. Se você nunca ativar o recurso, o app nunca acessa esse endereço.</p>
+      <h3>models.mirrornotes.org (downloads de modelos de IA, hospedado pela Cloudflare)</h3>
+      <p>O app baixa arquivos de modelos de IA de models.mirrornotes.org em dois casos: o modelo Gemma 3 1B (veja a seção 5), uma única vez, quando você toca em Baixar modelo em um dispositivo que precisa dele, e o modelo de busca, uma única vez, se você ativar a busca inteligente no Perguntar. Os arquivos são hospedados para nós pela Cloudflare. Como em qualquer download, a Cloudflare recebe o endereço IP do seu dispositivo e a solicitação do arquivo para entregá-lo. A solicitação não contém dados do diário, nenhuma conta e nenhum identificador do dispositivo. Se você nunca iniciar nenhum dos dois downloads, o app nunca acessa esse endereço.</p>
       <p>Política de Privacidade da Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>Levamos a segurança a sério:</p>
       <ul>
         <li>Todas as solicitações de rede (para a RevenueCat e a Apple) usam HTTPS/TLS.</li>
-        <li>O modelo de busca opcional é baixado por HTTPS de models.mirrornotes.org e verificado com uma impressão digital SHA-256 fixa antes de o app usá-lo.</li>
+        <li>Os arquivos de modelos de IA (Gemma 3 1B e o modelo de busca opcional) são baixados por HTTPS de models.mirrornotes.org e verificados com uma impressão digital SHA-256 fixa antes de o app usá-los.</li>
         <li>Como os dados de diário nunca saem do seu dispositivo, o alcance de qualquer violação do lado do servidor fica limitado apenas ao status da assinatura, não à sua escrita.</li>
       </ul>
       <p>Se você descobrir uma vulnerabilidade de segurança, por favor relate para <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

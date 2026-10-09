@@ -478,8 +478,8 @@
       <p>Apple CloudKitは、お客様のiCloudアカウントを使用して、お使いの各端末間で日記を同期します。サブスクリプションの支払い処理はすべてAppleが行います。MirrorNotesの利用にアカウント登録やサインインは必要ありません。</p>
       <p>Appleのプライバシーポリシー：<a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org（任意の検索モデル、Cloudflare でホスト）</h3>
-      <p>Askのスマート検索をオンにすると、アプリは models.mirrornotes.org から検索モデルのファイルを一度だけダウンロードします。ファイルは当社に代わって Cloudflare がホストしています。通常のダウンロードと同様に、Cloudflare はファイルを届けるために端末の IP アドレスとファイルのリクエストを受け取ります。リクエストに日記のデータ、アカウント、端末の識別子は含まれません。この機能をオンにしない限り、アプリがこのアドレスに接続することはありません。</p>
+      <h3>models.mirrornotes.org（AIモデルのダウンロード、Cloudflare でホスト）</h3>
+      <p>アプリは次の2つの場合に models.mirrornotes.org から AI モデルのファイルをダウンロードします。Gemma 3 1B モデル（セクション5を参照）は、必要な端末で「モデルをダウンロード」をタップしたときに一度だけ、検索モデルは、Askのスマート検索をオンにしたときに一度だけです。ファイルは当社に代わって Cloudflare がホストしています。通常のダウンロードと同様に、Cloudflare はファイルを届けるために端末の IP アドレスとファイルのリクエストを受け取ります。リクエストに日記のデータ、アカウント、端末の識別子は含まれません。どちらのダウンロードも開始しない限り、アプリがこのアドレスに接続することはありません。</p>
       <p>Cloudflareのプライバシーポリシー：<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>当方はセキュリティを重視しています：</p>
       <ul>
         <li>（RevenueCatおよびAppleへの）すべてのネットワーク通信はHTTPS/TLSを使用します。</li>
-        <li>任意の検索モデルは models.mirrornotes.org から HTTPS でダウンロードされ、アプリが使用する前に固定の SHA-256 指紋で検証されます。</li>
+        <li>AI モデルのファイル（Gemma 3 1B と任意の検索モデル）は models.mirrornotes.org から HTTPS でダウンロードされ、アプリが使用する前に固定の SHA-256 指紋で検証されます。</li>
         <li>日記データが端末から外に出ることは決してないため、万が一サーバー側で情報漏洩が発生した場合の影響範囲は、サブスクリプションの状態のみに限定され、あなたが書いた内容には及びません。</li>
       </ul>
       <p>セキュリティ上の脆弱性を発見された場合は、<a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> までご報告ください。</p>

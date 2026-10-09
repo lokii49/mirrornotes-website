@@ -478,8 +478,8 @@
       <p>Apple CloudKit 使用您的 iCloud 账户在您的设备之间同步日记条目。所有订阅付款处理均由 Apple 负责。使用 MirrorNotes 无需注册账户或登录。</p>
       <p>Apple 隐私政策：<a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org（可选的搜索模型，由 Cloudflare 托管）</h3>
-      <p>如果您开启问答的智能搜索，应用会从 models.mirrornotes.org 一次性下载一个搜索模型文件。该文件由 Cloudflare 为我们托管。与任何下载一样，Cloudflare 会收到您设备的 IP 地址和文件请求，以便传送文件。请求中不包含任何日记数据、账户或设备标识符。如果您从未开启此功能，应用就不会访问此地址。</p>
+      <h3>models.mirrornotes.org（AI 模型下载，由 Cloudflare 托管）</h3>
+      <p>应用会在两种情况下从 models.mirrornotes.org 下载 AI 模型文件：Gemma 3 1B 模型（见第 5 节）会在需要它的设备上点按“下载模型”时一次性下载；搜索模型会在您开启问答的智能搜索时一次性下载。这些文件由 Cloudflare 为我们托管。与任何下载一样，Cloudflare 会收到您设备的 IP 地址和文件请求，以便传送文件。请求中不包含任何日记数据、账户或设备标识符。如果您从未开始任何一项下载，应用就不会访问此地址。</p>
       <p>Cloudflare 隐私政策：<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>我们高度重视安全：</p>
       <ul>
         <li>所有网络请求（发送至 RevenueCat 及 Apple）均使用 HTTPS/TLS 加密。</li>
-        <li>可选的搜索模型通过 HTTPS 从 models.mirrornotes.org 下载，并在应用使用前用固定的 SHA-256 指纹进行校验。</li>
+        <li>AI 模型文件（Gemma 3 1B 和可选的搜索模型）通过 HTTPS 从 models.mirrornotes.org 下载，并在应用使用前用固定的 SHA-256 指纹进行校验。</li>
         <li>由于日记数据永远不会离开您的设备，任何服务器端数据泄露事件的影响范围仅限于订阅状态数据，而不会涉及您的日记内容。</li>
       </ul>
       <p>如果您发现安全漏洞，请通过以下方式向我们报告：<a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>。</p>

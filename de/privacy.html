@@ -478,8 +478,8 @@
       <p>Apple CloudKit synchronisiert Ihre Einträge zwischen Ihren Geräten über Ihr iCloud-Konto. Apple wickelt die gesamte Zahlungsabwicklung für Abonnements ab. Für die Nutzung von MirrorNotes ist kein Konto oder Login erforderlich.</p>
       <p>Datenschutzerklärung von Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org (optionales Suchmodell, gehostet von Cloudflare)</h3>
-      <p>Wenn Sie die intelligentere Suche für Ask einschalten, lädt die App einmalig eine Suchmodell-Datei von models.mirrornotes.org herunter. Die Datei wird für uns von Cloudflare gehostet. Wie bei jedem Download erhält Cloudflare die IP-Adresse Ihres Geräts und die Dateianfrage, um die Datei auszuliefern. Die Anfrage enthält keine Tagebuchdaten, kein Konto und keine Gerätekennung. Wenn Sie die Funktion nie einschalten, kontaktiert die App diese Adresse nie.</p>
+      <h3>models.mirrornotes.org (Downloads von KI-Modellen, gehostet von Cloudflare)</h3>
+      <p>Die App lädt KI-Modelldateien in zwei Fällen von models.mirrornotes.org herunter: das Modell Gemma 3 1B (siehe Abschnitt 5) einmalig, wenn Sie auf einem Gerät, das es benötigt, auf „Modell herunterladen“ tippen, und das Suchmodell einmalig, wenn Sie die intelligentere Suche für Ask einschalten. Die Dateien werden für uns von Cloudflare gehostet. Wie bei jedem Download erhält Cloudflare die IP-Adresse Ihres Geräts und die Dateianfrage, um die Datei auszuliefern. Die Anfrage enthält keine Tagebuchdaten, kein Konto und keine Gerätekennung. Wenn Sie keinen der beiden Downloads starten, kontaktiert die App diese Adresse nie.</p>
       <p>Datenschutzerklärung von Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>Wir nehmen Sicherheit ernst:</p>
       <ul>
         <li>Alle Netzwerkanfragen (an RevenueCat und Apple) verwenden HTTPS/TLS.</li>
-        <li>Das optionale Suchmodell wird über HTTPS von models.mirrornotes.org heruntergeladen und vor der Verwendung mit einem festen SHA-256-Fingerabdruck geprüft.</li>
+        <li>KI-Modelldateien (Gemma 3 1B und das optionale Suchmodell) werden über HTTPS von models.mirrornotes.org heruntergeladen und vor der Verwendung mit einem festen SHA-256-Fingerabdruck geprüft.</li>
         <li>Da Journaldaten Ihr Gerät niemals verlassen, beschränkt sich die Auswirkung eines serverseitigen Sicherheitsvorfalls ausschließlich auf den Abonnementstatus, nicht auf Ihre Texte.</li>
       </ul>
       <p>Wenn Sie eine Sicherheitslücke entdecken, melden Sie diese bitte an <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

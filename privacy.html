@@ -478,8 +478,8 @@
       <p>Apple CloudKit syncs your entries between your devices using your iCloud account. Apple handles all payment processing for subscriptions. No account or sign-in is required to use MirrorNotes.</p>
       <p>Apple Privacy Policy: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org (optional search model, hosted by Cloudflare)</h3>
-      <p>If you turn on Smarter Ask search, the app downloads a search model file once from models.mirrornotes.org. The file is hosted for us by Cloudflare. As with any download, Cloudflare receives your device's IP address and the file request in order to deliver it. The request contains no journal data, no account and no device identifier. If you never turn the feature on, the app never contacts this address.</p>
+      <h3>models.mirrornotes.org (AI model downloads, hosted by Cloudflare)</h3>
+      <p>The app downloads AI model files from models.mirrornotes.org in two cases: the Gemma 3 1B model (see section 5), once, when you tap Download Model on a device that needs it, and the search model, once, if you turn on Smarter Ask search. The files are hosted for us by Cloudflare. As with any download, Cloudflare receives your device's IP address and the file request in order to deliver it. The request contains no journal data, no account and no device identifier. If you never start either download, the app never contacts this address.</p>
       <p>Cloudflare Privacy Policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>We take security seriously:</p>
       <ul>
         <li>All network requests (to RevenueCat and Apple) use HTTPS/TLS.</li>
-        <li>The optional search model is downloaded over HTTPS from models.mirrornotes.org and verified against a pinned SHA-256 fingerprint before the app uses it.</li>
+        <li>AI model files (Gemma 3 1B and the optional search model) are downloaded over HTTPS from models.mirrornotes.org and verified against a pinned SHA-256 fingerprint before the app uses them.</li>
         <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to subscription status only, not your writing.</li>
       </ul>
       <p>If you discover a security vulnerability, please report it to <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

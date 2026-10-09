@@ -478,8 +478,8 @@
       <p>Apple CloudKit synchronise vos entrées entre vos appareils à l'aide de votre compte iCloud. Apple gère l'ensemble du traitement des paiements pour les abonnements. Aucun compte ni connexion n'est requis pour utiliser MirrorNotes.</p>
       <p>Politique de confidentialité d'Apple : <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
-      <h3>models.mirrornotes.org (modèle de recherche facultatif, hébergé par Cloudflare)</h3>
-      <p>Si vous activez la recherche intelligente pour Ask, l'app télécharge une seule fois un fichier de modèle de recherche depuis models.mirrornotes.org. Le fichier est hébergé pour nous par Cloudflare. Comme pour tout téléchargement, Cloudflare reçoit l'adresse IP de votre appareil et la requête du fichier afin de le livrer. La requête ne contient aucune donnée de journal, aucun compte et aucun identifiant d'appareil. Si vous n'activez jamais la fonctionnalité, l'app ne contacte jamais cette adresse.</p>
+      <h3>models.mirrornotes.org (téléchargement des modèles d'IA, hébergé par Cloudflare)</h3>
+      <p>L'app télécharge des fichiers de modèles d'IA depuis models.mirrornotes.org dans deux cas : le modèle Gemma 3 1B (voir la section 5), une seule fois, lorsque vous touchez Télécharger le modèle sur un appareil qui en a besoin, et le modèle de recherche, une seule fois, si vous activez la recherche intelligente pour Ask. Les fichiers sont hébergés pour nous par Cloudflare. Comme pour tout téléchargement, Cloudflare reçoit l'adresse IP de votre appareil et la requête du fichier afin de le livrer. La requête ne contient aucune donnée de journal, aucun compte et aucun identifiant d'appareil. Si vous ne lancez aucun de ces téléchargements, l'app ne contacte jamais cette adresse.</p>
       <p>Politique de confidentialité de Cloudflare : <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
 
       <div class="callout callout-warn">
@@ -557,7 +557,7 @@
       <p>Nous prenons la sécurité au sérieux :</p>
       <ul>
         <li>Toutes les requêtes réseau (vers RevenueCat et Apple) utilisent HTTPS/TLS.</li>
-        <li>Le modèle de recherche facultatif est téléchargé en HTTPS depuis models.mirrornotes.org et vérifié avec une empreinte SHA-256 fixe avant que l'app ne l'utilise.</li>
+        <li>Les fichiers de modèles d'IA (Gemma 3 1B et le modèle de recherche facultatif) sont téléchargés en HTTPS depuis models.mirrornotes.org et vérifiés avec une empreinte SHA-256 fixe avant que l'app ne les utilise.</li>
         <li>Comme les données de journal ne quittent jamais votre appareil, le rayon d'impact de toute violation côté serveur se limite au seul statut d'abonnement, et non à vos écrits.</li>
       </ul>
       <p>Si vous découvrez une vulnérabilité de sécurité, veuillez la signaler à <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
