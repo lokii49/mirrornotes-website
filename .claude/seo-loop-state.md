@@ -30,7 +30,7 @@ Reference for exact target wording per page: re-read the current English version
 - [x] rosebud-alternative × ko (resynced 2026-10-05)
 - [x] rosebud-alternative × ru (resynced 2026-10-06)
 - [x] rosebud-alternative × zh (resynced 2026-10-07)
-- [ ] reflect-alternative × es
+- [x] reflect-alternative × es (resynced 2026-10-09)
 - [ ] reflect-alternative × fr
 - [ ] reflect-alternative × de
 - [ ] reflect-alternative × it
@@ -314,3 +314,4 @@ Next up: journey-alternative × it.
 ## Blocked
 
 (none)
+- 2026-10-09: Session started in a detached HEAD state, 1 commit ahead of local `main` (zh/rosebud-alternative resync from 2026-10-07 was already on origin/main at 548442a but local `main` ref was stale) — fast-forwarded local `main` to match origin/main (confirmed identical, no orphaned commit this time) before starting new work. Resynced es/reflect-alternative.html — patched the 5 stale Gemma-3-only AI-model-description spots (both FAQ JSON-LD answers, the page-header TL;DR intro paragraph, the "Dónde funciona la IA" comparison-table cell, and the closing privacy-explanation paragraph) to the current English source's Foundation Models + Gemma 3 fallback wording, terminology matched to the already-resynced es/day-one-alternative.html ("los Foundation Models propios de Apple en iPhones compatibles con Apple Intelligence, o el modelo Gemma 3 incluido en el resto"). No other text touched; git diff confirms exactly 5 changed lines, nothing else touched. Verified via python3 html.parser (no parse errors) + JSON-LD json.loads parse (1 block, valid) + title/meta-description/canonical/OG tag presence check (all present, 1 each) + relative-link resolution check (all 6 href targets exist under es/). No sitemap change needed (URL already listed from original shipment); re-validated sitemap.xml with xmllint anyway. Marked reflect-alternative × es `[x]` in the Resync backlog. Did not touch CNAME, .well-known/, or robots.txt. Shipped exactly one asset this run per the scheduled instructions. Next Resync item: reflect-alternative × fr.
