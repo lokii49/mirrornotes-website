@@ -364,7 +364,7 @@
       <p>Your journal entries are yours. This policy explains exactly what data MirrorNotes collects, what it doesn't, and why, in plain language.</p>
       <div class="meta">
         <div class="meta-item"><strong>Effective:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Last updated:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Last updated:</strong> October 9, 2026</div>
         <div class="meta-item"><strong>App version:</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKit syncs your entries between your devices using your iCloud account. Apple handles all payment processing for subscriptions. No account or sign-in is required to use MirrorNotes.</p>
       <p>Apple Privacy Policy: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (optional search model, hosted by Cloudflare)</h3>
+      <p>If you turn on Smarter Ask search, the app downloads a search model file once from models.mirrornotes.org. The file is hosted for us by Cloudflare. As with any download, Cloudflare receives your device's IP address and the file request in order to deliver it. The request contains no journal data, no account and no device identifier. If you never turn the feature on, the app never contacts this address.</p>
+      <p>Cloudflare Privacy Policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>Note on CloudKit:</strong> iCloud sync means your entries are stored on Apple's servers under your Apple ID. This is governed by Apple's terms, not ours. We have no ability to access iCloud data. If you're concerned, you can disable iCloud for MirrorNotes in iOS Settings → [Your Name] → iCloud.
       </div>
@@ -493,6 +497,13 @@
         <li>Entry text passed to either model never leaves your device's local memory.</li>
         <li>We impose a 10,000-character maximum on text sent to the model (truncating oldest entries first) to protect device performance.</li>
         <li>Generated insights are cached on-device and not regenerated within 24 hours.</li>
+      </ul>
+      <h3>Smarter Ask search (optional)</h3>
+      <p>Ask can use an optional on-device search model, EmbeddingGemma 300M by Google, to find the entries that match what you mean, not only the words you type. It stays off until you choose Download, in Ask or in Settings → Smarter Ask search.</p>
+      <ul>
+        <li>The model (about 334 MB) is downloaded once, on Wi-Fi only, from models.mirrornotes.org, and checked against a fixed fingerprint before use. The download sends nothing about you or your entries.</li>
+        <li>The model runs on your device. To find entries quickly, the app keeps a search index on the device: numbers derived from your entries, encrypted with the same key as your entries, excluded from backups, and never synced or sent anywhere.</li>
+        <li>Settings → Smarter Ask search → Remove deletes the model and the index.</li>
       </ul>
       <p>There are no API calls to any AI cloud service (no OpenAI, Anthropic, Google Cloud AI, etc.) for AI processing. Apple's on-device Foundation Models framework does not use Apple's cloud-based Private Cloud Compute — it only runs the compact, on-device model.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>We take security seriously:</p>
       <ul>
         <li>All network requests (to RevenueCat and Apple) use HTTPS/TLS.</li>
+        <li>The optional search model is downloaded over HTTPS from models.mirrornotes.org and verified against a pinned SHA-256 fingerprint before the app uses it.</li>
         <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to subscription status only, not your writing.</li>
       </ul>
       <p>If you discover a security vulnerability, please report it to <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

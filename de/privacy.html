@@ -364,7 +364,7 @@
       <p>Ihre Journaleinträge gehören Ihnen. Diese Richtlinie erklärt in klarer Sprache genau, welche Daten MirrorNotes erhebt, welche nicht, und warum.</p>
       <div class="meta">
         <div class="meta-item"><strong>Gültig ab:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Zuletzt aktualisiert:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Zuletzt aktualisiert:</strong> October 9, 2026</div>
         <div class="meta-item"><strong>App-Version:</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKit synchronisiert Ihre Einträge zwischen Ihren Geräten über Ihr iCloud-Konto. Apple wickelt die gesamte Zahlungsabwicklung für Abonnements ab. Für die Nutzung von MirrorNotes ist kein Konto oder Login erforderlich.</p>
       <p>Datenschutzerklärung von Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (optionales Suchmodell, gehostet von Cloudflare)</h3>
+      <p>Wenn Sie die intelligentere Suche für Ask einschalten, lädt die App einmalig eine Suchmodell-Datei von models.mirrornotes.org herunter. Die Datei wird für uns von Cloudflare gehostet. Wie bei jedem Download erhält Cloudflare die IP-Adresse Ihres Geräts und die Dateianfrage, um die Datei auszuliefern. Die Anfrage enthält keine Tagebuchdaten, kein Konto und keine Gerätekennung. Wenn Sie die Funktion nie einschalten, kontaktiert die App diese Adresse nie.</p>
+      <p>Datenschutzerklärung von Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>Hinweis zu CloudKit:</strong> Die iCloud-Synchronisierung bedeutet, dass Ihre Einträge auf den Servern von Apple unter Ihrer Apple-ID gespeichert werden. Dies unterliegt den Bedingungen von Apple, nicht unseren. Wir haben keine Möglichkeit, auf iCloud-Daten zuzugreifen. Falls Sie Bedenken haben, können Sie iCloud für MirrorNotes in den iOS-Einstellungen → [Ihr Name] → iCloud deaktivieren.
       </div>
@@ -493,6 +497,13 @@
         <li>Der an das Modell übergebene Eintragstext verlässt niemals den lokalen Arbeitsspeicher Ihres Geräts.</li>
         <li>Wir begrenzen den an das Modell gesendeten Text auf maximal 10,000 characters (wobei zunächst die ältesten Einträge gekürzt werden), um die Leistung des Geräts zu schützen.</li>
         <li>Generierte Insights werden lokal auf dem Gerät zwischengespeichert und nicht innerhalb von 24 hours erneut generiert.</li>
+      </ul>
+      <h3>Intelligentere Suche für Ask (optional)</h3>
+      <p>Ask kann ein optionales Suchmodell auf dem Gerät verwenden, EmbeddingGemma 300M von Google, um die Einträge zu finden, die zu dem passen, was Sie meinen, nicht nur zu den Wörtern, die Sie eingeben. Es bleibt ausgeschaltet, bis Sie in Ask oder unter Einstellungen → Smarte Suche auf „Laden“ tippen.</p>
+      <ul>
+        <li>Das Modell (etwa 334 MB) wird einmalig und nur über WLAN von models.mirrornotes.org heruntergeladen und vor der Verwendung mit einem festen Fingerabdruck geprüft. Beim Download wird nichts über Sie oder Ihre Einträge gesendet.</li>
+        <li>Das Modell läuft auf Ihrem Gerät. Um Einträge schnell zu finden, speichert die App einen Suchindex auf dem Gerät: aus Ihren Einträgen abgeleitete Zahlen, verschlüsselt mit demselben Schlüssel wie Ihre Einträge, von Backups ausgeschlossen und nie synchronisiert oder irgendwohin gesendet.</li>
+        <li>Einstellungen → Smarte Suche → Suchmodell entfernen löscht das Modell und den Index.</li>
       </ul>
       <p>Es gibt keine API-Aufrufe an einen KI-Cloud-Dienst (kein OpenAI, Anthropic, Google Cloud AI usw.) für die KI-Verarbeitung.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>Wir nehmen Sicherheit ernst:</p>
       <ul>
         <li>Alle Netzwerkanfragen (an RevenueCat und Apple) verwenden HTTPS/TLS.</li>
+        <li>Das optionale Suchmodell wird über HTTPS von models.mirrornotes.org heruntergeladen und vor der Verwendung mit einem festen SHA-256-Fingerabdruck geprüft.</li>
         <li>Da Journaldaten Ihr Gerät niemals verlassen, beschränkt sich die Auswirkung eines serverseitigen Sicherheitsvorfalls ausschließlich auf den Abonnementstatus, nicht auf Ihre Texte.</li>
       </ul>
       <p>Wenn Sie eine Sicherheitslücke entdecken, melden Sie diese bitte an <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

@@ -364,7 +364,7 @@
       <p>귀하의 일기 항목은 오직 귀하의 것입니다. 본 방침은 MirrorNotes가 수집하는 데이터와 수집하지 않는 데이터, 그리고 그 이유를 평이한 언어로 정확히 설명합니다.</p>
       <div class="meta">
         <div class="meta-item"><strong>시행일:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>최종 업데이트:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>최종 업데이트:</strong> October 9, 2026</div>
         <div class="meta-item"><strong>앱 버전:</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKit은 귀하의 iCloud 계정을 이용해 귀하의 기기 간에 항목을 동기화합니다. Apple은 구독에 대한 모든 결제 처리를 담당합니다. MirrorNotes 이용에는 계정 생성이나 로그인이 필요하지 않습니다.</p>
       <p>Apple 개인정보 처리방침: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (선택 사항인 검색 모델, Cloudflare 호스팅)</h3>
+      <p>Ask 스마트 검색을 켜면 앱이 models.mirrornotes.org에서 검색 모델 파일을 한 번 다운로드합니다. 이 파일은 당사를 대신해 Cloudflare가 호스팅합니다. 일반적인 다운로드와 마찬가지로 Cloudflare는 파일을 전달하기 위해 기기의 IP 주소와 파일 요청을 받습니다. 요청에는 일기 데이터, 계정, 기기 식별자가 포함되지 않습니다. 이 기능을 켜지 않으면 앱은 이 주소에 절대 접속하지 않습니다.</p>
+      <p>Cloudflare 개인정보처리방침: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>CloudKit에 관한 참고 사항:</strong> iCloud 동기화는 귀하의 항목이 귀하의 Apple ID 하에 Apple 서버에 저장됨을 의미합니다. 이는 당사가 아닌 Apple의 약관에 의해 규율됩니다. 당사는 iCloud 데이터에 접근할 수 있는 방법이 전혀 없습니다. 우려되신다면 iOS 설정 → [내 이름] → iCloud에서 MirrorNotes에 대한 iCloud를 비활성화하실 수 있습니다.
       </div>
@@ -493,6 +497,13 @@
         <li>모델에 전달되는 항목 텍스트는 귀하 기기의 로컬 메모리를 절대 벗어나지 않습니다.</li>
         <li>당사는 기기 성능 보호를 위해 모델에 전송되는 텍스트에 10,000자의 상한을 두며(가장 오래된 항목부터 먼저 잘라냄), 이를 초과하지 않도록 합니다.</li>
         <li>생성된 인사이트는 기기 내에 캐시되며 24시간 이내에는 재생성되지 않습니다.</li>
+      </ul>
+      <h3>Ask 스마트 검색 (선택 사항)</h3>
+      <p>Ask는 입력한 단어뿐 아니라 의미가 맞는 일기를 찾기 위해 선택 사항인 기기 내 검색 모델(Google의 EmbeddingGemma 300M)을 사용할 수 있습니다. Ask 또는 설정 → 질문 스마트 검색에서 다운로드를 선택하기 전까지는 꺼져 있습니다.</p>
+      <ul>
+        <li>모델(약 334MB)은 models.mirrornotes.org에서 Wi-Fi에서만 한 번 다운로드되며, 사용 전에 고정된 지문으로 검증됩니다. 다운로드할 때 귀하나 일기에 관한 정보는 전송되지 않습니다.</li>
+        <li>모델은 귀하의 기기에서 실행됩니다. 일기를 빠르게 찾기 위해 앱은 기기에 검색 색인을 보관합니다. 이는 일기에서 얻은 숫자로, 일기와 같은 키로 암호화되고 백업에서 제외되며 동기화되거나 어디로도 전송되지 않습니다.</li>
+        <li>설정 → 질문 스마트 검색 → 검색 모델 삭제를 누르면 모델과 색인이 삭제됩니다.</li>
       </ul>
       <p>AI 처리를 위해 어떠한 AI 클라우드 서비스(OpenAI, Anthropic, Google Cloud AI 등)에 대한 API 호출도 이루어지지 않습니다.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>당사는 보안을 중요하게 다룹니다:</p>
       <ul>
         <li>모든 네트워크 요청(RevenueCat 및 Apple에 대한)은 HTTPS/TLS를 사용합니다.</li>
+        <li>선택 사항인 검색 모델은 models.mirrornotes.org에서 HTTPS로 다운로드되며, 앱이 사용하기 전에 고정된 SHA-256 지문으로 검증됩니다.</li>
         <li>일기 데이터가 절대 기기를 벗어나지 않으므로, 서버 측 유출 발생 시 그 영향 범위는 구독 상태에 국한되며 귀하의 글에는 미치지 않습니다.</li>
       </ul>
       <p>보안 취약점을 발견하신 경우 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>로 신고해 주십시오.</p>

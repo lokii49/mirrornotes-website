@@ -364,7 +364,7 @@
       <p>Suas anotações de diário pertencem a você. Esta política explica exatamente quais dados o MirrorNotes coleta, quais não coleta, e por quê, em linguagem simples.</p>
       <div class="meta">
         <div class="meta-item"><strong>Vigência:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Última atualização:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Última atualização:</strong> October 9, 2026</div>
         <div class="meta-item"><strong>Versão do app:</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>O Apple CloudKit sincroniza suas anotações entre seus dispositivos usando sua conta iCloud. A Apple processa todos os pagamentos das assinaturas. Nenhuma conta ou login é exigido para usar o MirrorNotes.</p>
       <p>Política de Privacidade da Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (modelo de busca opcional, hospedado pela Cloudflare)</h3>
+      <p>Se você ativar a busca inteligente no Perguntar, o app baixa uma única vez um arquivo de modelo de busca de models.mirrornotes.org. O arquivo é hospedado para nós pela Cloudflare. Como em qualquer download, a Cloudflare recebe o endereço IP do seu dispositivo e a solicitação do arquivo para entregá-lo. A solicitação não contém dados do diário, nenhuma conta e nenhum identificador do dispositivo. Se você nunca ativar o recurso, o app nunca acessa esse endereço.</p>
+      <p>Política de Privacidade da Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>Observação sobre o CloudKit:</strong> a sincronização via iCloud significa que suas anotações são armazenadas nos servidores da Apple sob seu Apple ID. Isso é regido pelos termos da Apple, não pelos nossos. Não temos nenhuma capacidade de acessar dados do iCloud. Se isso for uma preocupação, você pode desativar o iCloud para o MirrorNotes em Ajustes do iOS → [Seu Nome] → iCloud.
       </div>
@@ -493,6 +497,13 @@
         <li>O texto das anotações enviado ao modelo nunca sai da memória local do seu dispositivo.</li>
         <li>Impomos um limite máximo de 10.000 caracteres no texto enviado ao modelo (truncando primeiro as anotações mais antigas) para proteger o desempenho do dispositivo.</li>
         <li>Os insights gerados são armazenados em cache no dispositivo e não são regenerados dentro de um período de 24 horas.</li>
+      </ul>
+      <h3>Busca inteligente no Perguntar (opcional)</h3>
+      <p>O Perguntar pode usar um modelo de busca opcional no dispositivo, o EmbeddingGemma 300M do Google, para encontrar as entradas que combinam com o que você quer dizer, não só com as palavras que você digita. Ele fica desativado até você escolher Baixar, no Perguntar ou em Ajustes → Busca inteligente.</p>
+      <ul>
+        <li>O modelo (cerca de 334 MB) é baixado uma única vez, só no Wi-Fi, de models.mirrornotes.org, e verificado com uma impressão digital fixa antes do uso. O download não envia nada sobre você ou suas entradas.</li>
+        <li>O modelo roda no seu dispositivo. Para encontrar entradas rapidamente, o app mantém um índice de busca no dispositivo: números derivados das suas entradas, criptografados com a mesma chave das suas entradas, excluídos dos backups e nunca sincronizados nem enviados a lugar algum.</li>
+        <li>Ajustes → Busca inteligente → Remover o modelo de busca apaga o modelo e o índice.</li>
       </ul>
       <p>Não há chamadas de API para nenhum serviço de IA na nuvem (nenhum OpenAI, Anthropic, Google Cloud AI, etc.) para o processamento de IA.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>Levamos a segurança a sério:</p>
       <ul>
         <li>Todas as solicitações de rede (para a RevenueCat e a Apple) usam HTTPS/TLS.</li>
+        <li>O modelo de busca opcional é baixado por HTTPS de models.mirrornotes.org e verificado com uma impressão digital SHA-256 fixa antes de o app usá-lo.</li>
         <li>Como os dados de diário nunca saem do seu dispositivo, o alcance de qualquer violação do lado do servidor fica limitado apenas ao status da assinatura, não à sua escrita.</li>
       </ul>
       <p>Se você descobrir uma vulnerabilidade de segurança, por favor relate para <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

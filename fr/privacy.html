@@ -364,7 +364,7 @@
       <p>Vos entrées de journal vous appartiennent. Cette politique explique précisément quelles données MirrorNotes collecte, lesquelles elle ne collecte pas, et pourquoi, en langage clair.</p>
       <div class="meta">
         <div class="meta-item"><strong>Entrée en vigueur :</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Dernière mise à jour :</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Dernière mise à jour :</strong> October 9, 2026</div>
         <div class="meta-item"><strong>Version de l'application :</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKit synchronise vos entrées entre vos appareils à l'aide de votre compte iCloud. Apple gère l'ensemble du traitement des paiements pour les abonnements. Aucun compte ni connexion n'est requis pour utiliser MirrorNotes.</p>
       <p>Politique de confidentialité d'Apple : <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (modèle de recherche facultatif, hébergé par Cloudflare)</h3>
+      <p>Si vous activez la recherche intelligente pour Ask, l'app télécharge une seule fois un fichier de modèle de recherche depuis models.mirrornotes.org. Le fichier est hébergé pour nous par Cloudflare. Comme pour tout téléchargement, Cloudflare reçoit l'adresse IP de votre appareil et la requête du fichier afin de le livrer. La requête ne contient aucune donnée de journal, aucun compte et aucun identifiant d'appareil. Si vous n'activez jamais la fonctionnalité, l'app ne contacte jamais cette adresse.</p>
+      <p>Politique de confidentialité de Cloudflare : <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>Remarque sur CloudKit :</strong> la synchronisation iCloud signifie que vos entrées sont stockées sur les serveurs d'Apple sous votre identifiant Apple. Cela est régi par les conditions d'Apple, et non par les nôtres. Nous n'avons aucune capacité d'accéder aux données iCloud. Si cela vous préoccupe, vous pouvez désactiver iCloud pour MirrorNotes dans Réglages iOS → [Votre nom] → iCloud.
       </div>
@@ -493,6 +497,13 @@
         <li>Le texte des entrées transmis au modèle ne quitte jamais la mémoire locale de votre appareil.</li>
         <li>Nous imposons un maximum de 10,000 characters de texte envoyé au modèle (en tronquant d'abord les entrées les plus anciennes) afin de préserver les performances de l'appareil.</li>
         <li>Les insights générés sont mis en cache sur l'appareil et ne sont pas régénérés dans les 24 hours.</li>
+      </ul>
+      <h3>Recherche intelligente pour Ask (facultative)</h3>
+      <p>Ask peut utiliser un modèle de recherche facultatif sur l'appareil, EmbeddingGemma 300M de Google, pour trouver les entrées qui correspondent à ce que vous voulez dire, pas seulement aux mots que vous tapez. Il reste désactivé tant que vous ne choisissez pas Télécharger, dans Ask ou dans Réglages → Recherche intelligente.</p>
+      <ul>
+        <li>Le modèle (environ 334 Mo) est téléchargé une seule fois, en Wi-Fi uniquement, depuis models.mirrornotes.org, et vérifié avec une empreinte fixe avant utilisation. Le téléchargement n'envoie rien sur vous ni sur vos entrées.</li>
+        <li>Le modèle fonctionne sur votre appareil. Pour trouver rapidement des entrées, l'app conserve un index de recherche sur l'appareil : des nombres dérivés de vos entrées, chiffrés avec la même clé que vos entrées, exclus des sauvegardes et jamais synchronisés ni envoyés nulle part.</li>
+        <li>Réglages → Recherche intelligente → Supprimer le modèle de recherche efface le modèle et l'index.</li>
       </ul>
       <p>Aucun appel API n'est effectué vers un service d'IA cloud (ni OpenAI, ni Anthropic, ni Google Cloud AI, etc.) pour le traitement par IA.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>Nous prenons la sécurité au sérieux :</p>
       <ul>
         <li>Toutes les requêtes réseau (vers RevenueCat et Apple) utilisent HTTPS/TLS.</li>
+        <li>Le modèle de recherche facultatif est téléchargé en HTTPS depuis models.mirrornotes.org et vérifié avec une empreinte SHA-256 fixe avant que l'app ne l'utilise.</li>
         <li>Comme les données de journal ne quittent jamais votre appareil, le rayon d'impact de toute violation côté serveur se limite au seul statut d'abonnement, et non à vos écrits.</li>
       </ul>
       <p>Si vous découvrez une vulnérabilité de sécurité, veuillez la signaler à <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

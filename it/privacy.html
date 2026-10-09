@@ -364,7 +364,7 @@
       <p>Le voci del suo diario appartengono solo a Lei. Questa informativa spiega esattamente quali dati raccoglie MirrorNotes, quali non raccoglie e perché, in un linguaggio semplice.</p>
       <div class="meta">
         <div class="meta-item"><strong>In vigore dal:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Ultimo aggiornamento:</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>Ultimo aggiornamento:</strong> October 9, 2026</div>
         <div class="meta-item"><strong>Versione app:</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKit sincronizza le sue voci tra i suoi dispositivi utilizzando il suo account iCloud. Apple gestisce l'intera elaborazione dei pagamenti per gli abbonamenti. Non è richiesto alcun account o accesso per utilizzare MirrorNotes.</p>
       <p>Informativa sulla privacy di Apple: <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org (modello di ricerca facoltativo, ospitato da Cloudflare)</h3>
+      <p>Se attiva la ricerca intelligente per Ask, l'app scarica una sola volta un file del modello di ricerca da models.mirrornotes.org. Il file è ospitato per noi da Cloudflare. Come per qualsiasi download, Cloudflare riceve l'indirizzo IP del suo dispositivo e la richiesta del file per poterlo consegnare. La richiesta non contiene dati del diario, nessun account e nessun identificativo del dispositivo. Se non attiva mai la funzione, l'app non contatta mai questo indirizzo.</p>
+      <p>Informativa sulla privacy di Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>Nota su CloudKit:</strong> la sincronizzazione iCloud comporta che le sue voci siano archiviate sui server di Apple sotto il suo Apple ID. Questo è regolato dai termini di Apple, non dai nostri. Non abbiamo alcuna possibilità di accedere ai dati iCloud. Se ha delle preoccupazioni, può disattivare iCloud per MirrorNotes in Impostazioni iOS → [Il suo nome] → iCloud.
       </div>
@@ -493,6 +497,13 @@
         <li>Il testo delle voci inviato al modello non lascia mai la memoria locale del suo dispositivo.</li>
         <li>Imponiamo un limite massimo di 10,000 characters di testo inviato al modello (troncando prima le voci più vecchie) per proteggere le prestazioni del dispositivo.</li>
         <li>Gli insight generati vengono memorizzati nella cache sul dispositivo e non vengono rigenerati entro 24 hours.</li>
+      </ul>
+      <h3>Ricerca intelligente per Ask (facoltativa)</h3>
+      <p>Ask può usare un modello di ricerca facoltativo sul dispositivo, EmbeddingGemma 300M di Google, per trovare le voci che corrispondono a ciò che intende, non solo alle parole che scrive. Resta disattivato finché non sceglie Scarica, in Ask o in Impostazioni → Ricerca intelligente.</p>
+      <ul>
+        <li>Il modello (circa 334 MB) viene scaricato una sola volta, solo con il Wi-Fi, da models.mirrornotes.org e verificato con un'impronta fissa prima dell'uso. Il download non invia nulla su di lei o sulle sue voci.</li>
+        <li>Il modello funziona sul suo dispositivo. Per trovare rapidamente le voci, l'app conserva un indice di ricerca sul dispositivo: numeri ricavati dalle sue voci, cifrati con la stessa chiave delle voci, esclusi dai backup e mai sincronizzati né inviati altrove.</li>
+        <li>Impostazioni → Ricerca intelligente → Rimuovi il modello di ricerca elimina il modello e l'indice.</li>
       </ul>
       <p>Non vi è alcuna chiamata API verso servizi AI su cloud (nessun OpenAI, Anthropic, Google Cloud AI, ecc.) per l'elaborazione AI.</p>
     </div>
@@ -546,6 +557,7 @@
       <p>Prendiamo la sicurezza molto sul serio:</p>
       <ul>
         <li>Tutte le richieste di rete (verso RevenueCat e Apple) utilizzano HTTPS/TLS.</li>
+        <li>Il modello di ricerca facoltativo viene scaricato tramite HTTPS da models.mirrornotes.org e verificato con un'impronta SHA-256 fissa prima che l'app lo usi.</li>
         <li>Poiché i dati del diario non lasciano mai il dispositivo, il raggio d'impatto di un'eventuale violazione lato server è limitato allo stato dell'abbonamento, e non riguarda i suoi scritti.</li>
       </ul>
       <p>Se scopre una vulnerabilità di sicurezza, la segnali a <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>

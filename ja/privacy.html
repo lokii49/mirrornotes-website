@@ -364,7 +364,7 @@
       <p>あなたの日記は、あなただけのものです。本ポリシーでは、MirrorNotesが収集するデータと収集しないデータ、そしてその理由について、平易な言葉で正確に説明します。</p>
       <div class="meta">
         <div class="meta-item"><strong>発効日：</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>最終更新日：</strong> May 15, 2026</div>
+        <div class="meta-item"><strong>最終更新日：</strong> October 9, 2026</div>
         <div class="meta-item"><strong>アプリバージョン：</strong> 1.0</div>
       </div>
     </div>
@@ -478,6 +478,10 @@
       <p>Apple CloudKitは、お客様のiCloudアカウントを使用して、お使いの各端末間で日記を同期します。サブスクリプションの支払い処理はすべてAppleが行います。MirrorNotesの利用にアカウント登録やサインインは必要ありません。</p>
       <p>Appleのプライバシーポリシー：<a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">apple.com/privacy</a></p>
 
+      <h3>models.mirrornotes.org（任意の検索モデル、Cloudflare でホスト）</h3>
+      <p>Askのスマート検索をオンにすると、アプリは models.mirrornotes.org から検索モデルのファイルを一度だけダウンロードします。ファイルは当社に代わって Cloudflare がホストしています。通常のダウンロードと同様に、Cloudflare はファイルを届けるために端末の IP アドレスとファイルのリクエストを受け取ります。リクエストに日記のデータ、アカウント、端末の識別子は含まれません。この機能をオンにしない限り、アプリがこのアドレスに接続することはありません。</p>
+      <p>Cloudflareのプライバシーポリシー：<a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></p>
+
       <div class="callout callout-warn">
         <strong>CloudKitに関する注記：</strong> iCloud同期により、あなたの日記はお客様のApple IDのもとでAppleのサーバーに保存されます。これは当方の規約ではなく、Appleの規約によって管理されます。当方がiCloudデータにアクセスする手段はありません。ご懸念がある場合は、iOSの「設定」→［お客様の名前］→「iCloud」からMirrorNotesのiCloudを無効にすることができます。
       </div>
@@ -493,6 +497,13 @@
         <li>モデルに渡される日記のテキストが、お使いの端末のローカルメモリから外に出ることは決してありません。</li>
         <li>端末のパフォーマンスを保護するため、モデルに送信するテキストには最大10,000文字の上限を設けています（古いエントリーから優先的に切り詰めます）。</li>
         <li>生成されたインサイトは端末上にキャッシュされ、24時間以内に再生成されることはありません。</li>
+      </ul>
+      <h3>Askのスマート検索（任意）</h3>
+      <p>Askでは、入力した言葉だけでなく意味に合う日記を見つけるために、任意の端末上の検索モデル（Google の EmbeddingGemma 300M）を使えます。Ask または 設定 → 質問のスマート検索 で「ダウンロード」を選ぶまでオフのままです。</p>
+      <ul>
+        <li>モデル（約334 MB）は models.mirrornotes.org から Wi-Fi 接続時のみ一度だけダウンロードされ、使用前に固定の指紋で検証されます。ダウンロード時にあなたや日記の情報は送信されません。</li>
+        <li>モデルは端末上で動作します。日記をすばやく見つけるため、アプリは端末上に検索インデックスを保存します。これは日記から算出した数値で、日記と同じ鍵で暗号化され、バックアップから除外され、同期や外部への送信は一切されません。</li>
+        <li>設定 → 質問のスマート検索 →「検索モデルを削除」で、モデルとインデックスが削除されます。</li>
       </ul>
       <p>AI処理のために、いかなるAIクラウドサービス（OpenAI、Anthropic、Google Cloud AIなど）へのAPI呼び出しも行われません。</p>
     </div>
@@ -546,6 +557,7 @@
       <p>当方はセキュリティを重視しています：</p>
       <ul>
         <li>（RevenueCatおよびAppleへの）すべてのネットワーク通信はHTTPS/TLSを使用します。</li>
+        <li>任意の検索モデルは models.mirrornotes.org から HTTPS でダウンロードされ、アプリが使用する前に固定の SHA-256 指紋で検証されます。</li>
         <li>日記データが端末から外に出ることは決してないため、万が一サーバー側で情報漏洩が発生した場合の影響範囲は、サブスクリプションの状態のみに限定され、あなたが書いた内容には及びません。</li>
       </ul>
       <p>セキュリティ上の脆弱性を発見された場合は、<a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> までご報告ください。</p>
