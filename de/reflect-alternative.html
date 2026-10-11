@@ -22,7 +22,7 @@
         "name": "Was ist eine gute Reflect-Alternative?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes ist eine Reflect-Alternative, die auf On-Device-KI setzt. Während Reflect deine Notizen zur KI-Verarbeitung in eine Cloud sendet, lässt MirrorNotes Gemma 3 lokal auf deinem iPhone laufen, sodass tägliche Prompts, Stimmungsanalyse, „Frag dein Journal“ und wöchentliche Zusammenfassungen alle offline funktionieren, ohne dass Daten dein Gerät verlassen."
+          "text": "MirrorNotes ist eine Reflect-Alternative, die auf On-Device-KI setzt. Während Reflect deine Notizen zur KI-Verarbeitung in eine Cloud sendet, lässt MirrorNotes seine KI lokal auf deinem iPhone laufen – Apples eigene Foundation Models auf Apple-Intelligence-fähigen iPhones, oder sonst das mitgelieferte Gemma-3-Modell –, sodass tägliche Prompts, Stimmungsanalyse, „Frag dein Journal“ und wöchentliche Zusammenfassungen alle offline funktionieren, ohne dass Daten dein Gerät verlassen."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Hat Reflect On-Device-KI?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Reflect nutzt Cloud-KI für seine Intelligenzfunktionen, das heißt, deine Notizen werden auf externen Servern verarbeitet. MirrorNotes lässt Gemma 3 über CoreML vollständig auf deinem iPhone laufen, keine API-Aufrufe, kein Server, keine übertragenen Daten. Jede KI-Funktion funktioniert im Flugmodus."
+          "text": "Reflect nutzt Cloud-KI für seine Intelligenzfunktionen, das heißt, deine Notizen werden auf externen Servern verarbeitet. MirrorNotes läuft vollständig auf deinem iPhone: Apples eigene Foundation Models auf Apple-Intelligence-fähigen Geräten, oder sonst das mitgelieferte Gemma-3-Modell über CoreML. Keine API-Aufrufe, kein Server, keine übertragenen Daten, kein Apples Private Cloud Compute. Jede KI-Funktion funktioniert im Flugmodus."
         }
       },
       {
@@ -125,7 +125,7 @@
     <div class="page-header">
       <div class="label">Vergleich</div>
       <h1>Eine Reflect-Alternative, bei der die KI auf deinem Handy bleibt</h1>
-      <p>Reflect ist ein fähiges Notiz- und Journaling-Tool. Der Haken: seine KI-Funktionen senden deine Notizen zur Verarbeitung in eine Cloud. MirrorNotes geht den umgekehrten Weg. Gemma 3 läuft lokal auf deinem iPhone, sodass tägliche Prompts, Stimmungsanalyse und Journal-Anfragen offline funktionieren, ohne dass Text jemals einen Server erreicht.</p>
+      <p>Reflect ist ein fähiges Notiz- und Journaling-Tool. Der Haken: seine KI-Funktionen senden deine Notizen zur Verarbeitung in eine Cloud. MirrorNotes geht den umgekehrten Weg. Die KI läuft lokal auf deinem iPhone – Apples eigene Foundation Models, wo verfügbar, Gemma 3 als Fallback –, sodass tägliche Prompts, Stimmungsanalyse und Journal-Anfragen offline funktionieren, ohne dass Text jemals einen Server erreicht.</p>
     </div>
 
     <div class="tldr">
@@ -145,7 +145,7 @@
           <tr><th>Funktion</th><th>MirrorNotes</th><th>Reflect</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Wo die KI läuft</strong></td><td class="yes">Auf deinem iPhone (Gemma 3 über CoreML)</td><td class="warn">Cloud-Server</td></tr>
+          <tr><td><strong>Wo die KI läuft</strong></td><td class="yes">Auf deinem iPhone (Apples Foundation Models oder Gemma 3)</td><td class="warn">Cloud-Server</td></tr>
           <tr><td><strong>Journaltext verlässt das Gerät</strong></td><td class="yes">Nie</td><td class="warn">Ja, zur KI-Verarbeitung</td></tr>
           <tr><td><strong>Funktioniert offline</strong></td><td class="yes">Vollständig, inklusive aller KI-Funktionen</td><td class="no">KI benötigt Internet</td></tr>
           <tr><td><strong>Tägliche KI-Reflexions-Prompts</strong></td><td class="yes">Ja, personalisiert aus deinen letzten Einträgen</td><td class="no">Nein</td></tr>
@@ -163,7 +163,7 @@
     <div class="policy-section">
       <h2>Der Datenschutzunterschied ist architektonisch</h2>
       <p>Die meisten KI-Journaling-Apps, einschließlich Reflect, verarbeiten dein Geschriebenes auf einem Server. Das ist keine Kritik an ihren Datenschutzrichtlinien; es ist eine technische Folge des Betriebs von Cloud-KI. Das Modell muss den Text sehen, um ihn zu verarbeiten.</p>
-      <p>MirrorNotes bringt sein eigenes Modell mit. Gemma 3 1B läuft über CoreML auf der Neural Engine deines iPhones. Wenn du einen Eintrag schreibst, liest die KI ihn auf deinem Chip, erzeugt eine Erkenntnis, und der Text bleibt auf deinem Gerät. Nicht übertragen, nicht protokolliert, nirgendwo außerhalb deines iCloud gespeichert.</p>
+      <p>MirrorNotes lässt seine KI auf dem eigenen Chip deines iPhones laufen: Apples Foundation Models auf Apple-Intelligence-fähigen Geräten, oder sonst das eigene mitgelieferte Gemma-3-1B-Modell über CoreML. Wenn du einen Eintrag schreibst, liest die KI ihn auf deinem Chip, erzeugt eine Erkenntnis, und der Text bleibt auf deinem Gerät. Nicht übertragen, nicht protokolliert, nirgendwo außerhalb deines iCloud gespeichert.</p>
       <div class="callout">
         <strong>Die Datenschutzgarantie ist architektonisch, kein Richtlinienversprechen.</strong> Es gibt keinen Cloud-Codepfad in der App. Sie kann dein Journal nicht an einen Server senden, weil es keinen Server gibt, an den gesendet werden könnte.
       </div>
