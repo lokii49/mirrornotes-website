@@ -22,7 +22,7 @@
         "name": "Qual é uma boa alternativa ao aplicativo Reflect?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O MirrorNotes é uma alternativa ao Reflect construída em torno de IA no dispositivo. Enquanto o Reflect envia suas anotações para a nuvem para processamento de IA, o MirrorNotes roda o Gemma 3 localmente no seu iPhone, então prompts diários, análise de humor, Pergunte ao seu diário e resumos semanais funcionam offline, sem que nenhum dado saia do seu aparelho."
+          "text": "O MirrorNotes é uma alternativa ao Reflect construída em torno de IA no dispositivo. Enquanto o Reflect envia suas anotações para a nuvem para processamento de IA, o MirrorNotes roda sua IA localmente no seu iPhone — o Foundation Models da própria Apple em iPhones compatíveis com Apple Intelligence, ou o modelo Gemma 3 incluso nos demais —, então prompts diários, análise de humor, Pergunte ao seu diário e resumos semanais funcionam offline, sem que nenhum dado saia do seu aparelho."
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "O Reflect tem IA no dispositivo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O Reflect usa IA na nuvem para seus recursos de inteligência, o que significa que suas anotações são processadas em servidores externos. O MirrorNotes roda o Gemma 3 via CoreML inteiramente no seu iPhone, sem chamadas de API, sem servidor, sem dados transmitidos. Todo recurso de IA funciona em modo avião."
+          "text": "O Reflect usa IA na nuvem para seus recursos de inteligência, o que significa que suas anotações são processadas em servidores externos. O MirrorNotes roda inteiramente no seu iPhone: o Foundation Models da própria Apple em iPhones compatíveis com Apple Intelligence, ou o modelo Gemma 3 incluso via CoreML nos demais. Sem chamadas de API, sem servidor, sem dados transmitidos, sem Private Cloud Compute da Apple. Todo recurso de IA funciona em modo avião."
         }
       },
       {
@@ -125,7 +125,7 @@
     <div class="page-header">
       <div class="label">Comparação</div>
       <h1>Uma alternativa ao Reflect em que a IA fica no seu telefone</h1>
-      <p>O Reflect é uma ferramenta competente de anotações e diário. O problema: seus recursos de IA enviam suas anotações para a nuvem para processamento. O MirrorNotes faz o oposto. O Gemma 3 roda localmente no seu iPhone, então prompts diários, análise de humor e consultas ao diário funcionam offline, sem que o texto chegue a um servidor.</p>
+      <p>O Reflect é uma ferramenta competente de anotações e diário. O problema: seus recursos de IA enviam suas anotações para a nuvem para processamento. O MirrorNotes faz o oposto. A IA roda localmente no seu iPhone — o Foundation Models da Apple onde disponível, Gemma 3 como alternativa —, então prompts diários, análise de humor e consultas ao diário funcionam offline, sem que o texto chegue a um servidor.</p>
     </div>
 
     <div class="tldr">
@@ -145,7 +145,7 @@
           <tr><th>Recurso</th><th>MirrorNotes</th><th>Reflect</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Onde a IA roda</strong></td><td class="yes">No seu iPhone (Gemma 3 via CoreML)</td><td class="warn">Servidores na nuvem</td></tr>
+          <tr><td><strong>Onde a IA roda</strong></td><td class="yes">No seu iPhone (Foundation Models da Apple ou Gemma 3)</td><td class="warn">Servidores na nuvem</td></tr>
           <tr><td><strong>Texto do diário sai do dispositivo</strong></td><td class="yes">Nunca</td><td class="warn">Sim, para processamento de IA</td></tr>
           <tr><td><strong>Funciona offline</strong></td><td class="yes">Totalmente, incluindo todos os recursos de IA</td><td class="no">IA exige internet</td></tr>
           <tr><td><strong>Prompts diários de reflexão com IA</strong></td><td class="yes">Sim, personalizados a partir das suas anotações recentes</td><td class="no">Não</td></tr>
@@ -163,7 +163,7 @@
     <div class="policy-section">
       <h2>A diferença de privacidade é arquitetural</h2>
       <p>A maioria dos diários com IA, incluindo o Reflect, processa sua escrita em um servidor. Isso não é uma crítica às políticas de privacidade deles; é uma consequência técnica de rodar IA na nuvem. O modelo precisa ver o texto para processá-lo.</p>
-      <p>O MirrorNotes traz seu próprio modelo. O Gemma 3 1B roda via CoreML no Neural Engine do seu iPhone. Quando você escreve uma anotação, a IA lê no seu chip, gera um insight, e o texto fica no seu dispositivo. Não é transmitido, não é registrado, não é armazenado em nenhum lugar fora do seu iCloud.</p>
+      <p>O MirrorNotes roda sua IA no próprio chip do seu iPhone: o Foundation Models da Apple em iPhones compatíveis com Apple Intelligence, ou seu próprio modelo Gemma 3 1B incluso via CoreML nos demais. Quando você escreve uma anotação, a IA lê no seu chip, gera um insight, e o texto fica no seu dispositivo. Não é transmitido, não é registrado, não é armazenado em nenhum lugar fora do seu iCloud.</p>
       <div class="callout">
         <strong>A garantia de privacidade é arquitetural, não uma promessa de política.</strong> Não existe caminho de código para a nuvem no aplicativo. Ele não pode enviar seu diário para um servidor porque não há servidor para enviar.
       </div>
