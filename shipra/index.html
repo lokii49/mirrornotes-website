@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MirrorNotes for Shipranotes</title>
+  <meta name="description" content="A 70-second demo of MirrorNotes, seven screenshots and talking points, prepared for the Shipranotes collaboration.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f7f4fc">
+  <meta property="og:title" content="MirrorNotes for Shipranotes">
+  <meta property="og:description" content="A journal that reflects your own words back to you, with the AI running on the phone. 70-second demo, screenshots and talking points.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mirrornotes.org/shipra/">
+  <meta property="og:image" content="https://mirrornotes.org/shipra/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MirrorNotes for Shipranotes">
+  <meta name="twitter:description" content="A journal that reflects your own words back to you, with the AI running on the phone. 70-second demo inside.">
+  <meta name="twitter:image" content="https://mirrornotes.org/shipra/og.png">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+  <style>
+  /* Layout: one reading column; the video and the screenshot grid are the only wide elements. */
+  :root {
+    --bg: #f7f4fc;
+    --surface: #ffffff;
+    --ink: #1c1930;
+    --muted: #6d6886;
+    --line: #e3dcf3;
+    --accent: #6b4fd1;
+    --accent-soft: #ece6fb;
+    --phone: #171420;
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15121f; --surface: #1e1a2b; --ink: #ece8f7; --muted: #a39dbb; --line: #2f2942;
+      --accent: #a991f5; --accent-soft: #2a2340; --phone: #0b0910; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15121f; --surface: #1e1a2b; --ink: #ece8f7; --muted: #a39dbb; --line: #2f2942;
+    --accent: #a991f5; --accent-soft: #2a2340; --phone: #0b0910; color-scheme: dark;
+  }
+  html, body { margin: 0; } body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; -webkit-text-size-adjust: 100%; }
+  .wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 72px; padding-inline: 20px; }
+  header { display: flex; gap: 18px; align-items: center; margin-bottom: 36px; }
+  header img { width: 72px; height: 72px; border-radius: 18px; flex: none; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  h1 { font-family: var(--display); font-weight: 500; font-size: clamp(30px, 5vw, 42px); line-height: 1.1; margin: 4px 0 0; text-wrap: balance; }
+  h2 { font-family: var(--display); font-weight: 500; font-size: 26px; line-height: 1.2; margin: 48px 0 12px; text-wrap: balance; }
+  p { margin: 0 0 14px; max-width: 64ch; }
+  .lede { font-size: 20px; line-height: 1.45; max-width: 58ch; }
+  .lede em { font-family: var(--display); font-style: italic; font-size: 1.08em; }
+  .video { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 16px; }
+  .video video { width: 100%; max-width: 320px; aspect-ratio: 9 / 16; border-radius: 22px; background: var(--phone); display: block; }
+  .video ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 16px; }
+  .video ol li::marker { color: var(--accent); font-weight: 600; }
+  .small { font-size: 14px; color: var(--muted); }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; margin-top: 18px; }
+  figure { margin: 0; min-width: 0; }
+  figure img { width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); display: block; background: var(--surface); }
+  figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+  figcaption b { color: var(--ink); font-weight: 600; }
+  ul.points { padding-left: 0; list-style: none; display: grid; gap: 12px; margin: 0; }
+  ul.points li { padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+  ul.points b { font-weight: 600; }
+  .facts { display: grid; gap: 6px 18px; grid-template-columns: max-content 1fr; font-size: 16px; margin: 0; }
+  .facts dt { color: var(--muted); font-weight: 500; }
+  .facts dd { margin: 0; min-width: 0; }
+  blockquote { margin: 0 0 14px; padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 12px 12px 0; font-size: 16px; }
+  blockquote .tag { display: block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, video:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-weight: 500; }
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); }
+  @media (max-width: 600px) {
+    .video { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: 1fr; gap: 2px 0; }
+    .facts dd { margin-bottom: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="icon.png" alt="MirrorNotes app icon">
+    <div>
+      <div class="eyebrow">Collab brief · October 2026</div>
+      <h1>MirrorNotes for Shipranotes</h1>
+    </div>
+  </header>
+
+  <p class="lede">A journal for iPhone and Mac that reads what you wrote and reflects it back <em>in your own words</em>. The AI runs on the phone itself, so your words are never sent anywhere to be read.</p>
+  <p>You can't try it without an iPhone, so this page shows it working: a 70-second recording of the real app, seven screenshots, and a few angles your followers might care about.</p>
+
+  <h2>The 70-second demo</h2>
+  <div class="video">
+    <video src="MirrorNotes-Demo-Vertical.mp4" controls playsinline preload="metadata" poster="screenshots/03-daily-reflection.png"></video>
+    <div>
+      <p>What happens in it:</p>
+      <ol>
+        <li>A long day gets written down, messy and unedited. A mood is picked from a short list.</li>
+        <li>Seconds after saving, a reflection appears that opens with a sentence from the entry, word for word, and one line about how the day felt.</li>
+        <li>Three weeks of entries become a mood timeline.</li>
+        <li>"When do I feel most like myself?" is answered only from what was written.</li>
+        <li>Brain View maps the people and themes that keep coming back.</li>
+      </ol>
+      <p class="small">Right-click or long-press the video to save it, or use the file links at the bottom. The journal in the video is a sample written for the demo. The reflection and the answer are the app's real output, generated during the recording. A caption-free version of the same cut is in the asset folder for your own edits.</p>
+    </div>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <figure><img src="screenshots/02-write-entry.png" alt="Writing an entry in MirrorNotes"><figcaption><b>Write.</b> One box, no prompts. Mood, tags, photos and voice are optional.</figcaption></figure>
+    <figure><img src="screenshots/03-daily-reflection.png" alt="The daily reflection card quoting the entry"><figcaption><b>Daily reflection.</b> It quotes the entry, then says how the day read.</figcaption></figure>
+    <figure><img src="screenshots/01-entries-list.png" alt="The entries list with a calendar heatmap and mood chips"><figcaption><b>Entries.</b> Every day stays readable, searchable and yours.</figcaption></figure>
+    <figure><img src="screenshots/04-mood-timeline.png" alt="Mood timeline chart over thirty days"><figcaption><b>Mood timeline.</b> Thirty days on one line, with the breakdown underneath.</figcaption></figure>
+    <figure><img src="screenshots/05-ask-answer.png" alt="Ask screen answering a question from the journal"><figcaption><b>Ask.</b> Answers come only from entries you've written.</figcaption></figure>
+    <figure><img src="screenshots/06-brain-view.png" alt="Brain View, a map of people and themes"><figcaption><b>Brain View.</b> The people and themes that keep coming back.</figcaption></figure>
+    <figure><img src="screenshots/07-entry-detail.png" alt="A single journal entry opened"><figcaption><b>An entry.</b> Plain text, a date, a mood, a tag. Nothing else in the way.</figcaption></figure>
+  </div>
+
+  <h2>Why your followers might care</h2>
+  <ul class="points">
+    <li><b>It quotes you.</b> The reflection starts with a line you actually wrote, never a made-up summary. You can always see which sentence it picked.</li>
+    <li><b>Private by construction, not by promise.</b> Apple's on-device model does the thinking. It works in airplane mode. There is no account to create and no MirrorNotes server with your diary on it; entries sync only through your own iCloud.</li>
+    <li><b>It notices what you can't see from inside.</b> Two-minute entries, three weeks later, turn into a mood line, a map of recurring people and themes, and honest answers to questions about yourself.</li>
+    <li><b>Writing is free, forever.</b> Every entry, all your history, search and iCloud backup stay free. Everything in the app is free to use right now.</li>
+  </ul>
+
+  <h2>Three ways to post it</h2>
+  <blockquote><span class="tag">Problem first</span>Some days are too full to carry quietly. MirrorNotes lets you write it down, then reflects it back in your own words, with the AI running entirely on your iPhone. Your words never go to a server to be read. Here's 70 seconds of it working.</blockquote>
+  <blockquote><span class="tag">The one feature</span>The part of MirrorNotes I didn't expect to like: it quotes you back. "You wrote, 'Someone thanked me in front of the whole team and I didn't know where to look.'" Then one line about how the day felt. No made-up summary, no cloud.</blockquote>
+  <blockquote><span class="tag">Three weeks in</span>After three weeks of two-minute entries, MirrorNotes starts showing you a shape: a mood line, the people and themes that keep coming back, and answers to "when do I feel most like myself?", all from your own words, all on-device.</blockquote>
+
+  <h2>Keep these straight</h2>
+  <dl class="facts">
+    <dt>Platforms</dt><dd>iPhone and Mac. The on-device reflections use Apple Intelligence on iOS 26; older iPhones use a smaller model the app downloads once.</dd>
+    <dt>Privacy wording</dt><dd>Say "the AI runs on the phone" or "your words never go to a server to be read". Entries do sync between your own devices through your iCloud, which stays private to you, so avoid "nothing ever leaves the phone".</dd>
+    <dt>Pricing</dt><dd>Everything is free to use at the moment, and writing and reading entries stays free always. Please don't quote prices or tiers.</dd>
+    <dt>What's real</dt><dd>The sample journal was written for the demo. The reflections and answers shown are the app's real output.</dd>
+  </dl>
+
+  <h2>Links</h2>
+  <div class="links">
+    <a href="https://apps.apple.com/app/id6769007201">App Store</a>
+    <a href="/">mirrornotes.org</a>
+    <a href="MirrorNotes-Demo-Vertical.mp4" download>Video file (1080×1920, 6 MB)</a>
+    <a href="MirrorNotes-Demo-PhoneOnly-NoCaptions.mp4" download>Video, no captions (6 MB)</a>
+  </div>
+
+  <footer class="small">Prepared by Lokesh (MirrorNotes) for the Shipranotes collaboration, 13 October 2026. Questions: reply on X or <a href="mailto:lokesh@mirrornotes.org">lokesh@mirrornotes.org</a>.</footer>
+</div>
+</body>
+</html>
