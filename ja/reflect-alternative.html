@@ -22,7 +22,7 @@
         "name": "良いReflectの代替アプリはありますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotesは、オンデバイスAIを中心に設計されたReflectの代替アプリです。Reflectがノートをクラウドに送信してAI処理を行うのに対し、MirrorNotesはGemma 3をあなたのiPhone上でローカルに動作させるため、デイリープロンプト、気分分析、日記に問いかける機能、ウィークリーダイジェストのすべてがオフラインで動作し、データが端末から出ることは一切ありません。"
+          "text": "MirrorNotesは、オンデバイスAIを中心に設計されたReflectの代替アプリです。Reflectがノートをクラウドに送信してAI処理を行うのに対し、MirrorNotesはAIをあなたのiPhone上でローカルに動作させます — Apple Intelligence対応のiPhoneではApple純正のFoundation Models、それ以外のiPhoneでは同梱のGemma 3モデル — そのため、デイリープロンプト、気分分析、日記に問いかける機能、ウィークリーダイジェストのすべてがオフラインで動作し、データが端末から出ることは一切ありません。"
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Reflectにはオンデバイスの AI 機能はありますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Reflectはインテリジェンス機能にクラウド AI を使用しており、ノートは外部サーバーで処理されます。MirrorNotesはCoreML経由でGemma 3をあなたのiPhoneの中だけで完全に動作させるため、API呼び出しも、サーバーも、データ送信も一切ありません。すべての AI 機能が機内モードでも動作します。"
+          "text": "Reflectはインテリジェンス機能にクラウド AI を使用しており、ノートは外部サーバーで処理されます。MirrorNotesはあなたのiPhoneの中だけで完全に動作します:Apple Intelligence対応のiPhoneではApple純正のFoundation Models、それ以外のiPhoneではCoreML経由の同梱Gemma 3モデルです。API呼び出しも、サーバーも、データ送信も、AppleのPrivate Cloud Computeも一切ありません。すべての AI 機能が機内モードでも動作します。"
         }
       },
       {
@@ -125,7 +125,7 @@
     <div class="page-header">
       <div class="label">比較</div>
       <h1>AIがiPhoneの中に留まるReflectの代替アプリ</h1>
-      <p>Reflectは優秀なノート・日記アプリです。ただし、その AI 機能はノートをクラウドに送信して処理します。MirrorNotesはその逆のアプローチを取ります。Gemma 3があなたのiPhone上でローカルに動作するため、デイリープロンプト、気分分析、日記への質問応答がオフラインで動作し、テキストがサーバーに届くことは一切ありません。</p>
+      <p>Reflectは優秀なノート・日記アプリです。ただし、その AI 機能はノートをクラウドに送信して処理します。MirrorNotesはその逆のアプローチを取ります。AIがあなたのiPhone上でローカルに動作します — 対応機種ではAppleのFoundation Models、それ以外ではGemma 3をフォールバックとして使用 — そのため、デイリープロンプト、気分分析、日記への質問応答がオフラインで動作し、テキストがサーバーに届くことは一切ありません。</p>
     </div>
 
     <div class="tldr">
@@ -145,7 +145,7 @@
           <tr><th>機能</th><th>MirrorNotes</th><th>Reflect</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(CoreML経由のGemma 3)</td><td class="warn">クラウドサーバー</td></tr>
+          <tr><td><strong>AIの実行場所</strong></td><td class="yes">あなたのiPhone上(Apple Foundation ModelsまたはGemma 3)</td><td class="warn">クラウドサーバー</td></tr>
           <tr><td><strong>日記のテキストが端末外に出る</strong></td><td class="yes">一切なし</td><td class="warn">あり、AI処理のため送信されます</td></tr>
           <tr><td><strong>オフラインで動作</strong></td><td class="yes">完全に動作、AI機能も含む</td><td class="no">AI利用にはインターネットが必要</td></tr>
           <tr><td><strong>毎日のAIリフレクションプロンプト</strong></td><td class="yes">あり、最近のエントリーに合わせてパーソナライズ</td><td class="no">なし</td></tr>
@@ -163,7 +163,7 @@
     <div class="policy-section">
       <h2>プライバシーの違いは構造そのものにある</h2>
       <p>Reflectを含む多くのAI日記アプリは、あなたの文章をサーバー上で処理します。これは彼らのプライバシーポリシーへの批判ではなく、クラウドAIを動かす上での技術的な帰結です。モデルが処理するには、そのテキストを見る必要があるからです。</p>
-      <p>MirrorNotesは独自のモデルを搭載しています。Gemma 3 1BはCoreML経由であなたのiPhoneのNeural Engine上で動作します。あなたがエントリーを書くと、AIはあなたのチップ上でそれを読み、インサイトを生成し、テキストはあなたの端末に留まります。送信もされず、ログにも残らず、あなた自身のiCloud以外のどこにも保存されません。</p>
+      <p>MirrorNotesはあなたのiPhoneの中でAIを動かします。Apple Intelligence対応のiPhoneではApple純正のFoundation Models、それ以外のiPhoneでは同梱のGemma 3 1Bモデルが、CoreML経由であなたのiPhoneのNeural Engine上で動作します。あなたがエントリーを書くと、AIはあなたのチップ上でそれを読み、インサイトを生成し、テキストはあなたの端末に留まります。送信もされず、ログにも残らず、あなた自身のiCloud以外のどこにも保存されません。</p>
       <div class="callout">
         <strong>プライバシーの保証はポリシー上の約束ではなく、構造そのものです。</strong>アプリの中にクラウドへ送信するコードパスは存在しません。日記をサーバーに送ることができないのは、そもそも送り先のサーバーが存在しないからです。
       </div>
