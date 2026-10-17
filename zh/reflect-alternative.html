@@ -22,7 +22,7 @@
         "name": "有什么好用的 Reflect 替代品？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes 是一个围绕设备端 AI 打造的 Reflect 替代品。Reflect 会把你的笔记发送到云端处理，而 MirrorNotes 让 Gemma 3 直接在你的 iPhone 上本地运行，因此每日提示、情绪分析、向日记提问和每周摘要都可以离线使用，数据永远不会离开你的设备。"
+          "text": "MirrorNotes 是一个围绕设备端 AI 打造的 Reflect 替代品。Reflect 会把你的笔记发送到云端处理，而 MirrorNotes 让 AI 直接在你的 iPhone 上本地运行——在支持 Apple Intelligence 的 iPhone 上使用苹果自家的 Foundation Models，在其他机型上则使用内置的 Gemma 3 模型作为备用方案——因此每日提示、情绪分析、向日记提问和每周摘要都可以离线使用，数据永远不会离开你的设备。"
         }
       },
       {
@@ -38,7 +38,7 @@
         "name": "Reflect 有设备端 AI 吗？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Reflect 的智能功能使用云端 AI，这意味着你的笔记会在外部服务器上被处理。MirrorNotes 通过 CoreML 让 Gemma 3 完全在你的 iPhone 上运行，没有 API 调用，没有服务器，没有任何数据被传输。所有 AI 功能在飞行模式下也能使用。"
+          "text": "Reflect 的智能功能使用云端 AI，这意味着你的笔记会在外部服务器上被处理。MirrorNotes 完全在你的 iPhone 上运行：在支持 Apple Intelligence 的设备上使用苹果自家的 Foundation Models，在其他机型上则通过 CoreML 使用内置的 Gemma 3 模型。没有 API 调用，没有服务器，没有任何数据被传输，也没有 Apple 的 Private Cloud Compute。所有 AI 功能在飞行模式下也能使用。"
         }
       },
       {
@@ -125,7 +125,7 @@
     <div class="page-header">
       <div class="label">对比</div>
       <h1>一个让 AI 留在你手机上的 Reflect 替代品</h1>
-      <p>Reflect 是一款出色的笔记与日记工具，但它的 AI 功能会把你的笔记发送到云端处理。MirrorNotes 走的是相反的路线：Gemma 3 在你的 iPhone 上本地运行，因此每日提示、情绪分析和日记查询都可以离线使用，文字内容永远不会到达服务器。</p>
+      <p>Reflect 是一款出色的笔记与日记工具，但它的 AI 功能会把你的笔记发送到云端处理。MirrorNotes 走的是相反的路线：AI 在你的 iPhone 上本地运行——在支持的设备上使用苹果自家的 Foundation Models，Gemma 3 作为备用方案——因此每日提示、情绪分析和日记查询都可以离线使用，文字内容永远不会到达服务器。</p>
     </div>
 
     <div class="tldr">
@@ -145,7 +145,7 @@
           <tr><th>功能</th><th>MirrorNotes</th><th>Reflect</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（通过 CoreML 运行的 Gemma 3）</td><td class="warn">云端服务器</td></tr>
+          <tr><td><strong>AI 运行位置</strong></td><td class="yes">你的 iPhone 上（Apple Foundation Models 或 Gemma 3）</td><td class="warn">云端服务器</td></tr>
           <tr><td><strong>日记内容是否离开设备</strong></td><td class="yes">从不</td><td class="warn">是，用于 AI 处理</td></tr>
           <tr><td><strong>是否支持离线使用</strong></td><td class="yes">完全支持，包括所有 AI 功能</td><td class="no">AI 功能需要联网</td></tr>
           <tr><td><strong>每日 AI 反思提示</strong></td><td class="yes">支持，根据你最近的日记个性化生成</td><td class="no">不支持</td></tr>
@@ -163,7 +163,7 @@
     <div class="policy-section">
       <h2>隐私差异是架构层面的</h2>
       <p>包括 Reflect 在内的大多数 AI 日记应用都在服务器上处理你写的内容。这并不是在批评它们的隐私政策，而是运行云端 AI 的技术性后果：模型必须先看到文字才能处理它。</p>
-      <p>MirrorNotes 自带模型。Gemma 3 1B 通过 CoreML 运行在你 iPhone 的神经网络引擎上。当你写下一篇日记时，AI 在你的芯片上读取它、生成洞察，文字内容始终留在你的设备上。不会被传输，不会被记录，也不会被存储在你自己的 iCloud 之外的任何地方。</p>
+      <p>MirrorNotes 的 AI 直接运行在你 iPhone 自己的芯片上：在支持 Apple Intelligence 的设备上使用 Apple 的 Foundation Models，在其他机型上则通过 CoreML 使用内置的 Gemma 3 1B 模型。当你写下一篇日记时，AI 在你的芯片上读取它、生成洞察，文字内容始终留在你的设备上。不会被传输，不会被记录，也不会被存储在你自己的 iCloud 之外的任何地方。</p>
       <div class="callout">
         <strong>这份隐私保证来自架构本身，而不是一项政策承诺。</strong> 应用中不存在任何云端代码路径。它无法把你的日记发送到服务器，因为根本就没有服务器可以发送。
       </div>
