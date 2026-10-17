@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "7NP4QNTWNQ.com.lokesh.sharedTimer",
+        "paths": ["/timer", "/timer/*", "/timer.html"]
+      }
+    ]
+  },
+  "appclips": {
+    "apps": ["7NP4QNTWNQ.com.lokesh.sharedTimer.Clip"]
+  }
+}
