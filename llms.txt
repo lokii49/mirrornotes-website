@@ -13,7 +13,7 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 - Storage: SwiftData (on-device) + optional iCloud sync (private, encrypted, under user's Apple ID)
 - No account required
 - Free to write: unlimited entries, full history, search, iCloud backup — forever
-- AI tier pricing: Core $2.99/mo or $29.99/yr, Deep $4.99/mo or $49.99/yr
+- AI tier pricing (US; every country has its own purchasing-power price, e.g. India ₹199/mo Core): Core $7.99/mo or $49.99/yr, Deep $11.99/mo or $69.99/yr
 - Free trial: 7 days on all paid plans
 
 ## AI features
@@ -37,8 +37,8 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 ## Pricing
 
 - Free: unlimited writing, full entry history, full-text search, iCloud backup
-- Core ($2.99/mo or $29.99/yr): Daily Nudge, Ask (15x/month), Weekly Digest, home screen widget
-- Deep ($4.99/mo or $49.99/yr): everything in Core + Ask (unlimited), Monthly Deep Report, Mood Timeline, Mood Alerts
+- Core ($7.99/mo or $49.99/yr US): Daily Nudge, Ask (15x/month), Weekly Digest, home screen widget
+- Deep ($11.99/mo or $69.99/yr US): everything in Core + Ask (unlimited), Monthly Deep Report, Mood Timeline, Mood Alerts
 
 ## MCP server for AI assistants
 
@@ -55,7 +55,7 @@ MirrorNotes ships a free MCP server (`@mirrornotes/mcp`) exposing stateless jour
 ## Comparisons
 
 - vs Day One: MirrorNotes has on-device AI; Day One is the stronger archive with photos and multi-platform sync
-- vs Rosebud: MirrorNotes is 4–5x cheaper ($2.99 vs $12.99/mo) and AI runs on-device rather than cloud
+- vs Rosebud: MirrorNotes Core is $7.99/mo vs $12.99/mo, Deep $11.99/mo, and AI runs on-device rather than cloud
 - vs Reflect: MirrorNotes AI is local; Reflect AI is cloud-processed; MirrorNotes is iOS only
 - vs Apple Journal: both can use Apple's on-device Foundation Models; MirrorNotes also ships its own on-device Gemma 3 fallback so AI still works on iPhones without Apple Intelligence, and neither MirrorNotes AI feature uses Apple's cloud-based Private Cloud Compute
 
