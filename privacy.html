@@ -364,7 +364,7 @@
       <p>Your journal entries are yours. This policy explains exactly what data MirrorNotes collects, what it doesn't, and why, in plain language.</p>
       <div class="meta">
         <div class="meta-item"><strong>Effective:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Last updated:</strong> October 10, 2026</div>
+        <div class="meta-item"><strong>Last updated:</strong> October 17, 2026</div>
         <div class="meta-item"><strong>App version:</strong> 1.0</div>
       </div>
     </div>
@@ -376,9 +376,9 @@
         <li>Your journal entries never leave your device. Ever.</li>
         <li>All AI inference runs locally on your iPhone — Apple's Foundation Models on Apple Intelligence-eligible iPhones, or the bundled Gemma 3 1B model otherwise. No cloud AI, either way.</li>
         <li>iCloud sync goes to your own Apple account. We cannot access it.</li>
-        <li>We collect only what's needed for subscription management (RevenueCat). No account or sign-in required.</li>
+        <li>We collect only what's needed for subscription management (RevenueCat): a subscriber ID made from your iCloud account by a one-way hash, never your Apple ID, email or journal. No account or sign-in required.</li>
         <li>We do not sell your data, profile you, or use your data for advertising.</li>
-        <li>You can delete your account and all associated data at any time.</li>
+        <li>You can delete your journal from inside the app at any time, and ask us to delete your subscription record.</li>
       </ul>
     </div>
 
@@ -446,6 +446,12 @@
             <td><span class="tag tag-third">Apple/RevenueCat</span></td>
           </tr>
           <tr>
+            <td><strong>Subscriber ID</strong><br><small>One-way hash of your iCloud account's MirrorNotes identifier</small></td>
+            <td>Keeps your plan the same on all your devices</td>
+            <td>RevenueCat servers</td>
+            <td><span class="tag tag-third">Yes (RevenueCat)</span></td>
+          </tr>
+          <tr>
             <td><strong>App usage analytics</strong><br><small>Crash reports, if enabled</small></td>
             <td>Bug fixing</td>
             <td>Anonymized crash data only</td>
@@ -471,7 +477,8 @@
       <h2>4. Third-party services</h2>
 
       <h3>RevenueCat (subscription management)</h3>
-      <p>RevenueCat processes in-app purchase receipts from Apple and updates your subscription status. RevenueCat receives your Apple purchase receipts and assigns you a subscriber ID. No journal data is involved.</p>
+      <p>RevenueCat processes in-app purchase receipts from Apple and keeps track of your subscription status. No journal data is involved.</p>
+      <p>To keep your purchases together, RevenueCat needs an ID for you. When you're signed in to iCloud, MirrorNotes uses "icloud_" followed by a SHA-256 hash of the identifier iCloud gives MirrorNotes for your account (the CloudKit user record name). That identifier exists only for MirrorNotes and is not your Apple ID, email address or name, and the hash can't be turned back into it. The ID is the same on all your devices and after a reinstall, so your plan follows you. The app uses it each time it opens and checks your plan with RevenueCat. If you aren't signed in to iCloud, RevenueCat gives that install a random ID instead, and if you sign out of iCloud, the app switches back to a random ID. When a device first switches from a random ID to the iCloud-based one, RevenueCat moves purchases made under the random ID over to it. As with any connection, RevenueCat also sees your device's IP address.</p>
       <p>RevenueCat Privacy Policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
       <h3>Apple (iCloud + App Store)</h3>
@@ -516,17 +523,16 @@
       <p>Stored on-device. Deleted immediately when you delete them. No server copy exists. If you delete the app, SwiftData is cleared. iCloud copies are managed by your Apple ID settings.</p>
 
       <h3>Subscription data</h3>
-      <p>Subscription status is stored by RevenueCat for as long as you have an active subscription. Deleted within 30 days of a deletion request.</p>
+      <p>RevenueCat keeps your subscriber ID, subscription status and purchase history. We delete them within 30 days of a deletion request (see below).</p>
 
       <h3>How to delete your data</h3>
-      <ol>
-        <li>Open MirrorNotes → Settings → Account</li>
-        <li>Tap "Delete Account"</li>
-        <li>Confirm deletion</li>
-      </ol>
-      <p>This removes your subscription status from RevenueCat. Your journal entries, stored locally and in your iCloud, must be deleted separately through iOS Settings or by deleting the app.</p>
-
-      <p>You may also contact us at <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> to request account deletion.</p>
+      <p>There is no MirrorNotes account to delete. Here is what you can delete, and how:</p>
+      <ul>
+        <li><strong>Your whole journal, everywhere.</strong> In MirrorNotes, open Settings → Your Data (Archive in Sentinel mode; on Mac, Settings → iCloud &amp; Privacy), tap "Delete all data", then "Delete Everything". This permanently deletes your entries, mood check-ins, insights, collections and saved views from the device and from your iCloud, so they also disappear from your other devices on the same iCloud account. It cannot be undone.</li>
+        <li><strong>The copy in iCloud.</strong> In your iCloud storage settings (on iPhone: Settings → [your name] → iCloud; on Mac: System Settings → [your name] → iCloud), choose MirrorNotes and delete its data. Devices that sync with that iCloud account may then clear their copy too. To delete your journal everywhere, use "Delete all data" above.</li>
+        <li><strong>The copy on one device.</strong> On iPhone and iPad, deleting the app removes the journal stored on that device (macOS keeps an app's data after the app is deleted). The iCloud copy stays until you delete it as above. Each device also keeps a local backup of its journal so a sync problem can't lose your writing; "Delete all data" removes it, and so does deleting the app on iPhone and iPad.</li>
+        <li><strong>Your subscription record.</strong> Email <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> and we will delete your subscriber ID, subscription status and purchase history from RevenueCat within 30 days. This doesn't cancel an App Store subscription: cancel that in your Apple ID's subscription settings.</li>
+      </ul>
     </div>
 
     <!-- 7 -->
@@ -535,9 +541,9 @@
       <p>Depending on your location, you may have certain rights regarding your personal data:</p>
 
       <ul>
-        <li><strong>Access:</strong> Request a copy of the personal data we hold about you (your user ID and subscription status).</li>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you (your subscriber ID, subscription status and purchase history at RevenueCat).</li>
         <li><strong>Correction:</strong> Request correction of inaccurate data.</li>
-        <li><strong>Deletion:</strong> Request deletion of your account data (see Section 6).</li>
+        <li><strong>Deletion:</strong> Request deletion of your subscription record (see Section 6).</li>
         <li><strong>Portability:</strong> Request your data in a portable format. Note: journal data is stored on your device, you own and control it directly.</li>
         <li><strong>Opt-out:</strong> We do not engage in data selling or cross-context behavioral advertising. There is nothing to opt out of in that regard.</li>
       </ul>
@@ -558,7 +564,7 @@
       <ul>
         <li>All network requests (to RevenueCat and Apple) use HTTPS/TLS.</li>
         <li>AI model files (Gemma 3 1B and the optional search model) are downloaded over HTTPS from models.mirrornotes.org and verified against a pinned SHA-256 fingerprint before the app uses them.</li>
-        <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to subscription status only, not your writing.</li>
+        <li>Because journal data never leaves your device, the blast radius of any server-side breach is limited to your subscriber ID and subscription status, not your writing.</li>
       </ul>
       <p>If you discover a security vulnerability, please report it to <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
     </div>

@@ -364,7 +364,7 @@
       <p>Vos entrées de journal vous appartiennent. Cette politique explique précisément quelles données MirrorNotes collecte, lesquelles elle ne collecte pas, et pourquoi, en langage clair.</p>
       <div class="meta">
         <div class="meta-item"><strong>Entrée en vigueur :</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Dernière mise à jour :</strong> October 10, 2026</div>
+        <div class="meta-item"><strong>Dernière mise à jour :</strong> October 17, 2026</div>
         <div class="meta-item"><strong>Version de l'application :</strong> 1.0</div>
       </div>
     </div>
@@ -376,9 +376,9 @@
         <li>Vos entrées de journal ne quittent jamais votre appareil. Jamais.</li>
         <li>Toute l'inférence IA s'exécute localement sur votre iPhone (Gemma 3 1B). Aucune IA dans le cloud.</li>
         <li>La synchronisation iCloud se fait vers votre propre compte Apple. Nous ne pouvons pas y accéder.</li>
-        <li>Nous ne collectons que ce qui est nécessaire à la gestion des abonnements (RevenueCat). Aucun compte ni connexion n'est requis.</li>
+        <li>Nous ne collectons que ce qui est nécessaire à la gestion des abonnements (RevenueCat) : un identifiant d'abonné obtenu à partir de votre compte iCloud par un hachage à sens unique, jamais votre identifiant Apple, votre e-mail ni votre journal. Aucun compte ni connexion n'est requis.</li>
         <li>Nous ne vendons pas vos données, ne vous profilons pas et n'utilisons pas vos données à des fins publicitaires.</li>
-        <li>Vous pouvez supprimer votre compte et toutes les données associées à tout moment.</li>
+        <li>Vous pouvez supprimer votre journal depuis l'app à tout moment, et nous demander de supprimer votre dossier d'abonnement.</li>
       </ul>
     </div>
 
@@ -446,6 +446,12 @@
             <td><span class="tag tag-third">Apple/RevenueCat</span></td>
           </tr>
           <tr>
+            <td><strong>Identifiant d'abonné</strong><br><small>Hachage à sens unique de l'identifiant MirrorNotes de votre compte iCloud</small></td>
+            <td>Garde la même formule sur tous vos appareils</td>
+            <td>Serveurs RevenueCat</td>
+            <td><span class="tag tag-third">Oui (RevenueCat)</span></td>
+          </tr>
+          <tr>
             <td><strong>Analytique d'utilisation de l'application</strong><br><small>Rapports de plantage, si activé</small></td>
             <td>Correction de bugs</td>
             <td>Données de plantage anonymisées uniquement</td>
@@ -471,7 +477,8 @@
       <h2>4. Services tiers</h2>
 
       <h3>RevenueCat (gestion des abonnements)</h3>
-      <p>RevenueCat traite les reçus d'achat intégré provenant d'Apple et met à jour votre statut d'abonnement. RevenueCat reçoit vos reçus d'achat Apple et vous attribue un identifiant d'abonné. Aucune donnée de journal n'est impliquée.</p>
+      <p>RevenueCat traite les reçus d'achat intégré provenant d'Apple et gère votre statut d'abonnement. Aucune donnée de journal n'est impliquée.</p>
+      <p>Pour regrouper vos achats, RevenueCat a besoin d'un identifiant pour vous. Si vous êtes connecté à iCloud, MirrorNotes utilise « icloud_ » suivi d'un hachage SHA-256 de l'identifiant qu'iCloud attribue à MirrorNotes pour votre compte (le nom de l'enregistrement utilisateur CloudKit). Cet identifiant n'existe que pour MirrorNotes ; ce n'est ni votre identifiant Apple, ni votre adresse e-mail, ni votre nom, et le hachage ne permet pas de le retrouver. L'identifiant est le même sur tous vos appareils et après une réinstallation, si bien que votre formule vous suit. L'app l'utilise à chaque ouverture, lorsqu'elle vérifie votre formule auprès de RevenueCat. Si vous n'êtes pas connecté à iCloud, RevenueCat attribue à la place un identifiant aléatoire à cette installation, et si vous vous déconnectez d'iCloud, l'app revient à un identifiant aléatoire. La première fois qu'un appareil passe d'un identifiant aléatoire à celui basé sur iCloud, RevenueCat y transfère les achats effectués sous l'identifiant aléatoire. Comme pour toute connexion, RevenueCat voit aussi l'adresse IP de votre appareil.</p>
       <p>Politique de confidentialité de RevenueCat : <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
       <h3>Apple (iCloud + App Store)</h3>
@@ -516,17 +523,16 @@
       <p>Stockées sur l'appareil. Supprimées immédiatement lorsque vous les supprimez. Aucune copie serveur n'existe. Si vous supprimez l'application, SwiftData est effacé. Les copies iCloud sont gérées par les réglages de votre identifiant Apple.</p>
 
       <h3>Données d'abonnement</h3>
-      <p>Le statut d'abonnement est stocké par RevenueCat aussi longtemps que votre abonnement est actif. Supprimé dans les 30 days suivant une demande de suppression.</p>
+      <p>RevenueCat conserve votre identifiant d'abonné, votre statut d'abonnement et votre historique d'achats. Nous les supprimons dans les 30 jours suivant une demande de suppression (voir ci-dessous).</p>
 
       <h3>Comment supprimer vos données</h3>
-      <ol>
-        <li>Ouvrez MirrorNotes → Réglages → Compte</li>
-        <li>Appuyez sur « Supprimer le compte »</li>
-        <li>Confirmez la suppression</li>
-      </ol>
-      <p>Cette action supprime votre statut d'abonnement de RevenueCat. Vos entrées de journal, stockées localement et dans votre iCloud, doivent être supprimées séparément via les réglages iOS ou en supprimant l'application.</p>
-
-      <p>Vous pouvez également nous contacter à <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> pour demander la suppression de votre compte.</p>
+      <p>Il n'existe aucun compte MirrorNotes à supprimer. Voici ce que vous pouvez supprimer, et comment :</p>
+      <ul>
+        <li><strong>Tout votre journal, partout.</strong> Dans MirrorNotes, ouvrez Réglages → Vos données (Archives en mode Sentinel ; sur Mac, Réglages → iCloud et confidentialité), touchez « Supprimer toutes les données », puis « Tout supprimer ». Vos entrées, points humeur, aperçus, collections et vues enregistrées sont alors définitivement supprimés de l'appareil et de votre iCloud, et disparaissent donc aussi de vos autres appareils utilisant le même compte iCloud. Cette action est irréversible.</li>
+        <li><strong>La copie dans iCloud.</strong> Dans les réglages de stockage iCloud (sur iPhone : Réglages → [votre nom] → iCloud ; sur Mac : Réglages Système → [votre nom] → iCloud), choisissez MirrorNotes et supprimez ses données. Les appareils synchronisés avec ce compte iCloud peuvent alors effacer eux aussi leur copie. Pour supprimer votre journal partout, utilisez « Supprimer toutes les données » comme indiqué ci-dessus.</li>
+        <li><strong>La copie sur un appareil.</strong> Sur iPhone et iPad, supprimer l'app efface le journal stocké sur cet appareil (macOS conserve les données d'une app après sa suppression). La copie dans iCloud reste jusqu'à ce que vous la supprimiez comme indiqué ci-dessus. Chaque appareil conserve aussi une sauvegarde locale de son journal, pour qu'un problème de synchronisation ne vous fasse rien perdre de vos écrits ; « Supprimer toutes les données » l'efface, tout comme la suppression de l'app sur iPhone et iPad.</li>
+        <li><strong>Votre dossier d'abonnement.</strong> Écrivez à <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> et nous supprimerons de RevenueCat votre identifiant d'abonné, votre statut d'abonnement et votre historique d'achats dans un délai de 30 jours. Cela ne résilie pas un abonnement App Store : résiliez-le dans les réglages d'abonnements de votre identifiant Apple.</li>
+      </ul>
     </div>
 
     <!-- 7 -->
@@ -535,9 +541,9 @@
       <p>Selon votre lieu de résidence, vous pouvez disposer de certains droits concernant vos données personnelles :</p>
 
       <ul>
-        <li><strong>Accès :</strong> demander une copie des données personnelles que nous détenons à votre sujet (votre identifiant utilisateur et votre statut d'abonnement).</li>
+        <li><strong>Accès :</strong> demander une copie des données personnelles que nous détenons à votre sujet (votre identifiant d'abonné, votre statut d'abonnement et votre historique d'achats chez RevenueCat).</li>
         <li><strong>Rectification :</strong> demander la correction de données inexactes.</li>
-        <li><strong>Suppression :</strong> demander la suppression des données de votre compte (voir la section 6).</li>
+        <li><strong>Suppression :</strong> demander la suppression de votre dossier d'abonnement (voir la section 6).</li>
         <li><strong>Portabilité :</strong> demander vos données dans un format portable. Remarque : les données de journal sont stockées sur votre appareil, vous les possédez et les contrôlez directement.</li>
         <li><strong>Opposition :</strong> nous ne pratiquons ni la vente de données ni la publicité comportementale intercontextuelle. Il n'y a donc rien à ce sujet auquel s'opposer.</li>
       </ul>
@@ -558,7 +564,7 @@
       <ul>
         <li>Toutes les requêtes réseau (vers RevenueCat et Apple) utilisent HTTPS/TLS.</li>
         <li>Les fichiers de modèles d'IA (Gemma 3 1B et le modèle de recherche facultatif) sont téléchargés en HTTPS depuis models.mirrornotes.org et vérifiés avec une empreinte SHA-256 fixe avant que l'app ne les utilise.</li>
-        <li>Comme les données de journal ne quittent jamais votre appareil, le rayon d'impact de toute violation côté serveur se limite au seul statut d'abonnement, et non à vos écrits.</li>
+        <li>Comme les données de journal ne quittent jamais votre appareil, le rayon d'impact de toute violation côté serveur se limite à votre identifiant d'abonné et à votre statut d'abonnement, et non à vos écrits.</li>
       </ul>
       <p>Si vous découvrez une vulnérabilité de sécurité, veuillez la signaler à <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
     </div>

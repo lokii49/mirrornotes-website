@@ -364,7 +364,7 @@
       <p>귀하의 일기 항목은 오직 귀하의 것입니다. 본 방침은 MirrorNotes가 수집하는 데이터와 수집하지 않는 데이터, 그리고 그 이유를 평이한 언어로 정확히 설명합니다.</p>
       <div class="meta">
         <div class="meta-item"><strong>시행일:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>최종 업데이트:</strong> October 10, 2026</div>
+        <div class="meta-item"><strong>최종 업데이트:</strong> October 17, 2026</div>
         <div class="meta-item"><strong>앱 버전:</strong> 1.0</div>
       </div>
     </div>
@@ -376,9 +376,9 @@
         <li>귀하의 일기 항목은 절대 기기를 벗어나지 않습니다. 예외는 없습니다.</li>
         <li>모든 AI 추론은 귀하의 아이폰에서 로컬로 실행됩니다(Gemma 3 1B). 클라우드 AI는 사용되지 않습니다.</li>
         <li>iCloud 동기화는 귀하 본인의 Apple 계정으로 전송됩니다. 당사는 이에 접근할 수 없습니다.</li>
-        <li>당사는 구독 관리(RevenueCat)에 필요한 데이터만 수집합니다. 계정 생성이나 로그인은 필요하지 않습니다.</li>
+        <li>당사는 구독 관리(RevenueCat)에 필요한 데이터만 수집합니다. 이는 귀하의 iCloud 계정에서 단방향 해시로 만든 구독자 ID이며, Apple ID, 이메일 또는 일기 내용은 절대 포함되지 않습니다. 계정 생성이나 로그인은 필요하지 않습니다.</li>
         <li>당사는 귀하의 데이터를 판매하거나, 프로파일링하거나, 광고 목적으로 사용하지 않습니다.</li>
-        <li>귀하는 언제든지 계정 및 관련된 모든 데이터를 삭제할 수 있습니다.</li>
+        <li>일기는 언제든지 앱에서 삭제할 수 있으며, 구독 기록의 삭제를 당사에 요청할 수 있습니다.</li>
       </ul>
     </div>
 
@@ -446,6 +446,12 @@
             <td><span class="tag tag-third">Apple/RevenueCat</span></td>
           </tr>
           <tr>
+            <td><strong>구독자 ID</strong><br><small>iCloud 계정의 MirrorNotes용 식별자를 단방향 해시한 값</small></td>
+            <td>모든 기기에서 같은 플랜을 유지하기 위해</td>
+            <td>RevenueCat 서버</td>
+            <td><span class="tag tag-third">예(RevenueCat)</span></td>
+          </tr>
+          <tr>
             <td><strong>앱 사용 분석</strong><br><small>충돌 보고서(활성화된 경우)</small></td>
             <td>버그 수정</td>
             <td>익명화된 충돌 데이터만</td>
@@ -471,7 +477,8 @@
       <h2>4. 제3자 서비스</h2>
 
       <h3>RevenueCat(구독 관리)</h3>
-      <p>RevenueCat은 Apple로부터의 인앱 구매 영수증을 처리하고 귀하의 구독 상태를 업데이트합니다. RevenueCat은 귀하의 Apple 구매 영수증을 수신하고 구독자 ID를 부여합니다. 일기 데이터는 관련되지 않습니다.</p>
+      <p>RevenueCat은 Apple로부터의 인앱 구매 영수증을 처리하고 귀하의 구독 상태를 관리합니다. 일기 데이터는 관련되지 않습니다.</p>
+      <p>구매 내역을 하나로 묶기 위해 RevenueCat에는 귀하를 나타내는 ID가 필요합니다. iCloud에 로그인되어 있으면 MirrorNotes는 "icloud_" 뒤에, iCloud가 귀하의 계정에 대해 MirrorNotes에 부여하는 식별자(CloudKit 사용자 레코드 이름)의 SHA-256 해시를 붙여 사용합니다. 이 식별자는 MirrorNotes 전용이며 귀하의 Apple ID, 이메일 주소 또는 이름이 아니고, 해시로부터 원래 식별자를 되돌릴 수 없습니다. 이 ID는 귀하의 모든 기기에서 같고 앱을 다시 설치해도 바뀌지 않으므로, 플랜이 함께 유지됩니다. 앱은 열릴 때마다 RevenueCat에서 플랜을 확인할 때 이 ID를 사용합니다. iCloud에 로그인되어 있지 않으면 RevenueCat이 대신 해당 설치에 임의의 ID를 부여하며, iCloud에서 로그아웃하면 앱은 다시 임의의 ID로 전환됩니다. 기기가 처음으로 임의의 ID에서 iCloud 기반 ID로 전환될 때, RevenueCat은 임의의 ID로 이루어진 구매를 해당 ID로 옮깁니다. 다른 모든 연결과 마찬가지로 RevenueCat에는 귀하 기기의 IP 주소도 전달됩니다.</p>
       <p>RevenueCat 개인정보 처리방침: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
       <h3>Apple(iCloud + App Store)</h3>
@@ -516,17 +523,16 @@
       <p>기기 내에 저장됩니다. 귀하가 삭제하면 즉시 삭제됩니다. 서버 사본은 존재하지 않습니다. 앱을 삭제하시면 SwiftData가 삭제됩니다. iCloud 사본은 귀하의 Apple ID 설정을 통해 관리됩니다.</p>
 
       <h3>구독 데이터</h3>
-      <p>구독 상태는 활성 구독이 유지되는 동안 RevenueCat에 저장됩니다. 삭제 요청 후 30일 이내에 삭제됩니다.</p>
+      <p>RevenueCat은 귀하의 구독자 ID, 구독 상태 및 구매 내역을 보관합니다. 삭제 요청 후 30일 이내에 이를 삭제합니다(아래 참조).</p>
 
       <h3>데이터 삭제 방법</h3>
-      <ol>
-        <li>MirrorNotes 열기 → 설정 → 계정</li>
-        <li>"계정 삭제" 탭</li>
-        <li>삭제 확인</li>
-      </ol>
-      <p>이는 RevenueCat에서 귀하의 구독 상태를 제거합니다. 로컬 및 귀하의 iCloud에 저장된 일기 항목은 iOS 설정을 통하거나 앱을 삭제함으로써 별도로 삭제하셔야 합니다.</p>
-
-      <p>계정 삭제를 요청하시려면 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>로 연락해 주셔도 됩니다.</p>
+      <p>삭제해야 할 MirrorNotes 계정은 없습니다. 삭제할 수 있는 항목과 방법은 다음과 같습니다.</p>
+      <ul>
+        <li><strong>모든 곳의 일기 전체.</strong> MirrorNotes에서 설정 → 내 데이터(Sentinel 모드에서는 아카이브, Mac에서는 설정 → iCloud 및 개인정보 보호)를 열고 "모든 데이터 삭제"를 탭한 다음 "모두 삭제"를 선택하세요. 항목, 기분 체크인, 인사이트, 컬렉션, 저장된 보기가 기기와 iCloud에서 영구적으로 삭제되므로, 같은 iCloud 계정을 쓰는 다른 기기에서도 사라집니다. 되돌릴 수 없습니다.</li>
+        <li><strong>iCloud에 있는 사본.</strong> iCloud 저장 공간 설정(iPhone: 설정 → [사용자 이름] → iCloud, Mac: 시스템 설정 → [사용자 이름] → iCloud)에서 MirrorNotes를 선택하고 데이터를 삭제하세요. 그러면 해당 iCloud 계정과 동기화되는 기기에서도 사본이 지워질 수 있습니다. 모든 곳에서 일기를 삭제하려면 위의 "모든 데이터 삭제"를 사용하세요.</li>
+        <li><strong>한 기기에 있는 사본.</strong> iPhone과 iPad에서는 앱을 삭제하면 해당 기기에 저장된 일기가 삭제됩니다(macOS는 앱을 삭제한 뒤에도 앱의 데이터를 보관합니다). iCloud의 사본은 위의 방법으로 삭제할 때까지 남아 있습니다. 또한 동기화 문제로 작성한 내용이 사라지지 않도록 각 기기는 일기의 로컬 백업을 보관하며, 이 백업은 "모든 데이터 삭제"로 지워지고 iPhone과 iPad에서는 앱을 삭제해도 지워집니다.</li>
+        <li><strong>구독 기록.</strong> <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>로 이메일을 보내 주시면 30일 이내에 RevenueCat에서 귀하의 구독자 ID, 구독 상태 및 구매 내역을 삭제합니다. 이렇게 해도 App Store 구독은 해지되지 않으니, Apple ID의 구독 설정에서 해지하세요.</li>
+      </ul>
     </div>
 
     <!-- 7 -->
@@ -535,9 +541,9 @@
       <p>귀하의 거주 지역에 따라 귀하의 개인정보에 관한 특정 권리를 보유하실 수 있습니다:</p>
 
       <ul>
-        <li><strong>열람권:</strong> 당사가 보유한 귀하의 개인정보(사용자 ID 및 구독 상태) 사본을 요청할 권리.</li>
+        <li><strong>열람권:</strong> 당사가 보유한 귀하의 개인정보(RevenueCat에 있는 구독자 ID, 구독 상태 및 구매 내역) 사본을 요청할 권리.</li>
         <li><strong>정정권:</strong> 부정확한 데이터의 정정을 요청할 권리.</li>
-        <li><strong>삭제권:</strong> 계정 데이터의 삭제를 요청할 권리(제6조 참조).</li>
+        <li><strong>삭제권:</strong> 구독 기록의 삭제를 요청할 권리(제6조 참조).</li>
         <li><strong>이동권:</strong> 이동 가능한 형식으로 귀하의 데이터를 요청할 권리. 참고: 일기 데이터는 귀하의 기기에 저장되어 있으며, 귀하가 직접 소유하고 관리하십니다.</li>
         <li><strong>거부권:</strong> 당사는 데이터 판매나 교차 맥락 행태 광고를 하지 않습니다. 이와 관련하여 거부하실 대상이 없습니다.</li>
       </ul>
@@ -558,7 +564,7 @@
       <ul>
         <li>모든 네트워크 요청(RevenueCat 및 Apple에 대한)은 HTTPS/TLS를 사용합니다.</li>
         <li>AI 모델 파일(Gemma 3 1B 및 선택 사항인 검색 모델)은 models.mirrornotes.org에서 HTTPS로 다운로드되며, 앱이 사용하기 전에 고정된 SHA-256 지문으로 검증됩니다.</li>
-        <li>일기 데이터가 절대 기기를 벗어나지 않으므로, 서버 측 유출 발생 시 그 영향 범위는 구독 상태에 국한되며 귀하의 글에는 미치지 않습니다.</li>
+        <li>일기 데이터가 절대 기기를 벗어나지 않으므로, 서버 측 유출 발생 시 그 영향 범위는 구독자 ID와 구독 상태에 국한되며 귀하의 글에는 미치지 않습니다.</li>
       </ul>
       <p>보안 취약점을 발견하신 경우 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>로 신고해 주십시오.</p>
     </div>

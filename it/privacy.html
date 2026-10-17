@@ -364,7 +364,7 @@
       <p>Le voci del suo diario appartengono solo a Lei. Questa informativa spiega esattamente quali dati raccoglie MirrorNotes, quali non raccoglie e perché, in un linguaggio semplice.</p>
       <div class="meta">
         <div class="meta-item"><strong>In vigore dal:</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>Ultimo aggiornamento:</strong> October 10, 2026</div>
+        <div class="meta-item"><strong>Ultimo aggiornamento:</strong> October 17, 2026</div>
         <div class="meta-item"><strong>Versione app:</strong> 1.0</div>
       </div>
     </div>
@@ -376,9 +376,9 @@
         <li>Le voci del suo diario non lasciano mai il dispositivo. Mai.</li>
         <li>Tutta l'inferenza AI viene eseguita localmente sul suo iPhone (Gemma 3 1B). Nessuna AI su cloud.</li>
         <li>La sincronizzazione iCloud avviene sul suo account Apple personale. Non possiamo accedervi.</li>
-        <li>Raccogliamo solo i dati necessari per la gestione dell'abbonamento (RevenueCat). Non è richiesto alcun account o accesso.</li>
+        <li>Raccogliamo solo i dati necessari per la gestione dell'abbonamento (RevenueCat): un ID abbonato ricavato dal suo account iCloud con un hash unidirezionale, mai il suo ID Apple, la sua email o il suo diario. Non è richiesto alcun account o accesso.</li>
         <li>Non vendiamo i suoi dati, non la profiliamo e non utilizziamo i suoi dati a fini pubblicitari.</li>
-        <li>Può eliminare il suo account e tutti i dati associati in qualsiasi momento.</li>
+        <li>Può eliminare il suo diario dall'app in qualsiasi momento e chiederci di eliminare il suo record di abbonamento.</li>
       </ul>
     </div>
 
@@ -446,6 +446,12 @@
             <td><span class="tag tag-third">Apple/RevenueCat</span></td>
           </tr>
           <tr>
+            <td><strong>ID abbonato</strong><br><small>Hash unidirezionale dell'identificativo MirrorNotes del suo account iCloud</small></td>
+            <td>Mantiene lo stesso piano su tutti i suoi dispositivi</td>
+            <td>Server RevenueCat</td>
+            <td><span class="tag tag-third">Sì (RevenueCat)</span></td>
+          </tr>
+          <tr>
             <td><strong>Analisi sull'utilizzo dell'app</strong><br><small>Segnalazioni di arresto anomalo, se abilitate</small></td>
             <td>Correzione di bug</td>
             <td>Solo dati di crash anonimizzati</td>
@@ -471,7 +477,8 @@
       <h2>4. Servizi di terze parti</h2>
 
       <h3>RevenueCat (gestione degli abbonamenti)</h3>
-      <p>RevenueCat elabora le ricevute degli acquisti in-app di Apple e aggiorna lo stato del suo abbonamento. RevenueCat riceve le sue ricevute di acquisto Apple e le assegna un ID abbonato. Nessun dato del diario è coinvolto.</p>
+      <p>RevenueCat elabora le ricevute degli acquisti in-app di Apple e gestisce lo stato del suo abbonamento. Nessun dato del diario è coinvolto.</p>
+      <p>Per tenere insieme i suoi acquisti, RevenueCat ha bisogno di un ID per Lei. Se ha effettuato l'accesso a iCloud, MirrorNotes usa "icloud_" seguito da un hash SHA-256 dell'identificativo che iCloud assegna a MirrorNotes per il suo account (il nome del record utente CloudKit). Questo identificativo esiste solo per MirrorNotes e non è il suo ID Apple, il suo indirizzo email né il suo nome, e dall'hash non è possibile risalire a esso. L'ID è lo stesso su tutti i suoi dispositivi e dopo una reinstallazione, così il suo piano la segue. L'app lo usa a ogni apertura, quando verifica il suo piano con RevenueCat. Se non ha effettuato l'accesso a iCloud, RevenueCat assegna invece un ID casuale a quell'installazione, e se esce da iCloud l'app torna a un ID casuale. La prima volta che un dispositivo passa da un ID casuale a quello basato su iCloud, RevenueCat vi trasferisce gli acquisti effettuati con l'ID casuale. Come per qualsiasi connessione, RevenueCat vede anche l'indirizzo IP del suo dispositivo.</p>
       <p>Informativa sulla privacy di RevenueCat: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
       <h3>Apple (iCloud + App Store)</h3>
@@ -516,17 +523,16 @@
       <p>Archiviate sul dispositivo. Eliminate immediatamente quando le elimina. Non esiste alcuna copia sul server. Se elimina l'app, SwiftData viene cancellato. Le copie su iCloud sono gestite dalle impostazioni del suo Apple ID.</p>
 
       <h3>Dati dell'abbonamento</h3>
-      <p>Lo stato dell'abbonamento è archiviato da RevenueCat per tutta la durata dell'abbonamento attivo. Viene eliminato entro 30 days dalla richiesta di cancellazione.</p>
+      <p>RevenueCat conserva il suo ID abbonato, lo stato dell'abbonamento e la cronologia degli acquisti. Li eliminiamo entro 30 giorni da una richiesta di cancellazione (vedere sotto).</p>
 
       <h3>Come eliminare i suoi dati</h3>
-      <ol>
-        <li>Apra MirrorNotes → Impostazioni → Account</li>
-        <li>Tocchi "Elimina account"</li>
-        <li>Confermi l'eliminazione</li>
-      </ol>
-      <p>Questo rimuove lo stato del suo abbonamento da RevenueCat. Le sue voci del diario, archiviate localmente e nel suo iCloud, devono essere eliminate separatamente tramite le Impostazioni iOS o eliminando l'app.</p>
-
-      <p>Può inoltre contattarci all'indirizzo <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> per richiedere l'eliminazione dell'account.</p>
+      <p>Non esiste alcun account MirrorNotes da eliminare. Ecco cosa può eliminare, e come:</p>
+      <ul>
+        <li><strong>Tutto il suo diario, ovunque.</strong> In MirrorNotes, apra Impostazioni → I tuoi dati (Archivio in modalità Sentinel; su Mac, Impostazioni → iCloud e privacy), tocchi "Elimina tutti i dati" e poi "Elimina tutto". In questo modo voci, check-in dell'umore, approfondimenti, raccolte e viste salvate vengono eliminati definitivamente dal dispositivo e dal suo iCloud, e quindi spariscono anche dagli altri suoi dispositivi con lo stesso account iCloud. Non può essere annullato.</li>
+        <li><strong>La copia in iCloud.</strong> Nelle impostazioni di archiviazione di iCloud (su iPhone: Impostazioni → [il suo nome] → iCloud; su Mac: Impostazioni di Sistema → [il suo nome] → iCloud), scelga MirrorNotes ed elimini i suoi dati. I dispositivi sincronizzati con quell'account iCloud potrebbero quindi cancellare anche la loro copia. Per eliminare il diario ovunque, usi "Elimina tutti i dati" come descritto sopra.</li>
+        <li><strong>La copia su un dispositivo.</strong> Su iPhone e iPad, eliminando l'app si rimuove il diario salvato su quel dispositivo (macOS conserva i dati di un'app dopo che è stata eliminata). La copia in iCloud rimane finché non la elimina come descritto sopra. Ogni dispositivo conserva inoltre un backup locale del proprio diario, perché un problema di sincronizzazione non le faccia perdere ciò che ha scritto; "Elimina tutti i dati" lo rimuove, così come l'eliminazione dell'app su iPhone e iPad.</li>
+        <li><strong>Il suo record di abbonamento.</strong> Scriva a <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> ed elimineremo da RevenueCat il suo ID abbonato, lo stato dell'abbonamento e la cronologia degli acquisti entro 30 giorni. Questo non annulla un abbonamento App Store: lo annulli nelle impostazioni degli abbonamenti del suo ID Apple.</li>
+      </ul>
     </div>
 
     <!-- 7 -->
@@ -535,9 +541,9 @@
       <p>A seconda della sua giurisdizione, potrebbe avere determinati diritti riguardo ai suoi dati personali:</p>
 
       <ul>
-        <li><strong>Accesso:</strong> richiedere una copia dei dati personali che deteniamo su di Lei (il suo ID utente e lo stato dell'abbonamento).</li>
+        <li><strong>Accesso:</strong> richiedere una copia dei dati personali che deteniamo su di Lei (il suo ID abbonato, lo stato dell'abbonamento e la cronologia degli acquisti presso RevenueCat).</li>
         <li><strong>Rettifica:</strong> richiedere la correzione di dati inesatti.</li>
-        <li><strong>Cancellazione:</strong> richiedere l'eliminazione dei dati del suo account (vedere la Sezione 6).</li>
+        <li><strong>Cancellazione:</strong> richiedere l'eliminazione del suo record di abbonamento (vedere la Sezione 6).</li>
         <li><strong>Portabilità:</strong> richiedere i suoi dati in un formato portabile. Nota: i dati del diario sono archiviati sul suo dispositivo, Lei li possiede e li controlla direttamente.</li>
         <li><strong>Opposizione:</strong> non ci dedichiamo alla vendita di dati né alla pubblicità comportamentale intersettoriale basata sul comportamento. Non vi è pertanto nulla a cui opporsi in tal senso.</li>
       </ul>
@@ -558,7 +564,7 @@
       <ul>
         <li>Tutte le richieste di rete (verso RevenueCat e Apple) utilizzano HTTPS/TLS.</li>
         <li>I file dei modelli di IA (Gemma 3 1B e il modello di ricerca facoltativo) vengono scaricati tramite HTTPS da models.mirrornotes.org e verificati con un'impronta SHA-256 fissa prima che l'app li usi.</li>
-        <li>Poiché i dati del diario non lasciano mai il dispositivo, il raggio d'impatto di un'eventuale violazione lato server è limitato allo stato dell'abbonamento, e non riguarda i suoi scritti.</li>
+        <li>Poiché i dati del diario non lasciano mai il dispositivo, il raggio d'impatto di un'eventuale violazione lato server è limitato al suo ID abbonato e allo stato dell'abbonamento, e non riguarda i suoi scritti.</li>
       </ul>
       <p>Se scopre una vulnerabilità di sicurezza, la segnali a <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>.</p>
     </div>

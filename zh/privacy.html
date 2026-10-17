@@ -364,7 +364,7 @@
       <p>您的日记内容属于您自己。本政策以通俗易懂的语言，准确说明 MirrorNotes 收集哪些数据、不收集哪些数据，以及背后的原因。</p>
       <div class="meta">
         <div class="meta-item"><strong>生效日期：</strong> May 15, 2026</div>
-        <div class="meta-item"><strong>最后更新：</strong> October 10, 2026</div>
+        <div class="meta-item"><strong>最后更新：</strong> October 17, 2026</div>
         <div class="meta-item"><strong>应用版本：</strong> 1.0</div>
       </div>
     </div>
@@ -376,9 +376,9 @@
         <li>您的日记内容永远不会离开您的设备，绝无例外。</li>
         <li>所有 AI 推理均在您的 iPhone 本地运行（Gemma 3 1B），不使用任何云端 AI。</li>
         <li>iCloud 同步仅传输至您自己的 Apple 账户，我们无法访问该数据。</li>
-        <li>我们仅收集订阅管理（RevenueCat）所必需的数据。使用本应用无需注册账户或登录。</li>
+        <li>我们仅收集订阅管理（RevenueCat）所必需的数据：一个由您的 iCloud 账户经单向哈希生成的订阅者 ID，绝不包括您的 Apple ID、电子邮件或日记内容。使用本应用无需注册账户或登录。</li>
         <li>我们不会出售您的数据、对您进行画像分析，也不会将您的数据用于广告用途。</li>
-        <li>您可以随时删除您的账户及所有关联数据。</li>
+        <li>您可以随时在应用内删除您的日记，也可以请我们删除您的订阅记录。</li>
       </ul>
     </div>
 
@@ -446,6 +446,12 @@
             <td><span class="tag tag-third">Apple/RevenueCat</span></td>
           </tr>
           <tr>
+            <td><strong>订阅者 ID</strong><br><small>您的 iCloud 账户中 MirrorNotes 专用标识符的单向哈希值</small></td>
+            <td>让您在所有设备上保持同一订阅方案</td>
+            <td>RevenueCat 服务器</td>
+            <td><span class="tag tag-third">是（RevenueCat）</span></td>
+          </tr>
+          <tr>
             <td><strong>应用使用分析</strong><br><small>崩溃报告（如启用）</small></td>
             <td>问题修复</td>
             <td>仅匿名化崩溃数据</td>
@@ -471,7 +477,8 @@
       <h2>4. 第三方服务</h2>
 
       <h3>RevenueCat（订阅管理）</h3>
-      <p>RevenueCat 负责处理来自 Apple 的应用内购买凭证，并更新您的订阅状态。RevenueCat 会接收您的 Apple 购买凭证，并为您分配一个订阅者 ID。此过程不涉及任何日记数据。</p>
+      <p>RevenueCat 负责处理来自 Apple 的应用内购买凭证，并管理您的订阅状态。此过程不涉及任何日记数据。</p>
+      <p>为了将您的购买记录归在一起，RevenueCat 需要一个代表您的 ID。如果您已登录 iCloud，MirrorNotes 会使用“icloud_”加上 iCloud 为您的账户分配给 MirrorNotes 的标识符（CloudKit 用户记录名称）的 SHA-256 哈希值。该标识符仅供 MirrorNotes 使用，不是您的 Apple ID、电子邮件地址或姓名，且无法从哈希值还原。这个 ID 在您的所有设备上都相同，重新安装后也不会改变，因此您的订阅方案会随您一起保留。应用每次打开、向 RevenueCat 查询您的订阅方案时都会使用它。如果您未登录 iCloud，RevenueCat 会改为给该次安装分配一个随机 ID；如果您退出 iCloud，应用会重新改用随机 ID。当某台设备首次从随机 ID 切换到基于 iCloud 的 ID 时，RevenueCat 会将使用随机 ID 进行的购买转移到该 ID 下。与任何网络连接一样，RevenueCat 也会看到您设备的 IP 地址。</p>
       <p>RevenueCat 隐私政策：<a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a></p>
 
       <h3>Apple（iCloud + App Store）</h3>
@@ -516,17 +523,16 @@
       <p>存储在本地设备上。当您删除某条日记时，会立即被删除，服务器上不存在任何副本。如果您删除本应用，SwiftData 中的数据将被清除。iCloud 副本则由您的 Apple ID 设置进行管理。</p>
 
       <h3>订阅数据</h3>
-      <p>只要您的订阅处于有效状态，订阅状态数据就会由 RevenueCat 保存。在收到删除请求后的 30 天内，该数据将被删除。</p>
+      <p>RevenueCat 会保存您的订阅者 ID、订阅状态和购买记录。我们会在收到删除请求后的 30 天内将其删除（见下文）。</p>
 
       <h3>如何删除您的数据</h3>
-      <ol>
-        <li>打开 MirrorNotes →「设置」→「账户」</li>
-        <li>点击"删除账户"</li>
-        <li>确认删除</li>
-      </ol>
-      <p>此操作会从 RevenueCat 中移除您的订阅状态。您存储在本地及 iCloud 中的日记条目，则需要通过 iOS「设置」或删除应用单独进行删除。</p>
-
-      <p>您也可以通过 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a> 联系我们，申请删除账户。</p>
+      <p>MirrorNotes 没有需要删除的账户。您可以删除以下内容，方法如下：</p>
+      <ul>
+        <li><strong>所有设备上的全部日记。</strong>在 MirrorNotes 中打开“设置”→“你的数据”（Sentinel 模式下为“归档”；在 Mac 上为“设置”→“iCloud 与隐私”），轻点“删除所有数据”，然后选择“删除全部”。这会从设备和您的 iCloud 中永久删除您的条目、心情打卡、洞察、合集和已存视图，因此它们也会从使用同一 iCloud 账户的其他设备上消失。此操作无法撤销。</li>
+        <li><strong>iCloud 中的副本。</strong>在 iCloud 储存空间设置中（iPhone：“设置”→［您的姓名］→“iCloud”；Mac：“系统设置”→［您的姓名］→“iCloud”）选择 MirrorNotes 并删除其数据。之后，与该 iCloud 账户同步的设备也可能会清除各自的副本。若要在所有设备上删除日记，请使用上文所述的“删除所有数据”。</li>
+        <li><strong>单台设备上的副本。</strong>在 iPhone 和 iPad 上，删除应用会移除该设备上存储的日记（macOS 在删除应用后仍会保留其数据）。iCloud 中的副本会保留，直到您按上文所述将其删除。此外，每台设备还会保留一份日记的本地备份，以免同步问题导致您写下的内容丢失；“删除所有数据”会将其移除，在 iPhone 和 iPad 上删除应用也会将其移除。</li>
+        <li><strong>您的订阅记录。</strong>发送电子邮件至 <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>，我们将在 30 天内从 RevenueCat 删除您的订阅者 ID、订阅状态和购买记录。这不会取消 App Store 订阅，请在您 Apple ID 的订阅设置中取消。</li>
+      </ul>
     </div>
 
     <!-- 7 -->
@@ -535,9 +541,9 @@
       <p>根据您所在的地区，您可能对您的个人数据享有以下权利：</p>
 
       <ul>
-        <li><strong>访问权：</strong>请求获取我们所持有的与您相关的个人数据副本（您的用户 ID 及订阅状态）。</li>
+        <li><strong>访问权：</strong>请求获取我们所持有的与您相关的个人数据副本（您在 RevenueCat 的订阅者 ID、订阅状态及购买记录）。</li>
         <li><strong>更正权：</strong>请求更正不准确的数据。</li>
-        <li><strong>删除权：</strong>请求删除您的账户数据（参见第 6 节）。</li>
+        <li><strong>删除权：</strong>请求删除您的订阅记录（参见第 6 节）。</li>
         <li><strong>可携权：</strong>请求以可携带格式获取您的数据。请注意：日记数据存储在您的设备上，由您直接拥有和控制。</li>
         <li><strong>选择退出权：</strong>我们不从事数据出售或跨情境行为广告活动，因此在这方面没有需要您选择退出的内容。</li>
       </ul>
@@ -558,7 +564,7 @@
       <ul>
         <li>所有网络请求（发送至 RevenueCat 及 Apple）均使用 HTTPS/TLS 加密。</li>
         <li>AI 模型文件（Gemma 3 1B 和可选的搜索模型）通过 HTTPS 从 models.mirrornotes.org 下载，并在应用使用前用固定的 SHA-256 指纹进行校验。</li>
-        <li>由于日记数据永远不会离开您的设备，任何服务器端数据泄露事件的影响范围仅限于订阅状态数据，而不会涉及您的日记内容。</li>
+        <li>由于日记数据永远不会离开您的设备，任何服务器端数据泄露事件的影响范围仅限于订阅者 ID 和订阅状态数据，而不会涉及您的日记内容。</li>
       </ul>
       <p>如果您发现安全漏洞，请通过以下方式向我们报告：<a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>。</p>
     </div>
