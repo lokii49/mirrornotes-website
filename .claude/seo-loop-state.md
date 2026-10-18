@@ -39,7 +39,7 @@ Reference for exact target wording per page: re-read the current English version
 - [x] reflect-alternative × ko (resynced 2026-10-15)
 - [x] reflect-alternative × ru (resynced 2026-10-16)
 - [x] reflect-alternative × zh (resynced 2026-10-17)
-- [ ] adhd-journaling-app × es
+- [x] adhd-journaling-app × es (resynced 2026-10-18)
 - [ ] adhd-journaling-app × fr
 - [ ] adhd-journaling-app × de
 - [ ] adhd-journaling-app × it
@@ -166,6 +166,7 @@ Next up: journey-alternative × it.
 
 ## Log
 
+- 2026-10-18: Resynced es/adhd-journaling-app.html — patched the two AI-model-description sentences (FAQ JSON-LD answer + the "Suficientemente privado" policy-section paragraph) that still said "Gemma 3 vía CoreML" as the only engine, to match the current English source's Foundation-Models-primary / Gemma-3-fallback wording, using the same Spanish phrasing already established in es/day-one-alternative.html, es/rosebud-alternative.html, and es/reflect-alternative.html ("los Foundation Models propios de Apple en iPhones compatibles con Apple Intelligence, o el modelo Gemma 3 incluido vía CoreML en el resto"). Everything else in the page left byte-for-byte unchanged. Verified via python3 html.parser + title/meta/OG tag check + JSON-LD parse; no sitemap change needed (page already listed). This is the first cell of the adhd-journaling-app resync row; next up is adhd-journaling-app × fr. Also found local `main` branch ref was 1 commit behind origin/main (stale ref from a prior detached-HEAD session) — fast-forward-merged (`git checkout -B main origin/main`) before starting this run's work.
 - 2026-07-07: Shipped es/day-one-alternative.html — full Spanish translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy). Structure/CSS byte-identical to English source. Nav-back and footer "Inicio"/"Privacidad" link within es/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages (no es equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-08: Shipped fr/day-one-alternative.html — full French translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy). Structure/CSS byte-identical to English source. Nav-back and footer "Accueil"/"Confidentialité" link within fr/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no fr equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
 - 2026-07-09: Shipped de/day-one-alternative.html — full German translation of day-one-alternative.html (title, meta, OG, FAQ JSON-LD, all visible copy), terminology matched to existing de/index.html and de/privacy.html ("Startseite", "Datenschutz"). Structure/CSS byte-identical to English source. Nav-back and footer "Startseite"/"Datenschutz" link within de/ (both exist); "vs Rosebud"/ADHD/Offline footer links point to English root pages via ../ (no de equivalents yet). No hreflang added (English source page has none). Added to sitemap.xml, validated with xmllint.
