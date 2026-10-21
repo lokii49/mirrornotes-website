@@ -2,6 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>
+  (function () {
+    try {
+      if (localStorage.getItem('mn-lang-redirected')) return;
+      localStorage.setItem('mn-lang-redirected', '1');
+      var supported = ['es','fr','de','it','pt','ja','ko','ru','zh'];
+      var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < langs.length; i++) {
+        var code = String(langs[i]).toLowerCase().split('-')[0];
+        if (code === 'en') return;
+        if (supported.indexOf(code) !== -1) {
+          window.location.replace('/' + code + '/');
+          return;
+        }
+      }
+    } catch (e) { /* localStorage unavailable (e.g. private mode) - stay on English */ }
+  })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- prototype: not indexed until it replaces / -->
   <meta name="robots" content="noindex">
@@ -200,7 +218,7 @@
     .in-view .chart .line { stroke-dashoffset: 0; }
     .chart .pt { opacity: 0; transition: opacity .3s ease; transition-delay: calc(.15s + var(--i, 0) * 80ms); cursor: pointer; }
     .in-view .chart .pt { opacity: 1; }
-    .chart .pt:hover { r: 6.5; }
+    .chart .pt:hover { r: 9; }
     .chart-wrap { position: relative; }
     .tip { position: absolute; z-index: 3; padding: 6px 10px; border-radius: 10px; background: var(--text); color: var(--bg); font-size: 12px; font-weight: 600; white-space: nowrap; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); display: flex; align-items: center; gap: 7px; }
     .tip .dot { width: 8px; height: 8px; }
@@ -252,14 +270,15 @@
     .composer .toolbar span + span { margin-left: 12px; }
     .chart { width: 100%; height: auto; display: block; }
     .chart .grid-line { stroke: var(--border-2); stroke-width: 1; }
-    .chart .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-    .chart .pt { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+    .chart .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+    .chart .pt { stroke: var(--surface); stroke-width: 2.5; }
+    .mostly { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 100px; background: var(--surface3); color: var(--text); font-size: 13px; font-weight: 500; }
     .chart text { font-family: var(--sans); font-size: 11px; fill: var(--text-3); }
     .chart .lbl { font-size: 12px; fill: var(--text-2); font-weight: 500; }
     .plain-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 32px; margin-top: 44px; padding-top: 36px; border-top: 1px solid var(--border); }
     .plain-list b { display: block; font-size: 16px; margin-bottom: 4px; } .plain-list p { font-size: 14px; color: var(--text-2); }
     @media (max-width: 760px) { .plain-list { grid-template-columns: 1fr; gap: 18px; } }
-    .brain .card { padding: 0; overflow: hidden; display: flex; min-height: 260px; position: relative; background: #0D0A17; border-color: rgba(237,233,248,0.1); }
+    .brain .card { padding: 0; overflow: hidden; display: flex; min-height: 280px; position: relative; background: #141418; border-color: rgba(237,233,248,0.1); }
     .brain .card canvas { flex: 1; min-height: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
     .brain .card img { flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
     .brain .card .tip { background: #EDE9F8; color: #16112A; }
@@ -402,8 +421,8 @@
       </div>
       <div class="cell third" data-reveal>
         <h3>Mood timeline</h3>
-        <p>Every entry's mood on one line. The app reads it from what you wrote; you can change it any time.</p>
-        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3-1 4-6 7-6s4 3 6 3 3-5 5-7"/></svg>Last four weeks</span><span class="t">18 entries</span></div><div class="chart-wrap"><div data-chart></div><div class="tip" data-chart-tip hidden></div></div></article>
+        <p>This week's mood on one line, read from what you wrote. The app keeps the whole timeline, back to your first entry.</p>
+        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3-1 4-6 7-6s4 3 6 3 3-5 5-7"/></svg>This Week's Mood</span><span class="mostly" data-mostly></span></div><div class="chart-wrap"><div data-chart></div><div class="tip" data-chart-tip hidden></div></div></article>
       </div>
       <div class="cell third" data-reveal>
         <h3>Write freely</h3>
@@ -412,8 +431,8 @@
       </div>
       <div class="cell third brain">
         <h3>Brain View</h3>
-        <p>A constellation of the themes you keep returning to, drawn from every entry.</p>
-        <article class="card"><canvas data-brain aria-label="Brain View: themes from the sample journal, sized by how often they appear" role="img"></canvas><noscript><img src="img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="legend" aria-hidden="true"><span><span class="dot" style="--c:#4DB6AC"></span>people</span><span><span class="dot" style="--c:#FF9800"></span>doing</span><span><span class="dot" style="--c:#A78BFA"></span>places</span></div><div class="tip" data-brain-tip hidden></div></article>
+        <p>A constellation of the themes you keep returning to, sized by how often they appear. Themes that share an entry are linked. In the app it turns in 3D.</p>
+        <article class="card"><canvas data-brain aria-label="Brain View: themes from the sample journal, sized by how often they appear, linked when they share an entry" role="img"></canvas><noscript><img src="img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
     </div>
     <div class="plain-list">
@@ -594,22 +613,26 @@
   $("[data-digest-time]").textContent = fmt(lastSunday, { weekday: "short", day: "numeric", month: "short" });
   $("[data-digest]").innerHTML = DIGEST.map(([k, v], i) => `<div class="row reveal" style="--i:${i * 2}"><small>${k}</small><p>${esc(v)}</p></div>`).join("");
 
-  // mood timeline: one series, 28 days, score 1–5 (MirrorTheme.moodScore)
+  // this week's mood, like the Insights tab: seven days ending today, each dot in that day's mood colour
   (() => {
-    const W = 320, H = 250, L = 12, R = 12, T = 34, B = 30;
-    const x = d => L + ((27 - d) / 27) * (W - L - R), y = s => T + (5 - s) / 4 * (H - T - B);
-    const pts = PLAN.map(([d,,m]) => ({ d, m, X: x(d), Y: y(SCORE[m]) })).sort((a, b) => a.X - b.X);
-    const path = pts.map((p, i) => `${i ? "L" : "M"}${p.X.toFixed(1)} ${p.Y.toFixed(1)}`).join(" ");
-    const hi = pts.find(p => p.m === "Joyful" && p.d === 3), lo = pts.find(p => p.d === 4);
-    const dateOf = d => { const t = new Date(today); t.setDate(t.getDate() - d); return fmt(t, { day: "numeric", month: "short" }); };
-    $("[data-chart]").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Mood over the last four weeks, from Drained after a day of meetings to Joyful after a morning run">
-      ${[1,3,5].map(s => `<line class="grid-line" x1="${L}" x2="${W - R}" y1="${y(s)}" y2="${y(s)}"/>`).join("")}
-      <text x="${L}" y="${y(5) - 12}">High</text><text x="${L}" y="${y(1) + 18}">Low</text>
-      <text x="${W - R}" y="${y(1) + 18}" text-anchor="end">${dateOf(27)} to today</text>
+    const W = 320, H = 230, L = 16, R = 56, T = 30, B = 40;
+    const days = []; for (let d = 6; d >= 0; d--) { const dt = new Date(today); dt.setDate(dt.getDate() - d); const e = entries.filter(x => { const y = new Date(x.date); y.setHours(0,0,0,0); return y.getTime() === dt.getTime(); }).sort((a, b) => b.date - a.date)[0]; days.push({ dt, m: e?.mood }); }
+    const x = i => L + (i / 6) * (W - L - R), y = s => T + (5 - s) / 4 * (H - T - B);
+    const pts = days.map((o, i) => ({ ...o, X: x(i), Y: o.m ? y(SCORE[o.m]) : 0 })).filter(p => p.m);
+    let path = `M${pts[0].X.toFixed(1)} ${pts[0].Y.toFixed(1)}`;
+    for (let i = 0; i < pts.length - 1; i++) { const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      path += ` C${(p1.X + (p2.X - p0.X) / 6).toFixed(1)} ${(p1.Y + (p2.Y - p0.Y) / 6).toFixed(1)} ${(p2.X - (p3.X - p1.X) / 6).toFixed(1)} ${(p2.Y - (p3.Y - p1.Y) / 6).toFixed(1)} ${p2.X.toFixed(1)} ${p2.Y.toFixed(1)}`; }
+    const counts = {}; pts.forEach(p => counts[p.m] = (counts[p.m] || 0) + 1);
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const avg = pts.reduce((s, p) => s + SCORE[p.m], 0) / pts.length;
+    // a repeated mood wins; otherwise the mood nearest the week's average, most recent first
+    const mostly = top[0][1] > 1 ? top[0][0] : [...pts].reverse().sort((a, b) => Math.abs(SCORE[a.m] - avg) - Math.abs(SCORE[b.m] - avg))[0].m;
+    $("[data-mostly]").innerHTML = `<span class="dot" style="--c:${COLOR[mostly]}"></span>Mostly ${mostly}`;
+    $("[data-chart]").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="This week's mood: ${pts.map(p => `${fmt(p.dt, { weekday: "short" })} ${p.m}`).join(", ")}">
+      ${[["High", 5], ["Mid", 3], ["Low", 1]].map(([l, s]) => `<text x="${W - R + 16}" y="${y(s) + 4}">${l}</text>`).join("")}
       <path class="line" d="${path}" pathLength="1"/>
-      ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="4.5" data-when="${dateOf(p.d)}" data-mood="${p.m}"></circle>`).join("")}
-      <text class="lbl" x="${hi.X}" y="${hi.Y - 12}" text-anchor="end">after the run</text>
-      <text class="lbl" x="${lo.X}" y="${lo.Y - 12}" text-anchor="end">day of meetings</text>
+      ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="7" fill="${COLOR[p.m]}" data-when="${fmt(p.dt, { weekday: "short", day: "numeric", month: "short" })}" data-mood="${p.m}"></circle>`).join("")}
+      ${days.map((o, i) => `<text x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${fmt(o.dt, { weekday: "short" })}</text>`).join("")}
     </svg>`;
   })();
 
@@ -630,53 +653,43 @@
   // a tap anywhere else closes the chart / Brain View tooltips (touch never fires pointerout)
   document.addEventListener("pointerdown", ev => { if (!ev.target.closest(".pt, [data-brain]")) document.querySelectorAll("[data-chart-tip], [data-brain-tip]").forEach(t => t.hidden = true); });
 
-  // Brain View: themes from the sample journal, sized by how many entries mention them
+  // Brain View: themes from the sample journal. Counts, sizes and links are derived from the entries, never typed in.
   (() => {
     const cv = $("[data-brain]"), tip = $("[data-brain-tip]"); if (!cv) return;
-    const card = cv.parentElement;
-    const P = "#4DB6AC", A = "#FF9800", L = "#A78BFA";
-    // each theme is a word pattern; its size and count are how many sample entries mention it
-    const THEMES = [["sister",/\bsister\b/i,P],["Mum",/\bMum\b/,P],["Noor",/\bNoor\b/,P],["Priya",/\bPriya\b/,P],["run",/\b(ran|run|running)\b/i,A],["meetings",/\bmeetings?\b/i,A],["book",/\bbook\b/i,A],["sleep",/\b(sleep|switch off)\b/i,A],["cooking",/\b(cooked|cooking|pancakes|baked)\b/i,A],["bike",/\bbike\b/i,A],["project",/\bproject\b/i,L],["river",/\briver\b/i,L],["Lisbon",/\bLisbon\b/,L],["garden",/\bgarden\b/i,L],["balcony",/\bbalcony\b/i,L],["phone",/\bphone\b/i,L]];
-    const nodes = THEMES.map(([w, re, c]) => ({ w, n: TEXT.filter(t => re.test(t)).length, c })).filter(n => n.n > 0)
-      .map((n, i) => Object.assign(n, { a: i * 2.399963, ring: 0.5 + ((i * 3) % 4) * 0.16, ph: i * 1.7, sp: 0.35 + (i % 3) * 0.12, r: 4 + n.n * 1.6 }));
-    cv.dataset.counts = JSON.stringify(Object.fromEntries(nodes.map(n => [n.w, n.n])));
-    const LINKS = [["run","river"],["sister","Lisbon"],["Mum","garden"],["Noor","bike"],["project","meetings"],["project","Priya"],["book","balcony"],["sleep","phone"],["cooking","Mum"],["run","Noor"]];
-    const byWord = Object.fromEntries(nodes.map(n => [n.w, n]));
-    let W = 0, H = 0, dpr = 1, hover = null, t0 = performance.now(), raf = 0, visible = false;
+    const TEAL = "#5FB3A6", GRAY = "#AEB8BE", TAN = "#C9B59A", ORANGE = "#D98A3C", OLIVE = "#7E9A62", WHITE = "#E6E6EA";
+    const THEMES = [
+      ["sister",/\bsister\b/i,TEAL],["Mum",/\bMum\b/,TEAL],["Noor",/\bNoor\b/,TEAL],["Priya",/\bPriya\b/,TEAL],["family",/\bfamily\b/i,TEAL],["manager",/\bmanager\b/i,TEAL],["team",/\bteam\b/i,TEAL],
+      ["run",/\b(ran|run|running)\b/i,ORANGE],["meetings",/\bmeetings?\b/i,ORANGE],["presentation",/\bpresentation\b/i,ORANGE],["interview",/\binterview\b/i,ORANGE],["cooking",/\b(cooked|cooking|pancakes|baked)\b/i,ORANGE],["bike",/\bbike\b/i,ORANGE],["race",/\brace\b/i,ORANGE],["training",/\btraining\b/i,ORANGE],["reading",/\b(read|book)\b/i,ORANGE],["plants",/\b(plants|repotted|tomatoes)\b/i,ORANGE],["dinner",/\b(dinner|lunch)\b/i,ORANGE],
+      ["project",/\bproject\b/i,TAN],["release",/\brelease\b/i,TAN],["email",/\bemail\b/i,TAN],["plan",/\bplan\b/i,TAN],["list",/\blist\b/i,TAN],["goal",/\bgoal\b/i,TAN],["kickoff",/\bkickoff\b/i,TAN],["ideas",/\bideas\b/i,TAN],
+      ["river",/\briver\b/i,GRAY],["Lisbon",/\bLisbon\b/,GRAY],["garden",/\bgarden\b/i,GRAY],["balcony",/\bbalcony\b/i,GRAY],["home",/\bhome\b/i,GRAY],["park",/\bpark\b/i,GRAY],["phone",/\bphone\b/i,GRAY],["rain",/\brain\b/i,GRAY],["coffee",/\bcoffee\b/i,GRAY],["tea",/\btea\b/i,GRAY],
+      ["sleep",/\b(sleep|switch off)\b/i,OLIVE],["nervous",/\b(nervous|scared)\b/i,OLIVE],["tired",/\btired\b/i,OLIVE],["excited",/\bexcited\b/i,OLIVE],["morning",/\bmorning\b/i,WHITE],["evening",/\b(evening|tonight)\b/i,WHITE]
+    ];
+    const hits = THEMES.map(([w, re, c]) => ({ w, c, in: TEXT.map(t => re.test(t)) })).map(n => ({ ...n, n: n.in.filter(Boolean).length })).filter(n => n.n > 0);
+    const N = hits.length;
+    const nodes = hits.map((n, i) => { const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), ph = i * 2.399963, k = 0.55 + ((i * 7) % 9) / 9 * 0.45; return { ...n, x: Math.cos(ph) * r * k, y: y * k, z: Math.sin(ph) * r * k, r: 3 + n.n * 1.5 }; });
+    const links = []; for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { const shared = nodes[i].in.filter((v, k) => v && nodes[j].in[k]).length; if (shared) links.push([i, j, shared]); }
+    cv.dataset.counts = JSON.stringify(Object.fromEntries(nodes.map(n => [n.w, n.n]))); cv.dataset.links = links.length;
+    const shade = (hex, k) => { const v = parseInt(hex.slice(1), 16), c = [v >> 16, (v >> 8) & 255, v & 255].map(ch => Math.round(k > 0 ? ch + (255 - ch) * k : ch * (1 + k))); return `rgb(${c.join(",")})`; };
+    let W = 0, H = 0, dpr = 1, hover = null, t0 = performance.now(), raf = 0, visible = false, P = [];
     const ctx = cv.getContext("2d");
-    function size() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); layout(); }
-    // base positions: golden-angle spread, then a few relaxation passes so nodes and their labels don't sit on each other
-    function layout() {
-      const cx = W / 2, cy = H / 2 - 8; ctx.font = "500 11px -apple-system, BlinkMacSystemFont, sans-serif";
-      nodes.forEach(n => { n.lw = ctx.measureText(n.w).width; n.bx = cx + Math.cos(n.a) * (W / 2 - 58) * n.ring; n.by = cy + Math.sin(n.a) * (H / 2 - 34) * n.ring; });
-      for (let k = 0; k < 120; k++) {
-        const box = n => n.bx > cx ? [n.bx - n.r, n.bx + n.r + 6 + n.lw] : [n.bx - n.r - 6 - n.lw, n.bx + n.r];
-        for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], c = nodes[j]; const [a0, a1] = box(a), [c0, c1] = box(c);
-          const overlapX = Math.min(a1, c1) - Math.max(a0, c0) + 8, dy = c.by - a.by;
-          if (overlapX > 0 && Math.abs(dy) < 22) { const sx = a.bx <= c.bx ? 1 : -1, sy = dy >= 0 ? 1 : -1; a.bx -= sx * 1.2; c.bx += sx * 1.2; a.by -= sy * 0.8; c.by += sy * 0.8; }
-        }
-        nodes.forEach(n => { const dx = n.bx - cx, dy = n.by - cy, d = Math.hypot(dx, dy); if (d < 52) { n.bx = cx + dx / d * 52; n.by = cy + dy / d * 52; }
-          n.bx = Math.min(W - 34 - n.lw * 0.5, Math.max(34 + n.lw * 0.5, n.bx)); n.by = Math.min(H - 42, Math.max(26, n.by)); });
-      }
-      // label side: outward from the centre, unless that side runs into a neighbour or the edge
-      nodes.forEach(n => {
-        const hits = s => nodes.some(m => m !== n && Math.abs(m.by - n.by) < 15 && (s > 0 ? (m.bx > n.bx && m.bx - m.r < n.bx + n.r + 8 + n.lw) : (m.bx < n.bx && m.bx + m.r > n.bx - n.r - 8 - n.lw)));
-        const edge = s => s > 0 ? n.bx + n.r + 6 + n.lw > W - 6 : n.bx - n.r - 6 - n.lw < 6;
-        n.side = n.bx > cx ? 1 : -1;
-        if ((hits(n.side) || edge(n.side)) && !hits(-n.side) && !edge(-n.side)) n.side = -n.side;
-      });
+    function size() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    function project(t) {
+      const th = RM ? 0.6 : t * 0.12, tilt = 0.4, cth = Math.cos(th), sth = Math.sin(th), ct = Math.cos(tilt), st = Math.sin(tilt);
+      const cx = W / 2, cy = H / 2 - 4, Rx = W / 2 - 36, Ry = H / 2 - 26;
+      return nodes.map(n => { const x1 = n.x * cth + n.z * sth, z1 = -n.x * sth + n.z * cth; const y1 = n.y * ct - z1 * st, z2 = n.y * st + z1 * ct; const f = 0.72 + 0.28 * (z2 + 1) / 2; return { n, X: cx + x1 * Rx, Y: cy + y1 * Ry, f, z: z2 }; });
     }
-    function pos(n, t) { const drift = RM ? 0 : 1; return [n.bx + Math.sin(t * n.sp + n.ph) * 5 * drift, n.by + Math.cos(t * n.sp * 0.8 + n.ph) * 4 * drift]; }
     function draw(now) {
-      const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H);
-      const cx = W / 2, cy = H / 2 - 8; const P2 = nodes.map(n => pos(n, t));
-      ctx.lineWidth = 1;
-      nodes.forEach((n, i) => { const lit = hover && (hover === n || LINKS.some(([a, b]) => (a === hover.w && b === n.w) || (b === hover.w && a === n.w))); ctx.strokeStyle = lit ? "rgba(237,233,248,0.55)" : "rgba(237,233,248,0.10)"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(P2[i][0], P2[i][1]); ctx.stroke(); });
-      LINKS.forEach(([a, b]) => { const na = byWord[a], nb = byWord[b]; const ia = nodes.indexOf(na), ib = nodes.indexOf(nb); const lit = hover && (hover === na || hover === nb); ctx.strokeStyle = lit ? "rgba(237,233,248,0.6)" : "rgba(237,233,248,0.16)"; ctx.beginPath(); ctx.moveTo(P2[ia][0], P2[ia][1]); ctx.lineTo(P2[ib][0], P2[ib][1]); ctx.stroke(); });
-      nodes.forEach((n, i) => { const [x, y] = P2[i]; const big = hover === n; ctx.beginPath(); ctx.arc(x, y, n.r + (big ? 2 : 0), 0, Math.PI * 2); ctx.fillStyle = n.c; ctx.globalAlpha = hover && !big ? 0.55 : 1; ctx.fill(); ctx.globalAlpha = 1; ctx.fillStyle = big ? "#EDE9F8" : "rgba(237,233,248,0.72)"; ctx.font = `${big ? 600 : 500} 11px -apple-system, BlinkMacSystemFont, sans-serif`; const right = n.side > 0; ctx.textAlign = right ? "left" : "right"; ctx.fillText(n.w, x + (right ? n.r + 6 : -n.r - 6), y + 4); });
-      const pulse = RM ? 0 : Math.sin(t * 1.4) * 1.5; ctx.beginPath(); ctx.arc(cx, cy, 13 + pulse, 0, Math.PI * 2); ctx.fillStyle = "#7C5CE4"; ctx.fill(); ctx.beginPath(); ctx.arc(cx, cy, 20 + pulse, 0, Math.PI * 2); ctx.strokeStyle = "rgba(124,92,228,0.35)"; ctx.stroke();
-      ctx.fillStyle = "#EDE9F8"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText("You", cx, cy + 4);
+      const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H); P = project(t);
+      const cx = W / 2, cy = H / 2 - 4; const order = P.map((p, i) => i).sort((a, b) => P[a].z - P[b].z);
+      ctx.lineWidth = 0.7;
+      P.forEach(p => { const lit = hover === p.n; ctx.strokeStyle = lit ? "rgba(230,230,234,0.55)" : "rgba(230,230,234,0.09)"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.X, p.Y); ctx.stroke(); });
+      links.forEach(([i, j, s]) => { const a = P[i], b = P[j]; const lit = hover && (hover === a.n || hover === b.n); ctx.strokeStyle = lit ? "rgba(230,230,234,0.7)" : `rgba(230,230,234,${0.07 + 0.05 * s})`; ctx.beginPath(); ctx.moveTo(a.X, a.Y); ctx.lineTo(b.X, b.Y); ctx.stroke(); });
+      ctx.beginPath(); ctx.arc(cx, cy, 15, 0, Math.PI * 2); const cg = ctx.createRadialGradient(cx - 5, cy - 5, 2, cx, cy, 15); cg.addColorStop(0, "#A78BFA"); cg.addColorStop(1, "#5B3FC2"); ctx.fillStyle = cg; ctx.fill();
+      order.forEach(i => { const p = P[i], n = p.n, r = n.r * p.f, big = hover === n; ctx.beginPath(); ctx.arc(p.X, p.Y, r + (big ? 2 : 0), 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(p.X - r * 0.35, p.Y - r * 0.35, r * 0.15, p.X, p.Y, r); g.addColorStop(0, shade(n.c, 0.45)); g.addColorStop(0.6, n.c); g.addColorStop(1, shade(n.c, -0.45));
+        ctx.globalAlpha = hover && !big ? 0.45 + 0.3 * p.f : 0.55 + 0.45 * p.f; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
+        if (n.n >= 4 || big) { ctx.fillStyle = big ? "#FFFFFF" : "rgba(230,230,234,0.85)"; ctx.font = `${big ? 600 : 500} 10px -apple-system, BlinkMacSystemFont, sans-serif`; ctx.textAlign = "center"; ctx.fillText(n.w, p.X, p.Y - r - 4); } });
+      ctx.fillStyle = "#FFFFFF"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText("You", cx, cy - 20);
       if (visible && !RM) raf = requestAnimationFrame(draw);
     }
     function start() { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
@@ -684,11 +697,10 @@
     new IntersectionObserver(es => { visible = es[0].isIntersecting && !document.hidden; if (visible) start(); }, { threshold: 0.1 }).observe(cv);
     document.addEventListener("visibilitychange", () => { visible = !document.hidden; if (visible) start(); });
     cv.addEventListener("pointermove", ev => {
-      const r = cv.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top, t = (performance.now() - t0) / 1000;
-      let best = null, bd = 18;
-      nodes.forEach(n => { const [x, y] = pos(n, t); const d = Math.hypot(x - mx, y - my); if (d < bd + n.r) { best = n; bd = d; } });
-      hover = best;
-      if (best) { const [x, y] = pos(best, t); tip.innerHTML = `<span class="dot" style="--c:${best.c}"></span>${best.w}, ${best.n} ${best.n === 1 ? "entry" : "entries"}`; tip.style.left = `${x}px`; tip.style.top = `${y - best.r}px`; tip.hidden = false; } else tip.hidden = true;
+      const r = cv.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
+      let best = null, bd = 16; P.forEach(p => { const d = Math.hypot(p.X - mx, p.Y - my); if (d < bd + p.n.r) { best = p; bd = d; } });
+      hover = best ? best.n : null;
+      if (best) { tip.innerHTML = `<span class="dot" style="--c:${best.n.c}"></span>${best.n.w}, ${best.n.n} ${best.n.n === 1 ? "entry" : "entries"}`; tip.style.left = `${best.X}px`; tip.style.top = `${best.Y - best.n.r}px`; tip.hidden = false; } else tip.hidden = true;
       if (RM) start();
     });
     cv.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; if (RM) start(); });
