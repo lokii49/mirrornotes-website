@@ -153,6 +153,8 @@
    "Sad": "Traurig",
    "Numb": "Taub"
   },
+  "honest": "MirrorNotes konnte die heutige Reflexion nicht klar auf deinen Text stützen. Ergänze deinen heutigen Eintrag etwas, dann versucht es MirrorNotes erneut.",
+  "tryAgain": "Erneut versuchen",
   "head": {
    "lang": "de",
    "title": "MirrorNotes: Kostenlose private KI-Tagebuch-App fürs iPhone",
@@ -287,6 +289,8 @@
    "Sad": "Triste",
    "Numb": "Entumecido"
   },
+  "honest": "MirrorNotes no encontró una reflexión de hoy que se base con claridad en lo que escribiste. Añade algo más a la entrada de hoy y lo intentará de nuevo.",
+  "tryAgain": "Intentar de nuevo",
   "head": {
    "lang": "es",
    "title": "MirrorNotes: Diario privado con IA gratis para iPhone",
@@ -421,6 +425,8 @@
    "Sad": "Triste",
    "Numb": "Engourdi"
   },
+  "honest": "MirrorNotes n'a pas trouvé de réflexion du jour clairement fondée sur ce que vous avez écrit. Ajoutez un peu plus à l'entrée d'aujourd'hui et il réessaiera.",
+  "tryAgain": "Réessayer",
   "head": {
    "lang": "fr",
    "title": "MirrorNotes : journal IA privé et gratuit pour iPhone",
@@ -555,6 +561,8 @@
    "Sad": "Triste",
    "Numb": "Intorpidito"
   },
+  "honest": "MirrorNotes non è riuscito a trovare una riflessione di oggi chiaramente basata su ciò che hai scritto. Aggiungi qualcosa alla voce di oggi e riproverà.",
+  "tryAgain": "Riprova",
   "head": {
    "lang": "it",
    "title": "MirrorNotes: Diario IA Privato e Gratuito per iPhone",
@@ -688,6 +696,8 @@
    "Sad": "Triste",
    "Numb": "Entorpecido"
   },
+  "honest": "O MirrorNotes não encontrou uma reflexão de hoje claramente baseada no que você escreveu. Adicione um pouco mais à entrada de hoje e ele tentará novamente.",
+  "tryAgain": "Tentar novamente",
   "head": {
    "lang": "pt-BR",
    "title": "MirrorNotes: Diário com IA Privado e Gratuito para iPhone",
@@ -821,6 +831,8 @@
    "Sad": "悲しい",
    "Numb": "麻痺している"
   },
+  "honest": "MirrorNotesは、あなたが書いた内容に明確に基づく今日のリフレクションを作成できませんでした。今日のエントリーに少し書き足すと、もう一度試します。",
+  "tryAgain": "再試行",
   "head": {
    "lang": "ja",
    "title": "MirrorNotes:iPhone向け無料プライベートAI日記アプリ",
@@ -954,6 +966,8 @@
    "Sad": "슬픔",
    "Numb": "무감각"
   },
+  "honest": "MirrorNotes가 작성하신 내용에 분명히 근거한 오늘의 리플렉션을 찾지 못했습니다. 오늘 항목에 조금 더 적으면 다시 시도합니다.",
+  "tryAgain": "다시 시도",
   "head": {
    "lang": "ko",
    "title": "MirrorNotes: 아이폰을 위한 무료 프라이빗 AI 저널링",
@@ -1087,6 +1101,8 @@
    "Sad": "Грустное",
    "Numb": "Онемевшее"
   },
+  "honest": "MirrorNotes не смог составить рефлексию дня, чётко опирающуюся на то, что вы написали. Добавьте немного в сегодняшнюю запись, и он попробует снова.",
+  "tryAgain": "Повторить",
   "head": {
    "lang": "ru",
    "title": "MirrorNotes: бесплатный приватный ИИ-дневник для iPhone",
@@ -1220,6 +1236,8 @@
    "Sad": "难过",
    "Numb": "麻木"
   },
+  "honest": "MirrorNotes 没能生成明确依据你所写内容的今日反思。在今天的条目里多写一点，它会再试一次。",
+  "tryAgain": "重试",
   "head": {
    "lang": "zh-Hans",
    "title": "MirrorNotes：iPhone 免费私密 AI 日记应用",

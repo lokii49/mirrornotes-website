@@ -109,6 +109,9 @@ def main():
             "demo": demo(seed, code),
             "g": grounded(svc, code),
             "moods": {m: (xc["strings"].get(m, {}).get("localizations", {}).get(XC[code], {}).get("stringUnit", {}).get("value") or m) for m in MOODS},
+            # the card the app shows when no sentence of the entry can be quoted, and its retry label
+            "honest": xc["strings"]["MirrorNotes couldn't find today's reflection clearly grounded in what you wrote. Add a bit more to today's entry and it'll try again."]["localizations"][XC[code]]["stringUnit"]["value"],
+            "tryAgain": xc["strings"]["Try Again"]["localizations"][XC[code]]["stringUnit"]["value"],
             "head": hd,
             "prompts": prompts,
             "pages": sorted(p.name for p in (WEB / code).glob("*.html")),

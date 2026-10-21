@@ -17,13 +17,13 @@
   <meta property="og:title" content="MirrorNotes: Diário com IA Privado">
   <meta property="og:description" content="Diário com IA que roda inteiramente no seu iPhone. Suas palavras nunca saem do aparelho. Grátis.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://mirrornotes.org/og-image-v2.png">
+  <meta property="og:image" content="https://mirrornotes.org/og-image-v3.png">
   <meta property="og:url" content="https://mirrornotes.org/pt/">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MirrorNotes: Diário com IA Privado">
   <meta name="twitter:description" content="Diário com IA que roda inteiramente no seu iPhone. Suas palavras nunca saem do aparelho.">
-  <meta name="twitter:image" content="https://mirrornotes.org/og-image-v2.png">
+  <meta name="twitter:image" content="https://mirrornotes.org/og-image-v3.png">
   <meta name="google-site-verification" content="r6y-d314u0xezNPKN9lB7S1LJKVik6BIIPhgTKuhrDo">
   <link rel="canonical" href="https://mirrornotes.org/pt/">
   <link rel="alternate" hreflang="x-default" href="https://mirrornotes.org/">
@@ -38,6 +38,7 @@
   <link rel="alternate" hreflang="ru" href="https://mirrornotes.org/ru/">
   <link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <noscript><style>.reveal, .chart .pt { opacity: 1 !important; transform: none !important; } .chart .line { stroke-dashoffset: 0 !important; } mark.draw { background-size: 100% 100% !important; } .feed .entry, .feed .day { animation: none !important; } .proof-live, .brain-bar .seg3d { display: none !important; }</style></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,7 +55,7 @@
     ],
     "url": "https://mirrornotes.org/pt/", "inLanguage": "pt-BR",
     "downloadUrl": "https://apps.apple.com/app/id6769007201",
-    "screenshot": "https://mirrornotes.org/og-image-v2.png",
+    "screenshot": "https://mirrornotes.org/og-image-v3.png",
     "author": {"@type": "Person","name": "Lokesh Pudhari"}
   }
   </script>
@@ -180,8 +181,13 @@
     .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; }
     .hero-copy h1 { margin-bottom: 22px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 34px; }
-    .proof { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 18px 40px; font-size: 14px; color: var(--text-3); }
-    .proof b { display: block; font-size: 17px; color: var(--text); font-weight: 600; font-family: var(--rounded); }
+    .proof-live { max-width: 520px; }
+    .proof-live input { width: 100%; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--border-2); background: var(--surface); color: var(--text); font-family: var(--serif); font-size: 17px; outline: none; }
+    .proof-live input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-tint); }
+    .proof-live input::placeholder { color: var(--text-3); font-style: italic; }
+    .proof-line { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 10px; padding-left: 4px; font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .proof-line b { color: var(--text); font-weight: 600; font-family: var(--rounded); }
+    .proof-line b.zero { color: #1E9E4C; }
     .feed { position: relative; max-height: 640px; overflow: hidden; padding: 6px 4px 0; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
     .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 10px; }
     .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; } .feed .wk-title span { font-size: 13px; color: var(--text-3); }
@@ -232,6 +238,11 @@
     .pair .lead-in { font-size: 13px; color: var(--text-3); margin-bottom: 10px; padding-left: 6px; }
     @media (max-width: 860px) { .pair { grid-template-columns: 1fr; } }
     .fine { margin-top: 26px; font-size: 15px; color: var(--text-2); max-width: 60em; }
+    .pair.honest { margin-top: 40px; align-items: center; }
+    .honest-copy { font-size: 16px; color: var(--text-2); line-height: 1.6; max-width: 30em; }
+    .honest-card { border-style: dashed; border-color: var(--border-2); box-shadow: none; }
+    .honest-text { font-family: var(--serif); font-size: 19px; line-height: 1.5; color: var(--text-2); }
+    .followup.muted { color: var(--text-2); border-color: var(--border-2); background: transparent; }
 
     /* ───── architecture ───── */
     .arch { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 16px; max-width: 920px; }
@@ -265,8 +276,12 @@
     .plain-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 32px; margin-top: 44px; padding-top: 36px; border-top: 1px solid var(--border); }
     .plain-list b { display: block; font-size: 16px; margin-bottom: 4px; } .plain-list p { font-size: 14px; color: var(--text-2); }
     @media (max-width: 760px) { .plain-list { grid-template-columns: 1fr; gap: 18px; } }
-    .brain .card { padding: 0; overflow: hidden; display: flex; min-height: 280px; position: relative; background: #141418; border-color: rgba(237,233,248,0.1); }
+    .brain .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; min-height: 300px; position: relative; background: #141418; border: 6px solid var(--surface3); box-shadow: inset 0 0 0 1px rgba(237,233,248,0.08), var(--shadow-card); }
     .brain .card canvas { flex: 1; min-height: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .brain-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 6px; color: rgba(237,233,248,0.85); font-size: 13px; font-weight: 600; }
+    .seg3d { display: inline-flex; background: rgba(237,233,248,0.12); border-radius: 100px; padding: 2px; }
+    .seg3d button { padding: 3px 10px; border-radius: 100px; font-size: 12px; font-weight: 600; color: rgba(237,233,248,0.7); }
+    .seg3d button[aria-pressed="true"] { background: rgba(237,233,248,0.9); color: #141418; }
     .brain .card img { flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
     .brain .card .tip { background: #EDE9F8; color: #16112A; }
     .brain .legend { position: absolute; left: 14px; bottom: 12px; display: flex; gap: 12px; font-size: 11px; color: rgba(237,233,248,0.7); pointer-events: none; }
@@ -344,18 +359,16 @@
         <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Baixar grátis na App Store</a>
         <a class="btn btn-ghost" href="#reflection">Veja como funciona</a>
       </div>
-      <div class="proof">
-        <div><b>Ilimitadas</b>entradas grátis, para sempre</div>
-        <div><b>0 bytes</b>enviados a qualquer servidor</div>
-        <div><b>IA no aparelho</b>Apple Foundation Models, Gemma 3 como reserva</div>
-        <div><b>Editorial</b>indicado pela Apple</div>
+      <div class="proof-live">
+        <input type="text" data-proof-input placeholder="Escreva qualquer coisa aqui. Fica nesta página." aria-label="Escreva qualquer coisa; nada do que você digita sai desta página" autocomplete="off" spellcheck="false">
+        <p class="proof-line"><span>digitados <b data-typed>0</b> bytes</span><span>enviados a qualquer servidor <b class="zero">0</b> bytes</span></p>
       </div>
     </div>
     <div class="feed" aria-label="Uma semana de exemplo no MirrorNotes">
       <div class="wk-title"><span class="sample">Diário de exemplo</span><b data-week-title></b><span data-week-sub></span></div>
       <div class="week" data-week></div>
       <div class="month-row"><b data-month></b><span data-month-count></span></div>
-      <div data-feed></div>
+      <div data-feed><!-- static:feed --><article class="entry" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">Primeira semana à frente do novo projeto. Hoje de manhã eu estava nervosa, mas o kickoff foi melhor do que eu esperava. A Ana disse que meu plano era o mais claro que ela já viu.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Esperançoso</span></div></div></article><article class="entry" style="--rail:#66BB6A;--tint:#66BB6A33;--i:1"><div class="tile"><b></b><span></span></div><div><p class="txt">Depois do jantar liguei para minha irmã e rimos do verão em que nos perdemos em Lisboa. Quero visitá-la antes de o ano acabar.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#66BB6A"></span>Grato</span></div></div></article><article class="entry" style="--rail:#FFC107;--tint:#FFC10733;--i:2"><div class="tile"><b></b><span></span></div><div><p class="txt">Não consegui desligar hoje à noite. Fico repassando a apresentação de amanhã na cabeça. Escrevi três começos e apaguei todos.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFC107"></span>Ansioso</span></div></div></article><article class="entry" style="--rail:#FFD54F;--tint:#FFD54F33;--i:3"><div class="tile"><b></b><span></span></div><div><p class="txt">Hoje de manhã corri dez quilômetros sem parar. No começo as pernas estavam pesadas, depois tudo ficou fácil. Fiz panquecas para comemorar.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFD54F"></span>Alegre</span></div></div></article><article class="entry" style="--rail:#9E9E9E;--tint:#9E9E9E33;--i:4"><div class="tile"><b></b><span></span></div><div><p class="txt">Um dia longo de reuniões seguidas. Disse sim a mais duas tarefas para as quais não tenho tempo. Amanhã preciso dizer não a alguma coisa.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9E9E9E"></span>Esgotado</span></div></div></article><!-- /static:feed --></div>
     </div>
   </div>
 </section>
@@ -369,18 +382,31 @@
     <div class="pair" data-reveal>
       <div>
         <p class="lead-in">Uma entrada de exemplo</p>
-        <div data-entry-full></div>
+        <div data-entry-full><!-- static:entry --><article class="entry full" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">Primeira semana à frente do novo projeto. <mark class="draw">Hoje de manhã eu estava nervosa, mas o kickoff foi melhor do que eu esperava.</mark> A Ana disse que meu plano era o mais claro que ela já viu.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Esperançoso</span></div></div></article><!-- /static:entry --></div>
       </div>
       <div>
         <p class="lead-in">A reflexão dela, na mesma manhã</p>
         <article class="card accent">
           <div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/></svg>Reflexão do dia</span><time data-reflection-time></time></div>
-          <p class="reflection" data-reflection></p>
+          <p class="reflection" data-reflection><!-- static:reflection -->Você escreveu: <mark class="draw second">“Hoje de manhã eu estava nervosa, mas o kickoff foi melhor do que eu esperava.”</mark> Parece um bom momento. Guarde isso com carinho.<!-- /static:reflection --></p>
           <span class="followup reveal" data-followup></span>
         </article>
       </div>
     </div>
-    <p class="fine">Antes de mostrar uma reflexão, o app confere se a frase citada está mesmo na entrada. Se não encontra, você vê isso com honestidade, em vez de detalhes inventados. Em iPhones com Apple Intelligence isso roda nos Foundation Models da Apple; em qualquer outro iPhone compatível, no modelo Gemma 3 incluído. Os dois no telefone, nenhum online.</p>
+    <div class="pair honest" data-reveal>
+      <div>
+        <p class="lead-in">E quando não há nada na entrada para citar</p>
+        <p class="honest-copy">Antes de mostrar uma reflexão, o app confere se a frase citada está mesmo na entrada. Se não encontra, este é o cartão inteiro. Sem detalhes inventados, sem enchimento. Ninguém mais consegue mostrar este cartão.</p>
+      </div>
+      <div>
+        <article class="card honest-card reveal" style="--i:2">
+          <div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/></svg>Reflexão do dia</span><time data-today-time></time></div>
+          <p class="honest-text">O MirrorNotes não encontrou uma reflexão de hoje claramente baseada no que você escreveu. Adicione um pouco mais à entrada de hoje e ele tentará novamente.</p>
+          <span class="followup muted">Tentar novamente</span>
+        </article>
+      </div>
+    </div>
+    <p class="fine">Em iPhones com Apple Intelligence a reflexão roda nos Foundation Models da Apple; em qualquer outro iPhone compatível, no modelo Gemma 3 incluído. Os dois no telefone, nenhum online.</p>
   </div>
 </section>
 
@@ -410,7 +436,7 @@
       <div class="cell" data-reveal>
         <h3>Resumo semanal</h3>
         <p>Todo domingo: uma síntese da sua semana, feita só com frases que você escreveu. Temas, humor, fios que valem a pena retomar, uma coisa para tentar.</p>
-        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/></svg>Resumo semanal</span><time data-digest-time></time></div><div class="digest" data-digest></div></article>
+        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/></svg>Resumo semanal</span><time data-digest-time></time></div><div class="digest" data-digest><!-- static:digest --><div class="row reveal" style="--i:0"><small>Tema</small><p>Uma semana com bons momentos.</p></div><div class="row reveal" style="--i:2"><small>Energia</small><p>O momento mais pesado parece ter sido quando você escreveu: “Fico repassando a apresentação de amanhã na cabeça.”</p></div><div class="row reveal" style="--i:4"><small>O que cresce</small><p>“Quero visitá-la antes de o ano acabar.” Há algo aí que pode crescer.</p></div><div class="row reveal" style="--i:6"><small>Fique atento</small><p>“Disse sim a mais duas tarefas para as quais não tenho tempo.” Vale a pena ficar de olho nisso.</p></div><div class="row reveal" style="--i:8"><small>Humor</small><p>Faça mais do que te fez bem esta semana.</p></div><div class="row reveal" style="--i:10"><small>Próxima semana</small><p>Repita o que funcionou.</p></div><!-- /static:digest --></div></article>
       </div>
       <div class="cell" data-reveal>
         <h3>Pergunte ao seu diário</h3>
@@ -430,7 +456,7 @@
       <div class="cell third brain">
         <h3>Brain View</h3>
         <p>Uma constelação dos temas aos quais você sempre volta, no tamanho de quantas vezes aparecem. Temas que dividem uma entrada ficam ligados. No app, ela gira em 3D.</p>
-        <article class="card"><canvas data-brain aria-label="Brain View: temas do diário de exemplo, no tamanho de quantas vezes aparecem, ligados quando dividem uma entrada" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
+        <article class="card"><div class="brain-bar" aria-hidden="true"><span>Brain View</span><span class="seg3d"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: temas do diário de exemplo, no tamanho de quantas vezes aparecem, ligados quando dividem uma entrada" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
     </div>
     <div class="plain-list">
@@ -656,6 +682,9 @@
     </svg>`;
   })();
 
+  // the live proof: count bytes typed on this page; the "sent" figure is a constant because nothing is sent
+  (() => { const inp = $("[data-proof-input]"), out = $("[data-typed]"); if (!inp) return; inp.addEventListener("input", () => { out.textContent = new TextEncoder().encode(inp.value).length; }); })();
+
   // chart hover
   (() => {
     const wrap = $(".chart-wrap"), tip = $("[data-chart-tip]");
@@ -686,13 +715,14 @@
     const links = []; for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { const shared = nodes[i].in.filter((v, k) => v && nodes[j].in[k]).length; if (shared) links.push([i, j, shared]); }
     cv.dataset.counts = JSON.stringify(Object.fromEntries(nodes.map(n => [n.w, n.n]))); cv.dataset.links = links.length;
     const shade = (hex, k) => { const v = parseInt(hex.slice(1), 16), c = [v >> 16, (v >> 8) & 255, v & 255].map(ch => Math.round(k > 0 ? ch + (255 - ch) * k : ch * (1 + k))); return `rgb(${c.join(",")})`; };
-    let W = 0, H = 0, dpr = 1, hover = null, t0 = performance.now(), raf = 0, visible = false, P = [];
+    let W = 0, H = 0, dpr = 1, hover = null, t0 = performance.now(), raf = 0, visible = false, P = [], flat = false;
+    document.querySelectorAll("[data-brain-mode]").forEach(b => b.addEventListener("click", () => { flat = b.dataset.brainMode === "2d"; document.querySelectorAll("[data-brain-mode]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); start(); }));
     const ctx = cv.getContext("2d");
     function size() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
     function project(t) {
-      const th = RM ? 0.6 : t * 0.12, tilt = 0.4, cth = Math.cos(th), sth = Math.sin(th), ct = Math.cos(tilt), st = Math.sin(tilt);
+      const still = RM || flat, th = still ? 0.6 : t * 0.12, tilt = flat ? 0 : 0.4, cth = Math.cos(th), sth = Math.sin(th), ct = Math.cos(tilt), st = Math.sin(tilt);
       const cx = W / 2, cy = H / 2 - 4, Rx = W / 2 - 36, Ry = H / 2 - 26;
-      return nodes.map(n => { const x1 = n.x * cth + n.z * sth, z1 = -n.x * sth + n.z * cth; const y1 = n.y * ct - z1 * st, z2 = n.y * st + z1 * ct; const f = 0.72 + 0.28 * (z2 + 1) / 2; return { n, X: cx + x1 * Rx, Y: cy + y1 * Ry, f, z: z2 }; });
+      return nodes.map(n => { const x1 = n.x * cth + n.z * sth, z1 = -n.x * sth + n.z * cth; const y1 = n.y * ct - z1 * st, z2 = n.y * st + z1 * ct; const f = flat ? 1 : 0.72 + 0.28 * (z2 + 1) / 2; return { n, X: cx + x1 * Rx, Y: cy + y1 * Ry, f, z: z2 }; });
     }
     function draw(now) {
       const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H); P = project(t);
@@ -706,7 +736,7 @@
         ctx.globalAlpha = hover && !big ? 0.45 + 0.3 * p.f : 0.55 + 0.45 * p.f; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
         if (n.n >= L10N.brainLabelMin || big) { ctx.fillStyle = big ? "#FFFFFF" : "rgba(230,230,234,0.85)"; ctx.font = `${big ? 600 : 500} 10px -apple-system, BlinkMacSystemFont, sans-serif`; ctx.textAlign = "center"; ctx.fillText(n.w, p.X, p.Y - r - 4); } });
       ctx.fillStyle = "#FFFFFF"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText(L10N.you, cx, cy - 20);
-      if (visible && !RM) raf = requestAnimationFrame(draw);
+      if (visible && !RM && !flat) raf = requestAnimationFrame(draw);
     }
     function start() { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
     new ResizeObserver(() => { size(); start(); }).observe(cv);
@@ -717,9 +747,9 @@
       let best = null, bd = 16; P.forEach(p => { const d = Math.hypot(p.X - mx, p.Y - my); if (d < bd + p.n.r) { best = p; bd = d; } });
       hover = best ? best.n : null;
       if (best) { tip.innerHTML = `<span class="dot" style="--c:${best.n.c}"></span>${best.n.w}, ${L10N.entries(best.n.n)}`; tip.style.left = `${best.X}px`; tip.style.top = `${best.Y - best.n.r}px`; tip.hidden = false; } else tip.hidden = true;
-      if (RM) start();
+      if (RM || flat) start();
     });
-    cv.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; if (RM) start(); });
+    cv.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; if (RM || flat) start(); });
   })();
 
   // prompts
