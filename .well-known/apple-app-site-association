@@ -3,7 +3,7 @@
     "details": [
       {
         "appID": "7NP4QNTWNQ.com.lokesh.sharedTimer",
-        "paths": ["NOT /timer/privacy", "NOT /timer/privacy.html", "/timer", "/timer.html"]
+        "paths": ["NOT /timer/privacy", "NOT /timer/privacy.html", "NOT /timer/status", "NOT /timer/status.html", "NOT /timer/status.json", "/timer", "/timer.html"]
       }
     ]
   },
