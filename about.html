@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About MirrorNotes (Mirror Notes): a private AI journaling app for iPhone, built by solo developer Lokesh Pudhari. The AI runs on your iPhone, there is no account, and the source is open.">
+  <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
+  <title>About MirrorNotes: Private AI Journaling for iPhone</title>
+  <link rel="canonical" href="https://mirrornotes.org/about.html">
+  <meta property="og:title" content="About MirrorNotes">
+  <meta property="og:description" content="A private AI journaling app for iPhone, built by one developer. The AI runs on your iPhone, there is no account, and the source is open.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://mirrornotes.org/og-image-v3.png">
+  <meta property="og:url" content="https://mirrornotes.org/about.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About MirrorNotes",
+    "url": "https://mirrornotes.org/about.html",
+    "isPartOf": {"@id": "https://mirrornotes.org/#website"},
+    "about": {"@id": "https://mirrornotes.org/#organization"},
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "https://mirrornotes.org/#founder",
+      "name": "Lokesh Pudhari",
+      "jobTitle": "Founder and developer",
+      "worksFor": {"@id": "https://mirrornotes.org/#organization"}
+    }
+  }
+  </script>
+  <style>
+    /* MirrorNotes article pages: the homepage's components (tokens, cards, pills, New York serif). Applied by tools/apply_altpage_css.py. */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
+      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-btn: #6341CC; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
+      --red: #E8432E; --green: #1E9E4C; --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #16112A; --text-2: #5B5170; --text-3: #6E6587;
+      --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
+      --shadow-card: 0 1px 2px rgba(40,24,90,0.05), 0 10px 28px rgba(40,24,90,0.07);
+      --glass: rgba(242,238,248,0.78);
+      --serif: ui-serif, 'New York', 'Iowan Old Style', Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --rounded: ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
+        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);
+        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #9087B0;
+        --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
+        --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
+        --glass: rgba(8,6,15,0.78);
+      }
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    nav { position: sticky; top: 0; z-index: 40; height: 60px; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: var(--glass); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid var(--border); }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--text); text-decoration: none; }
+    .nav-back::before { content: ''; width: 24px; height: 24px; border-radius: 6px; background: url('/icon-192.png') center / cover; }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 500; color: var(--text-2); }
+
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 56px 20px 96px; }
+    .page-header { margin-bottom: 40px; }
+    .page-header .label { display: inline-flex; padding: 5px 12px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 18px; }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(32px, 5vw, 46px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 18px; text-wrap: balance; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 36em; line-height: 1.6; }
+
+    .tldr { background: var(--surface); border: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 26px; padding: 22px 24px; margin-bottom: 48px; box-shadow: 0 0 0 6px var(--accent-tint), var(--shadow-card); }
+    .tldr h2 { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--accent); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .tldr h2::before { content: '✦'; }
+    .tldr ul { list-style: none; display: grid; gap: 10px; }
+    .tldr li { display: flex; gap: 10px; font-size: 15px; color: var(--text-2); line-height: 1.5; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex: 0 0 auto; }
+
+    .policy-section { margin-bottom: 48px; }
+    .policy-section h2 { font-family: var(--serif); font-size: clamp(24px, 3.2vw, 30px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 16px; color: var(--text); }
+    .policy-section h3 { font-size: 17px; font-weight: 600; margin: 24px 0 8px; color: var(--text); }
+    .policy-section p { font-size: 16px; color: var(--text-2); margin-bottom: 14px; line-height: 1.65; }
+    .policy-section ul { list-style: none; display: grid; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 16px; color: var(--text-2); padding-left: 18px; position: relative; line-height: 1.55; }
+    .policy-section li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 18px 18px 0; padding: 16px 20px; margin: 18px 0; font-size: 15px; color: var(--text-2); box-shadow: var(--shadow-card); line-height: 1.6; }
+    .callout strong { color: var(--text); }
+
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 22px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 18px 18px 16px; box-shadow: var(--shadow-card); }
+    .privacy-item .icon { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-tint); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+    .privacy-item h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .privacy-item p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.5; }
+
+    .data-table:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-card); }
+    @media (max-width: 680px) { .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
+    .data-table th { text-align: left; padding: 12px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); color: var(--text-2); font-weight: 600; font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; line-height: 1.45; }
+    .data-table tr:last-child td { border-bottom: 0; }
+    .data-table td strong { color: var(--text); }
+    .yes, .no, .warn { font-weight: 600; }
+    .yes { color: var(--green); } .no { color: var(--red); } .warn { color: var(--orange); }
+
+    .cta-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 26px; padding: 30px 28px; text-align: center; margin: 48px 0; box-shadow: var(--shadow-card); }
+    .cta-card h3 { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); font-weight: 600; letter-spacing: -0.015em; margin-bottom: 10px; color: var(--text); text-wrap: balance; }
+    .cta-card p { font-size: 15px; color: var(--text-2); margin: 0 auto 20px; max-width: 34em; line-height: 1.55; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent-btn); color: #fff; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 10px 28px rgba(99,65,204,0.28); transition: background .15s; }
+    .cta-btn:hover { background: var(--accent-btn-hover); text-decoration: none; }
+
+    .page-footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .footer-nav a:hover { color: var(--text); }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">About</span>
+  </nav>
+
+  <main class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">About</div>
+      <h1>About MirrorNotes</h1>
+      <p>MirrorNotes (sometimes written Mirror Notes) is a private AI journaling app for iPhone. You write; an AI that runs on your iPhone reflects your own words back to you. Your journal text never leaves your device.</p>
+    </div>
+
+    <div class="tldr">
+      <h2>MirrorNotes at a glance</h2>
+      <ul>
+        <li>An iPhone journaling app, made by one independent developer</li>
+        <li>All AI runs on your iPhone: Apple's Foundation Models on Apple Intelligence-eligible iPhones, a bundled Gemma 3 model on the rest</li>
+        <li>No account, no sign-in, no MirrorNotes server that receives your journal</li>
+        <li>Free to write, forever. AI features are free until 15 November 2026, then part of the Core and Deep plans</li>
+        <li>The app's source code is public under the AGPL-3.0 license</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Who makes it</h2>
+      <p>MirrorNotes is designed, built and supported by Lokesh Pudhari, a solo developer. When you email support, the person who wrote the app reads it.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Why it exists</h2>
+      <p>Most apps promise they <em>won't</em> misuse your data. A promise about intent can change with a new owner, a funding crunch or an updated terms of service. MirrorNotes is built so that it <em>can't</em>: your entries stay on your iPhone, so there is nothing to sell, leak or hand over, whoever runs the company next year.</p>
+      <p>The longer version is in <a href="/blog/why-i-dont-want-your-data.html">Why I don't want your data</a>.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>How it makes money</h2>
+      <p>A plain subscription through Apple's In-App Purchase for the AI features. Because the AI runs on your phone, there is no cloud AI bill to cover, so there are no ads, no data deals and no reason to read your journal. Writing, history, search and iCloud backup stay free.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Check it yourself</h2>
+      <p>You don't have to take our word for any of this. The app's source code is <a href="https://github.com/lokii49/mirror">public on GitHub</a> under the AGPL-3.0 license, and you can run a network monitor while you write: no journal text is sent to us or to any AI service. iCloud backup, if you use it, goes to your own iCloud account. The <a href="/privacy.html">privacy policy</a> lists exactly what does and doesn't leave your device.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>Contact</h2>
+      <p>Questions, feedback or press: <a href="mailto:hello@mirrornotes.org">hello@mirrornotes.org</a>. For help with the app, see the <a href="/support.html">Help Center</a>.</p>
+    </div>
+
+    <div class="cta-card">
+      <h3>Try MirrorNotes</h3>
+      <p>Free to write, forever. The AI features are free until 15 November 2026, then come in the Core and Deep plans with a 7-day free trial for new subscribers.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="blog/">Blog</a>
+        <a href="support.html">Help Center</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

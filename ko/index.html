@@ -78,6 +78,7 @@
         "alternateName": "Mirror Notes",
         "url": "https://mirrornotes.org/",
         "logo": "https://mirrornotes.org/icon-512.png",
+        "founder": {"@type": "Person", "@id": "https://mirrornotes.org/#founder", "name": "Lokesh Pudhari"},
         "sameAs": ["https://apps.apple.com/app/id6769007201"]
       }
     ]
@@ -204,6 +205,8 @@
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
     .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; min-height: 1.5em; }
     .hero-copy h1 { margin-bottom: 22px; }
+    .h1-brand { display: block; font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; color: var(--accent); margin-bottom: 12px; }
+    .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 34px; }
     .proof-live { max-width: 520px; }
     .proof-live input { width: 100%; padding: 13px 16px; border-radius: 14px; border: 1px solid var(--border-2); background: var(--surface); color: var(--text); font-family: var(--serif); font-size: 17px; outline: none; }
@@ -379,7 +382,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="today" data-today></p>
-      <h1>혼자 조용히 들어주는 일기.</h1>
+      <h1><span class="h1-brand">MirrorNotes<span class="vh">: </span></span>혼자 조용히 들어주는 일기.</h1>
       <p class="lede">무엇이든 쓰세요. 그것을 비춰 주는 AI는 당신의 아이폰 안에 삽니다. 누군가의 서버도, 데이터 센터도 아닙니다. 당신의 글이 어디로도 떠나지 않습니다.</p>
       <div class="hero-actions">
         <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>App Store에서 무료로 받기</a>
@@ -580,7 +583,7 @@
       <div><a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a><p>프라이빗 AI 일기. 당신의 글은 기기 안에 남습니다.</p></div>
       <div><h3 class="foot-h">제품</h3><a href="#features">기능</a><a href="#pricing">가격</a><a href="#prompts">질문 써 보기</a><a href="https://apps.apple.com/app/id6769007201">다운로드</a></div>
       <div><h3 class="foot-h">비교</h3><a href="/ko/rosebud-alternative.html">Rosebud와 비교</a><a href="/ko/day-one-alternative.html">Day One과 비교</a><a href="/ko/reflect-alternative.html">Reflect와 비교</a><a href="/ko/adhd-journaling-app.html">ADHD와 일기</a></div>
-      <div><h3 class="foot-h">지원</h3><a href="/support.html">도움말 센터</a><a href="mailto:hello@mirrornotes.org">문의</a><a href="/ko/privacy.html">개인정보 처리방침</a><a href="/terms.html">서비스 약관</a></div>
+      <div><h3 class="foot-h">지원</h3><a href="/about.html">소개</a><a href="/support.html">도움말 센터</a><a href="mailto:hello@mirrornotes.org">문의</a><a href="/ko/privacy.html">개인정보 처리방침</a><a href="/terms.html">서비스 약관</a></div>
       <div><h3 class="foot-h">개발자</h3><a href="/mcp.html">MCP 서버</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">블로그</a></div>
     </div>
     <nav class="foot-langs" aria-label="Languages"><span>언어</span><a href="/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/fr/" hreflang="fr">Français</a><a href="/de/" hreflang="de">Deutsch</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt-BR">Português</a><a href="/ja/" hreflang="ja">日本語</a><a href="/ko/" hreflang="ko" aria-current="true">한국어</a><a href="/ru/" hreflang="ru">Русский</a><a href="/zh/" hreflang="zh-Hans">中文</a></nav>
