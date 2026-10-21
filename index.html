@@ -586,10 +586,22 @@
     "What's quietly draining you right now that you haven't named yet?","What are you avoiding thinking about? Write about that.","Describe the last moment you felt completely present.","What would you do differently about yesterday?","What's something you're pretending is fine?","Who did you most want to impress this week, and why?","What's a belief you hold that you've never examined?","What are you waiting for permission to do?","Describe a moment from the last week that surprised you.","What's the kindest thing you did today, and did you notice it?","What's costing you energy that you could put down?","What's the gap between who you are and who you're trying to be?","Write about a small thing that felt meaningful today.","What conversation do you keep rehearsing in your head?","What would you tell yourself from six months ago?","What are you learning right now, even if you didn't sign up to learn it?","What's pulling at your attention that you keep pushing aside?","Describe a moment this week when you felt like yourself.","What are you grateful for that you've never said out loud?","What does your body feel like right now? Start there.","What do you need more of? What do you need less of?","Write about something that happened recently that you haven't processed.","What pattern keeps repeating in your life?","What does 'enough' look like for you right now?","If you could only write one thing today, what would it be?","What are you afraid someone will find out about you?","What's the most honest sentence you could write right now?","What's working in your life that you're not giving yourself credit for?","Who are you becoming, even if you're not sure you chose it?","What's the tension you're living inside right now?"
   ];
 
+  // ── everything a translated page changes is here; tools/build_locales.py swaps this block per language ──
+  const L10N = {
+    dateLang: "en-GB", timeLang: "en-US", weekStart: 0,
+    moodNames: { Joyful:"Joyful", Grateful:"Grateful", Peaceful:"Peaceful", Content:"Content", Energized:"Energized", Hopeful:"Hopeful", Anxious:"Anxious", Overwhelmed:"Overwhelmed", Frustrated:"Frustrated", Drained:"Drained", Sad:"Sad", Numb:"Numb" },
+    entries: n => `${n} ${n === 1 ? "entry" : "entries"}`,
+    mostly: m => `Mostly ${m}`, axis: ["High", "Mid", "Low"],
+    youWrote: "You wrote, ", open: "“", close: "”", joiner: " ",
+    alsoWrote: "You also wrote, ", followUp: q => `Can you say more about “${q}”?`,
+    you: "You", save: pct => `save ${pct}%`, usPrices: "US prices", pricesIn: cur => `Prices in ${cur}`,
+    brainLabelMin: 4
+  };
+  const NAME = m => L10N.moodNames[m] || m;
   const $ = s => document.querySelector(s);
   const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  const fmt = (d, o) => new Intl.DateTimeFormat("en-GB", o).format(d);
-  const fTime = d => new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" }).format(d);
+  const fmt = (d, o) => new Intl.DateTimeFormat(L10N.dateLang, o).format(d);
+  const fTime = d => new Intl.DateTimeFormat(L10N.timeLang, { hour: "numeric", minute: "2-digit" }).format(d);
   const words = s => (s.match(/\S+/g) || []).length;
   const tint = m => COLOR[m] + "33";
   const now = new Date(), today = new Date(now); today.setHours(0,0,0,0);
@@ -601,17 +613,17 @@
   $("[data-today-upper]").textContent = `${fmt(now, { weekday: "long" })} · ${fmt(now, { day: "numeric", month: "long" })} · ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 5))}`.toUpperCase();
 
   // hero: week strip (Sunday-first, like the app's US screenshots)
-  const start = new Date(today); start.setDate(start.getDate() - start.getDay());
+  const start = new Date(today); start.setDate(start.getDate() - ((start.getDay() - L10N.weekStart + 7) % 7));
   const end = new Date(start); end.setDate(end.getDate() + 6);
   const inWeek = entries.filter(e => e.date >= start && e.date <= new Date(end.getTime() + 86399999));
   $("[data-week-title]").textContent = `${fmt(start, { day: "numeric", month: "short" })} – ${fmt(end, { day: "numeric", month: "short", year: "numeric" })}`;
-  $("[data-week-sub]").textContent = `${inWeek.length} entries`;
-  let wk = ["S","M","T","W","T","F","S"].map(d => `<div class="dow">${d}</div>`).join("");
+  $("[data-week-sub]").textContent = L10N.entries(inWeek.length);
+  let wk = Array.from({ length: 7 }, (_, i) => { const d = new Date(start); d.setDate(d.getDate() + i); return `<div class="dow">${new Intl.DateTimeFormat(L10N.dateLang, { weekday: "narrow" }).format(d)}</div>`; }).join("");
   for (let i = 0; i < 7; i++) {
     const d = new Date(start); d.setDate(d.getDate() + i);
     const dayEntries = inWeek.filter(e => { const x = new Date(e.date); x.setHours(0,0,0,0); return x.getTime() === d.getTime(); }).sort((a, b) => b.date - a.date);
     const mood = dayEntries[0]?.mood, future = d > today, isToday = d.getTime() === today.getTime();
-    const tip = mood ? ` data-tip="${mood}, ${dayEntries.length} ${dayEntries.length === 1 ? "entry" : "entries"}"` : "";
+    const tip = mood ? ` data-tip="${NAME(mood)}, ${L10N.entries(dayEntries.length)}"` : "";
     wk += `<div class="day${future ? " future" : ""}${isToday ? " today" : ""}${mood ? " mood" : ""}" style="--i:${i}${mood ? `;background:${COLOR[mood]}` : ""}"${tip}><b>${d.getDate()}</b><span>${dayEntries.length || ""}</span></div>`;
   }
   $("[data-week]").innerHTML = wk;
@@ -620,17 +632,17 @@
   const sorted = [...entries].sort((a, b) => b.date - a.date);
   const monthKey = fmt(sorted[0].date, { month: "long", year: "numeric" });
   const monthCount = sorted.filter(e => fmt(e.date, { month: "long", year: "numeric" }) === monthKey).length;
-  $("[data-month]").textContent = monthKey; $("[data-month-count]").textContent = `${monthCount} entries`;
+  $("[data-month]").textContent = monthKey; $("[data-month-count]").textContent = L10N.entries(monthCount);
   const card = (e, full, i = 0) => `<article class="entry${full ? " full" : ""}" style="--rail:${COLOR[e.mood]};--tint:${tint(e.mood)};--i:${i}">
     <div class="tile"><b>${e.date.getDate()}</b><span>${fmt(e.date, { weekday: "short" }).toUpperCase()}</span></div>
     <div><p class="txt">${full ? esc(e.text).replace(esc(QUOTE), `<mark class="draw">${esc(QUOTE)}</mark>`) : esc(e.text)}</p>
-    <div class="meta"><span>${fTime(e.date)} &nbsp; ${words(e.text)}w</span><span class="mood-pill"><span class="dot" style="--c:${COLOR[e.mood]}"></span>${e.mood}</span></div></div></article>`;
+    <div class="meta"><span>${fTime(e.date)} &nbsp; ${words(e.text)}w</span><span class="mood-pill"><span class="dot" style="--c:${COLOR[e.mood]}"></span>${NAME(e.mood)}</span></div></div></article>`;
   $("[data-feed]").innerHTML = sorted.slice(0, 5).map((e, i) => card(e, false, i)).join("");
 
   // reflection pair
   $("[data-entry-full]").innerHTML = card(entries[0], true);
-  $("[data-reflection]").innerHTML = `You wrote, <mark class="draw second">“${esc(QUOTE)}”</mark> ${esc(FEELING)}<span class="also reveal" style="--i:12">You also wrote, “${esc(ALSO)}”</span>`;
-  $("[data-followup]").textContent = `Can you say more about “${ALSO.replace(/\.$/, "")}”?`;
+  $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
+  const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
   $("[data-reflection-time]").textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`;
 
   // digest
@@ -652,11 +664,11 @@
     const avg = pts.reduce((s, p) => s + SCORE[p.m], 0) / pts.length;
     // a repeated mood wins; otherwise the mood nearest the week's average, most recent first
     const mostly = top[0][1] > 1 ? top[0][0] : [...pts].reverse().sort((a, b) => Math.abs(SCORE[a.m] - avg) - Math.abs(SCORE[b.m] - avg))[0].m;
-    $("[data-mostly]").innerHTML = `<span class="dot" style="--c:${COLOR[mostly]}"></span>Mostly ${mostly}`;
-    $("[data-chart]").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="This week's mood: ${pts.map(p => `${fmt(p.dt, { weekday: "short" })} ${p.m}`).join(", ")}">
-      ${[["High", 5], ["Mid", 3], ["Low", 1]].map(([l, s]) => `<text x="${W - R + 16}" y="${y(s) + 4}">${l}</text>`).join("")}
+    $("[data-mostly]").innerHTML = `<span class="dot" style="--c:${COLOR[mostly]}"></span>${L10N.mostly(NAME(mostly))}`;
+    $("[data-chart]").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${pts.map(p => `${fmt(p.dt, { weekday: "short" })} ${NAME(p.m)}`).join(", ")}">
+      ${[[L10N.axis[0], 5], [L10N.axis[1], 3], [L10N.axis[2], 1]].map(([l, s]) => `<text x="${W - R + 16}" y="${y(s) + 4}">${l}</text>`).join("")}
       <path class="line" d="${path}" pathLength="1"/>
-      ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="7" fill="${COLOR[p.m]}" data-when="${fmt(p.dt, { weekday: "short", day: "numeric", month: "short" })}" data-mood="${p.m}"></circle>`).join("")}
+      ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="7" fill="${COLOR[p.m]}" data-when="${fmt(p.dt, { weekday: "short", day: "numeric", month: "short" })}" data-mood="${NAME(p.m)}" data-c="${COLOR[p.m]}"></circle>`).join("")}
       ${days.map((o, i) => `<text x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${fmt(o.dt, { weekday: "short" })}</text>`).join("")}
     </svg>`;
   })();
@@ -666,7 +678,7 @@
     const wrap = $(".chart-wrap"), tip = $("[data-chart-tip]");
     wrap.addEventListener("pointerover", ev => { const c = ev.target.closest(".pt"); if (!c) return;
       const r = c.getBoundingClientRect(), w = wrap.getBoundingClientRect();
-      tip.innerHTML = `<span class="dot" style="--c:${COLOR[c.dataset.mood]}"></span>${c.dataset.when}, ${c.dataset.mood}`;
+      tip.innerHTML = `<span class="dot" style="--c:${c.dataset.c}"></span>${c.dataset.when}, ${c.dataset.mood}`;
       tip.style.left = `${r.left + r.width / 2 - w.left}px`; tip.style.top = `${r.top - w.top}px`; tip.hidden = false; });
     wrap.addEventListener("pointerout", ev => { if (ev.target.closest(".pt")) tip.hidden = true; });
   })();
@@ -713,8 +725,8 @@
       order.forEach(i => { const p = P[i], n = p.n, r = n.r * p.f, big = hover === n; ctx.beginPath(); ctx.arc(p.X, p.Y, r + (big ? 2 : 0), 0, Math.PI * 2);
         const g = ctx.createRadialGradient(p.X - r * 0.35, p.Y - r * 0.35, r * 0.15, p.X, p.Y, r); g.addColorStop(0, shade(n.c, 0.45)); g.addColorStop(0.6, n.c); g.addColorStop(1, shade(n.c, -0.45));
         ctx.globalAlpha = hover && !big ? 0.45 + 0.3 * p.f : 0.55 + 0.45 * p.f; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
-        if (n.n >= 4 || big) { ctx.fillStyle = big ? "#FFFFFF" : "rgba(230,230,234,0.85)"; ctx.font = `${big ? 600 : 500} 10px -apple-system, BlinkMacSystemFont, sans-serif`; ctx.textAlign = "center"; ctx.fillText(n.w, p.X, p.Y - r - 4); } });
-      ctx.fillStyle = "#FFFFFF"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText("You", cx, cy - 20);
+        if (n.n >= L10N.brainLabelMin || big) { ctx.fillStyle = big ? "#FFFFFF" : "rgba(230,230,234,0.85)"; ctx.font = `${big ? 600 : 500} 10px -apple-system, BlinkMacSystemFont, sans-serif`; ctx.textAlign = "center"; ctx.fillText(n.w, p.X, p.Y - r - 4); } });
+      ctx.fillStyle = "#FFFFFF"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText(L10N.you, cx, cy - 20);
       if (visible && !RM) raf = requestAnimationFrame(draw);
     }
     function start() { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
@@ -725,7 +737,7 @@
       const r = cv.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
       let best = null, bd = 16; P.forEach(p => { const d = Math.hypot(p.X - mx, p.Y - my); if (d < bd + p.n.r) { best = p; bd = d; } });
       hover = best ? best.n : null;
-      if (best) { tip.innerHTML = `<span class="dot" style="--c:${best.n.c}"></span>${best.n.w}, ${best.n.n} ${best.n.n === 1 ? "entry" : "entries"}`; tip.style.left = `${best.X}px`; tip.style.top = `${best.Y - best.n.r}px`; tip.hidden = false; } else tip.hidden = true;
+      if (best) { tip.innerHTML = `<span class="dot" style="--c:${best.n.c}"></span>${best.n.w}, ${L10N.entries(best.n.n)}`; tip.style.left = `${best.X}px`; tip.style.top = `${best.Y - best.n.r}px`; tip.hidden = false; } else tip.hidden = true;
       if (RM) start();
     });
     cv.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; if (RM) start(); });
@@ -745,15 +757,16 @@
   (() => {
     const sel = $("[data-storefront]"), note = $("[data-price-note]"); if (!sel) return;
     const codes = Object.keys(STOREFRONTS).sort((a, b) => STOREFRONTS[a][0].localeCompare(STOREFRONTS[b][0]));
-    sel.innerHTML = codes.map(c => `<option value="${c}">${STOREFRONTS[c][0]}</option>`).join("");
-    const money = (v, cur) => { try { return new Intl.NumberFormat(navigator.language || "en", { style: "currency", currency: cur, minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 }).format(v); } catch { return `${cur} ${v}`; } };
+    const dn = (() => { try { return new Intl.DisplayNames([L10N.dateLang], { type: "region" }); } catch { return null; } })(); const cname = c => { try { return dn?.of(c) || STOREFRONTS[c][0]; } catch { return STOREFRONTS[c][0]; } };
+    sel.innerHTML = codes.map(c => `<option value="${c}">${cname(c)}</option>`).sort((a, b) => a.replace(/<[^>]+>/g, "").localeCompare(b.replace(/<[^>]+>/g, ""), L10N.dateLang)).join("");
+    const money = (v, cur) => { try { return new Intl.NumberFormat(L10N.dateLang, { style: "currency", currency: cur, minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 }).format(v); } catch { return `${cur} ${v}`; } };
     function apply(code) {
       const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US";
       const [name, cur, cm, cy, dm, dy] = s;
       $("[data-price='core_mo']").textContent = money(cm, cur); $("[data-price='core_yr']").textContent = money(cy, cur);
       $("[data-price='deep_mo']").textContent = money(dm, cur); $("[data-price='deep_yr']").textContent = money(dy, cur);
-      $("[data-save='core']").textContent = `save ${Math.round((1 - cy / (cm * 12)) * 100)}%`; $("[data-save='deep']").textContent = `save ${Math.round((1 - dy / (dm * 12)) * 100)}%`;
-      note.textContent = code === "US" ? "US prices" : `Prices in ${cur}`;
+      $("[data-save='core']").textContent = L10N.save(Math.round((1 - cy / (cm * 12)) * 100)); $("[data-save='deep']").textContent = L10N.save(Math.round((1 - dy / (dm * 12)) * 100));
+      note.textContent = code === "US" ? L10N.usPrices : L10N.pricesIn(cur);
       sel.value = code; document.documentElement.dataset.storeCountry = code;
     }
     sel.addEventListener("change", () => { try { localStorage.setItem("mn.storefront", sel.value); } catch {} apply(sel.value); });
