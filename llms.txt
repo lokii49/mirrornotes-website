@@ -14,7 +14,7 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 - No account required
 - Free to write: unlimited entries, full history, search, iCloud backup — forever
 - AI tier pricing (US; every country has its own purchasing-power price, e.g. India ₹199/mo Core): Core $7.99/mo or $49.99/yr, Deep $11.99/mo or $69.99/yr
-- Free trial: 7 days on all paid plans
+- Paid plans start 15 November 2026 (everything is free until then). Free trial: 7 days for new subscribers, one per Apple ID across the plans
 
 ## AI features
 
@@ -23,7 +23,7 @@ MirrorNotes is an iOS journaling app where the AI model runs locally on the iPho
 - **Mood Timeline**: emotional pattern tracking across entries, full timeline visualization — on-device
 - **Mood Alerts**: notification when 3 consecutive entries have negative emotional tone — on-device detection
 - **Weekly Digest**: every Sunday, structured 7-day reflection of themes, energy, and mood — on-device
-- **Monthly Deep Report**: full monthly analysis on the 1st of each month — on-device
+- **Monthly Deep Report**: full monthly analysis in the last week of each month — on-device
 
 ## Privacy guarantees
 
