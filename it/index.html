@@ -63,7 +63,7 @@
     :root {
       --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
       --accent: #6341CC; --accent-lt: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
-      --text: #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --text: #16112A; --text-2: #5B5170; --text-3: #6E6587;
       --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
       --shadow-card: 0 1px 2px rgba(40,24,90,0.05), 0 10px 28px rgba(40,24,90,0.07);
       --glass: rgba(242,238,248,0.78);
@@ -76,7 +76,7 @@
       :root:not([data-theme="light"]) {
         --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
         --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
-        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
         --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
         --glass: rgba(8,6,15,0.78);
@@ -85,7 +85,7 @@
     :root[data-theme="dark"] {
       --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
       --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
-      --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+      --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
       --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
       --glass: rgba(8,6,15,0.78);
@@ -135,7 +135,7 @@
     .day.today { outline: 2px solid var(--text); outline-offset: -2px; }
     .day.mood { color: rgba(0,0,0,.78); }
     .month-row { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 6px 8px; font-size: 13px; color: var(--text-3); }
-    .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); }
+    .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); min-height: 1.3em; min-width: 1px; }
     .entry { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 14px; padding: 16px 16px 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); box-shadow: var(--shadow-card); overflow: hidden; text-align: left; }
     .entry + .entry { margin-top: 12px; }
     .entry::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--rail, var(--accent)); }
@@ -178,7 +178,7 @@
     /* ───── hero ───── */
     #hero { padding: 64px 0 40px; overflow: hidden; }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
-    .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; }
+    .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; min-height: 1.5em; }
     .hero-copy h1 { margin-bottom: 22px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 34px; }
     .proof-live { max-width: 520px; }
@@ -189,8 +189,8 @@
     .proof-line b { color: var(--text); font-weight: 600; font-family: var(--rounded); }
     .proof-line b.zero { color: #1E9E4C; }
     .feed { position: relative; max-height: 640px; overflow: hidden; padding: 6px 4px 0; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
-    .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 10px; }
-    .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; } .feed .wk-title span { font-size: 13px; color: var(--text-3); }
+    .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-weight: 600; font-size: 12px; font-weight: 600; margin-bottom: 10px; }
+    .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; min-height: 1.4em; } .feed .wk-title span { display: block; font-size: 13px; color: var(--text-3); min-height: 1.3em; }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } .feed { max-height: 560px; } }
     /* ───── motion (all of it off under reduced motion) ───── */
     .entry, .card { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s; }
@@ -328,7 +328,7 @@
     #final .lede { margin: 0 auto 30px; }
     footer { padding: 48px 0 40px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-2); }
     .foot-grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 28px; margin-bottom: 36px; }
-    .foot-grid h4 { font-size: 12px; font-weight: 700; color: var(--text-3); margin-bottom: 12px; letter-spacing: .04em; }
+    .foot-grid .foot-h { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text-3); margin: 0 0 12px; letter-spacing: .04em; }
     .foot-grid a { display: block; padding: 4px 0; } .foot-grid a:hover { color: var(--text); }
     .foot-grid p { max-width: 24em; margin-top: 10px; color: var(--text-3); }
     .foot-langs { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--border); margin-bottom: 18px; font-size: 14px; }
@@ -349,6 +349,7 @@
   </div>
 </nav>
 
+<main>
 <section id="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -366,7 +367,7 @@
     </div>
     <div class="feed" aria-label="Una settimana di esempio in MirrorNotes">
       <div class="wk-title"><span class="sample">Diario di esempio</span><b data-week-title></b><span data-week-sub></span></div>
-      <div class="week" data-week></div>
+      <div class="week" data-week><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div></div>
       <div class="month-row"><b data-month></b><span data-month-count></span></div>
       <div data-feed><!-- static:feed --><article class="entry" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">Prima settimana alla guida del nuovo progetto. Stamattina ero nervosa, ma il kickoff è andato meglio del previsto. Giulia ha detto che il mio piano è il più chiaro che abbia mai visto.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Fiducioso</span></div></div></article><article class="entry" style="--rail:#66BB6A;--tint:#66BB6A33;--i:1"><div class="tile"><b></b><span></span></div><div><p class="txt">Dopo cena ho chiamato mia sorella e abbiamo riso dell'estate in cui ci siamo perse a Lisbona. Voglio andarla a trovare prima della fine dell'anno.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#66BB6A"></span>Grato</span></div></div></article><article class="entry" style="--rail:#FFC107;--tint:#FFC10733;--i:2"><div class="tile"><b></b><span></span></div><div><p class="txt">Stasera non riuscivo a staccare. Continuo a ripassare in testa la presentazione di domani. Ho scritto tre inizi e li ho cancellati tutti.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFC107"></span>Ansioso</span></div></div></article><article class="entry" style="--rail:#FFD54F;--tint:#FFD54F33;--i:3"><div class="tile"><b></b><span></span></div><div><p class="txt">Stamattina ho corso dieci chilometri senza fermarmi. All'inizio avevo le gambe pesanti, poi è diventato tutto facile. Ho fatto i pancake per festeggiare.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFD54F"></span>Gioioso</span></div></div></article><article class="entry" style="--rail:#9E9E9E;--tint:#9E9E9E33;--i:4"><div class="tile"><b></b><span></span></div><div><p class="txt">Una lunga giornata di riunioni una dopo l'altra. Ho detto di sì ad altri due compiti per cui non ho tempo. Domani devo dire di no a qualcosa.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9E9E9E"></span>Svuotato</span></div></div></article><!-- /static:feed --></div>
     </div>
@@ -456,7 +457,7 @@
       <div class="cell third brain">
         <h3>Brain View</h3>
         <p>Una costellazione dei temi a cui torni sempre, grandi quanto spesso compaiono. I temi che condividono una voce sono collegati. Nell'app gira in 3D.</p>
-        <article class="card"><div class="brain-bar" aria-hidden="true"><span>Brain View</span><span class="seg3d"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: temi del diario di esempio, grandi quanto spesso compaiono, collegati quando condividono una voce" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
+        <article class="card"><div class="brain-bar"><span>Brain View</span><span class="seg3d" role="group" aria-label="Brain View projection"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: temi del diario di esempio, grandi quanto spesso compaiono, collegati quando condividono una voce" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
     </div>
     <div class="plain-list">
@@ -546,15 +547,16 @@
     <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Scarica gratis per iPhone</a>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div><a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a><p>Diario privato con IA. Le tue parole restano sul tuo dispositivo.</p></div>
-      <div><h4>Prodotto</h4><a href="#features">Funzioni</a><a href="#pricing">Prezzi</a><a href="#prompts">Prova una domanda</a><a href="https://apps.apple.com/app/id6769007201">Scarica</a></div>
-      <div><h4>Confronta</h4><a href="/it/rosebud-alternative.html">vs Rosebud</a><a href="/it/day-one-alternative.html">vs Day One</a><a href="/it/reflect-alternative.html">vs Reflect</a><a href="/it/adhd-journaling-app.html">Diario e ADHD</a></div>
-      <div><h4>Supporto</h4><a href="/support.html">Centro assistenza</a><a href="mailto:hello@mirrornotes.org">Contatti</a><a href="/it/privacy.html">Informativa sulla privacy</a><a href="/terms.html">Termini di servizio</a></div>
-      <div><h4>Sviluppatori</h4><a href="/mcp.html">Server MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a></div>
+      <div><h3 class="foot-h">Prodotto</h3><a href="#features">Funzioni</a><a href="#pricing">Prezzi</a><a href="#prompts">Prova una domanda</a><a href="https://apps.apple.com/app/id6769007201">Scarica</a></div>
+      <div><h3 class="foot-h">Confronta</h3><a href="/it/rosebud-alternative.html">vs Rosebud</a><a href="/it/day-one-alternative.html">vs Day One</a><a href="/it/reflect-alternative.html">vs Reflect</a><a href="/it/adhd-journaling-app.html">Diario e ADHD</a></div>
+      <div><h3 class="foot-h">Supporto</h3><a href="/support.html">Centro assistenza</a><a href="mailto:hello@mirrornotes.org">Contatti</a><a href="/it/privacy.html">Informativa sulla privacy</a><a href="/terms.html">Termini di servizio</a></div>
+      <div><h3 class="foot-h">Sviluppatori</h3><a href="/mcp.html">Server MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a></div>
     </div>
     <nav class="foot-langs" aria-label="Languages"><span>Lingue</span><a href="/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/fr/" hreflang="fr">Français</a><a href="/de/" hreflang="de">Deutsch</a><a href="/it/" hreflang="it" aria-current="true">Italiano</a><a href="/pt/" hreflang="pt-BR">Português</a><a href="/ja/" hreflang="ja">日本語</a><a href="/ko/" hreflang="ko">한국어</a><a href="/ru/" hreflang="ru">Русский</a><a href="/zh/" hreflang="zh-Hans">中文</a></nav>
     <div class="foot-bottom"><span>© 2026 MirrorNotes. Fatto con intenzione. Prima la privacy.</span><span>Il diario mostrato in questa pagina è un esempio. Niente analytics, niente pixel di tracciamento, niente script di terze parti.</span></div>

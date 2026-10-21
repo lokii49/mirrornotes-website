@@ -63,7 +63,7 @@
     :root {
       --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
       --accent: #6341CC; --accent-lt: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
-      --text: #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --text: #16112A; --text-2: #5B5170; --text-3: #6E6587;
       --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
       --shadow-card: 0 1px 2px rgba(40,24,90,0.05), 0 10px 28px rgba(40,24,90,0.07);
       --glass: rgba(242,238,248,0.78);
@@ -76,7 +76,7 @@
       :root:not([data-theme="light"]) {
         --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
         --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
-        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
         --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
         --glass: rgba(8,6,15,0.78);
@@ -85,7 +85,7 @@
     :root[data-theme="dark"] {
       --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
       --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
-      --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+      --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
       --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
       --glass: rgba(8,6,15,0.78);
@@ -135,7 +135,7 @@
     .day.today { outline: 2px solid var(--text); outline-offset: -2px; }
     .day.mood { color: rgba(0,0,0,.78); }
     .month-row { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 6px 8px; font-size: 13px; color: var(--text-3); }
-    .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); }
+    .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); min-height: 1.3em; min-width: 1px; }
     .entry { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 14px; padding: 16px 16px 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); box-shadow: var(--shadow-card); overflow: hidden; text-align: left; }
     .entry + .entry { margin-top: 12px; }
     .entry::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--rail, var(--accent)); }
@@ -178,7 +178,7 @@
     /* ───── hero ───── */
     #hero { padding: 64px 0 40px; overflow: hidden; }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
-    .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; }
+    .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; min-height: 1.5em; }
     .hero-copy h1 { margin-bottom: 22px; }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 34px; }
     .proof-live { max-width: 520px; }
@@ -189,8 +189,8 @@
     .proof-line b { color: var(--text); font-weight: 600; font-family: var(--rounded); }
     .proof-line b.zero { color: #1E9E4C; }
     .feed { position: relative; max-height: 640px; overflow: hidden; padding: 6px 4px 0; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
-    .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 10px; }
-    .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; } .feed .wk-title span { font-size: 13px; color: var(--text-3); }
+    .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-weight: 600; font-size: 12px; font-weight: 600; margin-bottom: 10px; }
+    .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; min-height: 1.4em; } .feed .wk-title span { display: block; font-size: 13px; color: var(--text-3); min-height: 1.3em; }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } .feed { max-height: 560px; } }
     /* ───── motion (all of it off under reduced motion) ───── */
     .entry, .card { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s; }
@@ -328,7 +328,7 @@
     #final .lede { margin: 0 auto 30px; }
     footer { padding: 48px 0 40px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-2); }
     .foot-grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 28px; margin-bottom: 36px; }
-    .foot-grid h4 { font-size: 12px; font-weight: 700; color: var(--text-3); margin-bottom: 12px; letter-spacing: .04em; }
+    .foot-grid .foot-h { font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--text-3); margin: 0 0 12px; letter-spacing: .04em; }
     .foot-grid a { display: block; padding: 4px 0; } .foot-grid a:hover { color: var(--text); }
     .foot-grid p { max-width: 24em; margin-top: 10px; color: var(--text-3); }
     .foot-langs { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--border); margin-bottom: 18px; font-size: 14px; }
@@ -349,6 +349,7 @@
   </div>
 </nav>
 
+<main>
 <section id="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -366,7 +367,7 @@
     </div>
     <div class="feed" aria-label="MirrorNotes의 샘플 일주일">
       <div class="wk-title"><span class="sample">샘플 일기</span><b data-week-title></b><span data-week-sub></span></div>
-      <div class="week" data-week></div>
+      <div class="week" data-week><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="dow">&nbsp;</div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div><div class="day future"><b>&nbsp;</b><span></span></div></div>
       <div class="month-row"><b data-month></b><span data-month-count></span></div>
       <div data-feed><!-- static:feed --><article class="entry" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">새 프로젝트를 맡고 맞은 첫 주. 오늘 아침엔 긴장했는데, 킥오프는 생각보다 훨씬 잘 끝났다. 지은 씨가 이렇게 명확한 계획은 처음 본다고 했다.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>희망적</span></div></div></article><article class="entry" style="--rail:#66BB6A;--tint:#66BB6A33;--i:1"><div class="tile"><b></b><span></span></div><div><p class="txt">저녁을 먹고 언니에게 전화했고, 리스본에서 길을 잃었던 여름 이야기로 한참 웃었다. 올해가 가기 전에 언니를 보러 가고 싶다.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#66BB6A"></span>감사</span></div></div></article><article class="entry" style="--rail:#FFC107;--tint:#FFC10733;--i:2"><div class="tile"><b></b><span></span></div><div><p class="txt">오늘 밤은 도무지 머리가 꺼지지 않았다. 내일 발표를 머릿속으로 계속 되풀이하고 있다. 첫 부분을 세 번이나 썼다가 전부 지웠다.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFC107"></span>불안</span></div></div></article><article class="entry" style="--rail:#FFD54F;--tint:#FFD54F33;--i:3"><div class="tile"><b></b><span></span></div><div><p class="txt">오늘 아침 10킬로미터를 쉬지 않고 달렸다. 처음엔 다리가 무거웠는데 어느 순간 다 가벼워졌다. 기념으로 팬케이크를 구웠다.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFD54F"></span>즐거움</span></div></div></article><article class="entry" style="--rail:#9E9E9E;--tint:#9E9E9E33;--i:4"><div class="tile"><b></b><span></span></div><div><p class="txt">회의가 쉴 틈 없이 이어진 긴 하루였다. 시간도 없는데 일을 두 개나 더 맡아 버렸다. 내일은 뭔가 하나는 거절해야 한다.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9E9E9E"></span>지침</span></div></div></article><!-- /static:feed --></div>
     </div>
@@ -456,7 +457,7 @@
       <div class="cell third brain">
         <h3>Brain View</h3>
         <p>당신이 자꾸 돌아오는 주제들의 별자리. 크기는 등장한 횟수입니다. 같은 일기에 나온 주제끼리 이어집니다. 앱에서는 3D로 돌아갑니다.</p>
-        <article class="card"><div class="brain-bar" aria-hidden="true"><span>Brain View</span><span class="seg3d"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: 샘플 일기의 주제. 크기는 등장 횟수, 같은 일기에 나온 주제끼리 연결" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
+        <article class="card"><div class="brain-bar"><span>Brain View</span><span class="seg3d" role="group" aria-label="Brain View projection"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: 샘플 일기의 주제. 크기는 등장 횟수, 같은 일기에 나온 주제끼리 연결" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
     </div>
     <div class="plain-list">
@@ -546,15 +547,16 @@
     <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">아이폰용 무료 다운로드</a>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div><a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a><p>프라이빗 AI 일기. 당신의 글은 기기 안에 남습니다.</p></div>
-      <div><h4>제품</h4><a href="#features">기능</a><a href="#pricing">가격</a><a href="#prompts">질문 써 보기</a><a href="https://apps.apple.com/app/id6769007201">다운로드</a></div>
-      <div><h4>비교</h4><a href="/ko/rosebud-alternative.html">Rosebud와 비교</a><a href="/ko/day-one-alternative.html">Day One과 비교</a><a href="/ko/reflect-alternative.html">Reflect와 비교</a><a href="/ko/adhd-journaling-app.html">ADHD와 일기</a></div>
-      <div><h4>지원</h4><a href="/support.html">도움말 센터</a><a href="mailto:hello@mirrornotes.org">문의</a><a href="/ko/privacy.html">개인정보 처리방침</a><a href="/terms.html">서비스 약관</a></div>
-      <div><h4>개발자</h4><a href="/mcp.html">MCP 서버</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">블로그</a></div>
+      <div><h3 class="foot-h">제품</h3><a href="#features">기능</a><a href="#pricing">가격</a><a href="#prompts">질문 써 보기</a><a href="https://apps.apple.com/app/id6769007201">다운로드</a></div>
+      <div><h3 class="foot-h">비교</h3><a href="/ko/rosebud-alternative.html">Rosebud와 비교</a><a href="/ko/day-one-alternative.html">Day One과 비교</a><a href="/ko/reflect-alternative.html">Reflect와 비교</a><a href="/ko/adhd-journaling-app.html">ADHD와 일기</a></div>
+      <div><h3 class="foot-h">지원</h3><a href="/support.html">도움말 센터</a><a href="mailto:hello@mirrornotes.org">문의</a><a href="/ko/privacy.html">개인정보 처리방침</a><a href="/terms.html">서비스 약관</a></div>
+      <div><h3 class="foot-h">개발자</h3><a href="/mcp.html">MCP 서버</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">블로그</a></div>
     </div>
     <nav class="foot-langs" aria-label="Languages"><span>언어</span><a href="/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/fr/" hreflang="fr">Français</a><a href="/de/" hreflang="de">Deutsch</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt-BR">Português</a><a href="/ja/" hreflang="ja">日本語</a><a href="/ko/" hreflang="ko" aria-current="true">한국어</a><a href="/ru/" hreflang="ru">Русский</a><a href="/zh/" hreflang="zh-Hans">中文</a></nav>
     <div class="foot-bottom"><span>© 2026 MirrorNotes. 의도를 담아 만들었습니다. 개인정보가 먼저입니다.</span><span>이 페이지의 일기는 샘플입니다. 분석 도구도, 추적 픽셀도, 외부 스크립트도 없습니다.</span></div>
