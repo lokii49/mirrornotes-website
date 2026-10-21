@@ -2,21 +2,24 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="private journal app, AI journaling, offline journal, on-device AI, mood tracking, daily diary, MirrorNotes">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MirrorNotes: бесплатный приватный ИИ-дневник для iPhone</title>
   <meta name="description" content="MirrorNotes: ИИ-дневник, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Gemma 3 на устройстве, ежедневные подсказки, отслеживание настроения. Бесплатно.">
   <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
-  <title>MirrorNotes: бесплатный приватный ИИ-дневник для iPhone</title>
-
+  <meta name="apple-itunes-app" content="app-id=6769007201">
   <meta property="og:title" content="MirrorNotes: приватный ИИ-дневник">
   <meta property="og:description" content="Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Бесплатно.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mirrornotes.org/og-image-v2.png">
   <meta property="og:url" content="https://mirrornotes.org/ru/">
+  <meta property="og:locale" content="ru_RU">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MirrorNotes: приватный ИИ-дневник">
   <meta name="twitter:description" content="Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство.">
@@ -34,1183 +37,727 @@
   <link rel="alternate" hreflang="ko" href="https://mirrornotes.org/ko/">
   <link rel="alternate" hreflang="ru" href="https://mirrornotes.org/ru/">
   <link rel="alternate" hreflang="zh-Hans" href="https://mirrornotes.org/zh/">
-  <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-  <meta name="keywords" content="приватный дневник, ИИ-дневник, офлайн дневник, дневник без интернета, ИИ на устройстве, отслеживание настроения, ежедневник, MirrorNotes">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "MirrorNotes",
     "alternateName": "MirrorNotes: AI Journal",
-    "description": "Дневник с ИИ, который работает полностью на вашем iPhone. Ваши слова никогда не покидают устройство. Ежедневные подсказки, отслеживание настроения и вопросы к дневнику — всё на устройстве с Gemma 3. Бесплатно.",
+    "description": "AI-powered journaling that runs entirely on your iPhone. Your words never leave your device. Daily nudges, mood tracking, and Ask your journal, all on-device.",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "iOS",
     "offers": [
-      {"@type": "Offer","price": "0","priceCurrency": "USD","description": "Всё бесплатно: неограниченные записи, ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения, ежемесячный отчёт"}
+      {"@type": "Offer","name": "Free","price": "0","priceCurrency": "USD","description": "Unlimited entries, full history, search, iCloud backup and your first reflection, forever. Every AI feature is free until 15 November 2026."},
+      {"@type": "Offer","name": "Core","price": "7.99","priceCurrency": "USD","description": "Per month, US price. Daily Reflection, Ask (15 a month), Weekly Digest, widgets. From 15 November 2026; 7-day free trial for new subscribers."},
+      {"@type": "Offer","name": "Deep","price": "11.99","priceCurrency": "USD","description": "Per month, US price. Everything in Core plus unlimited Ask, Monthly Deep Report, Mood Timeline, Mood Alerts. From 15 November 2026; 7-day free trial for new subscribers."}
     ],
-    "url": "https://mirrornotes.org",
+    "url": "https://mirrornotes.org/ru/", "inLanguage": "ru",
     "downloadUrl": "https://apps.apple.com/app/id6769007201",
     "screenshot": "https://mirrornotes.org/og-image-v2.png",
-    "author": {"@type": "Person","name": "Lokesh Pudhari"},
-    "releaseNotes": "Новое приложение, пока бесплатное, пока мы дорабатываем опыт вместе с первыми пользователями."
+    "author": {"@type": "Person","name": "Lokesh Pudhari"}
   }
   </script>
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:         #F2EEF8;
-      --bg-alt:     #EAE4F5;
-      --surface:    #FFFFFF;
-      --surface2:   #F8F5FF;
-      --surface3:   #EDE8FC;
-      --accent:    #6341CC;
-      --accent-lt: #7C5CE4;
-      --accent-tint: rgba(99,65,204,0.07);
-      --red:        #E8432E;
-      --orange:     #DB7F00;
-      --yellow:     #B38600;
-      --green:      #1E9E4C;
-      --blue:       #0A6FDB;
-      --text:       #16112A;
-      --text-2:     #5B5170;
-      --text-3:     #8E85A8;
-      --border:     rgba(22,17,42,0.08);
-      --border-2:   rgba(22,17,42,0.14);
-      --radius-sm:  10px;
-      --radius-md:  20px;
-      --radius-lg:  32px;
+      --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
+      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
+      --text: #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
       --shadow-card: 0 1px 2px rgba(40,24,90,0.05), 0 10px 28px rgba(40,24,90,0.07);
-      --shadow-lift: 0 24px 64px rgba(40,24,90,0.14);
-      --serif: ui-serif, 'New York', 'Iowan Old Style', 'Palatino', Georgia, serif;
-      --mono: 'SF Mono', 'Menlo', ui-monospace, monospace;
+      --glass: rgba(242,238,248,0.78);
+      --serif: ui-serif, 'New York', 'Iowan Old Style', Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --rounded: ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif;
+      --r-entry: 22px; --r-card: 26px;
     }
-    /* app theme: dark */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #08060F;
-        --bg-alt: #0D0A17;
-        --surface: #110E1C;
-        --surface2: #1C1830;
-        --surface3: #241F3D;
-        --accent: #8B6CF0;
-        --accent-lt: #A78BFA;
-        --accent-tint: rgba(139,108,240,0.14);
-        --text: #EDE9F8;
-        --text-2: #A39BC0;
-        --text-3: #7A7098;
-        --border: rgba(237,233,248,0.08);
-        --border-2: rgba(237,233,248,0.16);
+      :root:not([data-theme="light"]) {
+        --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
+        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
+        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+        --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
-        --shadow-lift: 0 24px 64px rgba(0,0,0,0.5);
+        --glass: rgba(8,6,15,0.78);
       }
-      .hv-dot { stroke: var(--bg); }
+    }
+    :root[data-theme="dark"] {
+      --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
+      --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
+      --text: #EDE9F8; --text-2: #A39BC0; --text-3: #7A7098;
+      --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
+      --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
+      --glass: rgba(8,6,15,0.78);
     }
 
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    img { display: block; max-width: 100%; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: 0.15; mix-blend-mode: multiply;
-    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 104px 0; scroll-margin-top: 60px; }
+    h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.06; color: var(--text); text-wrap: balance; }
+    h1 { font-size: clamp(42px, 6.6vw, 76px); }
+    h2 { font-size: clamp(30px, 4.2vw, 48px); margin-bottom: 18px; }
+    .lede { font-size: clamp(17px, 1.6vw, 20px); color: var(--text-2); max-width: 36em; line-height: 1.6; }
+    .lede + .lede { margin-top: 12px; }
+    .intro { max-width: 680px; margin-bottom: 44px; }
 
-    .label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--accent);
-      font-family: var(--mono);
-    }
-    h1 { font-family: var(--serif); font-size: clamp(42px, 7.5vw, 82px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: var(--text); }
-    h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 50px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.12; color: var(--text); }
-    h3 { font-size: clamp(17px, 2.5vw, 22px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; color: var(--text); }
-    p  { color: var(--text-2); line-height: 1.75; }
-
-    /* notebook margin rule — page-length signature */
-    body::after {
-      content: ''; position: fixed; top: 0; bottom: 0;
-      left: clamp(18px, calc((100vw - 1100px) / 2 - 48px), 200px);
-      width: 1px; background: rgba(99,65,204,0.25);
-      box-shadow: 4px 0 0 rgba(99,65,204,0.10);
-      z-index: 1; pointer-events: none;
-    }
-    @media (max-width: 680px) { body::after { display: none; } }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 120px 0; }
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 14px 24px; border-radius: 100px; font-size: 16px; font-weight: 600; transition: background .15s, border-color .15s; }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 10px 28px rgba(99,65,204,0.28); }
+    .btn-accent:hover { background: var(--accent-lt); }
+    .btn-ghost { border: 1px solid var(--border-2); color: var(--text); background: var(--surface); }
+    .btn-ghost:hover { border-color: var(--text-3); }
+    .btn-sm { padding: 9px 16px; font-size: 14px; }
 
     /* nav */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 24px; height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      backdrop-filter: blur(32px) saturate(160%);
-      -webkit-backdrop-filter: blur(32px) saturate(160%);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.01em;
-    }
-    .nav-logo svg { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-2); transition: color 0.2s; }
+    nav { position: sticky; top: 0; z-index: 40; height: 60px; display: flex; align-items: center; background: var(--glass); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid var(--border); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; }
+    .wordmark { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 600; font-size: 19px; }
+    .wordmark img { width: 28px; height: 28px; border-radius: 7px; }
+    .nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 500; color: var(--text-2); }
     .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      display: flex; align-items: center; gap: 7px; padding: 7px 16px;
-      background: var(--accent); border-radius: 100px; font-size: 13px; font-weight: 700;
-      color: #fff !important; transition: opacity 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
 
-    /* hero */
-    #hero {
-      min-height: 100svh; display: flex; align-items: center;
-      padding: 120px 0 80px; position: relative; overflow: hidden;
+    /* ───── app components (seed journal only) ───── */
+    .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+    .week .dow { text-align: center; font-size: 11px; font-weight: 600; color: var(--text-3); font-family: var(--rounded); }
+    .day { aspect-ratio: 1 / 1.05; border-radius: 12px; background: var(--surface3); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text); }
+    .day b { font-size: 17px; font-weight: 700; line-height: 1; } .day span { font-size: 11px; opacity: .8; min-height: 13px; margin-top: 3px; }
+    .day.future { color: var(--text-3); background: var(--surface2); }
+    .day.today { outline: 2px solid var(--text); outline-offset: -2px; }
+    .day.mood { color: rgba(0,0,0,.78); }
+    .month-row { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 6px 8px; font-size: 13px; color: var(--text-3); }
+    .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); }
+    .entry { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 14px; padding: 16px 16px 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); box-shadow: var(--shadow-card); overflow: hidden; text-align: left; }
+    .entry + .entry { margin-top: 12px; }
+    .entry::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--rail, var(--accent)); }
+    .entry .tile { align-self: start; width: 56px; height: 62px; border-radius: 14px; background: var(--tint, var(--surface3)); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .entry .tile b { font-size: 23px; font-weight: 700; line-height: 1; margin-bottom: 4px; } .entry .tile span { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--text-2); font-family: var(--rounded); }
+    .entry .txt { font-size: 16px; line-height: 1.4; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .entry.full .txt { display: block; -webkit-line-clamp: unset; font-family: var(--serif); font-size: 19px; line-height: 1.5; }
+    .entry .meta { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 13px; color: var(--text-3); }
+    .mood-pill { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 100px; background: var(--tint, var(--surface3)); color: var(--text); font-size: 13px; font-weight: 500; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); flex: 0 0 8px; }
+    mark { background: var(--accent-tint); color: inherit; border-radius: 4px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+    .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--r-card); padding: 22px 24px; box-shadow: var(--shadow-card); }
+    .card.accent { border-color: color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: 0 0 0 6px var(--accent-tint), var(--shadow-card); }
+    .card-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--border); margin-bottom: 16px; font-size: 14px; }
+    .card-head .k { display: flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 600; }
+    .card-head .k svg { width: 18px; height: 18px; }
+    .card-head time, .card-head span.t { color: var(--text-3); }
+    .reflection { font-family: var(--serif); font-size: clamp(20px, 2vw, 24px); line-height: 1.45; }
+    .reflection .also { display: block; margin-top: 12px; }
+    .followup { display: inline-block; margin-top: 16px; padding: 10px 16px; border-radius: 100px; border: 1.5px solid color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); font-weight: 600; font-size: 14px; background: var(--surface2); }
+    .digest { display: grid; gap: 12px; }
+    .digest .row { display: grid; grid-template-columns: 88px 1fr; gap: 12px; align-items: baseline; }
+    .digest .row small { font-size: 12px; font-weight: 600; color: var(--text-3); }
+    .digest .row p { font-family: var(--serif); font-size: 17px; line-height: 1.4; }
+    .ask { display: grid; gap: 10px; }
+    .bubble { max-width: 88%; padding: 12px 16px; border-radius: 20px; font-size: 15px; line-height: 1.45; }
+    .bubble.q { justify-self: end; background: var(--accent); color: #fff; border-bottom-right-radius: 6px; }
+    .bubble.a { justify-self: start; background: var(--surface3); border-bottom-left-radius: 6px; }
+    .quotes { display: grid; gap: 6px; margin-top: 6px; padding-left: 4px; font-size: 14px; color: var(--text-2); }
+    .quotes li { list-style: none; font-family: var(--serif); font-style: italic; }
+    .quotes li::before { content: '“'; color: var(--accent); } .quotes li::after { content: '”'; color: var(--accent); }
+    .ask-input { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; padding: 10px 10px 10px 16px; border-radius: 100px; background: var(--surface3); color: var(--text-3); font-size: 15px; }
+    .ask-input .send { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+    .cell .card.has-input { display: flex; flex-direction: column; } .cell .card.has-input .ask { flex: 1; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 13px; font-weight: 500; }
+    .chip.on { background: var(--c); color: var(--on, #fff); }
+
+    /* ───── hero ───── */
+    #hero { padding: 64px 0 40px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+    .hero-copy .today { font-size: 15px; color: var(--text-2); margin-bottom: 18px; }
+    .hero-copy h1 { margin-bottom: 22px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 30px 0 34px; }
+    .proof { display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: 18px 40px; font-size: 14px; color: var(--text-3); }
+    .proof b { display: block; font-size: 17px; color: var(--text); font-weight: 600; font-family: var(--rounded); }
+    .feed { position: relative; max-height: 640px; overflow: hidden; padding: 6px 4px 0; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
+    .sample { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 10px; }
+    .feed .wk-title { text-align: center; margin-bottom: 10px; } .feed .wk-title b { display: block; font-size: 15px; font-weight: 600; } .feed .wk-title span { font-size: 13px; color: var(--text-3); }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } .feed { max-height: 560px; } }
+    /* ───── motion (all of it off under reduced motion) ───── */
+    .entry, .card { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s; }
+    .day { position: relative; transition: transform .18s; }
+    @media (hover: hover) {
+      .entry:hover, .cell .card:hover, .pair .card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(40,24,90,0.06), 0 18px 40px rgba(40,24,90,0.12); }
+      .pair .card.accent:hover { box-shadow: 0 0 0 6px var(--accent-tint), 0 2px 4px rgba(40,24,90,0.06), 0 18px 40px rgba(40,24,90,0.12); }
+      .day.mood:hover { transform: scale(1.08); z-index: 2; }
+      .day[data-tip]:hover::after { content: attr(data-tip); position: absolute; left: 50%; top: -34px; transform: translateX(-50%); white-space: nowrap; padding: 5px 9px; border-radius: 8px; background: var(--text); color: var(--bg); font-size: 11px; font-weight: 600; pointer-events: none; }
     }
-    .hero-inner { position: relative; z-index: 2; }
-    .hero-viz {
-      position: absolute; z-index: 1; pointer-events: none;
-      right: max(2vw, calc((100vw - 1220px) / 2)); top: 50%;
-      transform: translateY(-50%);
-      width: clamp(300px, 32vw, 460px);
+    mark.draw { background: linear-gradient(var(--accent-tint), var(--accent-tint)) left / 0% 100% no-repeat; transition: background-size .8s cubic-bezier(.2,.8,.2,1); }
+    .in-view mark.draw { background-size: 100% 100%; }
+    .in-view mark.draw.second { transition-delay: .7s; }
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i, 0) * 90ms); }
+    .in-view .reveal { opacity: 1; transform: none; }
+    .in-view .followup.reveal { transition-delay: 1.5s; }
+    .chart .line { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s ease-out .1s; }
+    .in-view .chart .line { stroke-dashoffset: 0; }
+    .chart .pt { opacity: 0; transition: opacity .3s ease; transition-delay: calc(.15s + var(--i, 0) * 80ms); cursor: pointer; }
+    .in-view .chart .pt { opacity: 1; }
+    .chart .pt:hover { r: 9; }
+    .chart-wrap { position: relative; }
+    .tip { position: absolute; z-index: 3; padding: 6px 10px; border-radius: 10px; background: var(--text); color: var(--bg); font-size: 12px; font-weight: 600; white-space: nowrap; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); display: flex; align-items: center; gap: 7px; }
+    .tip .dot { width: 8px; height: 8px; }
+    .tip[hidden] { display: none; }
+    .caret { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: -0.15em; margin-left: 2px; animation: blink 1.1s steps(2, start) infinite; }
+    @keyframes blink { to { visibility: hidden; } }
+    .in-view .chip.pop { animation: pop .45s cubic-bezier(.2,.8,.2,1) both; animation-delay: .6s; }
+    @keyframes pop { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: none; } }
+    .prompt-card blockquote { transition: opacity .25s ease, transform .25s ease; }
+    .prompt-card blockquote.swap { opacity: 0; transform: translateY(6px); }
+    @media (prefers-reduced-motion: no-preference) {
+      .feed .entry { animation: settle .6s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(.2s + var(--i, 0) * 120ms); }
+      .feed .day { animation: pop .4s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(.1s + var(--i, 0) * 50ms); }
+      @keyframes settle { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
     }
-    .hero-viz svg { width: 100%; height: auto; display: block; }
-    .hero-viz .hv-line {
-      stroke-dasharray: 1400; stroke-dashoffset: 1400;
-      animation: drawMark 2.6s 0.5s cubic-bezier(.4,0,.2,1) forwards;
-    }
-    .hero-viz .hv-dot {
-      opacity: 0; transform: scale(0.4); transform-box: fill-box; transform-origin: center;
-      animation: popDot 0.45s cubic-bezier(.34,1.56,.64,1) forwards, vizBreathe 5.2s ease-in-out infinite;
-    }
-    @keyframes vizBreathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.14)} }
-    .hero-viz .hv-label {
-      font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em;
-      fill: var(--text-3); opacity: 0;
-      animation: fadeIn 0.8s 3s forwards;
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @media (max-width: 960px) { .hero-viz { display: none; } }
     @media (prefers-reduced-motion: reduce) {
-      .hero-viz .hv-line { animation: none; stroke-dashoffset: 0; }
-      .hero-viz .hv-dot { animation: none; opacity: 1; transform: scale(1); }
-      .hero-viz .hv-label { animation: none; opacity: 1; }
-    }
-    .hero-date {
-      font-family: var(--mono); font-size: 13px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
-      margin: 26px 0 18px;
-    }
-    @keyframes drawMark { to { stroke-dashoffset: 0; } }
-    @keyframes popDot { to { opacity: 1; transform: scale(1); } }
-    #hero h1 { max-width: 800px; }
-    #hero h1 em { font-style: italic; color: var(--accent); }
-    .hero-sub-head {
-      font-size: clamp(16px, 2.2vw, 20px); max-width: 560px; margin: 26px 0 0;
-      color: var(--text-2); line-height: 1.7;
-    }
-    .hero-privacy-counter {
-      display: flex; align-items: baseline; gap: 10px;
-      margin: 26px 0 40px;
-      font-family: var(--mono); font-size: 13px; color: var(--text-3);
-    }
-    .counter-num {
-      font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;
-      color: #1a8a43; font-family: var(--mono);
-    }
-    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      display: flex; align-items: center; gap: 9px; padding: 14px 26px;
-      background: var(--accent); color: #fff; border-radius: 14px;
-      font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
-      transition: transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 10px 32px rgba(99,65,204,0.30);
-    }
-    .btn-primary:hover { background: var(--accent-lt); transform: translateY(-2px); box-shadow: 0 16px 44px rgba(99,65,204,0.40); }
-    .btn-primary svg { width: 20px; height: 20px; }
-    .btn-ghost {
-      display: flex; align-items: center; gap: 8px; padding: 14px 22px;
-      border: 1px solid var(--border-2); border-radius: 14px;
-      font-size: 15px; font-weight: 500; color: var(--text-2);
-      transition: border-color 0.2s, color 0.2s, transform 0.15s;
-    }
-    .btn-ghost:hover { border-color: rgba(22,17,42,0.3); color: var(--text); transform: translateY(-1px); }
-    .hero-proof {
-      margin-top: 56px; display: flex; align-items: center;
-      gap: 28px; flex-wrap: wrap;
-    }
-    .hero-proof-item .pn { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; font-family: var(--mono); }
-    .hero-proof-item .pl { font-size: 12px; color: var(--text-3); margin-top: 2px; }
-    .proof-sep { width: 1px; height: 32px; background: var(--border-2); }
-
-    /* section header */
-    .section-header { text-align: left; margin-bottom: 64px; }
-    .section-header .label { margin-bottom: 14px; display: block; }
-    .section-header h2 { margin-bottom: 16px; }
-    .section-header p { max-width: 560px; margin: 0; font-size: 18px; }
-
-    /* privacy claim */
-    #privacy-claim { padding: 80px 0; background: var(--bg-alt); }
-    .claim-inner { max-width: 900px; margin: 0 auto; text-align: center; padding: 0 24px; }
-    .claim-tag {
-      display: inline-block;
-      font-family: var(--mono); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
-    }
-    .claim-inner blockquote {
-      font-family: var(--serif); font-size: clamp(22px, 3.5vw, 40px); font-weight: 700;
-      letter-spacing: -0.015em; line-height: 1.25; color: var(--text);
-    }
-    .claim-inner blockquote em { font-style: italic; color: var(--accent); }
-    .claim-sub { margin-top: 20px; font-size: 17px; max-width: 560px; margin: 20px auto 0; color: var(--text-2); }
-    .arch-strip {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; margin: 48px auto 0; max-width: 680px; flex-wrap: wrap;
-    }
-    .arch-node {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border);
-      background: var(--surface); min-width: 100px; text-align: center;
-      box-shadow: var(--shadow-card);
-    }
-    .arch-node-icon { color: var(--text-2); display: flex; }
-    .arch-node.device .arch-node-icon { color: var(--green); }
-    .arch-node.cloud-blocked .arch-node-icon { color: var(--accent); }
-    .arch-node-label { font-size: 12px; font-weight: 600; color: var(--text-2); }
-    .arch-node-sub { font-size: 10px; color: var(--text-3); }
-    .arch-arrow { width: 48px; display: flex; align-items: center; justify-content: center; color: var(--text-3); font-size: 18px; flex-shrink: 0; }
-    .arch-arrow.blocked { color: var(--accent); }
-    .arch-node.device { border-color: rgba(30,158,76,0.3); background: rgba(30,158,76,0.05); }
-    .arch-node.cloud-blocked {
-      border-color: rgba(99,65,204,0.2); background: rgba(99,65,204,0.03);
-      opacity: 0.55; position: relative;
-    }
-    .arch-node.cloud-blocked::after {
-      content: '\2715'; position: absolute; top: -8px; right: -8px;
-      width: 20px; height: 20px; border-radius: 50%;
-      background: var(--accent); color: white; font-size: 10px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
+      .entry, .card, .day, mark.draw, .reveal, .chart .line, .chart .pt, .prompt-card blockquote { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; } mark.draw { background-size: 100% 100%; } .chart .line { stroke-dashoffset: 0; } .chart .pt { opacity: 1; }
+      .caret { animation: none; } .in-view .chip.pop { animation: none; }
     }
 
-    /* bento */
-    #features { padding: 120px 0; }
-    .bento { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    .bento-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 28px; overflow: hidden;
-      position: relative; transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-      box-shadow: var(--shadow-card);
-    }
-    .bento-card:hover { border-color: var(--border-2); transform: translateY(-3px); box-shadow: var(--shadow-lift); }
-    .bento-card.wide { grid-column: span 2; }
-    .card-dot {
-      display: block; width: 10px; height: 10px; border-radius: 50%;
-      margin-bottom: 18px;
-    }
-    .cd-red   { background:#FF453A; }
-    .cd-orange{ background:#FF9F0A; }
-    .cd-yellow{ background:#E0B000; }
-    .cd-green { background:#30D158; }
-    .cd-blue  { background:#0A84FF; }
-    .bento-card h3 { margin-bottom: 8px; }
-    .bento-card p  { font-size: 14px; line-height: 1.7; }
+    /* ───── you wrote ───── */
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    .pair .lead-in { font-size: 13px; color: var(--text-3); margin-bottom: 10px; padding-left: 6px; }
+    @media (max-width: 860px) { .pair { grid-template-columns: 1fr; } }
+    .fine { margin-top: 26px; font-size: 15px; color: var(--text-2); max-width: 60em; }
 
-    /* card stats (fills wide cards without a preview widget) */
-    .card-stats { display: flex; gap: 28px; margin-top: 24px; flex-wrap: wrap; }
-    .card-stat { display: flex; flex-direction: column; gap: 2px; }
-    .cs-num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); font-family: var(--mono); }
-    .cs-label { font-size: 12px; color: var(--text-3); }
+    /* ───── architecture ───── */
+    .arch { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 16px; max-width: 920px; }
+    .node { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px 18px 22px; text-align: center; box-shadow: var(--shadow-card); }
+    .node svg { width: 28px; height: 28px; margin: 0 auto 10px; color: var(--text-2); }
+    .node b { display: block; font-size: 17px; font-weight: 600; } .node small { display: block; color: var(--text-3); font-size: 13px; margin-top: 3px; }
+    .node.ok svg { color: #1E9E4C; }
+    .node.off { opacity: .5; } .node.off b { text-decoration: line-through; }
+    .arch .link { color: var(--text-3); font-size: 20px; }
+    @media (max-width: 640px) { .arch { grid-template-columns: 1fr; justify-items: center; } .arch .link { transform: rotate(90deg); } .node { width: 100%; max-width: 320px; } }
 
-    /* tag row (small architecture facts) */
-    .tag-row { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
-    .tag-chip {
-      font-size: 12px; font-weight: 600; color: var(--text-2);
-      padding: 6px 12px; border-radius: 100px; background: var(--surface2); border: 1px solid var(--border);
-    }
+    /* ───── features ───── */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .cell { grid-column: span 6; display: flex; flex-direction: column; gap: 14px; }
+    .cell.third { grid-column: span 4; }
+    .cell > h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cell > p { color: var(--text-2); font-size: 15px; max-width: 34em; }
+    .cell .card { flex: 1; }
+    @media (max-width: 900px) { .cell, .cell.third { grid-column: span 12; } }
+    .composer .when { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); font-family: var(--rounded); margin-bottom: 12px; }
+    .composer p { font-family: var(--serif); font-size: 18px; line-height: 1.5; margin-bottom: 16px; }
+    .composer .toolbar { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-3); }
+    .composer .toolbar span + span { margin-left: 12px; }
+    .chart { width: 100%; height: auto; display: block; }
+    .chart .grid-line { stroke: var(--border-2); stroke-width: 1; }
+    .chart .line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+    .chart .pt { stroke: var(--surface); stroke-width: 2.5; }
+    .mostly { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 100px; background: var(--surface3); color: var(--text); font-size: 13px; font-weight: 500; }
+    .chart text { font-family: var(--sans); font-size: 11px; fill: var(--text-3); }
+    .chart .lbl { font-size: 12px; fill: var(--text-2); font-weight: 500; }
+    .plain-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 32px; margin-top: 44px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .plain-list b { display: block; font-size: 16px; margin-bottom: 4px; } .plain-list p { font-size: 14px; color: var(--text-2); }
+    @media (max-width: 760px) { .plain-list { grid-template-columns: 1fr; gap: 18px; } }
+    .brain .card { padding: 0; overflow: hidden; display: flex; min-height: 280px; position: relative; background: #141418; border-color: rgba(237,233,248,0.1); }
+    .brain .card canvas { flex: 1; min-height: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .brain .card img { flex: 1; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+    .brain .card .tip { background: #EDE9F8; color: #16112A; }
+    .brain .legend { position: absolute; left: 14px; bottom: 12px; display: flex; gap: 12px; font-size: 11px; color: rgba(237,233,248,0.7); pointer-events: none; }
+    .brain .legend span { display: inline-flex; align-items: center; gap: 5px; }
 
-    /* nudge preview */
-    .nudge-preview {
-      margin-top: 20px; padding: 14px 16px;
-      background: var(--accent-tint); border: 1px solid rgba(99,65,204,0.14); border-radius: 12px;
-    }
-    .nudge-preview-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-    .nudge-preview-text { font-size: 13px; color: var(--text); line-height: 1.55; transition: opacity 0.4s; }
+    /* ───── journey ───── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .step { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+    .step .day { width: 56px; aspect-ratio: auto; height: 62px; border-radius: 14px; }
+    .step .day b { font-size: 20px; } .step .day span { font-size: 10px; letter-spacing: .06em; font-weight: 700; font-family: var(--rounded); }
+    .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; } .step p { font-size: 14px; color: var(--text-2); }
+    @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } } @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 
-    /* ask preview */
-    .ask-preview { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
-    .ask-q { font-size: 13px; color: var(--text-3); padding: 10px 14px; background: var(--surface2); border-radius: 10px 10px 3px 10px; }
-    .ask-a { font-size: 13px; color: var(--text); padding: 10px 14px; background: var(--accent-tint); border: 1px solid rgba(99,65,204,0.1); border-radius: 3px 10px 10px 10px; line-height: 1.55; }
+    /* ───── prompts ───── */
+    .prompt-card { padding: 36px 40px; }
+    .prompt-card blockquote { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; min-height: 3.4em; }
+    .prompt-nav { display: flex; align-items: center; gap: 14px; margin-top: 22px; font-size: 14px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .prompt-nav .arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-2); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-2); background: var(--surface); }
+    .prompt-nav .btn { margin-left: auto; }
 
-    /* mood bar */
-    .mood-bar { margin-top: 20px; display: flex; gap: 3px; align-items: flex-end; height: 48px; }
-    .mood-bar-col { flex: 1; border-radius: 4px 4px 0 0; min-height: 8px; transition: height 1.2s ease; }
+    /* ───── pricing ───── */
+    .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+    .tier { display: flex; flex-direction: column; }
+    .tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .tier-head h3 { font-size: 20px; font-weight: 600; }
+    .tier .amount { font-family: var(--serif); font-size: 34px; letter-spacing: -0.02em; line-height: 1; }
+    .tier .amount small { font-family: var(--sans); font-size: 13px; color: var(--text-3); letter-spacing: 0; margin-left: 2px; }
+    .tier-sub { color: var(--text-3); font-size: 14px; margin-top: 6px; }
+    .checks { margin: 16px 0 18px; padding: 0; flex: 1; }
+    .checks li { list-style: none; display: flex; gap: 10px; padding: 6px 0; font-size: 15px; color: var(--text-2); }
+    .checks li::before { content: '✓'; color: #1E9E4C; font-weight: 700; flex: 0 0 auto; }
+    .tier .btn { align-self: flex-start; }
+    .tier-note { font-size: 14px; color: var(--text-2); padding: 10px 14px; border-radius: 12px; background: var(--surface3); align-self: flex-start; }
+    .store-pick select { font: inherit; font-weight: 600; color: var(--accent); background: transparent; border: 0; border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); padding: 0 2px 1px; max-width: 14em; cursor: pointer; }
+    .store-pick select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    .why { margin-top: 44px; max-width: 760px; }
+    .why h3 { font-size: 19px; font-weight: 600; margin-bottom: 10px; } .why p { color: var(--text-2); font-size: 15px; margin-bottom: 14px; line-height: 1.6; }
+    .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
+    @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
-    /* journey */
-    #journey { padding: 120px 0; background: var(--bg-alt); }
-    .journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; max-width: 960px; margin: 0 auto; }
-    .journey-step {
-      padding: 32px 24px;
-      border: 1px solid var(--border); background: var(--surface);
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .journey-step:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
-    .journey-step:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
-    .journey-step.unlocked { background: var(--accent-tint); border-color: rgba(99,65,204,0.3); }
-    .journey-day {
-      font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--text-3); font-family: var(--mono); margin-bottom: 10px;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .journey-day::before {
-      content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border-2); flex-shrink: 0;
-    }
-    .journey-step.unlocked .journey-day { color: var(--accent); }
-    .journey-step.unlocked:nth-child(3) .journey-day::before { background: #FF9F0A; }
-    .journey-step.unlocked:nth-child(4) .journey-day::before { background: #30D158; }
-    .journey-step h3 { font-size: 16px; margin-bottom: 8px; }
-    .journey-step p { font-size: 13px; line-height: 1.65; }
-    .journey-unlock-badge {
-      display: inline-block; margin-top: 12px; padding: 4px 10px;
-      background: rgba(99,65,204,0.08); border: 1px solid rgba(99,65,204,0.2);
-      border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--accent);
-    }
-
-    /* prompts */
-    #prompts { padding: 100px 0; }
-    .prompts-inner { max-width: 720px; margin: 0; text-align: left; }
-    .prompt-display {
-      margin: 40px 0 28px; padding: 40px 48px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); position: relative; min-height: 120px;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow-card);
-    }
-    .prompt-display::before {
-      content: '\201C'; position: absolute; top: 16px; left: 24px;
-      font-size: 60px; line-height: 1; color: var(--accent); font-family: Georgia, serif; opacity: 0.35;
-    }
-    .prompt-text {
-      font-family: var(--serif); font-style: italic;
-      font-size: clamp(19px, 2.6vw, 26px); font-weight: 500;
-      letter-spacing: -0.01em; line-height: 1.45; color: var(--text); transition: opacity 0.3s ease;
-    }
-    .prompt-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .prompt-nav {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border-2); background: var(--surface);
-      color: var(--text-2); cursor: pointer; font-size: 16px;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, color 0.2s;
-    }
-    .prompt-nav:hover { background: var(--surface2); color: var(--text); }
-    .prompt-idx { font-size: 13px; color: var(--text-3); font-family: 'SF Mono', monospace; min-width: 48px; text-align: center; }
-    .prompt-try-btn {
-      padding: 10px 20px; border-radius: 100px;
-      background: var(--accent); color: white; font-size: 14px; font-weight: 600;
-      cursor: pointer; border: none; transition: background 0.2s, transform 0.15s; text-decoration: none; display: inline-block;
-    }
-    .prompt-try-btn:hover { background: var(--accent-lt); transform: translateY(-1px); }
-
-    /* social proof */
-    #proof { padding: 80px 0; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .proof-card {
-      padding: 28px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-md); display: flex; flex-direction: column; gap: 16px;
-      transition: border-color 0.2s, box-shadow 0.2s; box-shadow: var(--shadow-card);
-    }
-    .proof-card:hover { border-color: var(--border-2); box-shadow: var(--shadow-lift); }
-    .proof-stars { display: flex; gap: 3px; }
-    .proof-star { color: var(--yellow); font-size: 14px; }
-    .proof-quote { font-size: 14px; color: var(--text); line-height: 1.7; flex: 1; }
-    .proof-author { font-size: 12px; color: var(--text-3); font-weight: 600; }
-    .proof-editorial {
-      grid-column: 1 / -1; padding: 20px 28px;
-      background: rgba(219,127,0,0.05); border: 1px solid rgba(219,127,0,0.2);
-      border-radius: var(--radius-md); display: flex; align-items: center; gap: 16px;
-    }
-    .proof-editorial-badge {
-      padding: 6px 14px; background: rgba(219,127,0,0.1); border-radius: 100px;
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--orange); flex-shrink: 0;
-    }
-    .proof-editorial-text { font-size: 14px; color: var(--text-2); }
-    .proof-editorial-text strong { color: var(--text); }
-
-    /* pricing */
-    #pricing { padding: 120px 0; }
-    .pricing-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 32px;
-      display: flex; flex-direction: column; gap: 22px; transition: transform 0.2s;
-      box-shadow: var(--shadow-card);
-    }
-    .pricing-card:hover { transform: translateY(-2px); }
-    .pricing-card.popular {
-      background: linear-gradient(160deg, rgba(99,65,204,0.06) 0%, var(--surface) 60%);
-      border-color: rgba(99,65,204,0.35); position: relative;
-      box-shadow: var(--shadow-lift);
-    }
-    .popular-badge {
-      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-      background: var(--accent); color: white; font-size: 11px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 16px; border-radius: 100px;
-    }
-    .pricing-header h3 { margin-bottom: 4px; }
-    .pricing-price { display: flex; align-items: baseline; gap: 3px; }
-    .pricing-price .amount { font-size: 40px; font-weight: 800; letter-spacing: -0.04em; }
-    .pricing-price .period { font-size: 14px; color: var(--text-3); }
-    .pricing-price .free-tag { font-size: 40px; font-weight: 800; color: var(--accent); }
-    .pricing-alt { font-size: 12px; color: var(--text-3); margin-top: -10px; }
-    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 9px; flex: 1; }
-    .pricing-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-2); }
-    .pricing-features li .ck {
-      flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%;
-      background: rgba(30,158,76,0.10); border: 1px solid rgba(30,158,76,0.3);
-      color: var(--green);
-      display: flex; align-items: center; justify-content: center; font-size: 9px; margin-top: 1px;
-    }
-    .pricing-features li .xk {
-      flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%;
-      background: var(--surface2); border: 1px solid var(--border-2);
-      display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text-3); margin-top: 1px;
-    }
-    .pricing-features li.muted { color: var(--text-3); }
-    .pricing-cta {
-      display: block; text-align: center; padding: 12px; border-radius: var(--radius-sm);
-      font-size: 15px; font-weight: 700; transition: transform 0.15s, background 0.2s;
-    }
-    .cta-primary { background: var(--accent); color: white; }
-    .cta-primary:hover { background: var(--accent-lt); transform: translateY(-1px); }
-    .cta-outline { border: 1px solid var(--border-2); color: var(--text-2); }
-    .cta-outline:hover { border-color: rgba(22,17,42,0.3); color: var(--text); transform: translateY(-1px); }
-    .trial-note { text-align: left; font-size: 13px; color: var(--text-3); margin-top: 24px; }
-    .trial-note strong { color: var(--text-2); }
-    .pricing-layout {
-      display: grid; grid-template-columns: 400px 1fr; gap: 56px;
-      align-items: start; max-width: 960px;
-    }
-    .pricing-why h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 14px; }
-    .pricing-why > p { font-size: 15px; max-width: 480px; }
-    .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
-    .why-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; color: var(--text-2); line-height: 1.65; max-width: 480px; }
-    .why-list strong { color: var(--text); }
-    .why-dot { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; }
-    @media (max-width: 960px) {
-      .pricing-layout { grid-template-columns: 1fr; gap: 40px; max-width: 480px; }
-    }
-
-    /* final cta */
-    #final-cta { padding: 100px 0; }
-    .final-cta-inner { max-width: 1100px; margin: 0 auto; text-align: left; padding: 0 24px; }
-    .final-cta-inner h2 { margin-bottom: 20px; }
-    .final-cta-inner p { font-size: 18px; max-width: 560px; margin: 0 0 40px; }
-    .final-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-
-    /* footer */
-    footer { border-top: 1px solid var(--border); padding: 60px 0 48px; }
-    .footer-inner { display: flex; flex-direction: column; gap: 40px; }
-    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
-    .footer-brand .nav-logo { margin-bottom: 12px; }
-    .footer-brand p { font-size: 13px; color: var(--text-3); max-width: 260px; }
-    .footer-links { display: flex; gap: 56px; flex-wrap: wrap; }
-    .footer-link-group h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
-    .footer-link-group ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-link-group a { font-size: 13px; color: var(--text-2); transition: color 0.2s; }
-    .footer-link-group a:hover { color: var(--text); }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
-    .footer-bottom p { font-size: 12px; color: var(--text-3); }
-
-    .menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px 8px; font-size: 22px; line-height: 1; }
-    .lang-switch { position: relative; margin-left: 6px; }
-    .lang-switch summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 100px; border: 1px solid var(--border-2); font-size: 12px; font-weight: 700; color: var(--text-2); transition: border-color 0.2s, color 0.2s; }
-    .lang-switch summary::-webkit-details-marker { display: none; }
-    .lang-switch summary:hover, .lang-switch[open] summary { border-color: rgba(22,17,42,0.3); color: var(--text); }
-    .lang-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 200; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow-lift); padding: 6px; display: flex; flex-direction: column; min-width: 150px; }
-    .lang-menu a { padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-2); }
-    .lang-menu a:hover { background: var(--surface2); color: var(--text); }
-    .lang-menu a.active { color: var(--accent); font-weight: 700; }
-    .mobile-lang-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0 4px; }
-    .mobile-lang-row a { font-size: 12px; font-weight: 600; color: var(--text-2); padding: 5px 10px; border: 1px solid var(--border-2); border-radius: 100px; }
-    .mobile-lang-row a.active { color: var(--accent); border-color: rgba(99,65,204,0.35); }
-    @media (max-width: 680px) { .lang-switch { display: none; } }
-    .mobile-menu {
-      display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 99;
-      background: var(--bg); border-bottom: 1px solid var(--border-2);
-      padding: 8px 24px 20px; flex-direction: column;
-      box-shadow: 0 16px 32px rgba(40,24,90,0.08);
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      padding: 15px 0; font-size: 16px; font-weight: 500; color: var(--text);
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu .mobile-menu-cta {
-      margin-top: 14px; padding: 13px; text-align: center;
-      background: var(--accent); color: #fff; border-radius: 12px; font-weight: 700;
-    }
-    @media (min-width: 681px) { .mobile-menu { display: none !important; } }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 960px) {
-      .bento { grid-template-columns: 1fr 1fr; }
-      .bento-card.wide { grid-column: span 1; }
-      .journey-steps { grid-template-columns: 1fr 1fr; }
-      .proof-grid { grid-template-columns: 1fr 1fr; }
-      .proof-editorial { grid-column: span 2; }
-    }
-    @media (max-width: 680px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-      .bento { grid-template-columns: 1fr; }
-      .journey-steps { grid-template-columns: 1fr; }
-      .journey-step { border-radius: var(--radius-sm) !important; }
-      .proof-grid { grid-template-columns: 1fr; }
-      .proof-editorial { grid-column: span 1; flex-direction: column; gap: 10px; }
-      section { padding: 80px 0; }
-      h1 { font-size: 38px; }
-      h2 { font-size: 28px; }
-      .prompt-display { padding: 28px 24px; }
-      .footer-links { gap: 28px; }
-      .arch-strip { flex-direction: column; }
-      .arch-arrow { transform: rotate(90deg); }
-    }
+    /* ───── final + footer ───── */
+    #final { text-align: center; }
+    #final h2 { max-width: 16em; margin: 0 auto 16px; }
+    #final .lede { margin: 0 auto 30px; }
+    footer { padding: 48px 0 40px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-2); }
+    .foot-grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 28px; margin-bottom: 36px; }
+    .foot-grid h4 { font-size: 12px; font-weight: 700; color: var(--text-3); margin-bottom: 12px; letter-spacing: .04em; }
+    .foot-grid a { display: block; padding: 4px 0; } .foot-grid a:hover { color: var(--text); }
+    .foot-grid p { max-width: 24em; margin-top: 10px; color: var(--text-3); }
+    .foot-langs { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--border); margin-bottom: 18px; font-size: 14px; }
+    .foot-langs span { color: var(--text-3); font-size: 12px; font-weight: 700; margin-right: 6px; }
+    .foot-langs a[aria-current="true"] { color: var(--text); font-weight: 600; }
+    .foot-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--text-3); }
+    @media (max-width: 800px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav>
-    <a href="/ru/" class="nav-logo">
-      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="nb" cx="50%" cy="44%" r="72%">
-            <stop offset="0%" stop-color="#5C1520"/><stop offset="58%" stop-color="#360C12"/><stop offset="100%" stop-color="#160408"/>
-          </radialGradient>
-          <linearGradient id="nc" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7A1E2A"/><stop offset="100%" stop-color="#3A0C14"/>
-          </linearGradient>
-        </defs>
-        <rect width="1024" height="1024" fill="url(#nb)"/>
-        <g transform="translate(512,512) scale(1.375) translate(-549,-516)">
-          <rect x="357" y="252" width="366" height="528" rx="22" fill="url(#nc)"/>
-          <g stroke-linecap="round" stroke-width="5" opacity="0.92">
-            <line x1="455" y1="588" x2="455" y2="443" stroke="#FF453A"/>
-            <line x1="455" y1="443" x2="540" y2="528" stroke="#FF9F0A"/>
-            <line x1="540" y1="528" x2="625" y2="443" stroke="#FFD60A"/>
-            <line x1="625" y1="443" x2="625" y2="588" stroke="#30D158"/>
-          </g>
-          <circle cx="455" cy="588" r="21" fill="#FF453A"/>
-          <circle cx="455" cy="443" r="21" fill="#FF9F0A"/>
-          <circle cx="540" cy="528" r="21" fill="#FFD60A"/>
-          <circle cx="625" cy="443" r="21" fill="#30D158"/>
-          <circle cx="625" cy="588" r="21" fill="#0A84FF"/>
-        </g>
-      </svg>
-      MirrorNotes
-    </a>
-    <ul class="nav-links">
-      <li><a href="#features">Функции</a></li>
-      <li><a href="#prompts">Попробовать подсказку</a></li>
-      <li><a href="#pricing">Цены</a></li>
-      <li><a href="../privacy.html">Конфиденциальность</a></li>
-    </ul>
-    <a href="https://apps.apple.com/app/id6769007201" class="nav-cta nav-links" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Скачать
-    </a>
-    <details class="lang-switch">
-      <summary>RU &#9662;</summary>
-      <div class="lang-menu">
-        <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
-        <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
-        <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
-        <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
-        <a href="/it/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Italiano</a>
-        <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
-        <a href="/ja/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">日本語</a>
-        <a href="/ko/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">한국어</a>
-        <a href="/ru/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
-        <a href="/zh/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">中文</a>
-      </div>
-    </details>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#features">Функции</a>
-    <a href="#prompts">Попробовать подсказку</a>
-    <a href="#pricing">Цены</a>
-    <a href="../privacy.html">Конфиденциальность</a>
-    <div class="mobile-lang-row">
-      <a href="/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">English</a>
-      <a href="/es/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Español</a>
-      <a href="/fr/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Français</a>
-      <a href="/de/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Deutsch</a>
-      <a href="/it/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Italiano</a>
-      <a href="/pt/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Português</a>
-      <a href="/ja/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">日本語</a>
-      <a href="/ko/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">한국어</a>
-      <a href="/ru/" class="active" aria-current="page" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">Русский</a>
-      <a href="/zh/" onclick="try{localStorage.setItem('mn-lang-redirected','1')}catch(e){}">中文</a>
-    </div>
-    <a href="https://apps.apple.com/app/id6769007201" class="mobile-menu-cta" target="_blank" rel="noopener">Скачать бесплатно в App Store</a>
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a>
+    <div class="nav-links"><a href="#reflection">Как это работает</a><a href="#features">Возможности</a><a href="#prompts">Попробовать вопрос</a><a href="#pricing">Цены</a><a href="/ru/privacy.html">Приватность</a></div>
+    <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Скачать приложение</a>
   </div>
+</nav>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="hero-viz" aria-hidden="true">
-      <svg viewBox="0 0 440 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="hv-line" d="M40 430 L105 470 L170 330 L235 370 L300 220 L365 160 L410 250"
-              stroke="#8B8D90" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <g filter="url(#hv-shadow)">
-          <circle class="hv-dot" style="animation-delay:1.4s,3.6s" cx="40"  cy="430" r="12" fill="#FF453A" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:1.65s,4.1s" cx="105" cy="470" r="10" fill="#FF9F0A" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:1.9s,4.6s" cx="170" cy="330" r="11" fill="#E0B000" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:2.15s,5.1s" cx="235" cy="370" r="10" fill="#FF9F0A" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:2.4s,5.6s" cx="300" cy="220" r="13" fill="#30D158" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:2.65s,6.1s" cx="365" cy="160" r="12" fill="#30D158" stroke="#F2EEF8" stroke-width="4"/>
-          <circle class="hv-dot" style="animation-delay:2.9s,6.6s" cx="410" cy="250" r="11" fill="#0A84FF" stroke="#F2EEF8" stroke-width="4"/>
-        </g>
-        <text class="hv-label" x="40"  y="466" text-anchor="middle">пн</text>
-        <text class="hv-label" x="300" y="196" text-anchor="middle">пт</text>
-        <text class="hv-label" x="410" y="286" text-anchor="middle">вс</text>
-        <defs>
-          <filter id="hv-shadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#16181A" flood-opacity="0.15"/>
-          </filter>
-        </defs>
-      </svg>
-    </div>
-    <div class="container hero-inner">
-    <div class="hero-date" id="hero-date">Сегодня</div>
-    <h1>Дневник,<br><em>который слушает приватно.</em></h1>
-    <p class="hero-sub-head">Пишите что угодно. ИИ, который отражает ваши мысли, живёт прямо на вашем iPhone. Не на чужом сервере. Не в дата-центре. Нигде, куда могли бы утечь ваши слова.</p>
-    <div class="hero-privacy-counter">
-      <span>байт отправлено на сервер, пока вы пишете &#8594;</span>
-      <span class="counter-num">0</span>
-    </div>
-    <div class="hero-actions">
-      <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Скачать бесплатно в App Store
-      </a>
-      <a href="#features" class="btn-ghost">Посмотреть, как это работает &#8594;</a>
-    </div>
-    <div class="hero-proof">
-      <div class="hero-proof-item">
-        <div class="pn" style="color:var(--accent)">&#8734;</div>
-        <div class="pl">Бесплатные записи навсегда</div>
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="today" data-today></p>
+      <h1>Дневник, который слушает наедине.</h1>
+      <p class="lede">Пишите что угодно. ИИ, который отражает написанное, живёт на вашем iPhone. Не на чужом сервере. Не в дата-центре. Нигде, куда могли бы уйти ваши слова.</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Скачать бесплатно в App Store</a>
+        <a class="btn btn-ghost" href="#reflection">Посмотреть, как это работает</a>
       </div>
-      <div class="proof-sep"></div>
-      <div class="hero-proof-item">
-        <div class="pn" style="color:var(--green)">0</div>
-        <div class="pl">Байт на любой сервер</div>
-      </div>
-      <div class="proof-sep"></div>
-      <div class="hero-proof-item">
-        <div class="pn" style="color:var(--blue);font-size:20px">Gemma 3</div>
-        <div class="pl">На устройстве · 1 млрд параметров · локально</div>
-      </div>
-      <div class="proof-sep"></div>
-      <div class="hero-proof-item">
-        <div class="pn" style="color:var(--orange);font-size:18px">Редакция</div>
-        <div class="pl">Номинация Apple</div>
+      <div class="proof">
+        <div><b>Без ограничений</b>бесплатные записи, навсегда</div>
+        <div><b>0 байт</b>отправлено на какой-либо сервер</div>
+        <div><b>ИИ на устройстве</b>Apple Foundation Models, запасной вариант Gemma 3</div>
+        <div><b>Editorial</b>номинация Apple</div>
       </div>
     </div>
+    <div class="feed" aria-label="Неделя-пример в MirrorNotes">
+      <div class="wk-title"><span class="sample">Дневник-пример</span><b data-week-title></b><span data-week-sub></span></div>
+      <div class="week" data-week></div>
+      <div class="month-row"><b data-month></b><span data-month-count></span></div>
+      <div data-feed></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Privacy Architecture -->
-  <section id="privacy-claim">
-    <div class="container">
-      <div class="claim-inner reveal">
-        <div class="claim-tag">Не политика. Архитектура.</div>
-        <blockquote>Текст вашего дневника <em>не может</em> покинуть телефон.<br>Отправлять его попросту некуда.</blockquote>
-        <p class="claim-sub">Мы не стали писать политику конфиденциальности вокруг облачного ИИ. Мы просто убрали облако. Gemma 3 работает на Neural Engine вашего iPhone — том же чипе, что отвечает за Face ID. Ни одного сетевого запроса. Перехватывать нечего.</p>
-        <div class="arch-strip">
-          <div class="arch-node device">
-            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg></div>
-            <div class="arch-node-label">Ваш iPhone</div>
-            <div class="arch-node-sub">Дневник + Gemma 3</div>
-          </div>
-          <div class="arch-arrow">&#8594;</div>
-          <div class="arch-node device">
-            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18.5H7a4 4 0 1 1 .6-7.95 5.5 5.5 0 0 1 10.6 1.6 3.2 3.2 0 0 1-.7 6.35z"/></svg></div>
-            <div class="arch-node-label">Ваш iCloud</div>
-            <div class="arch-node-sub">Приватно для вас</div>
-          </div>
-          <div class="arch-arrow blocked">&#10005;</div>
-          <div class="arch-node cloud-blocked">
-            <div class="arch-node-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg></div>
-            <div class="arch-node-label">Любой сервер</div>
-            <div class="arch-node-sub">Не задействован</div>
-          </div>
-        </div>
+<section id="reflection">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Каждое размышление начинается с фразы, которую написали вы.</h2>
+      <p class="lede">Слово в слово, в кавычках. Потом одна строка о том, как читается день. Не пересказ и не догадки о вашей жизни.</p>
+    </div>
+    <div class="pair" data-reveal>
+      <div>
+        <p class="lead-in">Запись-пример</p>
+        <div data-entry-full></div>
+      </div>
+      <div>
+        <p class="lead-in">Её размышление, тем же утром</p>
+        <article class="card accent">
+          <div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/></svg>Размышление дня</span><time data-reflection-time></time></div>
+          <p class="reflection" data-reflection></p>
+          <span class="followup reveal" data-followup></span>
+        </article>
       </div>
     </div>
-  </section>
+    <p class="fine">Прежде чем показать размышление, приложение проверяет, что процитированная фраза действительно есть в записи. Если её нет, вы честно увидите это вместо выдуманных подробностей. На iPhone с Apple Intelligence это работает на Foundation Models от Apple, на всех остальных поддерживаемых iPhone — на встроенной модели Gemma 3. И то и другое на телефоне, ничего онлайн.</p>
+  </div>
+</section>
 
-  <!-- Features Bento -->
-  <section id="features">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Функции</div>
-        <h2>ИИ, который знает вас.<br>И остаётся с вами.</h2>
-        <p>Сфокусированный набор инструментов вокруг единственной вещи, которая делает дневник рабочим: честности. Всё — на устройстве.</p>
+<section id="privacy">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Текст вашего дневника не может покинуть телефон. Нет сервера, куда его отправить.</h2>
+      <p class="lede">Мы не писали политику приватности вокруг облачного ИИ. Мы убрали облако целиком. Модель работает на чипе вашего iPhone, том самом, на котором работает Face ID. Ни одного сетевого запроса. Нечего перехватывать.</p>
+    </div>
+    <div class="arch">
+      <div class="node ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><circle cx="12" cy="18" r=".6" fill="currentColor"/></svg><b>Ваш iPhone</b><small>Дневник и ИИ на устройстве</small></div>
+      <span class="link">→</span>
+      <div class="node ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M17.5 18.5H7a4 4 0 1 1 .6-7.95 5.5 5.5 0 0 1 10.6 1.6 3.2 3.2 0 0 1-.7 6.35z"/></svg><b>Ваш iCloud</b><small>Приватно, под вашим Apple ID</small></div>
+      <span class="link">✕</span>
+      <div class="node off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><b>Любой сервер</b><small>Недостижим</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="intro">
+      <h2>ИИ, который вас знает. И остаётся с вами.</h2>
+      <p class="lede">Небольшой набор инструментов вокруг единственного, что делает дневник полезным: честности. Всё ниже создаётся на вашем телефоне из ваших собственных записей. Примеры взяты из того же дневника-примера, что и выше.</p>
+    </div>
+    <div class="grid">
+      <div class="cell" data-reveal>
+        <h3>Итоги недели</h3>
+        <p>Каждое воскресенье: сводка вашей недели, собранная только из фраз, которые вы написали. Темы, настроение, нити, к которым стоит вернуться, одно дело на пробу.</p>
+        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/></svg>Итоги недели</span><time data-digest-time></time></div><div class="digest" data-digest></div></article>
       </div>
-      <div class="bento">
-        <div class="bento-card wide reveal" style="transition-delay:0.05s">
-          <span class="card-dot cd-red"></span>
-          <h3>Пишите свободно. Ваши данные остаются свободными.</h3>
-          <p>Неограниченные записи. Без лимита в 30 дней. Без платного доступа к собственной истории. Каждое написанное вами слово останется доступным навсегда. Ваши данные никогда не станут платой за вход.</p>
-          <div class="card-stats">
-            <div class="card-stat"><span class="cs-num">&#8734;</span><span class="cs-label">Записей навсегда</span></div>
-            <div class="card-stat"><span class="cs-num">0</span><span class="cs-label">Дневной лимит</span></div>
-            <div class="card-stat"><span class="cs-num">$0</span><span class="cs-label">За чтение своего прошлого</span></div>
-          </div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.1s">
-          <span class="card-dot cd-orange"></span>
-          <h3>Ежедневная подсказка</h3>
-          <p>Каждое утро — один вопрос, основанный на ваших собственных шаблонах. Не общий вопрос, а что-то замеченное именно в <em>ваших</em> записях.</p>
-          <div class="nudge-preview">
-            <div class="nudge-preview-tag">Подсказка на сегодня</div>
-            <div class="nudge-preview-text" id="rotating-nudge">Вы снова и снова возвращаетесь к слову &laquo;достаточно&raquo;. Как бы это чувствовалось сегодня?</div>
-          </div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.15s">
-          <span class="card-dot cd-yellow"></span>
-          <h3>Спросите свой дневник</h3>
-          <p>Задавайте вопросы своей истории на естественном языке. На устройстве. Мгновенно. Приватно.</p>
-          <div class="ask-preview">
-            <div class="ask-q">Когда я в последний раз чувствовал воодушевление?</div>
-            <div class="ask-a">Три недели назад вы писали о проекте дизайна и о том, что &laquo;наконец-то всё щёлкнуло&raquo;. Слово &laquo;поток&raquo; вы использовали дважды.</div>
-          </div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.2s">
-          <span class="card-dot cd-blue"></span>
-          <h3>Только ИИ на устройстве</h3>
-          <p>Gemma 3 1B работает локально на Neural Engine. Никаких обращений к API. Никаких серверных логов. Настоящая приватность — по архитектуре.</p>
-          <div class="tag-row">
-            <span class="tag-chip">Neural Engine</span>
-            <span class="tag-chip">0 сетевых запросов</span>
-            <span class="tag-chip">1 млрд параметров</span>
-          </div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.25s">
-          <span class="card-dot cd-blue"></span>
-          <h3>Полнотекстовый поиск</h3>
-          <p>Мгновенный поиск по всем записям. Локально. Без сервиса индексации. Всё делает ваш телефон.</p>
-        </div>
-        <div class="bento-card wide reveal" style="transition-delay:0.3s">
-          <span class="card-dot cd-green"></span>
-          <h3>Шкала настроения и еженедельный дайджест</h3>
-          <p>Каждое воскресенье — обзор недели: темы, эмоциональные изменения и мысли, к которым стоит вернуться. Плюс полная шкала настроения, построенная по всем записям. Создаётся на вашем телефоне. Остаётся на вашем телефоне.</p>
-          <div class="mood-bar" id="mood-bar"></div>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.35s">
-          <span class="card-dot cd-orange"></span>
-          <h3>Резервное копирование в iCloud</h3>
-          <p>Записи синхронизируются с <em>вашим</em> iCloud, приватным для вашего Apple ID. У нас нет доступа.</p>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.4s">
-          <span class="card-dot cd-red"></span>
-          <h3>Голосовые записи</h3>
-          <p>Надиктуйте запись. Расшифровка происходит локально. Аудио никуда не отправляется. Идеально для мыслей на ходу.</p>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.45s">
-          <span class="card-dot cd-yellow"></span>
-          <h3>Работает в режиме полёта</h3>
-          <p>ИИ не нуждается в интернете. Пишите и размышляйте где угодно: в самолёте, в домике в лесу, вне зоны покрытия.</p>
-        </div>
-        <div class="bento-card reveal" style="transition-delay:0.5s">
-          <span class="card-dot cd-green"></span>
-          <h3>Никаких аккаунтов</h3>
-          <p>Никакой почты. Никакого пароля. Никакого экрана входа. Взламывать нечего — мы никогда не спрашивали, кто вы.</p>
-        </div>
+      <div class="cell" data-reveal>
+        <h3>Спросите дневник</h3>
+        <p>Спросите простыми словами. Ответ приходит из ваших записей, а фразы, на которые он опирается, показаны ниже.</p>
+        <article class="card has-input"><div class="ask"><div class="bubble q reveal" style="--i:1">Что поднимает мне настроение?</div><div class="bubble a reveal" style="--i:4">Движение и близкие люди. Лёгкие дни идут после утренней пробежки или времени с семьёй, а тяжёлые — после долгих дней со встречами.</div><ul class="quotes reveal" style="--i:8"></ul></div><div class="ask-input" aria-hidden="true"><span>Спросить о дневнике</span><span class="send">↑</span></div></article>
+      </div>
+      <div class="cell third" data-reveal>
+        <h3>Линия настроения</h3>
+        <p>Настроение этой недели одной линией, прочитанное из того, что вы написали. Приложение хранит всю линию, до самой первой записи.</p>
+        <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3-1 4-6 7-6s4 3 6 3 3-5 5-7"/></svg>Настроение недели</span><span class="mostly" data-mostly></span></div><div class="chart-wrap"><div data-chart></div><div class="tip" data-chart-tip hidden></div></div></article>
+      </div>
+      <div class="cell third" data-reveal>
+        <h3>Пишите свободно</h3>
+        <p>Печатайте, диктуйте или вставьте фото. Теги и настроение подсказываются по тексту. Записей без ограничений, без лимита в 30 дней, бесплатно навсегда.</p>
+        <article class="card composer"><div class="when" data-today-upper></div><p>Тихий вечер дома. Пересадила растения на балконе и читала, пока не стемнело. Телефон остался в другой комнате.<span class="caret" aria-hidden="true"></span></p><div class="chips"><span class="chip on pop" style="--c:#81D4FA;--on:rgba(0,0,0,.78)"><span class="dot" style="--c:#81D4FA"></span>Спокойное</span><span class="chip">#дом</span><span class="chip">#вечер</span></div><div class="toolbar"><span>17 слов</span><span>Настроение подсказано по записи</span></div></article>
+      </div>
+      <div class="cell third brain">
+        <h3>Brain View</h3>
+        <p>Созвездие тем, к которым вы возвращаетесь снова и снова, размером с то, как часто они встречаются. Темы из одной записи связаны. В приложении оно вращается в 3D.</p>
+        <article class="card"><canvas data-brain aria-label="Brain View: темы дневника-примера, размер по частоте, связаны, когда встречаются в одной записи" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
     </div>
-  </section>
-
-  <!-- Journey -->
-  <section id="journey">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Как это работает</div>
-        <h2>ИИ, который сначала заслуживает доверие,<br>а потом говорит.</h2>
-        <p>Мы ждём, пока MirrorNotes не прочитает достаточно ваших записей, прежде чем показывать выводы. Никаких слабых догадок в первый день.</p>
-      </div>
-      <div class="journey-steps reveal">
-        <div class="journey-step">
-          <div class="journey-day">День 0</div>
-          <h3>Освойтесь</h3>
-          <p>Три коротких вопроса. Напишите первую запись. Без аккаунта, без почты, без входа.</p>
-        </div>
-        <div class="journey-step">
-          <div class="journey-day">Дни 1&ndash;3</div>
-          <h3>Mirror учится</h3>
-          <p>Пишите свободно. ИИ пока молчит: нам нужно немного сигнала, прежде чем предлагать выводы. Вместо неудачных догадок вы видите спокойный индикатор прогресса.</p>
-        </div>
-        <div class="journey-step unlocked">
-          <div class="journey-day">День 4</div>
-          <h3>Первая ежедневная подсказка</h3>
-          <p>С 7+ записями MirrorNotes уже знает ваши шаблоны. Появляется первая подсказка, основанная на том, что вы действительно написали.</p>
-          <span class="journey-unlock-badge">Здесь открывается ИИ</span>
-        </div>
-        <div class="journey-step unlocked">
-          <div class="journey-day">Неделя 2+</div>
-          <h3>Полный опыт</h3>
-          <p>Ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения. ИИ становится точнее по мере роста вашего архива.</p>
-          <span class="journey-unlock-badge">Все функции ИИ</span>
-        </div>
-      </div>
+    <div class="plain-list">
+      <div><b>Никакого аккаунта</b><p>Ни почты, ни пароля, ни экрана входа. Нечему утечь, потому что мы никогда не спрашивали, кто вы.</p></div>
+      <div><b>Работает в авиарежиме</b><p>ИИ не нужен интернет. Пишите и размышляйте в самолёте, на даче, там, где нет связи.</p></div>
+      <div><b>Резервная копия в iCloud</b><p>Записи синхронизируются с вашим iCloud, приватно под вашим Apple ID. У нас нет доступа. Полнотекстовый поиск тоже локальный.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Prompts Carousel -->
-  <section id="prompts">
-    <div class="container">
-      <div class="prompts-inner">
-        <div class="section-header reveal">
-          <div class="label">Попробовать подсказку</div>
-          <h2>30 вопросов,<br>которые пробьются сквозь шум.</h2>
-          <p>Именно такие вопросы задаёт MirrorNotes, основываясь на том, что вы действительно написали. Найдите тот, что зацепит.</p>
-        </div>
-        <div class="prompt-display reveal">
-          <div class="prompt-text" id="prompt-text">Что сейчас незаметно выматывает вас, но вы ещё не назвали это словами?</div>
-        </div>
-        <div class="prompt-controls">
-          <button class="prompt-nav" id="prompt-prev">&#8592;</button>
-          <div class="prompt-idx" id="prompt-idx">1 / 30</div>
-          <button class="prompt-nav" id="prompt-next">&#8594;</button>
-          <a href="https://apps.apple.com/app/id6769007201" class="prompt-try-btn" target="_blank" rel="noopener">Написать по этой подсказке &#8594;</a>
-        </div>
-      </div>
+<section id="journey">
+  <div class="wrap">
+    <div class="intro">
+      <h2>ИИ, который заслуживает доверие, прежде чем заговорить.</h2>
+      <p class="lede">Мы ждём, пока MirrorNotes прочитает достаточно ваших записей, прежде чем показывать выводы. Никаких слабых догадок в первый день.</p>
     </div>
-  </section>
-
-  <!-- Social Proof -->
-  <section id="proof">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Ранний доступ</div>
-        <h2>Новое приложение. Настоящая приватность.<br>Будьте среди первых.</h2>
-      </div>
-      <div class="proof-grid">
-        <div class="proof-editorial reveal" style="transition-delay:0.05s">
-          <div class="proof-editorial-badge">Редакция Apple</div>
-          <div class="proof-editorial-text"><strong>Номинировано для редакционной подборки App Store</strong> — выбрано редакцией Apple за подход к ИИ-дневникам, ставящий приватность на первое место.</div>
-        </div>
-        <div class="proof-card reveal" style="transition-delay:0.1s">
-          <div class="proof-quote" style="font-size:15px;line-height:1.8">&laquo;Я сделал это приложение, потому что хотел вести дневник честно, не думая о том, читает ли его кто-то ещё. У каждого дневникового приложения, которое я пробовал, был сервер. Поэтому я убрал сервер. ИИ работает на вашем телефоне. Ваши слова никуда не уходят.&raquo;</div>
-          <div class="proof-author">Lokesh Pudhari &middot; основатель</div>
-        </div>
-        <div class="proof-card reveal" style="transition-delay:0.15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px">
-          <div style="font-size:36px;font-weight:800;color:var(--accent-lt);letter-spacing:-0.03em">Будьте первыми.</div>
-          <div style="font-size:14px;color:var(--text-2);line-height:1.7">Пока нет ни одной оценки. А значит, именно ваш отзыв определит, каким станет это приложение. Первые пользователи получают прямой доступ к основателю.</div>
-          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" style="font-size:13px;padding:10px 20px" target="_blank" rel="noopener">Скачать бесплатно</a>
-        </div>
-      </div>
+    <div class="steps" data-reveal>
+      <div class="step reveal" style="--i:0"><div class="day"><b>0</b><span>ДЕНЬ</span></div><div><h3>Освоиться</h3><p>Три коротких вопроса. Напишите первую запись. Без аккаунта, без почты, без входа.</p></div></div>
+      <div class="step reveal" style="--i:2"><div class="day"><b>1–3</b><span>ДНИ</span></div><div><h3>Mirror учится</h3><p>Пишите свободно. ИИ пока молчит: нам нужен сигнал, прежде чем предлагать выводы. Вместо плохих догадок — тихая полоса прогресса.</p></div></div>
+      <div class="step reveal" style="--i:4"><div class="day mood" style="background:#9575CD"><b>4</b><span>ДЕНЬ</span></div><div><h3>Первое размышление</h3><p>Через неделю записей MirrorNotes знает ваши паттерны. Появляется первое размышление с цитатой того, что вы действительно написали.</p></div></div>
+      <div class="step reveal" style="--i:6"><div class="day mood" style="background:#66BB6A"><b>2+</b><span>НЕДЕЛЯ</span></div><div><h3>Полный опыт</h3><p>Ежедневные размышления, вопросы, итоги недели, линия настроения. ИИ становится точнее по мере роста архива.</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="label">Цены</div>
-        <h2>Бесплатно. Всё целиком.</h2>
-        <p>На этапе раннего доступа открыты все функции: неограниченные записи, ежедневные подсказки, вопросы к дневнику, еженедельный дайджест, шкала настроения, ежемесячный отчёт. Без карты, без пробного периода, без ограничений.</p>
-      </div>
-      <div class="pricing-layout">
-        <div class="pricing-card popular reveal" style="transition-delay:0.05s">
-          <span class="popular-badge">Ранний доступ</span>
-          <div class="pricing-header">
-            <h3>Всё</h3>
-            <p style="font-size:13px;color:var(--text-3);margin-top:4px">Все функции, без ограничений</p>
-          </div>
-          <div class="pricing-price"><span class="free-tag">$0</span></div>
-          <ul class="pricing-features">
-            <li><span class="ck">&#10003;</span>Неограниченные записи в дневнике</li>
-            <li><span class="ck">&#10003;</span>Все прошлые записи, всегда</li>
-            <li><span class="ck">&#10003;</span>Локальный полнотекстовый поиск</li>
-            <li><span class="ck">&#10003;</span>Резервное копирование и синхронизация iCloud</li>
-            <li><span class="ck">&#10003;</span>Ежедневная подсказка (ИИ на устройстве)</li>
-            <li><span class="ck">&#10003;</span>Неограниченные вопросы к дневнику</li>
-            <li><span class="ck">&#10003;</span>Еженедельный дайджест по воскресеньям</li>
-            <li><span class="ck">&#10003;</span>Определение настроения, шкала и уведомления</li>
-            <li><span class="ck">&#10003;</span>Углублённый ежемесячный отчёт</li>
-            <li><span class="ck">&#10003;</span>Виджет на главном экране</li>
-          </ul>
-          <a href="https://apps.apple.com/app/id6769007201" class="pricing-cta cta-primary" target="_blank" rel="noopener">Скачать бесплатно</a>
-        </div>
-        <div class="pricing-why reveal" style="transition-delay:0.1s">
-          <h3>Почему это бесплатно?</h3>
-          <p>Большинство дневниковых приложений платят за облачный ИИ за каждую написанную вами запись, поэтому им приходится брать деньги с вас — или, что хуже, монетизировать вас самих. MirrorNotes запускает ИИ на чипе, который уже лежит у вас в кармане. Предельные издержки на пользователя у нас нулевые, поэтому и ранний доступ бесплатен.</p>
-          <ul class="why-list">
-            <li><span class="why-dot" style="background:#FF453A"></span><div><strong>Мы не можем продать ваши данные.</strong> Они никогда не попадают к нам. Продавать попросту нечего.</div></li>
-            <li><span class="why-dot" style="background:#FF9F0A"></span><div><strong>Мы не можем закрыть доступ к вашей истории.</strong> Ваши записи хранятся в вашем&nbsp;iCloud, под вашим Apple&nbsp;ID.</div></li>
-            <li><span class="why-dot" style="background:#30D158"></span><div><strong>Мы никогда не будем брать плату за чтение ваших же слов.</strong> Если позже появятся платные тарифы, они будут открывать новые функции ИИ, а не доступ к вашему архиву.</div></li>
-          </ul>
-          <p class="trial-note" style="margin-top:28px">Без аккаунта. Без карты. Отменять нечего: подписки попросту нет.</p>
-        </div>
-      </div>
+<section id="prompts">
+  <div class="wrap">
+    <div class="intro">
+      <h2>30 вопросов, которые пробиваются сквозь шум.</h2>
+      <p class="lede">Такие вопросы задаёт MirrorNotes, исходя из того, что вы действительно написали. Найдите тот, что попадёт в точку.</p>
     </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section id="final-cta">
-    <div class="container">
-      <div class="final-cta-inner reveal">
-        <div class="label" style="margin-bottom:16px">Начните писать</div>
-        <h2>Ваши самые честные мысли<br>заслуживают приватного пространства.</h2>
-        <p>Без аккаунта. Без сервера. Без сделок с вашими данными. Только вы, ваш телефон и ИИ, который остаётся там, где ему место.</p>
-        <div class="final-cta-row">
-          <a href="https://apps.apple.com/app/id6769007201" class="btn-primary" target="_blank" rel="noopener">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Скачать бесплатно для iPhone
-          </a>
-          <a href="#features" class="btn-ghost">Посмотреть, что он умеет</a>
-        </div>
+    <article class="card prompt-card">
+      <blockquote data-prompt></blockquote>
+      <div class="prompt-nav">
+        <button type="button" class="arrow" data-prompt-step="-1" aria-label="Предыдущий вопрос">←</button>
+        <span data-prompt-idx>1 / 30</span>
+        <button type="button" class="arrow" data-prompt-step="1" aria-label="Следующий вопрос">→</button>
+        <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201">Написать по этому вопросу</a>
       </div>
+    </article>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Писать бесплатно, навсегда. Платите только за ИИ.</h2>
+      <p class="lede">До 15 ноября 2026 г. всё бесплатно. После этого функции ИИ входят в два плана, с бесплатной пробной неделей для новых подписчиков. Ваши записи, история, поиск и копия в iCloud никогда ничего не стоят.</p>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <div class="nav-logo" style="font-size:16px">
-              <svg width="26" height="26" viewBox="0 0 1024 1024" style="border-radius:7px" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="fb" cx="50%" cy="44%" r="72%"><stop offset="0%" stop-color="#5C1520"/><stop offset="100%" stop-color="#160408"/></radialGradient>
-                  <linearGradient id="fc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7A1E2A"/><stop offset="100%" stop-color="#3A0C14"/></linearGradient>
-                </defs>
-                <rect width="1024" height="1024" fill="url(#fb)"/>
-                <g transform="translate(512,512) scale(1.375) translate(-549,-516)">
-                  <rect x="357" y="252" width="366" height="528" rx="22" fill="url(#fc)"/>
-                  <g stroke-linecap="round" stroke-width="5" opacity="0.92">
-                    <line x1="455" y1="588" x2="455" y2="443" stroke="#FF453A"/>
-                    <line x1="455" y1="443" x2="540" y2="528" stroke="#FF9F0A"/>
-                    <line x1="540" y1="528" x2="625" y2="443" stroke="#FFD60A"/>
-                    <line x1="625" y1="443" x2="625" y2="588" stroke="#30D158"/>
-                  </g>
-                  <circle cx="455" cy="588" r="18" fill="#FF453A"/>
-                  <circle cx="455" cy="443" r="18" fill="#FF9F0A"/>
-                  <circle cx="540" cy="528" r="18" fill="#FFD60A"/>
-                  <circle cx="625" cy="443" r="18" fill="#30D158"/>
-                  <circle cx="625" cy="588" r="18" fill="#0A84FF"/>
-                </g>
-              </svg>
-              MirrorNotes
-            </div>
-            <p>Приватный дневник с ИИ. Ваши слова остаются на вашем устройстве.</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-link-group">
-              <h4>Продукт</h4>
-              <ul>
-                <li><a href="#features">Функции</a></li>
-                <li><a href="#pricing">Цены</a></li>
-                <li><a href="#prompts">Попробовать подсказку</a></li>
-                <li><a href="https://apps.apple.com/app/id6769007201" target="_blank" rel="noopener">Скачать</a></li>
-              </ul>
-            </div>
-            <div class="footer-link-group">
-              <h4>Сравнение</h4>
-              <ul>
-                <li><a href="../rosebud-alternative.html">против Rosebud</a></li>
-                <li><a href="../day-one-alternative.html">против Day One</a></li>
-                <li><a href="../reflect-alternative.html">против Reflect</a></li>
-                <li><a href="../adhd-journaling-app.html">Дневник при СДВГ</a></li>
-              </ul>
-            </div>
-            <div class="footer-link-group">
-              <h4>Правовая информация</h4>
-              <ul>
-                <li><a href="../privacy.html">Политика конфиденциальности</a></li>
-                <li><a href="../terms.html">Условия использования</a></li>
-              </ul>
-            </div>
-            <div class="footer-link-group">
-              <h4>Поддержка</h4>
-              <ul>
-                <li><a href="../support.html">Центр поддержки</a></li>
-                <li><a href="mailto:hello@mirrornotes.org">Написать нам</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 MirrorNotes. Сделано осознанно. Приватность прежде всего.</p>
-          <p style="font-family:var(--mono);font-size:11px">Эта страница не загружает сторонние ресурсы. Никакой аналитики, никаких трекинг-пикселей, никаких шрифтов от Google. Посмотрите исходный код.</p>
-          <p><a href="../privacy.html" style="color:var(--text-2);text-decoration:underline;text-underline-offset:3px">Политика конфиденциальности</a></p>
-        </div>
-      </div>
+    <div class="tiers">
+      <article class="card tier">
+        <div class="tier-head"><h3>Бесплатно</h3><p class="amount">$0</p></div>
+        <p class="tier-sub">Ваш дневник, всегда ваш</p>
+        <ul class="checks"><li>Записи без ограничений, навсегда</li><li>Каждая прошлая запись всегда доступна</li><li>Полнотекстовый поиск, на телефоне</li><li>Копия и синхронизация в iCloud</li><li>Ваше первое размышление</li><li>Всё, что ИИ уже сделал для вас, остаётся доступным</li></ul>
+        <a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Скачать бесплатно</a>
+      </article>
+      <article class="card tier accent">
+        <div class="tier-head"><h3>Core</h3><p class="amount"><span data-price="core_mo">$7.99</span><small>/мес</small></p></div>
+        <p class="tier-sub">или <span data-price="core_yr">$49.99</span> в год, <span data-save="core">экономия 48 %</span></p>
+        <ul class="checks"><li>Всё из бесплатного плана</li><li>Размышление дня в каждый день, когда вы пишете</li><li>Вопросы дневнику, 15 в месяц</li><li>Итоги недели каждое воскресенье</li><li>Виджеты на экране «Домой»</li></ul>
+        <p class="tier-note">В приложении с 15 ноября 2026 г.</p>
+      </article>
+      <article class="card tier">
+        <div class="tier-head"><h3>Deep</h3><p class="amount"><span data-price="deep_mo">$11.99</span><small>/мес</small></p></div>
+        <p class="tier-sub">или <span data-price="deep_yr">$69.99</span> в год, <span data-save="deep">экономия 51 %</span></p>
+        <ul class="checks"><li>Всё из Core</li><li>Вопросы без ограничений</li><li>Глубокий отчёт за месяц</li><li>Линия настроения и полная аналитика</li><li>Оповещения о настроении</li></ul>
+        <p class="tier-note">В приложении с 15 ноября 2026 г.</p>
+      </article>
     </div>
-  </footer>
+    <p class="fine"><span data-price-note>Цены в США</span>, <label class="store-pick">для <select data-storefront aria-label="Страна для цен"><option value="US">United States</option></select>.</label> App Store списывает цену страны вашего Apple ID. Одна пробная неделя на Apple ID, на первом плане. Планы управляются в настройках Apple ID, так что отменять у нас нечего.</p>
+    <div class="why">
+      <h3>Почему платить за ИИ и никогда — за свои слова?</h3>
+      <p>Ваши данные всегда ваши. Вы платите за слой ИИ. Большинство дневниковых приложений платят облачному провайдеру за каждую вашу запись, поэтому им приходится брать деньги с вас или, хуже, зарабатывать на вас. MirrorNotes запускает ИИ на чипе, который уже лежит у вас в кармане: поэтому он так долго был бесплатным, и поэтому планы остаются небольшими.</p>
+      <ul>
+        <li><b>Мы не можем продать ваши данные.</b> Они до нас не доходят. С нашей стороны нечего продавать.</li>
+        <li><b>Мы не можем запереть вашу историю.</b> Записи живут в вашем iCloud, под вашим Apple ID.</li>
+        <li><b>Мы никогда не возьмём деньги за чтение ваших собственных слов.</b> Планы касаются новых функций ИИ, а не вашего архива.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Mobile menu
-    (function () {
-      const btn = document.getElementById('menu-toggle');
-      const menu = document.getElementById('mobile-menu');
-      if (!btn || !menu) return;
-      function setOpen(open) {
-        menu.classList.toggle('open', open);
-        btn.setAttribute('aria-expanded', String(open));
-        btn.innerHTML = open ? '&#10005;' : '&#9776;';
-      }
-      btn.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
-      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
-    })();
+<section id="final">
+  <div class="wrap">
+    <h2>Самые честные мысли заслуживают личного пространства.</h2>
+    <p class="lede">Без аккаунта. Без сервера. Без торговли данными. Только вы, ваш телефон и ИИ, который остаётся там, где ему место.</p>
+    <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Скачать бесплатно для iPhone</a>
+  </div>
+</section>
 
-    // Journal date line
-    (function () {
-      const el = document.getElementById('hero-date');
-      if (el) el.textContent = new Date().toLocaleDateString('ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
-    })();
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a><p>Приватный ИИ-дневник. Ваши слова остаются на вашем устройстве.</p></div>
+      <div><h4>Продукт</h4><a href="#features">Возможности</a><a href="#pricing">Цены</a><a href="#prompts">Попробовать вопрос</a><a href="https://apps.apple.com/app/id6769007201">Скачать</a></div>
+      <div><h4>Сравнение</h4><a href="/ru/rosebud-alternative.html">vs Rosebud</a><a href="/ru/day-one-alternative.html">vs Day One</a><a href="/ru/reflect-alternative.html">vs Reflect</a><a href="/ru/adhd-journaling-app.html">Дневник при СДВГ</a></div>
+      <div><h4>Поддержка</h4><a href="/support.html">Центр помощи</a><a href="mailto:hello@mirrornotes.org">Контакты</a><a href="/ru/privacy.html">Политика конфиденциальности</a><a href="/terms.html">Условия использования</a></div>
+      <div><h4>Разработчикам</h4><a href="/mcp.html">MCP-сервер</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Блог</a></div>
+    </div>
+    <nav class="foot-langs" aria-label="Languages"><span>Языки</span><a href="/" hreflang="en">English</a><a href="/es/" hreflang="es">Español</a><a href="/fr/" hreflang="fr">Français</a><a href="/de/" hreflang="de">Deutsch</a><a href="/it/" hreflang="it">Italiano</a><a href="/pt/" hreflang="pt-BR">Português</a><a href="/ja/" hreflang="ja">日本語</a><a href="/ko/" hreflang="ko">한국어</a><a href="/ru/" hreflang="ru" aria-current="true">Русский</a><a href="/zh/" hreflang="zh-Hans">中文</a></nav>
+    <div class="foot-bottom"><span>© 2026 MirrorNotes. Сделано осознанно. Приватность прежде всего.</span><span>Дневник на этой странице — пример. Без аналитики, без пикселей отслеживания, без сторонних скриптов.</span></div>
+  </div>
+</footer>
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<script>
+(() => {
+  // The sample journal is the same synthetic one the App Store screenshots use (StoreDemoSeed, en).
+  const PLAN = [[0,8,"Hopeful"],[1,21,"Grateful"],[2,22,"Anxious"],[3,7,"Joyful"],[4,23,"Drained"],[5,20,"Peaceful"],[6,7,"Energized"],[8,21,"Frustrated"],[9,18,"Content"],[11,22,"Grateful"],[13,20,"Hopeful"],[15,10,"Peaceful"],[17,7,"Joyful"],[19,23,"Anxious"],[21,19,"Content"],[23,18,"Grateful"],[25,8,"Energized"],[27,21,"Hopeful"]];
+  const TEXT = [
+    "Первая неделя во главе нового проекта. Утром я нервничала, но запуск прошёл лучше, чем я ожидала. Аня сказала, что такого понятного плана она ещё не видела.",
+    "После ужина позвонила сестре, и мы смеялись над тем летом, когда заблудились в Лиссабоне. Хочу съездить к ней до конца года.",
+    "Сегодня вечером никак не могла отключиться. Снова и снова прокручиваю в голове завтрашнюю презентацию. Написала три вступления и все удалила.",
+    "Утром пробежала десять километров без остановки. Сначала ноги были тяжёлыми, а потом стало легко. В честь этого испекла блинчики.",
+    "Длинный день сплошных встреч. Согласилась ещё на две задачи, на которые у меня нет времени. Завтра нужно от чего-то отказаться.",
+    "Тихий вечер дома. Пересадила растения на балконе и читала, пока не стемнело. Телефон остался в другой комнате.",
+    "Рано утром перед работой пробежка вдоль реки. Воздух был холодный и чистый. Вернулась со списком идей для проекта.",
+    "Релиз снова сдвинулся из-за одного недостающего согласования. Я устала ждать решений, которые не могу принять сама.",
+    "Воскресный обед у мамы. Она показала мне свои помидоры и дала с собой слишком много. Простой и хороший день.",
+    "Катя починила мой велосипед и ничего не взяла. Я оставила у её двери записку и её любимый чай.",
+    "Пришло письмо: проект мой. Я рада и немного боюсь. Начинаю список того, каким я хочу видеть этот проект.",
+    "Весь день шёл дождь, так что я осталась дома. Дочитала книгу за чашкой кофе и оставила посуду на потом.",
+    "Бегала в парке с Катей, моей подругой с работы. Мы записались на весенний забег и начали тренировки вместе.",
+    "Перед собеседованием совсем не было сна. Начальница говорит, что команде нужен человек, который возглавит следующий проект.",
+    "Приготовила ужин для сестры и мамы. Мы сидели в саду и говорили о поездке в Лиссабон.",
+    "День рождения мамы. Приехала вся семья, а сестра испекла свой знаменитый торт.",
+    "Первая пробежка после недели плохого сна. Медленно, но тропа вдоль реки была красивой, и я снова почувствовала себя собой.",
+    "Записала цель на осень: пробежка, книга и вечер без телефона каждую неделю."
+  ];
+  const QUOTE = "Утром я нервничала, но запуск прошёл лучше, чем я ожидала.";
+  const FEELING = "Кажется, это был хороший момент. Его стоит запомнить.";
+  const ALSO = "";
+  const DIGEST = [["Тема", "Неделя с хорошими моментами."], ["Энергия", "Судя по записям, тяжелее всего было здесь: «Снова и снова прокручиваю в голове завтрашнюю презентацию.»"], ["Что нарастает", "«Хочу съездить к ней до конца года.» Из этого может что-то вырасти."], ["Обратить внимание", "«Согласилась ещё на две задачи, на которые у меня нет времени.» За этим стоит последить."], ["Настроение", "Делай больше того, что радовало тебя на этой неделе."], ["Следующая неделя", "Повтори то, что сработало."]];
+  const COLOR = { Joyful:"#FFD54F", Grateful:"#66BB6A", Peaceful:"#81D4FA", Content:"#4DB6AC", Energized:"#FF9800", Hopeful:"#9575CD", Anxious:"#FFC107", Overwhelmed:"#EF5350", Frustrated:"#F57C00", Drained:"#9E9E9E", Sad:"#42A5F5", Numb:"#CFD8DC" };
+  const SCORE = { Joyful:5, Grateful:5, Peaceful:4, Content:4, Energized:4, Hopeful:4, Anxious:2, Overwhelmed:1, Frustrated:2, Drained:1, Sad:1, Numb:2 };
+  const PROMPTS = [
+    "Что сейчас незаметно выматывает вас, но вы ещё не назвали это словами?","О чём вы избегаете думать? Напишите об этом.","Опишите последний момент, когда вы были полностью здесь и сейчас.","Что бы вы сделали иначе вчера?","Что вы делаете вид, будто всё в порядке, хотя это не так?","Кого вы больше всего хотели впечатлить на этой неделе и почему?","Какое убеждение вы храните, но никогда не подвергали сомнению?","На что вы ждёте чьего-то разрешения?","Опишите момент за последнюю неделю, который вас удивил.","Какой самый добрый поступок вы сделали сегодня — и заметили ли вы это сами?","Что отнимает у вас энергию, но от чего вы могли бы отказаться?","Какой разрыв между тем, кто вы есть, и тем, кем вы пытаетесь стать?","Напишите о маленькой вещи, которая сегодня показалась важной.","Какой разговор вы снова и снова прокручиваете в голове?","Что бы вы сказали себе полгода назад?","Чему вы учитесь прямо сейчас, даже если не выбирали этот урок?","Что тянет на себя ваше внимание, а вы всё время это отодвигаете?","Опишите момент на этой неделе, когда вы чувствовали себя настоящим собой.","За что вы благодарны, но никогда не говорили об этом вслух?","Что чувствует ваше тело прямо сейчас? Начните с этого.","Чего вам нужно больше? А чего — меньше?","Напишите о том, что произошло недавно, но вы ещё не до конца это осмыслили.","Какой паттерн постоянно повторяется в вашей жизни?","Как для вас сейчас выглядит «достаточно»?","Если бы сегодня вы могли написать только одну вещь, что бы это было?","Что вы боитесь, что кто-то узнает о вас?","Какое самое честное предложение вы могли бы написать прямо сейчас?","Что в вашей жизни получается хорошо, но вы себе этого не признаёте?","Кем вы становитесь, даже если не уверены, что сами это выбрали?","В каком напряжении вы сейчас живёте?"
+  ];
 
-    // Rotating nudge in feature card
-    const SAMPLE_NUDGES = [
-      'Вы снова и снова возвращаетесь к слову "достаточно". Как бы это чувствовалось сегодня?',
-      'Во вторник что-то изменилось. Что именно?',
-      'Насколько велик сейчас разрыв между тем, кто вы на работе, и тем, кто вы дома?',
-      'От чего вы защищаете себя, оставаясь постоянно занятым?',
-      'На этой неделе вы дважды упомянули, что чувствуете себя невидимым. Кем вы больше всего хотите быть замеченным?',
+  // ── everything a translated page changes is here; tools/build_locales.py swaps this block per language ──
+  const L10N = {
+    dateLang: "ru-RU", timeLang: "ru-RU", weekStart: 1,
+    moodNames: {"Joyful": "Радостное", "Grateful": "Благодарное", "Peaceful": "Спокойное", "Content": "Довольное", "Energized": "Энергичное", "Hopeful": "С надеждой", "Anxious": "Тревожное", "Overwhelmed": "Перегруженное", "Frustrated": "Раздражённое", "Drained": "Истощённое", "Sad": "Грустное", "Numb": "Онемевшее"},
+    entries: n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`,
+    mostly: m => `В основном ${m}`, axis: ["Высоко", "Средне", "Низко"],
+    youWrote: "Ты пишешь: ", open: "«", close: "»", joiner: " ",
+    alsoWrote: "", followUp: q => "Что стоит за " + "«" + q + "»" + "?",
+    you: "Ты", save: pct => `экономия ${pct} %`, usPrices: "Цены в США", pricesIn: cur => `Цены в ${cur}`,
+    brainLabelMin: 4
+  };
+  const NAME = m => L10N.moodNames[m] || m;
+  const $ = s => document.querySelector(s);
+  const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const fmt = (d, o) => new Intl.DateTimeFormat(L10N.dateLang, o).format(d);
+  const fTime = d => new Intl.DateTimeFormat(L10N.timeLang, { hour: "numeric", minute: "2-digit" }).format(d);
+  const words = s => (s.match(/\S+/g) || []).length;
+  const tint = m => COLOR[m] + "33";
+  const now = new Date(), today = new Date(now); today.setHours(0,0,0,0);
+  const MIN = [25,28,33,12,47,5,52,18];
+  const entries = PLAN.map(([d,h,mood], i) => { const date = new Date(today); date.setDate(date.getDate() - d); date.setHours(h, MIN[i % 8]); return { date, mood, text: TEXT[i] }; });
+
+  // hero: dates
+  $("[data-today]").textContent = fmt(now, { weekday: "long", day: "numeric", month: "long" });
+  $("[data-today-upper]").textContent = `${fmt(now, { weekday: "long" })} · ${fmt(now, { day: "numeric", month: "long" })} · ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 20, 5))}`.toUpperCase();
+
+  // hero: week strip (Sunday-first, like the app's US screenshots)
+  const start = new Date(today); start.setDate(start.getDate() - ((start.getDay() - L10N.weekStart + 7) % 7));
+  const end = new Date(start); end.setDate(end.getDate() + 6);
+  const inWeek = entries.filter(e => e.date >= start && e.date <= new Date(end.getTime() + 86399999));
+  $("[data-week-title]").textContent = `${fmt(start, { day: "numeric", month: "short" })} – ${fmt(end, { day: "numeric", month: "short", year: "numeric" })}`;
+  $("[data-week-sub]").textContent = L10N.entries(inWeek.length);
+  let wk = Array.from({ length: 7 }, (_, i) => { const d = new Date(start); d.setDate(d.getDate() + i); return `<div class="dow">${new Intl.DateTimeFormat(L10N.dateLang, { weekday: "narrow" }).format(d)}</div>`; }).join("");
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start); d.setDate(d.getDate() + i);
+    const dayEntries = inWeek.filter(e => { const x = new Date(e.date); x.setHours(0,0,0,0); return x.getTime() === d.getTime(); }).sort((a, b) => b.date - a.date);
+    const mood = dayEntries[0]?.mood, future = d > today, isToday = d.getTime() === today.getTime();
+    const tip = mood ? ` data-tip="${NAME(mood)}, ${L10N.entries(dayEntries.length)}"` : "";
+    wk += `<div class="day${future ? " future" : ""}${isToday ? " today" : ""}${mood ? " mood" : ""}" style="--i:${i}${mood ? `;background:${COLOR[mood]}` : ""}"${tip}><b>${d.getDate()}</b><span>${dayEntries.length || ""}</span></div>`;
+  }
+  $("[data-week]").innerHTML = wk;
+
+  // hero: feed
+  const sorted = [...entries].sort((a, b) => b.date - a.date);
+  const monthKey = fmt(sorted[0].date, { month: "long", year: "numeric" });
+  const monthCount = sorted.filter(e => fmt(e.date, { month: "long", year: "numeric" }) === monthKey).length;
+  $("[data-month]").textContent = monthKey; $("[data-month-count]").textContent = L10N.entries(monthCount);
+  const card = (e, full, i = 0) => `<article class="entry${full ? " full" : ""}" style="--rail:${COLOR[e.mood]};--tint:${tint(e.mood)};--i:${i}">
+    <div class="tile"><b>${e.date.getDate()}</b><span>${fmt(e.date, { weekday: "short" }).toUpperCase()}</span></div>
+    <div><p class="txt">${full ? esc(e.text).replace(esc(QUOTE), `<mark class="draw">${esc(QUOTE)}</mark>`) : esc(e.text)}</p>
+    <div class="meta"><span>${fTime(e.date)} &nbsp; ${words(e.text)}w</span><span class="mood-pill"><span class="dot" style="--c:${COLOR[e.mood]}"></span>${NAME(e.mood)}</span></div></div></article>`;
+  $("[data-feed]").innerHTML = sorted.slice(0, 5).map((e, i) => card(e, false, i)).join("");
+
+  // reflection pair
+  $("[data-entry-full]").innerHTML = card(entries[0], true);
+  $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
+  const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
+  $("[data-reflection-time]").textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`;
+
+  // digest
+  const lastSunday = new Date(today); lastSunday.setDate(lastSunday.getDate() - lastSunday.getDay());
+  $("[data-digest-time]").textContent = fmt(lastSunday, { weekday: "short", day: "numeric", month: "short" });
+  $("[data-digest]").innerHTML = DIGEST.map(([k, v], i) => `<div class="row reveal" style="--i:${i * 2}"><small>${k}</small><p>${esc(v)}</p></div>`).join("");
+
+  // this week's mood, like the Insights tab: seven days ending today, each dot in that day's mood colour
+  (() => {
+    const W = 320, H = 230, L = 16, R = 56, T = 30, B = 40;
+    const days = []; for (let d = 6; d >= 0; d--) { const dt = new Date(today); dt.setDate(dt.getDate() - d); const e = entries.filter(x => { const y = new Date(x.date); y.setHours(0,0,0,0); return y.getTime() === dt.getTime(); }).sort((a, b) => b.date - a.date)[0]; days.push({ dt, m: e?.mood }); }
+    const x = i => L + (i / 6) * (W - L - R), y = s => T + (5 - s) / 4 * (H - T - B);
+    const pts = days.map((o, i) => ({ ...o, X: x(i), Y: o.m ? y(SCORE[o.m]) : 0 })).filter(p => p.m);
+    let path = `M${pts[0].X.toFixed(1)} ${pts[0].Y.toFixed(1)}`;
+    for (let i = 0; i < pts.length - 1; i++) { const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      path += ` C${(p1.X + (p2.X - p0.X) / 6).toFixed(1)} ${(p1.Y + (p2.Y - p0.Y) / 6).toFixed(1)} ${(p2.X - (p3.X - p1.X) / 6).toFixed(1)} ${(p2.Y - (p3.Y - p1.Y) / 6).toFixed(1)} ${p2.X.toFixed(1)} ${p2.Y.toFixed(1)}`; }
+    const counts = {}; pts.forEach(p => counts[p.m] = (counts[p.m] || 0) + 1);
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    const avg = pts.reduce((s, p) => s + SCORE[p.m], 0) / pts.length;
+    // a repeated mood wins; otherwise the mood nearest the week's average, most recent first
+    const mostly = top[0][1] > 1 ? top[0][0] : [...pts].reverse().sort((a, b) => Math.abs(SCORE[a.m] - avg) - Math.abs(SCORE[b.m] - avg))[0].m;
+    $("[data-mostly]").innerHTML = `<span class="dot" style="--c:${COLOR[mostly]}"></span>${L10N.mostly(NAME(mostly))}`;
+    $("[data-chart]").innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${pts.map(p => `${fmt(p.dt, { weekday: "short" })} ${NAME(p.m)}`).join(", ")}">
+      ${[[L10N.axis[0], 5], [L10N.axis[1], 3], [L10N.axis[2], 1]].map(([l, s]) => `<text x="${W - R + 16}" y="${y(s) + 4}">${l}</text>`).join("")}
+      <path class="line" d="${path}" pathLength="1"/>
+      ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="7" fill="${COLOR[p.m]}" data-when="${fmt(p.dt, { weekday: "short", day: "numeric", month: "short" })}" data-mood="${NAME(p.m)}" data-c="${COLOR[p.m]}"></circle>`).join("")}
+      ${days.map((o, i) => `<text x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${fmt(o.dt, { weekday: "short" })}</text>`).join("")}
+    </svg>`;
+  })();
+
+  // chart hover
+  (() => {
+    const wrap = $(".chart-wrap"), tip = $("[data-chart-tip]");
+    wrap.addEventListener("pointerover", ev => { const c = ev.target.closest(".pt"); if (!c) return;
+      const r = c.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      tip.innerHTML = `<span class="dot" style="--c:${c.dataset.c}"></span>${c.dataset.when}, ${c.dataset.mood}`;
+      tip.style.left = `${r.left + r.width / 2 - w.left}px`; tip.style.top = `${r.top - w.top}px`; tip.hidden = false; });
+    wrap.addEventListener("pointerout", ev => { if (ev.target.closest(".pt")) tip.hidden = true; });
+  })();
+
+  // reveal on scroll (once)
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); } }), { threshold: 0.2 });
+  document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
+  // a tap anywhere else closes the chart / Brain View tooltips (touch never fires pointerout)
+  document.addEventListener("pointerdown", ev => { if (!ev.target.closest(".pt, [data-brain]")) document.querySelectorAll("[data-chart-tip], [data-brain-tip]").forEach(t => t.hidden = true); });
+
+  // Brain View: themes from the sample journal. Counts, sizes and links are derived from the entries, never typed in.
+  (() => {
+    const cv = $("[data-brain]"), tip = $("[data-brain-tip]"); if (!cv) return;
+    const TEAL = "#5FB3A6", GRAY = "#AEB8BE", TAN = "#C9B59A", ORANGE = "#D98A3C", OLIVE = "#7E9A62", WHITE = "#E6E6EA";
+    const THEMES = [
+      ["сестра",/(?<!\p{L})(?:сестр[аеуы])(?!\p{L})/iu,TEAL],["мама",/(?<!\p{L})(?:мам[аыеу])(?!\p{L})/iu,TEAL],["Катя",/(?<!\p{L})(?:Кат[яией])(?!\p{L})/u,TEAL],["семья",/(?<!\p{L})(?:семья)(?!\p{L})/iu,TEAL],["начальница",/(?<!\p{L})(?:начальница)(?!\p{L})/iu,TEAL],["команда",/(?<!\p{L})(?:команд[аеуы])(?!\p{L})/iu,TEAL],["бег",/(?<!\p{L})(?:(пробежк[аиу]|бегала|пробежала|забег))(?!\p{L})/iu,ORANGE],["встречи",/(?<!\p{L})(?:встреч)(?!\p{L})/iu,ORANGE],["презентация",/(?<!\p{L})(?:презентацию)(?!\p{L})/iu,ORANGE],["собеседование",/(?<!\p{L})(?:собеседованием)(?!\p{L})/iu,ORANGE],["готовка",/(?<!\p{L})(?:(ужин|блины|торт|обед))(?!\p{L})/iu,ORANGE],["велосипед",/(?<!\p{L})(?:велосипед)(?!\p{L})/iu,ORANGE],["тренировки",/(?<!\p{L})(?:тренироваться)(?!\p{L})/iu,ORANGE],["чтение",/(?<!\p{L})(?:(читала|книг[уа]|дочитала))(?!\p{L})/iu,ORANGE],["растения",/(?<!\p{L})(?:(растения|помидоры))(?!\p{L})/iu,ORANGE],["проект",/(?<!\p{L})(?:проект[а]?)(?!\p{L})/iu,TAN],["релиз",/(?<!\p{L})(?:релиз)(?!\p{L})/iu,TAN],["письмо",/(?<!\p{L})(?:письмо)(?!\p{L})/iu,TAN],["план",/(?<!\p{L})(?:план)(?!\p{L})/iu,TAN],["список",/(?<!\p{L})(?:список)(?!\p{L})/iu,TAN],["цель",/(?<!\p{L})(?:цель)(?!\p{L})/iu,TAN],["идеи",/(?<!\p{L})(?:иде[йи])(?!\p{L})/iu,TAN],["река",/(?<!\p{L})(?:рек[аи])(?!\p{L})/iu,GRAY],["Лиссабон",/(?<!\p{L})(?:Лиссабон[е]?)(?!\p{L})/u,GRAY],["сад",/(?<!\p{L})(?:саду)(?!\p{L})/iu,GRAY],["балкон",/(?<!\p{L})(?:балконе)(?!\p{L})/iu,GRAY],["дом",/(?<!\p{L})(?:дома)(?!\p{L})/iu,GRAY],["парк",/(?<!\p{L})(?:парке)(?!\p{L})/iu,GRAY],["телефон",/(?<!\p{L})(?:телефон[а]?)(?!\p{L})/iu,GRAY],["дождь",/(?<!\p{L})(?:дождь)(?!\p{L})/iu,GRAY],["кофе",/(?<!\p{L})(?:кофе)(?!\p{L})/iu,GRAY],["чай",/(?<!\p{L})(?:ча[йя])(?!\p{L})/iu,GRAY],["сон",/(?<!\p{L})(?:(сна|сон|отключиться))(?!\p{L})/iu,OLIVE],["нервы",/(?<!\p{L})(?:(нервничала|боюсь))(?!\p{L})/iu,OLIVE],["усталость",/(?<!\p{L})(?:устала)(?!\p{L})/iu,OLIVE],["радость",/(?<!\p{L})(?:рада)(?!\p{L})/iu,OLIVE],["утро",/(?<!\p{L})(?:(утром|утро))(?!\p{L})/iu,WHITE],["вечер",/(?<!\p{L})(?:вечер[ом]*)(?!\p{L})/iu,WHITE]
     ];
-    let nudgeIdx = 0;
-    const rotatingNudge = document.getElementById('rotating-nudge');
-    setInterval(() => {
-      if (!rotatingNudge) return;
-      rotatingNudge.style.opacity = '0';
-      setTimeout(() => {
-        nudgeIdx = (nudgeIdx + 1) % SAMPLE_NUDGES.length;
-        rotatingNudge.textContent = SAMPLE_NUDGES[nudgeIdx];
-        rotatingNudge.style.opacity = '1';
-      }, 400);
-    }, 4000);
-
-    // Mood bar
-    const moodBar = document.getElementById('mood-bar');
-    if (moodBar) {
-      const moods = [
-        {color:'#FF453A',h:32},{color:'#FF9F0A',h:55},{color:'#FFD60A',h:28},
-        {color:'#30D158',h:70},{color:'#30D158',h:85},{color:'#FF9F0A',h:45},
-        {color:'#FF453A',h:38},{color:'#30D158',h:60},{color:'#FFD60A',h:72},
-        {color:'#0A84FF',h:88},{color:'#30D158',h:65},{color:'#30D158',h:92},
-        {color:'#FFD60A',h:50},{color:'#FF9F0A',h:40},
-      ];
-      moods.forEach(m => {
-        const col = document.createElement('div');
-        col.className = 'mood-bar-col';
-        col.style.cssText = 'background:' + m.color + ';height:0;opacity:0.7;';
-        moodBar.appendChild(col);
-        setTimeout(() => {
-          col.style.height = m.h + '%';
-          col.style.opacity = '0.7';
-          col.style.transition = 'height 1.2s ease';
-        }, 600 + Math.random() * 400);
-      });
+    const hits = THEMES.map(([w, re, c]) => ({ w, c, in: TEXT.map(t => re.test(t)) })).map(n => ({ ...n, n: n.in.filter(Boolean).length })).filter(n => n.n > 0);
+    const N = hits.length;
+    const nodes = hits.map((n, i) => { const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), ph = i * 2.399963, k = 0.55 + ((i * 7) % 9) / 9 * 0.45; return { ...n, x: Math.cos(ph) * r * k, y: y * k, z: Math.sin(ph) * r * k, r: 3 + n.n * 1.5 }; });
+    const links = []; for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { const shared = nodes[i].in.filter((v, k) => v && nodes[j].in[k]).length; if (shared) links.push([i, j, shared]); }
+    cv.dataset.counts = JSON.stringify(Object.fromEntries(nodes.map(n => [n.w, n.n]))); cv.dataset.links = links.length;
+    const shade = (hex, k) => { const v = parseInt(hex.slice(1), 16), c = [v >> 16, (v >> 8) & 255, v & 255].map(ch => Math.round(k > 0 ? ch + (255 - ch) * k : ch * (1 + k))); return `rgb(${c.join(",")})`; };
+    let W = 0, H = 0, dpr = 1, hover = null, t0 = performance.now(), raf = 0, visible = false, P = [];
+    const ctx = cv.getContext("2d");
+    function size() { const r = cv.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    function project(t) {
+      const th = RM ? 0.6 : t * 0.12, tilt = 0.4, cth = Math.cos(th), sth = Math.sin(th), ct = Math.cos(tilt), st = Math.sin(tilt);
+      const cx = W / 2, cy = H / 2 - 4, Rx = W / 2 - 36, Ry = H / 2 - 26;
+      return nodes.map(n => { const x1 = n.x * cth + n.z * sth, z1 = -n.x * sth + n.z * cth; const y1 = n.y * ct - z1 * st, z2 = n.y * st + z1 * ct; const f = 0.72 + 0.28 * (z2 + 1) / 2; return { n, X: cx + x1 * Rx, Y: cy + y1 * Ry, f, z: z2 }; });
     }
-
-    // Prompts carousel
-    const PROMPTS = [
-      "Что сейчас незаметно выматывает вас, но вы ещё не назвали это словами?",
-      "О чём вы избегаете думать? Напишите об этом.",
-      "Опишите последний момент, когда вы были полностью здесь и сейчас.",
-      "Что бы вы сделали иначе вчера?",
-      "Что вы делаете вид, будто всё в порядке, хотя это не так?",
-      "Кого вы больше всего хотели впечатлить на этой неделе и почему?",
-      "Какое убеждение вы храните, но никогда не подвергали сомнению?",
-      "На что вы ждёте чьего-то разрешения?",
-      "Опишите момент за последнюю неделю, который вас удивил.",
-      "Какой самый добрый поступок вы сделали сегодня — и заметили ли вы это сами?",
-      "Что отнимает у вас энергию, но от чего вы могли бы отказаться?",
-      "Какой разрыв между тем, кто вы есть, и тем, кем вы пытаетесь стать?",
-      "Напишите о маленькой вещи, которая сегодня показалась важной.",
-      "Какой разговор вы снова и снова прокручиваете в голове?",
-      "Что бы вы сказали себе полгода назад?",
-      "Чему вы учитесь прямо сейчас, даже если не выбирали этот урок?",
-      "Что тянет на себя ваше внимание, а вы всё время это отодвигаете?",
-      "Опишите момент на этой неделе, когда вы чувствовали себя настоящим собой.",
-      "За что вы благодарны, но никогда не говорили об этом вслух?",
-      "Что чувствует ваше тело прямо сейчас? Начните с этого.",
-      "Чего вам нужно больше? А чего — меньше?",
-      "Напишите о том, что произошло недавно, но вы ещё не до конца это осмыслили.",
-      "Какой паттерн постоянно повторяется в вашей жизни?",
-      "Как для вас сейчас выглядит «достаточно»?",
-      "Если бы сегодня вы могли написать только одну вещь, что бы это было?",
-      "Что вы боитесь, что кто-то узнает о вас?",
-      "Какое самое честное предложение вы могли бы написать прямо сейчас?",
-      "Что в вашей жизни получается хорошо, но вы себе этого не признаёте?",
-      "Кем вы становитесь, даже если не уверены, что сами это выбрали?",
-      "В каком напряжении вы сейчас живёте?",
-    ];
-    let promptIdx = 0;
-    const promptText = document.getElementById('prompt-text');
-    const promptIdxEl = document.getElementById('prompt-idx');
-
-    function setPrompt(idx) {
-      promptText.style.opacity = '0';
-      setTimeout(() => {
-        promptText.textContent = PROMPTS[idx];
-        promptIdxEl.textContent = (idx + 1) + ' / ' + PROMPTS.length;
-        promptText.style.opacity = '1';
-      }, 200);
+    function draw(now) {
+      const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H); P = project(t);
+      const cx = W / 2, cy = H / 2 - 4; const order = P.map((p, i) => i).sort((a, b) => P[a].z - P[b].z);
+      ctx.lineWidth = 0.7;
+      P.forEach(p => { const lit = hover === p.n; ctx.strokeStyle = lit ? "rgba(230,230,234,0.55)" : "rgba(230,230,234,0.09)"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.X, p.Y); ctx.stroke(); });
+      links.forEach(([i, j, s]) => { const a = P[i], b = P[j]; const lit = hover && (hover === a.n || hover === b.n); ctx.strokeStyle = lit ? "rgba(230,230,234,0.7)" : `rgba(230,230,234,${0.07 + 0.05 * s})`; ctx.beginPath(); ctx.moveTo(a.X, a.Y); ctx.lineTo(b.X, b.Y); ctx.stroke(); });
+      ctx.beginPath(); ctx.arc(cx, cy, 15, 0, Math.PI * 2); const cg = ctx.createRadialGradient(cx - 5, cy - 5, 2, cx, cy, 15); cg.addColorStop(0, "#A78BFA"); cg.addColorStop(1, "#5B3FC2"); ctx.fillStyle = cg; ctx.fill();
+      order.forEach(i => { const p = P[i], n = p.n, r = n.r * p.f, big = hover === n; ctx.beginPath(); ctx.arc(p.X, p.Y, r + (big ? 2 : 0), 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(p.X - r * 0.35, p.Y - r * 0.35, r * 0.15, p.X, p.Y, r); g.addColorStop(0, shade(n.c, 0.45)); g.addColorStop(0.6, n.c); g.addColorStop(1, shade(n.c, -0.45));
+        ctx.globalAlpha = hover && !big ? 0.45 + 0.3 * p.f : 0.55 + 0.45 * p.f; ctx.fillStyle = g; ctx.fill(); ctx.globalAlpha = 1;
+        if (n.n >= L10N.brainLabelMin || big) { ctx.fillStyle = big ? "#FFFFFF" : "rgba(230,230,234,0.85)"; ctx.font = `${big ? 600 : 500} 10px -apple-system, BlinkMacSystemFont, sans-serif`; ctx.textAlign = "center"; ctx.fillText(n.w, p.X, p.Y - r - 4); } });
+      ctx.fillStyle = "#FFFFFF"; ctx.font = "600 11px -apple-system, BlinkMacSystemFont, sans-serif"; ctx.textAlign = "center"; ctx.fillText(L10N.you, cx, cy - 20);
+      if (visible && !RM) raf = requestAnimationFrame(draw);
     }
-
-    document.getElementById('prompt-prev').addEventListener('click', () => {
-      promptIdx = (promptIdx - 1 + PROMPTS.length) % PROMPTS.length;
-      setPrompt(promptIdx);
+    function start() { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
+    new ResizeObserver(() => { size(); start(); }).observe(cv);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting && !document.hidden; if (visible) start(); }, { threshold: 0.1 }).observe(cv);
+    document.addEventListener("visibilitychange", () => { visible = !document.hidden; if (visible) start(); });
+    cv.addEventListener("pointermove", ev => {
+      const r = cv.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
+      let best = null, bd = 16; P.forEach(p => { const d = Math.hypot(p.X - mx, p.Y - my); if (d < bd + p.n.r) { best = p; bd = d; } });
+      hover = best ? best.n : null;
+      if (best) { tip.innerHTML = `<span class="dot" style="--c:${best.n.c}"></span>${best.n.w}, ${L10N.entries(best.n.n)}`; tip.style.left = `${best.X}px`; tip.style.top = `${best.Y - best.n.r}px`; tip.hidden = false; } else tip.hidden = true;
+      if (RM) start();
     });
-    document.getElementById('prompt-next').addEventListener('click', () => {
-      promptIdx = (promptIdx + 1) % PROMPTS.length;
-      setPrompt(promptIdx);
-    });
+    cv.addEventListener("pointerleave", () => { hover = null; tip.hidden = true; if (RM) start(); });
+  })();
 
-    let promptAutoTimer = setInterval(() => {
-      promptIdx = (promptIdx + 1) % PROMPTS.length;
-      setPrompt(promptIdx);
-    }, 6000);
+  // prompts
+  let idx = 0; const q = $("[data-prompt]");
+  const show = () => { q.textContent = PROMPTS[idx]; $("[data-prompt-idx]").textContent = `${idx + 1} / ${PROMPTS.length}`; };
+  const step = n => { idx = (idx + n + PROMPTS.length) % PROMPTS.length; if (RM) return show(); q.classList.add("swap"); setTimeout(() => { show(); q.classList.remove("swap"); }, 230); };
+  document.querySelectorAll("[data-prompt-step]").forEach(b => b.addEventListener("click", () => step(Number(b.dataset.promptStep))));
+  document.addEventListener("keydown", ev => { if (ev.target.closest("input, textarea")) return; if (ev.key === "ArrowRight") step(1); if (ev.key === "ArrowLeft") step(-1); });
+  show();
 
-    ['prompt-prev','prompt-next'].forEach(id => {
-      document.getElementById(id).addEventListener('click', () => {
-        clearInterval(promptAutoTimer);
-        promptAutoTimer = setInterval(() => {
-          promptIdx = (promptIdx + 1) % PROMPTS.length;
-          setPrompt(promptIdx);
-        }, 6000);
-      });
-    });
-  </script>
+  // Prices per App Store country (the plan in marketing/pricing, live since 2026-10-18). Country comes from our CDN's
+  // /cdn-cgi/trace on this domain, then the browser language, then US; a manual choice is kept on this device only.
+  const STOREFRONTS = {"AU":["Australia","AUD",12.99,79.99,19.99,99.99],"AT":["Austria","EUR",8.99,59.99,12.99,79.99],"BE":["Belgium","EUR",8.99,59.99,12.99,79.99],"BS":["Bahamas","USD",8.99,49.99,12.99,79.99],"BM":["Bermuda","USD",7.99,49.99,11.99,69.99],"CA":["Canada","CAD",9.99,69.99,14.99,99.99],"CH":["Switzerland","CHF",7,40,10,60],"KY":["Cayman Islands","USD",7.99,49.99,11.99,69.99],"DE":["Germany","EUR",8.99,59.99,12.99,79.99],"DK":["Denmark","DKK",69,399,99,599],"FI":["Finland","EUR",8.99,59.99,12.99,79.99],"FR":["France","EUR",8.99,59.99,12.99,79.99],"GB":["United Kingdom","GBP",7.99,49.99,11.99,69.99],"HK":["Hong Kong","HKD",58,388,88,588],"IE":["Ireland","EUR",8.99,59.99,12.99,79.99],"IS":["Iceland","USD",9.99,59.99,14.99,79.99],"IL":["Israel","ILS",24.9,149.9,39.9,199.9],"LU":["Luxembourg","EUR",8.99,59.99,12.99,79.99],"NL":["Netherlands","EUR",8.99,59.99,12.99,79.99],"NO":["Norway","NOK",99,599,149,899],"NZ":["New Zealand","NZD",14.99,99.99,19.99,129.99],"QA":["Qatar","QAR",29.99,199.99,39.99,249.99],"SG":["Singapore","SGD",9.98,69.98,17.98,99.98],"SE":["Sweden","SEK",99,599,149,999],"US":["United States","USD",7.99,49.99,11.99,69.99],"AE":["United Arab Emirates","AED",22.99,149.99,34.99,199.99],"AR":["Argentina","USD",5.99,39.99,8.99,54.99],"AG":["Antigua and Barbuda","USD",5.99,39.99,8.99,54.99],"BB":["Barbados","USD",6.99,49.99,9.99,69.99],"CR":["Costa Rica","USD",5.99,39.99,8.99,54.99],"CY":["Cyprus","EUR",6.99,44.99,9.99,59.99],"CZ":["Czechia","CZK",149,999,249,1490],"ES":["Spain","EUR",6.99,44.99,9.99,59.99],"EE":["Estonia","EUR",6.99,44.99,9.99,59.99],"GR":["Greece","EUR",6.99,44.99,9.99,59.99],"IT":["Italy","EUR",6.99,44.99,9.99,59.99],"JP":["Japan","JPY",1000,6000,1500,9000],"KN":["St Kitts & Nevis","USD",5.99,39.99,8.99,54.99],"KR":["South Korea","KRW",9900,66000,15000,99000],"KW":["Kuwait","USD",5.99,39.99,8.99,54.99],"LC":["St Lucia","USD",5.99,39.99,8.99,54.99],"LT":["Lithuania","EUR",6.99,44.99,9.99,59.99],"LV":["Latvia","EUR",6.99,44.99,9.99,59.99],"MO":["Macao","USD",5.99,39.99,8.99,54.99],"MV":["Maldives","USD",5.99,39.99,8.99,54.99],"MX":["Mexico","MXN",129,899,199,1199],"MT":["Malta","EUR",6.99,44.99,9.99,59.99],"PT":["Portugal","EUR",6.99,44.99,9.99,59.99],"SK":["Slovakia","EUR",6.99,44.99,9.99,59.99],"SI":["Slovenia","EUR",6.99,44.99,9.99,59.99],"SC":["Seychelles","USD",5.99,39.99,8.99,54.99],"TC":["Turks and Caicos Islands","USD",5.99,39.99,8.99,54.99],"TT":["Trinidad and Tobago","USD",5.99,39.99,8.99,54.99],"TW":["Taiwan","TWD",190,1290,290,1990],"UY":["Uruguay","USD",5.99,39.99,8.99,54.99],"AI":["Anguilla","USD",4.49,29.99,6.49,39.99],"AL":["Albania","USD",4.99,34.99,7.99,49.99],"BG":["Bulgaria","EUR",4.99,34.99,6.99,44.99],"BH":["Bahrain","USD",4.99,29.99,6.99,39.99],"BZ":["Belize","USD",4.49,29.99,6.49,39.99],"BR":["Brazil","BRL",29.9,199.9,39.9,249.9],"CL":["Chile","CLP",4990,34990,6990,49990],"CN":["China","CNY",32,198,48,298],"CV":["Cabo Verde","USD",4.49,29.99,6.49,39.99],"DM":["Dominica","USD",4.49,29.99,6.49,39.99],"EC":["Ecuador","USD",4.49,29.99,6.49,39.99],"GA":["Gabon","USD",4.49,29.99,6.49,39.99],"GD":["Grenada","USD",4.49,29.99,6.49,39.99],"GT":["Guatemala","USD",4.49,29.99,6.49,39.99],"GY":["Guyana","USD",4.49,29.99,6.49,39.99],"HR":["Croatia","EUR",4.99,34.99,6.99,44.99],"HU":["Hungary","HUF",1990,12990,2990,17990],"IQ":["Iraq","USD",4.49,29.99,6.49,39.99],"JM":["Jamaica","USD",4.49,29.99,6.49,39.99],"JO":["Jordan","USD",4.49,29.99,6.49,39.99],"MD":["Moldova","USD",4.99,34.99,7.99,49.99],"ME":["Montenegro","EUR",3.99,29.99,5.99,39.99],"MS":["Montserrat","USD",4.49,29.99,6.49,39.99],"MU":["Mauritius","USD",4.99,34.99,7.99,49.99],"NR":["Naoero","USD",4.49,29.99,6.49,39.99],"OM":["Oman","USD",4.49,29.99,6.49,39.99],"PA":["Panama","USD",4.49,29.99,6.49,39.99],"PE":["Peru","PEN",19.9,129.9,29.9,179.9],"PW":["Palau","USD",4.49,29.99,6.49,39.99],"PL":["Poland","PLN",19.99,129.99,29.99,199.99],"RO":["Romania","RON",24.99,149.99,34.99,199.99],"SA":["Saudi Arabia","SAR",19.99,129.99,29.99,179.99],"SV":["El Salvador","USD",4.49,29.99,6.49,39.99],"RS":["Serbia","EUR",4.99,34.99,6.99,44.99],"SR":["Suriname","USD",4.99,29.99,6.99,39.99],"TM":["Turkmenistan","USD",4.49,29.99,6.49,39.99],"VC":["St Vincent","USD",4.49,29.99,6.49,39.99],"VE":["Venezuela","USD",4.49,29.99,6.49,39.99],"VG":["British Virgin Islands","USD",4.49,29.99,6.49,39.99],"YE":["Yemen","USD",4.49,29.99,6.49,39.99],"ZA":["South Africa","ZAR",99.99,599.99,129.99,799.99],"AO":["Angola","USD",3.49,21.99,4.99,29.99],"AM":["Armenia","USD",3.99,24.99,5.99,34.99],"AZ":["Azerbaijan","USD",3.99,24.99,5.99,34.99],"BA":["Bosnia and Herzegovina","EUR",3.99,24.99,5.99,34.99],"BO":["Bolivia","USD",3.49,21.99,4.99,29.99],"BN":["Brunei","USD",3.49,21.99,4.99,29.99],"BW":["Botswana","USD",3.49,21.99,4.99,29.99],"CI":["Côte d'Ivoire","USD",3.99,24.99,5.99,34.99],"CM":["Cameroon","USD",3.99,24.99,5.99,34.99],"CG":["Congo","USD",3.99,24.99,5.99,34.99],"CO":["Colombia","COP",14900,99900,24900,129900],"DO":["Dominican Republic","USD",3.49,21.99,4.99,29.99],"DZ":["Algeria","USD",3.49,21.99,4.99,29.99],"FJ":["Fiji","USD",3.49,21.99,4.99,29.99],"GE":["Georgia","USD",3.99,24.99,5.99,34.99],"GH":["Ghana","USD",3.99,24.99,5.99,34.99],"HN":["Honduras","USD",3.49,21.99,4.99,29.99],"ID":["Indonesia","IDR",69000,399000,99000,599000],"KZ":["Kazakhstan","KZT",1990,12990,2990,17990],"KE":["Kenya","USD",3.99,24.99,5.99,34.99],"KG":["Kyrgyzstan","USD",3.99,24.99,4.99,29.99],"KH":["Cambodia","USD",3.99,24.99,4.99,29.99],"LB":["Lebanon","USD",3.49,21.99,4.99,29.99],"LY":["Libya","USD",3.49,21.99,4.99,29.99],"MA":["Morocco","USD",3.99,24.99,5.99,34.99],"MK":["North Macedonia","USD",3.49,21.99,4.99,29.99],"MN":["Mongolia","USD",3.49,21.99,4.99,29.99],"MR":["Mauritania","USD",3.49,21.99,4.99,29.99],"MY":["Malaysia","MYR",14.9,99.9,22.9,129.9],"NA":["Namibia","USD",3.49,21.99,4.99,29.99],"NI":["Nicaragua","USD",3.49,21.99,4.99,29.99],"PH":["Philippines","PHP",199,1490,299,1990],"PY":["Paraguay","USD",3.49,21.99,4.99,29.99],"RU":["Russia","RUB",299,1990,449,2490],"ST":["São Tomé","USD",3.49,21.99,4.99,29.99],"SZ":["Eswatini","USD",3.49,21.99,4.99,29.99],"TH":["Thailand","THB",129,799,199,999],"TO":["Tonga","USD",3.49,21.99,4.99,29.99],"TN":["Tunisia","USD",3.49,21.99,4.99,29.99],"TR":["Türkiye","TRY",199.99,1199.99,249.99,1499.99],"XK":["Kosovo","EUR",3.99,24.99,5.99,34.99],"AF":["Afghanistan","USD",1.99,12.99,2.99,17.99],"BJ":["Benin","USD",1.99,14.99,3.99,19.99],"BF":["Burkina Faso","USD",1.99,12.99,2.99,17.99],"BY":["Belarus","USD",1.99,14.99,3.99,19.99],"BT":["Bhutan","USD",1.99,12.99,2.99,17.99],"CD":["DR Congo","USD",1.99,12.99,2.99,17.99],"EG":["Egypt","EGP",99.99,699.99,149.99,999.99],"FM":["Micronesia","USD",1.99,12.99,2.99,17.99],"GM":["Gambia","USD",1.99,12.99,2.99,17.99],"GW":["Guinea-Bissau","USD",1.99,12.99,2.99,17.99],"IN":["India","INR",199,1299,299,1999],"LA":["Laos","USD",1.99,14.99,2.99,19.99],"LR":["Liberia","USD",1.99,12.99,2.99,17.99],"LK":["Sri Lanka","USD",1.99,12.99,2.99,17.99],"MG":["Madagascar","USD",1.99,12.99,2.99,17.99],"ML":["Mali","USD",1.99,12.99,2.99,17.99],"MM":["Myanmar","USD",1.99,12.99,2.99,17.99],"MZ":["Mozambique","USD",1.99,12.99,2.99,17.99],"MW":["Malawi","USD",1.99,12.99,2.99,17.99],"NE":["Niger","USD",1.99,12.99,2.99,17.99],"NG":["Nigeria","NGN",3200,19900,4900,29900],"NP":["Nepal","USD",1.99,14.99,3.99,19.99],"PK":["Pakistan","PKR",500,3500,900,4900],"PG":["Papua New Guinea","USD",1.99,12.99,2.99,17.99],"RW":["Rwanda","USD",1.99,12.99,2.99,17.99],"SN":["Senegal","USD",1.99,14.99,3.99,19.99],"SB":["Solomon Islands","USD",1.99,12.99,2.99,17.99],"SL":["Sierra Leone","USD",1.99,12.99,2.99,17.99],"TD":["Chad","USD",1.99,12.99,2.99,17.99],"TJ":["Tajikistan","USD",1.99,14.99,2.99,19.99],"TZ":["Tanzania","TZS",5900,39900,9900,49900],"UG":["Uganda","USD",1.99,14.99,3.99,19.99],"UA":["Ukraine","USD",1.99,14.99,3.99,19.99],"UZ":["Uzbekistan","USD",1.99,14.99,2.99,19.99],"VN":["Vietnam","VND",59000,399000,99000,499000],"VU":["Vanuatu","USD",1.99,12.99,2.99,17.99],"ZM":["Zambia","USD",1.99,14.99,3.99,19.99],"ZW":["Zimbabwe","USD",1.99,14.99,3.99,19.99]};
+  (() => {
+    const sel = $("[data-storefront]"), note = $("[data-price-note]"); if (!sel) return;
+    const codes = Object.keys(STOREFRONTS).sort((a, b) => STOREFRONTS[a][0].localeCompare(STOREFRONTS[b][0]));
+    const dn = (() => { try { return new Intl.DisplayNames([L10N.dateLang], { type: "region" }); } catch { return null; } })(); const cname = c => { try { return dn?.of(c) || STOREFRONTS[c][0]; } catch { return STOREFRONTS[c][0]; } };
+    sel.innerHTML = codes.map(c => `<option value="${c}">${cname(c)}</option>`).sort((a, b) => a.replace(/<[^>]+>/g, "").localeCompare(b.replace(/<[^>]+>/g, ""), L10N.dateLang)).join("");
+    const money = (v, cur) => { try { return new Intl.NumberFormat(L10N.dateLang, { style: "currency", currency: cur, minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 }).format(v); } catch { return `${cur} ${v}`; } };
+    function apply(code) {
+      const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US";
+      const [name, cur, cm, cy, dm, dy] = s;
+      $("[data-price='core_mo']").textContent = money(cm, cur); $("[data-price='core_yr']").textContent = money(cy, cur);
+      $("[data-price='deep_mo']").textContent = money(dm, cur); $("[data-price='deep_yr']").textContent = money(dy, cur);
+      $("[data-save='core']").textContent = L10N.save(Math.round((1 - cy / (cm * 12)) * 100)); $("[data-save='deep']").textContent = L10N.save(Math.round((1 - dy / (dm * 12)) * 100));
+      note.textContent = code === "US" ? L10N.usPrices : L10N.pricesIn(cur);
+      sel.value = code; document.documentElement.dataset.storeCountry = code;
+    }
+    sel.addEventListener("change", () => { try { localStorage.setItem("mn.storefront", sel.value); } catch {} apply(sel.value); });
+    let chosen = null; try { chosen = localStorage.getItem("mn.storefront"); } catch {}
+    if (chosen && STOREFRONTS[chosen]) return apply(chosen);
+    const fromLang = (navigator.language || "").split("-")[1]?.toUpperCase();
+    apply(fromLang && STOREFRONTS[fromLang] ? fromLang : "US");
+    fetch("/cdn-cgi/trace", { cache: "no-store" }).then(r => r.ok ? r.text() : "").then(t => {
+      let picked = null; try { picked = localStorage.getItem("mn.storefront"); } catch {}
+      const loc = /^loc=([A-Z]{2})$/m.exec(t)?.[1]; if (loc && STOREFRONTS[loc] && !picked) apply(loc); }).catch(() => {});
+  })();
+})();
+</script>
 </body>
 </html>

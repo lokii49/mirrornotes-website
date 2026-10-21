@@ -1,0 +1,808 @@
+#!/usr/bin/env python3
+"""Build the nine localized homepages (de es fr it pt ja ko ru zh) from the English index.html.
+
+index.html is the source of truth. For each language this script
+  - swaps the page copy (the T table below: English text -> translation, exact match, each key must hit once),
+  - swaps the L10N block, the sample journal, the reflection, the digest, the Ask card and the Brain View
+    patterns using the app's own localized data (tools/locale-data.json, from extract_locale_data.py),
+  - rewrites <html lang>, title, description, og/twitter, canonical, og:locale, the footer language row,
+    drops the language-redirect script and adds CJK serif fallbacks,
+  - asserts no English copy survived.
+
+Run from website/:  python3 tools/build_locales.py
+Re-run after any change to index.html.
+
+The journal text, mood names, "You wrote" phrasing, digest and Ask copy come from the app and are
+translations the app ships. The marketing copy in T was written by Claude (2026-10-21) and has not
+had a native-speaker pass yet.
+"""
+import json
+import pathlib
+import re
+import sys
+
+HERE = pathlib.Path(__file__).resolve().parent
+WEB = HERE.parent
+DATA = json.load(open(HERE / "locale-data.json"))
+CODES = ["de", "es", "fr", "it", "pt", "ja", "ko", "ru", "zh"]
+
+LANG = {"de": "de-DE", "es": "es-ES", "fr": "fr-FR", "it": "it-IT", "pt": "pt-BR", "ja": "ja-JP", "ko": "ko-KR", "ru": "ru-RU", "zh": "zh-CN"}
+OG_LOCALE = {"de": "de_DE", "es": "es_ES", "fr": "fr_FR", "it": "it_IT", "pt": "pt_BR", "ja": "ja_JP", "ko": "ko_KR", "ru": "ru_RU", "zh": "zh_CN"}
+WEEK_START = {"de": 1, "es": 1, "fr": 1, "it": 1, "pt": 0, "ja": 0, "ko": 0, "ru": 1, "zh": 1}
+DATE = {"de": "15. November 2026", "es": "15 de noviembre de 2026", "fr": "15 novembre 2026", "it": "15 novembre 2026", "pt": "15 de novembro de 2026",
+        "ja": "2026年11月15日", "ko": "2026년 11월 15일", "ru": "15 ноября 2026 г.", "zh": "2026年11月15日"}
+CJK = {"ja", "ko", "zh"}
+SERIF = {
+    "ja": "ui-serif, 'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP', 'New York', Georgia, serif",
+    "ko": "ui-serif, 'Apple SD Gothic Neo', 'Noto Serif KR', 'New York', Georgia, serif",
+    "zh": "ui-serif, 'Songti SC', 'PingFang SC', 'Noto Serif SC', 'New York', Georgia, serif",
+}
+# Brain View colours, as in index.html
+TEAL, GRAY, TAN, ORANGE, OLIVE, WHITE = "TEAL", "GRAY", "TAN", "ORANGE", "OLIVE", "WHITE"
+
+# ───────────────────────── page copy: English key -> translation ─────────────────────────
+# Keys are exact fragments of index.html. {date} = DATE[code]. Product names stay.
+NAV = '<div class="nav-links"><a href="#reflection">How it works</a><a href="#features">Features</a><a href="#prompts">Try a prompt</a><a href="#pricing">Pricing</a><a href="/privacy.html">Privacy</a></div>'
+MULTI = {"<small>/month</small>": 2, '<p class="tier-note">In the app from 15 November 2026</p>': 2}
+KEYS = [
+    NAV, "Get the app</a>",
+    "<h1>The journal that listens in private.</h1>",
+    "Write anything. The AI that reflects it back lives on your iPhone. Not on someone's server. Not in a data center. Not anywhere your words can travel.",
+    "Download free on the App Store</a>", ">See how it works<",
+    "<b>Unlimited</b>free entries, forever", "<b>0 bytes</b>sent to any server", "<b>On-device AI</b>Apple Foundation Models, Gemma 3 fallback", "<b>Editorial</b>Apple nominated",
+    'aria-label="A sample week in MirrorNotes"', ">Sample journal<",
+    "<h2>Every reflection begins with a sentence you wrote.</h2>",
+    "Word for word, in quotation marks. Then one line about how the day reads. Not a summary, not a guess about your life.",
+    ">A sample entry<", ">Its reflection, the same morning<", "</svg>Daily Reflection</span>",
+    "Before a reflection is shown, the app checks that the quoted sentence really is in the entry. If it can't find one, you see that honestly instead of invented detail. On iPhones with Apple Intelligence this runs on Apple's Foundation Models; on every other supported iPhone, on the bundled Gemma 3 model. Both on the phone, neither online.",
+    "<h2>Your journal text cannot leave your phone. There is no server to send it to.</h2>",
+    "We didn't build a privacy policy around cloud AI. We removed the cloud entirely. The model runs on your iPhone's own chip, the same one that powers Face ID. No network call. Nothing to intercept.",
+    "<b>Your iPhone</b><small>Journal and on-device AI</small>", "<b>Your iCloud</b><small>Private to your Apple ID</small>", "<b>Any server</b><small>Never reached</small>",
+    "<h2>AI that knows you. Stays with you.</h2>",
+    "A focused set of tools built around the one thing that makes journaling work: honesty. Everything below is made on your phone, from your own entries. The examples come from the same sample journal as above.",
+    "<h3>Weekly Digest</h3>", "Every Sunday: a synthesis of your week, built only from sentences you wrote. Themes, mood, threads worth returning to, one thing to try.", "</svg>Weekly Digest</span>",
+    "<h3>Ask your journal</h3>", "Ask in plain words. The answer comes from your own entries, with the sentences it leaned on shown underneath.", ">Ask about your journal<",
+    "<h3>Mood timeline</h3>", "This week's mood on one line, read from what you wrote. The app keeps the whole timeline, back to your first entry.", "</svg>This Week's Mood</span>",
+    "<h3>Write freely</h3>", "Type, dictate, or paste a photo. Tags and a mood, suggested from the text. Unlimited entries, no 30-day limit, free forever.", ">Mood suggested from your entry<",
+    "<h3>Brain View</h3>", "A constellation of the themes you keep returning to, sized by how often they appear. Themes that share an entry are linked. In the app it turns in 3D.",
+    'aria-label="Brain View: themes from the sample journal, sized by how often they appear, linked when they share an entry"',
+    "<b>No account, ever</b><p>No email, no password, no sign-in screen. Nothing to breach, because we never asked who you are.</p>",
+    "<b>Works in airplane mode</b><p>The AI doesn't need the internet. Write and reflect on a flight, in a cabin, in a dead zone.</p>",
+    "<b>iCloud backup</b><p>Entries sync to your iCloud, private to your Apple ID. We don't have access. Full-text search is local too.</p>",
+    "<h2>AI that earns trust before it speaks.</h2>", "We wait until MirrorNotes has read enough of your writing before surfacing insights. No weak guesses on day one.",
+    "<b>0</b><span>DAY</span>", "<b>1–3</b><span>DAYS</span>", "<b>4</b><span>DAY</span>", "<b>2+</b><span>WEEK</span>",
+    "<h3>Get oriented</h3><p>Three quick questions. Write your first entry. No account, no email, no sign-in.</p>",
+    "<h3>Mirror is learning</h3><p>Write freely. No AI yet: we need signal before offering insight. You see a quiet progress bar instead of bad guesses.</p>",
+    "<h3>First reflection</h3><p>With a week of entries, MirrorNotes knows your patterns. Your first reflection appears, quoting what you actually wrote.</p>",
+    "<h3>Full experience</h3><p>Daily reflections, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p>",
+    "<h2>30 questions that cut through the noise.</h2>", "These are the kinds of questions MirrorNotes asks, drawn from what you actually wrote. Find one that hits.",
+    ">Write to this prompt<", 'aria-label="Previous prompt"', 'aria-label="Next prompt"',
+    "<h2>Free to write, forever. Pay only for the AI.</h2>",
+    "Until 15 November 2026 everything is free. From then, the AI features come in two plans, with a 7-day free trial for new subscribers. Your entries, your history, search and iCloud backup never cost anything.",
+    "<h3>Free</h3>", ">Your journal, always yours<",
+    "<li>Unlimited entries, forever</li><li>Every past entry, always readable</li><li>Full-text search, on your phone</li><li>iCloud backup and sync</li><li>Your first reflection</li><li>Anything the AI already made for you stays readable</li>",
+    ">Download free</a>", "<small>/month</small>",
+    '<p class="tier-sub">or <span data-price="core_yr">$49.99</span> a year, <span data-save="core">save 48%</span></p>',
+    '<p class="tier-sub">or <span data-price="deep_yr">$69.99</span> a year, <span data-save="deep">save 51%</span></p>',
+    "<li>Everything in Free</li><li>Daily Reflection, every day you write</li><li>Ask your journal, 15 a month</li><li>Weekly Digest every Sunday</li><li>Home screen widgets</li>",
+    '<p class="tier-note">In the app from 15 November 2026</p>',
+    "<li>Everything in Core</li><li>Ask, unlimited</li><li>Monthly Deep Report</li><li>Mood Timeline and full analytics</li><li>Mood Alerts</li>",
+    '<span data-price-note>US prices</span>, <label class="store-pick">for <select data-storefront aria-label="Country for prices"><option value="US">United States</option></select>.</label> The App Store charges the price for your Apple ID\'s country. One 7-day trial per Apple ID, on your first plan. Plans are managed in your Apple ID settings, so there is nothing to cancel with us.',
+    "<h3>Why pay for the AI, and never for your words?</h3>",
+    "Your data is always yours. You pay for the AI layer. Most journaling apps pay a cloud provider for every entry you write, so they have to charge you, or worse, monetize you. MirrorNotes runs its AI on the chip already in your pocket, which is why it could stay free this long, and why the plans stay small.",
+    "<li><b>We can't sell your data.</b> It never reaches us. There is nothing on our side to sell.</li>",
+    "<li><b>We can't lock your history.</b> Your entries live in your iCloud, under your Apple ID.</li>",
+    "<li><b>We'll never charge you to read your own words.</b> The plans gate new AI features, not your archive.</li>",
+    "<h2>Your most honest thoughts deserve a private space.</h2>", "No account. No server. No data deal. Just you, your phone, and an AI that stays where it belongs.", ">Download free for iPhone<",
+    "<p>Private AI journaling. Your words stay on your device.</p>", "<h4>Product</h4>", "<h4>Compare</h4>", "<h4>Support</h4>", "<h4>Developers</h4>",
+    '<a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#prompts">Try a prompt</a><a href="https://apps.apple.com/app/id6769007201">Download</a>',
+    '<a href="/rosebud-alternative.html">vs Rosebud</a><a href="/day-one-alternative.html">vs Day One</a><a href="/reflect-alternative.html">vs Reflect</a><a href="/adhd-journaling-app.html">ADHD journaling</a>',
+    '<a href="/support.html">Help Center</a><a href="mailto:hello@mirrornotes.org">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a>',
+    '<a href="/mcp.html">MCP Server</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Languages</span>", "© 2026 MirrorNotes. Made with intention. Privacy first.", "The journal shown on this page is a sample. No analytics, no tracking pixels, no third-party scripts.",
+]
+
+T = {}
+T["de"] = [
+    '<div class="nav-links"><a href="#reflection">So funktioniert es</a><a href="#features">Funktionen</a><a href="#prompts">Frage ausprobieren</a><a href="#pricing">Preise</a><a href="/de/privacy.html">Datenschutz</a></div>', "App laden</a>",
+    "<h1>Das Tagebuch, das privat zuhört.</h1>",
+    "Schreib, was du willst. Die KI, die es dir zurückspiegelt, lebt auf deinem iPhone. Nicht auf einem fremden Server. Nicht in einem Rechenzentrum. Nirgendwo, wohin deine Worte reisen könnten.",
+    "Kostenlos im App Store laden</a>", ">So funktioniert es<",
+    "<b>Unbegrenzt</b>Einträge, kostenlos, für immer", "<b>0 Bytes</b>an irgendeinen Server gesendet", "<b>KI auf dem Gerät</b>Apple Foundation Models, Gemma 3 als Fallback", "<b>Editorial</b>von Apple nominiert",
+    'aria-label="Eine Beispielwoche in MirrorNotes"', ">Beispiel-Tagebuch<",
+    "<h2>Jede Reflexion beginnt mit einem Satz, den du geschrieben hast.</h2>",
+    "Wort für Wort, in Anführungszeichen. Dann ein Satz dazu, wie sich der Tag liest. Keine Zusammenfassung, keine Vermutung über dein Leben.",
+    ">Ein Beispieleintrag<", ">Seine Reflexion, am selben Morgen<", "</svg>Tagesreflexion</span>",
+    "Bevor eine Reflexion erscheint, prüft die App, ob der zitierte Satz wirklich im Eintrag steht. Findet sie keinen, siehst du das ehrlich, statt erfundener Details. Auf iPhones mit Apple Intelligence läuft das auf Apples Foundation Models, auf jedem anderen unterstützten iPhone auf dem mitgelieferten Gemma-3-Modell. Beides auf dem Telefon, nichts online.",
+    "<h2>Dein Tagebuchtext kann dein Telefon nicht verlassen. Es gibt keinen Server, an den er gehen könnte.</h2>",
+    "Wir haben keine Datenschutzerklärung um Cloud-KI herum gebaut. Wir haben die Cloud ganz weggelassen. Das Modell läuft auf dem Chip deines iPhones, demselben, der Face ID antreibt. Kein Netzwerkaufruf. Nichts, was man abfangen könnte.",
+    "<b>Dein iPhone</b><small>Tagebuch und KI auf dem Gerät</small>", "<b>Deine iCloud</b><small>Privat, unter deiner Apple-ID</small>", "<b>Irgendein Server</b><small>Wird nie erreicht</small>",
+    "<h2>KI, die dich kennt. Und bei dir bleibt.</h2>",
+    "Wenige Werkzeuge, gebaut um das Eine, das Tagebuchschreiben wirksam macht: Ehrlichkeit. Alles hier unten entsteht auf deinem Telefon, aus deinen eigenen Einträgen. Die Beispiele stammen aus demselben Beispiel-Tagebuch wie oben.",
+    "<h3>Wochenrückblick</h3>", "Jeden Sonntag: eine Zusammenschau deiner Woche, nur aus Sätzen gebaut, die du geschrieben hast. Themen, Stimmung, Fäden, zu denen es sich zurückzukehren lohnt, eine Sache zum Ausprobieren.", "</svg>Wochenrückblick</span>",
+    "<h3>Frag dein Tagebuch</h3>", "Frag in einfachen Worten. Die Antwort kommt aus deinen eigenen Einträgen, die Sätze, auf die sie sich stützt, stehen darunter.", ">Frag dein Tagebuch<",
+    "<h3>Stimmungsverlauf</h3>", "Die Stimmung dieser Woche auf einer Linie, abgelesen aus dem, was du geschrieben hast. Die App bewahrt den ganzen Verlauf, zurück bis zu deinem ersten Eintrag.", "</svg>Stimmung dieser Woche</span>",
+    "<h3>Schreib frei</h3>", "Tippen, diktieren oder ein Foto einfügen. Tags und eine Stimmung, aus dem Text vorgeschlagen. Unbegrenzt viele Einträge, keine 30-Tage-Grenze, für immer kostenlos.", ">Stimmung aus deinem Eintrag vorgeschlagen<",
+    "<h3>Brain View</h3>", "Eine Konstellation der Themen, zu denen du immer wieder zurückkehrst, so groß, wie oft sie vorkommen. Themen aus demselben Eintrag sind verbunden. In der App dreht sie sich in 3D.",
+    'aria-label="Brain View: Themen aus dem Beispiel-Tagebuch, so groß, wie oft sie vorkommen, verbunden, wenn sie einen Eintrag teilen"',
+    "<b>Nie ein Konto</b><p>Keine E-Mail, kein Passwort, kein Anmeldebildschirm. Nichts, was gehackt werden könnte, weil wir nie gefragt haben, wer du bist.</p>",
+    "<b>Funktioniert im Flugmodus</b><p>Die KI braucht kein Internet. Schreib und reflektiere im Flugzeug, in der Hütte, im Funkloch.</p>",
+    "<b>iCloud-Backup</b><p>Einträge synchronisieren sich in deine iCloud, privat unter deiner Apple-ID. Wir haben keinen Zugriff. Auch die Volltextsuche läuft lokal.</p>",
+    "<h2>KI, die sich Vertrauen verdient, bevor sie spricht.</h2>", "Wir warten, bis MirrorNotes genug von dir gelesen hat, bevor es Einsichten zeigt. Keine schwachen Vermutungen am ersten Tag.",
+    "<b>0</b><span>TAG</span>", "<b>1–3</b><span>TAGE</span>", "<b>4</b><span>TAG</span>", "<b>2+</b><span>WOCHE</span>",
+    "<h3>Ankommen</h3><p>Drei kurze Fragen. Schreib deinen ersten Eintrag. Kein Konto, keine E-Mail, keine Anmeldung.</p>",
+    "<h3>Mirror lernt</h3><p>Schreib frei. Noch keine KI: Wir brauchen erst Signal, bevor wir Einsichten anbieten. Du siehst einen ruhigen Fortschrittsbalken statt schlechter Vermutungen.</p>",
+    "<h3>Erste Reflexion</h3><p>Nach einer Woche Einträgen kennt MirrorNotes deine Muster. Deine erste Reflexion erscheint und zitiert, was du wirklich geschrieben hast.</p>",
+    "<h3>Volles Erlebnis</h3><p>Tägliche Reflexionen, Fragen, Wochenrückblick, Stimmungsverlauf. Die KI wird schärfer, je größer dein Archiv wird.</p>",
+    "<h2>30 Fragen, die durch den Lärm schneiden.</h2>", "Solche Fragen stellt MirrorNotes, abgeleitet aus dem, was du wirklich geschrieben hast. Such dir eine, die trifft.",
+    ">Zu dieser Frage schreiben<", 'aria-label="Vorherige Frage"', 'aria-label="Nächste Frage"',
+    "<h2>Schreiben bleibt kostenlos, für immer. Du zahlst nur für die KI.</h2>",
+    "Bis zum {date} ist alles kostenlos. Danach gibt es die KI-Funktionen in zwei Plänen, mit 7 Tagen kostenlos zum Ausprobieren für neue Abonnenten. Deine Einträge, dein Verlauf, die Suche und das iCloud-Backup kosten nie etwas.",
+    "<h3>Kostenlos</h3>", ">Dein Tagebuch, immer deins<",
+    "<li>Unbegrenzt viele Einträge, für immer</li><li>Jeder frühere Eintrag, immer lesbar</li><li>Volltextsuche, auf deinem Telefon</li><li>iCloud-Backup und Synchronisation</li><li>Deine erste Reflexion</li><li>Alles, was die KI schon für dich gemacht hat, bleibt lesbar</li>",
+    ">Kostenlos laden</a>", "<small>/Monat</small>",
+    '<p class="tier-sub">oder <span data-price="core_yr">$49.99</span> im Jahr, <span data-save="core">48 % gespart</span></p>',
+    '<p class="tier-sub">oder <span data-price="deep_yr">$69.99</span> im Jahr, <span data-save="deep">51 % gespart</span></p>',
+    "<li>Alles aus Kostenlos</li><li>Tagesreflexion, an jedem Tag, an dem du schreibst</li><li>Frag dein Tagebuch, 15-mal im Monat</li><li>Wochenrückblick jeden Sonntag</li><li>Widgets für den Home-Bildschirm</li>",
+    '<p class="tier-note">In der App ab {date}</p>',
+    "<li>Alles aus Core</li><li>Fragen, unbegrenzt</li><li>Monatsbericht</li><li>Stimmungsverlauf und alle Auswertungen</li><li>Stimmungshinweise</li>",
+    '<span data-price-note>US-Preise</span>, <label class="store-pick">für <select data-storefront aria-label="Land für die Preise"><option value="US">United States</option></select>.</label> Der App Store berechnet den Preis des Landes deiner Apple-ID. Eine 7-tägige Testphase pro Apple-ID, beim ersten Plan. Pläne verwaltest du in den Einstellungen deiner Apple-ID, bei uns gibt es nichts zu kündigen.',
+    "<h3>Warum für die KI zahlen, und nie für deine Worte?</h3>",
+    "Deine Daten gehören immer dir. Du zahlst für die KI-Schicht. Die meisten Tagebuch-Apps bezahlen einen Cloud-Anbieter für jeden Eintrag, den du schreibst, also müssen sie dir Geld abnehmen, oder schlimmer, dich zu Geld machen. MirrorNotes lässt seine KI auf dem Chip laufen, der schon in deiner Tasche steckt. Deshalb konnte es so lange kostenlos bleiben, und deshalb bleiben die Pläne klein.",
+    "<li><b>Wir können deine Daten nicht verkaufen.</b> Sie erreichen uns nie. Auf unserer Seite gibt es nichts zu verkaufen.</li>",
+    "<li><b>Wir können deinen Verlauf nicht einsperren.</b> Deine Einträge liegen in deiner iCloud, unter deiner Apple-ID.</li>",
+    "<li><b>Wir werden nie Geld dafür nehmen, dass du deine eigenen Worte liest.</b> Die Pläne betreffen neue KI-Funktionen, nicht dein Archiv.</li>",
+    "<h2>Deine ehrlichsten Gedanken verdienen einen privaten Ort.</h2>", "Kein Konto. Kein Server. Kein Datendeal. Nur du, dein Telefon und eine KI, die bleibt, wo sie hingehört.", ">Kostenlos fürs iPhone laden<",
+    "<p>Privates KI-Tagebuch. Deine Worte bleiben auf deinem Gerät.</p>", "<h4>Produkt</h4>", "<h4>Vergleich</h4>", "<h4>Hilfe</h4>", "<h4>Entwickler</h4>",
+    '<a href="#features">Funktionen</a><a href="#pricing">Preise</a><a href="#prompts">Frage ausprobieren</a><a href="https://apps.apple.com/app/id6769007201">Laden</a>',
+    '<a href="/de/rosebud-alternative.html">vs. Rosebud</a><a href="/de/day-one-alternative.html">vs. Day One</a><a href="/de/reflect-alternative.html">vs. Reflect</a><a href="/de/adhd-journaling-app.html">Tagebuch bei ADHS</a>',
+    '<a href="/support.html">Hilfe</a><a href="mailto:hello@mirrornotes.org">Kontakt</a><a href="/de/privacy.html">Datenschutz</a><a href="/terms.html">Nutzungsbedingungen</a>',
+    '<a href="/mcp.html">MCP-Server</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Sprachen</span>", "© 2026 MirrorNotes. Mit Bedacht gemacht. Datenschutz zuerst.", "Das Tagebuch auf dieser Seite ist ein Beispiel. Keine Analytics, keine Tracking-Pixel, keine Skripte von Dritten.",
+]
+T["es"] = [
+    '<div class="nav-links"><a href="#reflection">Cómo funciona</a><a href="#features">Funciones</a><a href="#prompts">Prueba una pregunta</a><a href="#pricing">Precios</a><a href="/es/privacy.html">Privacidad</a></div>', "Descargar la app</a>",
+    "<h1>El diario que escucha en privado.</h1>",
+    "Escribe lo que quieras. La IA que te lo devuelve vive en tu iPhone. No en el servidor de alguien. No en un centro de datos. En ningún sitio al que puedan viajar tus palabras.",
+    "Descargar gratis en el App Store</a>", ">Ver cómo funciona<",
+    "<b>Ilimitadas</b>entradas gratis, para siempre", "<b>0 bytes</b>enviados a cualquier servidor", "<b>IA en el dispositivo</b>Apple Foundation Models, Gemma 3 como alternativa", "<b>Editorial</b>nominada por Apple",
+    'aria-label="Una semana de ejemplo en MirrorNotes"', ">Diario de ejemplo<",
+    "<h2>Cada reflexión empieza con una frase que tú escribiste.</h2>",
+    "Palabra por palabra, entre comillas. Después, una línea sobre cómo se lee el día. Ni un resumen ni una suposición sobre tu vida.",
+    ">Una entrada de ejemplo<", ">Su reflexión, esa misma mañana<", "</svg>Reflexión diaria</span>",
+    "Antes de mostrar una reflexión, la app comprueba que la frase citada esté de verdad en la entrada. Si no la encuentra, lo ves con honestidad, en lugar de detalles inventados. En los iPhone con Apple Intelligence esto corre en los Foundation Models de Apple; en cualquier otro iPhone compatible, en el modelo Gemma 3 incluido. Ambos en el teléfono, ninguno en línea.",
+    "<h2>El texto de tu diario no puede salir de tu teléfono. No hay ningún servidor al que enviarlo.</h2>",
+    "No construimos una política de privacidad alrededor de la IA en la nube. Quitamos la nube por completo. El modelo corre en el chip de tu iPhone, el mismo que mueve Face ID. Sin llamadas de red. Nada que interceptar.",
+    "<b>Tu iPhone</b><small>Diario e IA en el dispositivo</small>", "<b>Tu iCloud</b><small>Privado, bajo tu Apple ID</small>", "<b>Cualquier servidor</b><small>Nunca se alcanza</small>",
+    "<h2>Una IA que te conoce. Y se queda contigo.</h2>",
+    "Un conjunto reducido de herramientas construido alrededor de lo único que hace que escribir un diario funcione: la honestidad. Todo lo de abajo se hace en tu teléfono, a partir de tus propias entradas. Los ejemplos salen del mismo diario de ejemplo de arriba.",
+    "<h3>Resumen semanal</h3>", "Cada domingo: una síntesis de tu semana, construida solo con frases que escribiste. Temas, ánimo, hilos a los que vale la pena volver, una cosa para probar.", "</svg>Resumen semanal</span>",
+    "<h3>Pregúntale a tu diario</h3>", "Pregunta con palabras sencillas. La respuesta sale de tus propias entradas, con las frases en que se apoya mostradas debajo.", ">Pregúntale a tu diario<",
+    "<h3>Línea de ánimo</h3>", "El ánimo de esta semana en una línea, leído de lo que escribiste. La app guarda la línea completa, hasta tu primera entrada.", "</svg>Ánimo de esta semana</span>",
+    "<h3>Escribe libremente</h3>", "Escribe, dicta o pega una foto. Etiquetas y un ánimo, sugeridos desde el texto. Entradas ilimitadas, sin límite de 30 días, gratis para siempre.", ">Ánimo sugerido a partir de tu entrada<",
+    "<h3>Brain View</h3>", "Una constelación de los temas a los que vuelves una y otra vez, con el tamaño de cuántas veces aparecen. Los temas que comparten entrada están conectados. En la app gira en 3D.",
+    'aria-label="Brain View: temas del diario de ejemplo, con el tamaño de cuántas veces aparecen, conectados cuando comparten entrada"',
+    "<b>Sin cuenta, nunca</b><p>Sin correo, sin contraseña, sin pantalla de inicio de sesión. Nada que vulnerar, porque nunca te preguntamos quién eres.</p>",
+    "<b>Funciona en modo avión</b><p>La IA no necesita internet. Escribe y reflexiona en un vuelo, en una cabaña, sin cobertura.</p>",
+    "<b>Copia en iCloud</b><p>Las entradas se sincronizan con tu iCloud, privadas bajo tu Apple ID. Nosotros no tenemos acceso. La búsqueda de texto completo también es local.</p>",
+    "<h2>Una IA que se gana tu confianza antes de hablar.</h2>", "Esperamos a que MirrorNotes haya leído suficiente de lo que escribes antes de mostrar ideas. Sin suposiciones flojas el primer día.",
+    "<b>0</b><span>DÍA</span>", "<b>1–3</b><span>DÍAS</span>", "<b>4</b><span>DÍA</span>", "<b>2+</b><span>SEMANA</span>",
+    "<h3>Orientarte</h3><p>Tres preguntas rápidas. Escribe tu primera entrada. Sin cuenta, sin correo, sin inicio de sesión.</p>",
+    "<h3>Mirror está aprendiendo</h3><p>Escribe libremente. Todavía sin IA: necesitamos señal antes de ofrecer ideas. Ves una barra de progreso tranquila en vez de malas suposiciones.</p>",
+    "<h3>Primera reflexión</h3><p>Con una semana de entradas, MirrorNotes conoce tus patrones. Aparece tu primera reflexión, citando lo que de verdad escribiste.</p>",
+    "<h3>Experiencia completa</h3><p>Reflexiones diarias, preguntas, resumen semanal, línea de ánimo. La IA se afina a medida que crece tu archivo.</p>",
+    "<h2>30 preguntas que cortan el ruido.</h2>", "Estas son las preguntas que hace MirrorNotes, sacadas de lo que de verdad escribiste. Encuentra una que te toque.",
+    ">Escribir sobre esta pregunta<", 'aria-label="Pregunta anterior"', 'aria-label="Pregunta siguiente"',
+    "<h2>Escribir es gratis, para siempre. Pagas solo por la IA.</h2>",
+    "Hasta el {date} todo es gratis. A partir de entonces, las funciones de IA vienen en dos planes, con una prueba gratuita de 7 días para nuevos suscriptores. Tus entradas, tu historial, la búsqueda y la copia en iCloud nunca cuestan nada.",
+    "<h3>Gratis</h3>", ">Tu diario, siempre tuyo<",
+    "<li>Entradas ilimitadas, para siempre</li><li>Cada entrada pasada, siempre legible</li><li>Búsqueda de texto completo, en tu teléfono</li><li>Copia y sincronización en iCloud</li><li>Tu primera reflexión</li><li>Todo lo que la IA ya hizo para ti sigue legible</li>",
+    ">Descargar gratis</a>", "<small>/mes</small>",
+    '<p class="tier-sub">o <span data-price="core_yr">$49.99</span> al año, <span data-save="core">ahorras un 48 %</span></p>',
+    '<p class="tier-sub">o <span data-price="deep_yr">$69.99</span> al año, <span data-save="deep">ahorras un 51 %</span></p>',
+    "<li>Todo lo de Gratis</li><li>Reflexión diaria, cada día que escribes</li><li>Pregúntale a tu diario, 15 al mes</li><li>Resumen semanal cada domingo</li><li>Widgets para la pantalla de inicio</li>",
+    '<p class="tier-note">En la app a partir del {date}</p>',
+    "<li>Todo lo de Core</li><li>Preguntas ilimitadas</li><li>Informe mensual a fondo</li><li>Línea de ánimo y análisis completos</li><li>Alertas de ánimo</li>",
+    '<span data-price-note>Precios en EE. UU.</span>, <label class="store-pick">para <select data-storefront aria-label="País para los precios"><option value="US">United States</option></select>.</label> El App Store cobra el precio del país de tu Apple ID. Una prueba de 7 días por Apple ID, en tu primer plan. Los planes se gestionan en los ajustes de tu Apple ID, así que no hay nada que cancelar con nosotros.',
+    "<h3>¿Por qué pagar por la IA y nunca por tus palabras?</h3>",
+    "Tus datos siempre son tuyos. Pagas por la capa de IA. La mayoría de las apps de diario pagan a un proveedor en la nube por cada entrada que escribes, así que tienen que cobrarte o, peor, monetizarte. MirrorNotes ejecuta su IA en el chip que ya llevas en el bolsillo; por eso pudo ser gratis tanto tiempo y por eso los planes se mantienen pequeños.",
+    "<li><b>No podemos vender tus datos.</b> Nunca nos llegan. No hay nada en nuestro lado que vender.</li>",
+    "<li><b>No podemos encerrar tu historial.</b> Tus entradas viven en tu iCloud, bajo tu Apple ID.</li>",
+    "<li><b>Nunca te cobraremos por leer tus propias palabras.</b> Los planes limitan nuevas funciones de IA, no tu archivo.</li>",
+    "<h2>Tus pensamientos más honestos merecen un espacio privado.</h2>", "Sin cuenta. Sin servidor. Sin tratos con tus datos. Solo tú, tu teléfono y una IA que se queda donde debe.", ">Descargar gratis para iPhone<",
+    "<p>Diario privado con IA. Tus palabras se quedan en tu dispositivo.</p>", "<h4>Producto</h4>", "<h4>Comparar</h4>", "<h4>Ayuda</h4>", "<h4>Desarrolladores</h4>",
+    '<a href="#features">Funciones</a><a href="#pricing">Precios</a><a href="#prompts">Prueba una pregunta</a><a href="https://apps.apple.com/app/id6769007201">Descargar</a>',
+    '<a href="/es/rosebud-alternative.html">vs Rosebud</a><a href="/es/day-one-alternative.html">vs Day One</a><a href="/es/reflect-alternative.html">vs Reflect</a><a href="/es/adhd-journaling-app.html">Diario con TDAH</a>',
+    '<a href="/support.html">Centro de ayuda</a><a href="mailto:hello@mirrornotes.org">Contacto</a><a href="/es/privacy.html">Política de privacidad</a><a href="/terms.html">Términos del servicio</a>',
+    '<a href="/mcp.html">Servidor MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Idiomas</span>", "© 2026 MirrorNotes. Hecho con intención. Privacidad primero.", "El diario que se muestra en esta página es un ejemplo. Sin analíticas, sin píxeles de seguimiento, sin scripts de terceros.",
+]
+T["fr"] = [
+    '<div class="nav-links"><a href="#reflection">Comment ça marche</a><a href="#features">Fonctions</a><a href="#prompts">Essayer une question</a><a href="#pricing">Tarifs</a><a href="/fr/privacy.html">Confidentialité</a></div>', "Télécharger l'app</a>",
+    "<h1>Le journal qui écoute en privé.</h1>",
+    "Écrivez ce que vous voulez. L'IA qui vous le reflète vit sur votre iPhone. Pas sur le serveur de quelqu'un. Pas dans un centre de données. Nulle part où vos mots pourraient voyager.",
+    "Télécharger gratuitement sur l'App Store</a>", ">Voir comment ça marche<",
+    "<b>Illimitées</b>entrées gratuites, pour toujours", "<b>0 octet</b>envoyé à un serveur", "<b>IA sur l'appareil</b>Apple Foundation Models, Gemma 3 en secours", "<b>Éditorial</b>nommé par Apple",
+    'aria-label="Une semaine d\'exemple dans MirrorNotes"', ">Journal d'exemple<",
+    "<h2>Chaque réflexion commence par une phrase que vous avez écrite.</h2>",
+    "Mot pour mot, entre guillemets. Puis une ligne sur la façon dont la journée se lit. Ni un résumé, ni une supposition sur votre vie.",
+    ">Une entrée d'exemple<", ">Sa réflexion, le même matin<", "</svg>Réflexion du jour</span>",
+    "Avant d'afficher une réflexion, l'app vérifie que la phrase citée est vraiment dans l'entrée. Si elle n'en trouve pas, vous le voyez honnêtement, plutôt que des détails inventés. Sur les iPhone avec Apple Intelligence, cela tourne sur les Foundation Models d'Apple ; sur tout autre iPhone pris en charge, sur le modèle Gemma 3 intégré. Les deux sur le téléphone, aucun en ligne.",
+    "<h2>Le texte de votre journal ne peut pas quitter votre téléphone. Il n'y a aucun serveur où l'envoyer.</h2>",
+    "Nous n'avons pas bâti une politique de confidentialité autour d'une IA dans le cloud. Nous avons retiré le cloud. Le modèle tourne sur la puce de votre iPhone, la même que Face ID. Aucun appel réseau. Rien à intercepter.",
+    "<b>Votre iPhone</b><small>Journal et IA sur l'appareil</small>", "<b>Votre iCloud</b><small>Privé, sous votre identifiant Apple</small>", "<b>Un serveur</b><small>Jamais atteint</small>",
+    "<h2>Une IA qui vous connaît. Et qui reste avec vous.</h2>",
+    "Quelques outils, construits autour de la seule chose qui fait qu'un journal fonctionne : l'honnêteté. Tout ce qui suit est fabriqué sur votre téléphone, à partir de vos propres entrées. Les exemples viennent du même journal d'exemple que ci-dessus.",
+    "<h3>Bilan de la semaine</h3>", "Chaque dimanche : une synthèse de votre semaine, bâtie uniquement avec des phrases que vous avez écrites. Thèmes, humeur, fils à reprendre, une chose à essayer.", "</svg>Bilan de la semaine</span>",
+    "<h3>Interrogez votre journal</h3>", "Posez la question avec vos mots. La réponse vient de vos propres entrées, avec les phrases sur lesquelles elle s'appuie affichées dessous.", ">Interroger votre journal<",
+    "<h3>Courbe d'humeur</h3>", "L'humeur de la semaine sur une ligne, lue dans ce que vous avez écrit. L'app garde toute la courbe, jusqu'à votre première entrée.", "</svg>Humeur de la semaine</span>",
+    "<h3>Écrivez librement</h3>", "Tapez, dictez ou collez une photo. Des tags et une humeur, suggérés depuis le texte. Entrées illimitées, pas de limite de 30 jours, gratuit pour toujours.", ">Humeur suggérée d'après votre entrée<",
+    "<h3>Brain View</h3>", "Une constellation des thèmes auxquels vous revenez sans cesse, à la taille de leur fréquence. Les thèmes qui partagent une entrée sont reliés. Dans l'app, elle tourne en 3D.",
+    'aria-label="Brain View : thèmes du journal d\'exemple, à la taille de leur fréquence, reliés quand ils partagent une entrée"',
+    "<b>Jamais de compte</b><p>Pas d'e-mail, pas de mot de passe, pas d'écran de connexion. Rien à pirater, parce que nous n'avons jamais demandé qui vous êtes.</p>",
+    "<b>Fonctionne en mode avion</b><p>L'IA n'a pas besoin d'internet. Écrivez et réfléchissez en vol, dans un chalet, dans une zone blanche.</p>",
+    "<b>Sauvegarde iCloud</b><p>Les entrées se synchronisent dans votre iCloud, en privé sous votre identifiant Apple. Nous n'y avons pas accès. La recherche plein texte est locale aussi.</p>",
+    "<h2>Une IA qui gagne votre confiance avant de parler.</h2>", "Nous attendons que MirrorNotes ait assez lu de vous avant de proposer des idées. Pas de suppositions faibles le premier jour.",
+    "<b>0</b><span>JOUR</span>", "<b>1–3</b><span>JOURS</span>", "<b>4</b><span>JOUR</span>", "<b>2+</b><span>SEMAINE</span>",
+    "<h3>Prendre ses repères</h3><p>Trois questions rapides. Écrivez votre première entrée. Pas de compte, pas d'e-mail, pas de connexion.</p>",
+    "<h3>Mirror apprend</h3><p>Écrivez librement. Pas encore d'IA : il nous faut du signal avant de proposer une idée. Vous voyez une barre de progression discrète plutôt que de mauvaises suppositions.</p>",
+    "<h3>Première réflexion</h3><p>Avec une semaine d'entrées, MirrorNotes connaît vos habitudes. Votre première réflexion apparaît, citant ce que vous avez vraiment écrit.</p>",
+    "<h3>Expérience complète</h3><p>Réflexions quotidiennes, questions, bilan de la semaine, courbe d'humeur. L'IA s'affine à mesure que votre archive grandit.</p>",
+    "<h2>30 questions qui percent le bruit.</h2>", "Voici le genre de questions que pose MirrorNotes, tirées de ce que vous avez vraiment écrit. Trouvez celle qui touche.",
+    ">Écrire sur cette question<", 'aria-label="Question précédente"', 'aria-label="Question suivante"',
+    "<h2>Écrire reste gratuit, pour toujours. Vous ne payez que l'IA.</h2>",
+    "Jusqu'au {date}, tout est gratuit. Ensuite, les fonctions d'IA viennent en deux formules, avec un essai gratuit de 7 jours pour les nouveaux abonnés. Vos entrées, votre historique, la recherche et la sauvegarde iCloud ne coûtent jamais rien.",
+    "<h3>Gratuit</h3>", ">Votre journal, toujours à vous<",
+    "<li>Entrées illimitées, pour toujours</li><li>Chaque entrée passée, toujours lisible</li><li>Recherche plein texte, sur votre téléphone</li><li>Sauvegarde et synchronisation iCloud</li><li>Votre première réflexion</li><li>Tout ce que l'IA a déjà fait pour vous reste lisible</li>",
+    ">Télécharger gratuitement</a>", "<small>/mois</small>",
+    '<p class="tier-sub">ou <span data-price="core_yr">$49.99</span> par an, <span data-save="core">48 % d\'économie</span></p>',
+    '<p class="tier-sub">ou <span data-price="deep_yr">$69.99</span> par an, <span data-save="deep">51 % d\'économie</span></p>',
+    "<li>Tout ce qui est gratuit</li><li>Réflexion du jour, chaque jour où vous écrivez</li><li>Interroger votre journal, 15 fois par mois</li><li>Bilan de la semaine chaque dimanche</li><li>Widgets d'écran d'accueil</li>",
+    '<p class="tier-note">Dans l\'app à partir du {date}</p>',
+    "<li>Tout Core</li><li>Questions illimitées</li><li>Rapport mensuel approfondi</li><li>Courbe d'humeur et analyses complètes</li><li>Alertes d'humeur</li>",
+    '<span data-price-note>Prix américains</span>, <label class="store-pick">pour <select data-storefront aria-label="Pays pour les prix"><option value="US">United States</option></select>.</label> L\'App Store facture le prix du pays de votre identifiant Apple. Un essai de 7 jours par identifiant Apple, sur votre première formule. Les formules se gèrent dans les réglages de votre identifiant Apple ; il n\'y a rien à résilier chez nous.',
+    "<h3>Pourquoi payer l'IA, et jamais vos mots ?</h3>",
+    "Vos données sont toujours à vous. Vous payez la couche d'IA. La plupart des apps de journal paient un fournisseur cloud pour chaque entrée que vous écrivez ; elles doivent donc vous faire payer, ou pire, vous monétiser. MirrorNotes fait tourner son IA sur la puce déjà dans votre poche : c'est pour ça qu'elle a pu rester gratuite si longtemps, et pour ça que les formules restent petites.",
+    "<li><b>Nous ne pouvons pas vendre vos données.</b> Elles ne nous parviennent jamais. Il n'y a rien à vendre de notre côté.</li>",
+    "<li><b>Nous ne pouvons pas verrouiller votre historique.</b> Vos entrées vivent dans votre iCloud, sous votre identifiant Apple.</li>",
+    "<li><b>Nous ne vous ferons jamais payer pour lire vos propres mots.</b> Les formules concernent les nouvelles fonctions d'IA, pas votre archive.</li>",
+    "<h2>Vos pensées les plus honnêtes méritent un espace privé.</h2>", "Pas de compte. Pas de serveur. Pas de commerce de données. Juste vous, votre téléphone et une IA qui reste à sa place.", ">Télécharger gratuitement pour iPhone<",
+    "<p>Journal privé avec IA. Vos mots restent sur votre appareil.</p>", "<h4>Produit</h4>", "<h4>Comparer</h4>", "<h4>Aide</h4>", "<h4>Développeurs</h4>",
+    '<a href="#features">Fonctions</a><a href="#pricing">Tarifs</a><a href="#prompts">Essayer une question</a><a href="https://apps.apple.com/app/id6769007201">Télécharger</a>',
+    '<a href="/fr/rosebud-alternative.html">vs Rosebud</a><a href="/fr/day-one-alternative.html">vs Day One</a><a href="/fr/reflect-alternative.html">vs Reflect</a><a href="/fr/adhd-journaling-app.html">Journal et TDAH</a>',
+    '<a href="/support.html">Centre d\'aide</a><a href="mailto:hello@mirrornotes.org">Contact</a><a href="/fr/privacy.html">Politique de confidentialité</a><a href="/terms.html">Conditions d\'utilisation</a>',
+    '<a href="/mcp.html">Serveur MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Langues</span>", "© 2026 MirrorNotes. Fait avec intention. La confidentialité d'abord.", "Le journal affiché sur cette page est un exemple. Pas d'analytics, pas de pixels de suivi, pas de scripts tiers.",
+]
+T["it"] = [
+    '<div class="nav-links"><a href="#reflection">Come funziona</a><a href="#features">Funzioni</a><a href="#prompts">Prova una domanda</a><a href="#pricing">Prezzi</a><a href="/it/privacy.html">Privacy</a></div>', "Scarica l'app</a>",
+    "<h1>Il diario che ascolta in privato.</h1>",
+    "Scrivi qualsiasi cosa. L'IA che te la riflette vive sul tuo iPhone. Non sul server di qualcuno. Non in un data center. In nessun posto dove le tue parole possano viaggiare.",
+    "Scarica gratis dall'App Store</a>", ">Guarda come funziona<",
+    "<b>Illimitate</b>voci gratuite, per sempre", "<b>0 byte</b>inviati a qualunque server", "<b>IA sul dispositivo</b>Apple Foundation Models, Gemma 3 di riserva", "<b>Editorial</b>candidata da Apple",
+    'aria-label="Una settimana di esempio in MirrorNotes"', ">Diario di esempio<",
+    "<h2>Ogni riflessione comincia con una frase che hai scritto tu.</h2>",
+    "Parola per parola, tra virgolette. Poi una riga su come si legge la giornata. Né un riassunto, né un'ipotesi sulla tua vita.",
+    ">Una voce di esempio<", ">La sua riflessione, la stessa mattina<", "</svg>Riflessione del giorno</span>",
+    "Prima di mostrare una riflessione, l'app controlla che la frase citata sia davvero nella voce. Se non la trova, lo vedi con onestà, invece di dettagli inventati. Sugli iPhone con Apple Intelligence gira sui Foundation Models di Apple; su ogni altro iPhone supportato, sul modello Gemma 3 incluso. Entrambi sul telefono, nessuno online.",
+    "<h2>Il testo del tuo diario non può lasciare il tuo telefono. Non c'è nessun server a cui mandarlo.</h2>",
+    "Non abbiamo costruito una politica sulla privacy attorno all'IA nel cloud. Abbiamo tolto il cloud del tutto. Il modello gira sul chip del tuo iPhone, lo stesso di Face ID. Nessuna chiamata di rete. Niente da intercettare.",
+    "<b>Il tuo iPhone</b><small>Diario e IA sul dispositivo</small>", "<b>Il tuo iCloud</b><small>Privato, sotto il tuo ID Apple</small>", "<b>Qualunque server</b><small>Mai raggiunto</small>",
+    "<h2>Un'IA che ti conosce. E resta con te.</h2>",
+    "Pochi strumenti, costruiti attorno all'unica cosa che fa funzionare un diario: l'onestà. Tutto quello che segue nasce sul tuo telefono, dalle tue voci. Gli esempi vengono dallo stesso diario di esempio qui sopra.",
+    "<h3>Riepilogo settimanale</h3>", "Ogni domenica: una sintesi della tua settimana, costruita solo con frasi che hai scritto. Temi, umore, fili a cui tornare, una cosa da provare.", "</svg>Riepilogo settimanale</span>",
+    "<h3>Chiedi al tuo diario</h3>", "Chiedi con parole semplici. La risposta viene dalle tue voci, con le frasi su cui si appoggia mostrate sotto.", ">Chiedi al tuo diario<",
+    "<h3>Linea dell'umore</h3>", "L'umore di questa settimana su una linea, letto da ciò che hai scritto. L'app conserva tutta la linea, fino alla tua prima voce.", "</svg>Umore della settimana</span>",
+    "<h3>Scrivi liberamente</h3>", "Scrivi, detta o incolla una foto. Tag e un umore, suggeriti dal testo. Voci illimitate, nessun limite di 30 giorni, gratis per sempre.", ">Umore suggerito dalla tua voce<",
+    "<h3>Brain View</h3>", "Una costellazione dei temi a cui torni sempre, grandi quanto spesso compaiono. I temi che condividono una voce sono collegati. Nell'app gira in 3D.",
+    'aria-label="Brain View: temi del diario di esempio, grandi quanto spesso compaiono, collegati quando condividono una voce"',
+    "<b>Mai un account</b><p>Niente email, niente password, niente schermata di accesso. Niente da violare, perché non ti abbiamo mai chiesto chi sei.</p>",
+    "<b>Funziona in modalità aereo</b><p>L'IA non ha bisogno di internet. Scrivi e rifletti in volo, in baita, dove non c'è campo.</p>",
+    "<b>Backup iCloud</b><p>Le voci si sincronizzano nel tuo iCloud, private sotto il tuo ID Apple. Noi non abbiamo accesso. Anche la ricerca nel testo è locale.</p>",
+    "<h2>Un'IA che si guadagna la fiducia prima di parlare.</h2>", "Aspettiamo che MirrorNotes abbia letto abbastanza di te prima di mostrare spunti. Niente ipotesi deboli il primo giorno.",
+    "<b>0</b><span>GIORNO</span>", "<b>1–3</b><span>GIORNI</span>", "<b>4</b><span>GIORNO</span>", "<b>2+</b><span>SETTIMANA</span>",
+    "<h3>Orientarsi</h3><p>Tre domande veloci. Scrivi la tua prima voce. Niente account, niente email, niente accesso.</p>",
+    "<h3>Mirror sta imparando</h3><p>Scrivi liberamente. Ancora niente IA: ci serve un segnale prima di offrire spunti. Vedi una barra di avanzamento discreta invece di ipotesi sbagliate.</p>",
+    "<h3>Prima riflessione</h3><p>Con una settimana di voci, MirrorNotes conosce i tuoi schemi. Compare la tua prima riflessione, citando ciò che hai davvero scritto.</p>",
+    "<h3>Esperienza completa</h3><p>Riflessioni quotidiane, domande, riepilogo settimanale, linea dell'umore. L'IA si affina man mano che il tuo archivio cresce.</p>",
+    "<h2>30 domande che tagliano il rumore.</h2>", "Sono il tipo di domande che fa MirrorNotes, tratte da ciò che hai davvero scritto. Trovane una che colpisce.",
+    ">Scrivi su questa domanda<", 'aria-label="Domanda precedente"', 'aria-label="Domanda successiva"',
+    "<h2>Scrivere è gratis, per sempre. Paghi solo l'IA.</h2>",
+    "Fino al {date} è tutto gratis. Da allora, le funzioni di IA arrivano in due piani, con una prova gratuita di 7 giorni per i nuovi abbonati. Le tue voci, la tua cronologia, la ricerca e il backup iCloud non costano mai nulla.",
+    "<h3>Gratis</h3>", ">Il tuo diario, sempre tuo<",
+    "<li>Voci illimitate, per sempre</li><li>Ogni voce passata, sempre leggibile</li><li>Ricerca nel testo, sul tuo telefono</li><li>Backup e sincronizzazione iCloud</li><li>La tua prima riflessione</li><li>Tutto ciò che l'IA ha già fatto per te resta leggibile</li>",
+    ">Scarica gratis</a>", "<small>/mese</small>",
+    '<p class="tier-sub">o <span data-price="core_yr">$49.99</span> all\'anno, <span data-save="core">risparmi il 48%</span></p>',
+    '<p class="tier-sub">o <span data-price="deep_yr">$69.99</span> all\'anno, <span data-save="deep">risparmi il 51%</span></p>',
+    "<li>Tutto il piano Gratis</li><li>Riflessione del giorno, ogni giorno in cui scrivi</li><li>Chiedi al tuo diario, 15 volte al mese</li><li>Riepilogo settimanale ogni domenica</li><li>Widget per la schermata Home</li>",
+    '<p class="tier-note">Nell\'app dal {date}</p>',
+    "<li>Tutto Core</li><li>Domande illimitate</li><li>Report mensile approfondito</li><li>Linea dell'umore e analisi complete</li><li>Avvisi sull'umore</li>",
+    '<span data-price-note>Prezzi USA</span>, <label class="store-pick">per <select data-storefront aria-label="Paese per i prezzi"><option value="US">United States</option></select>.</label> L\'App Store addebita il prezzo del paese del tuo ID Apple. Una prova di 7 giorni per ID Apple, sul primo piano. I piani si gestiscono nelle impostazioni del tuo ID Apple, quindi non c\'è nulla da disdire con noi.',
+    "<h3>Perché pagare l'IA, e mai le tue parole?</h3>",
+    "I tuoi dati sono sempre tuoi. Paghi lo strato di IA. La maggior parte delle app di diario paga un fornitore cloud per ogni voce che scrivi, quindi deve farti pagare o, peggio, monetizzarti. MirrorNotes fa girare la sua IA sul chip che hai già in tasca: per questo è potuta restare gratis così a lungo, e per questo i piani restano piccoli.",
+    "<li><b>Non possiamo vendere i tuoi dati.</b> Non ci arrivano mai. Dalla nostra parte non c'è niente da vendere.</li>",
+    "<li><b>Non possiamo chiudere a chiave la tua cronologia.</b> Le tue voci vivono nel tuo iCloud, sotto il tuo ID Apple.</li>",
+    "<li><b>Non ti faremo mai pagare per leggere le tue parole.</b> I piani riguardano nuove funzioni di IA, non il tuo archivio.</li>",
+    "<h2>I tuoi pensieri più onesti meritano uno spazio privato.</h2>", "Niente account. Niente server. Nessun affare sui dati. Solo tu, il tuo telefono e un'IA che resta dove deve stare.", ">Scarica gratis per iPhone<",
+    "<p>Diario privato con IA. Le tue parole restano sul tuo dispositivo.</p>", "<h4>Prodotto</h4>", "<h4>Confronta</h4>", "<h4>Supporto</h4>", "<h4>Sviluppatori</h4>",
+    '<a href="#features">Funzioni</a><a href="#pricing">Prezzi</a><a href="#prompts">Prova una domanda</a><a href="https://apps.apple.com/app/id6769007201">Scarica</a>',
+    '<a href="/it/rosebud-alternative.html">vs Rosebud</a><a href="/it/day-one-alternative.html">vs Day One</a><a href="/it/reflect-alternative.html">vs Reflect</a><a href="/it/adhd-journaling-app.html">Diario e ADHD</a>',
+    '<a href="/support.html">Centro assistenza</a><a href="mailto:hello@mirrornotes.org">Contatti</a><a href="/it/privacy.html">Informativa sulla privacy</a><a href="/terms.html">Termini di servizio</a>',
+    '<a href="/mcp.html">Server MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Lingue</span>", "© 2026 MirrorNotes. Fatto con intenzione. Prima la privacy.", "Il diario mostrato in questa pagina è un esempio. Niente analytics, niente pixel di tracciamento, niente script di terze parti.",
+]
+T["pt"] = [
+    '<div class="nav-links"><a href="#reflection">Como funciona</a><a href="#features">Recursos</a><a href="#prompts">Experimente uma pergunta</a><a href="#pricing">Preços</a><a href="/pt/privacy.html">Privacidade</a></div>', "Baixar o app</a>",
+    "<h1>O diário que escuta em privado.</h1>",
+    "Escreva o que quiser. A IA que devolve a reflexão vive no seu iPhone. Não no servidor de alguém. Não em um data center. Em lugar nenhum para onde suas palavras possam viajar.",
+    "Baixar grátis na App Store</a>", ">Veja como funciona<",
+    "<b>Ilimitadas</b>entradas grátis, para sempre", "<b>0 bytes</b>enviados a qualquer servidor", "<b>IA no aparelho</b>Apple Foundation Models, Gemma 3 como reserva", "<b>Editorial</b>indicado pela Apple",
+    'aria-label="Uma semana de exemplo no MirrorNotes"', ">Diário de exemplo<",
+    "<h2>Toda reflexão começa com uma frase que você escreveu.</h2>",
+    "Palavra por palavra, entre aspas. Depois, uma linha sobre como o dia se lê. Nem um resumo, nem um palpite sobre a sua vida.",
+    ">Uma entrada de exemplo<", ">A reflexão dela, na mesma manhã<", "</svg>Reflexão do dia</span>",
+    "Antes de mostrar uma reflexão, o app confere se a frase citada está mesmo na entrada. Se não encontra, você vê isso com honestidade, em vez de detalhes inventados. Em iPhones com Apple Intelligence isso roda nos Foundation Models da Apple; em qualquer outro iPhone compatível, no modelo Gemma 3 incluído. Os dois no telefone, nenhum online.",
+    "<h2>O texto do seu diário não pode sair do seu telefone. Não existe servidor para onde mandá-lo.</h2>",
+    "Não construímos uma política de privacidade em volta de IA na nuvem. Tiramos a nuvem por completo. O modelo roda no chip do seu iPhone, o mesmo que move o Face ID. Nenhuma chamada de rede. Nada a interceptar.",
+    "<b>Seu iPhone</b><small>Diário e IA no aparelho</small>", "<b>Seu iCloud</b><small>Privado, no seu ID Apple</small>", "<b>Qualquer servidor</b><small>Nunca alcançado</small>",
+    "<h2>Uma IA que conhece você. E fica com você.</h2>",
+    "Um conjunto enxuto de ferramentas construído em torno da única coisa que faz um diário funcionar: honestidade. Tudo abaixo é feito no seu telefone, a partir das suas próprias entradas. Os exemplos vêm do mesmo diário de exemplo acima.",
+    "<h3>Resumo semanal</h3>", "Todo domingo: uma síntese da sua semana, feita só com frases que você escreveu. Temas, humor, fios que valem a pena retomar, uma coisa para tentar.", "</svg>Resumo semanal</span>",
+    "<h3>Pergunte ao seu diário</h3>", "Pergunte com palavras simples. A resposta vem das suas próprias entradas, com as frases em que se apoia mostradas embaixo.", ">Pergunte ao seu diário<",
+    "<h3>Linha do humor</h3>", "O humor desta semana em uma linha, lido do que você escreveu. O app guarda a linha inteira, até a sua primeira entrada.", "</svg>Humor desta semana</span>",
+    "<h3>Escreva livremente</h3>", "Digite, dite ou cole uma foto. Tags e um humor, sugeridos a partir do texto. Entradas ilimitadas, sem limite de 30 dias, grátis para sempre.", ">Humor sugerido a partir da sua entrada<",
+    "<h3>Brain View</h3>", "Uma constelação dos temas aos quais você sempre volta, no tamanho de quantas vezes aparecem. Temas que dividem uma entrada ficam ligados. No app, ela gira em 3D.",
+    'aria-label="Brain View: temas do diário de exemplo, no tamanho de quantas vezes aparecem, ligados quando dividem uma entrada"',
+    "<b>Sem conta, nunca</b><p>Sem e-mail, sem senha, sem tela de login. Nada a vazar, porque nunca perguntamos quem você é.</p>",
+    "<b>Funciona no modo avião</b><p>A IA não precisa de internet. Escreva e reflita em um voo, numa cabana, sem sinal.</p>",
+    "<b>Backup no iCloud</b><p>As entradas sincronizam com o seu iCloud, privadas no seu ID Apple. Nós não temos acesso. A busca por texto também é local.</p>",
+    "<h2>Uma IA que conquista confiança antes de falar.</h2>", "Esperamos o MirrorNotes ler o bastante do que você escreve antes de mostrar insights. Nada de palpites fracos no primeiro dia.",
+    "<b>0</b><span>DIA</span>", "<b>1–3</b><span>DIAS</span>", "<b>4</b><span>DIA</span>", "<b>2+</b><span>SEMANA</span>",
+    "<h3>Se orientar</h3><p>Três perguntas rápidas. Escreva sua primeira entrada. Sem conta, sem e-mail, sem login.</p>",
+    "<h3>Mirror está aprendendo</h3><p>Escreva livremente. Ainda sem IA: precisamos de sinal antes de oferecer insights. Você vê uma barra de progresso discreta em vez de palpites ruins.</p>",
+    "<h3>Primeira reflexão</h3><p>Com uma semana de entradas, o MirrorNotes conhece seus padrões. Sua primeira reflexão aparece, citando o que você realmente escreveu.</p>",
+    "<h3>Experiência completa</h3><p>Reflexões diárias, perguntas, resumo semanal, linha do humor. A IA fica mais afiada conforme seu arquivo cresce.</p>",
+    "<h2>30 perguntas que cortam o ruído.</h2>", "São o tipo de pergunta que o MirrorNotes faz, tiradas do que você realmente escreveu. Encontre uma que toque.",
+    ">Escrever sobre esta pergunta<", 'aria-label="Pergunta anterior"', 'aria-label="Próxima pergunta"',
+    "<h2>Escrever é grátis, para sempre. Você só paga pela IA.</h2>",
+    "Até {date} tudo é grátis. A partir daí, os recursos de IA vêm em dois planos, com um teste grátis de 7 dias para novos assinantes. Suas entradas, seu histórico, a busca e o backup no iCloud nunca custam nada.",
+    "<h3>Grátis</h3>", ">Seu diário, sempre seu<",
+    "<li>Entradas ilimitadas, para sempre</li><li>Toda entrada antiga, sempre legível</li><li>Busca por texto, no seu telefone</li><li>Backup e sincronização no iCloud</li><li>Sua primeira reflexão</li><li>Tudo que a IA já fez para você continua legível</li>",
+    ">Baixar grátis</a>", "<small>/mês</small>",
+    '<p class="tier-sub">ou <span data-price="core_yr">$49.99</span> por ano, <span data-save="core">economize 48%</span></p>',
+    '<p class="tier-sub">ou <span data-price="deep_yr">$69.99</span> por ano, <span data-save="deep">economize 51%</span></p>',
+    "<li>Tudo do Grátis</li><li>Reflexão do dia, em cada dia em que você escreve</li><li>Pergunte ao seu diário, 15 vezes por mês</li><li>Resumo semanal todo domingo</li><li>Widgets para a tela de início</li>",
+    '<p class="tier-note">No app a partir de {date}</p>',
+    "<li>Tudo do Core</li><li>Perguntas ilimitadas</li><li>Relatório mensal aprofundado</li><li>Linha do humor e análises completas</li><li>Alertas de humor</li>",
+    '<span data-price-note>Preços nos EUA</span>, <label class="store-pick">para <select data-storefront aria-label="País para os preços"><option value="US">United States</option></select>.</label> A App Store cobra o preço do país do seu ID Apple. Um teste de 7 dias por ID Apple, no seu primeiro plano. Os planos são gerenciados nos ajustes do seu ID Apple, então não há nada para cancelar conosco.',
+    "<h3>Por que pagar pela IA, e nunca pelas suas palavras?</h3>",
+    "Seus dados são sempre seus. Você paga pela camada de IA. A maioria dos apps de diário paga um provedor de nuvem por cada entrada que você escreve, então precisa cobrar de você, ou pior, monetizar você. O MirrorNotes roda a IA no chip que já está no seu bolso; por isso pôde ficar grátis por tanto tempo, e por isso os planos continuam pequenos.",
+    "<li><b>Não podemos vender seus dados.</b> Eles nunca chegam até nós. Não há nada do nosso lado para vender.</li>",
+    "<li><b>Não podemos trancar seu histórico.</b> Suas entradas vivem no seu iCloud, no seu ID Apple.</li>",
+    "<li><b>Nunca vamos cobrar para você ler suas próprias palavras.</b> Os planos limitam novos recursos de IA, não o seu arquivo.</li>",
+    "<h2>Seus pensamentos mais honestos merecem um espaço privado.</h2>", "Sem conta. Sem servidor. Sem negócio com dados. Só você, seu telefone e uma IA que fica onde deve.", ">Baixar grátis para iPhone<",
+    "<p>Diário privado com IA. Suas palavras ficam no seu aparelho.</p>", "<h4>Produto</h4>", "<h4>Comparar</h4>", "<h4>Suporte</h4>", "<h4>Desenvolvedores</h4>",
+    '<a href="#features">Recursos</a><a href="#pricing">Preços</a><a href="#prompts">Experimente uma pergunta</a><a href="https://apps.apple.com/app/id6769007201">Baixar</a>',
+    '<a href="/pt/rosebud-alternative.html">vs Rosebud</a><a href="/pt/day-one-alternative.html">vs Day One</a><a href="/pt/reflect-alternative.html">vs Reflect</a><a href="/pt/adhd-journaling-app.html">Diário e TDAH</a>',
+    '<a href="/support.html">Central de ajuda</a><a href="mailto:hello@mirrornotes.org">Contato</a><a href="/pt/privacy.html">Política de privacidade</a><a href="/terms.html">Termos de serviço</a>',
+    '<a href="/mcp.html">Servidor MCP</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Blog</a>',
+    "<span>Idiomas</span>", "© 2026 MirrorNotes. Feito com intenção. Privacidade em primeiro lugar.", "O diário mostrado nesta página é um exemplo. Sem analytics, sem pixels de rastreamento, sem scripts de terceiros.",
+]
+T["ja"] = [
+    '<div class="nav-links"><a href="#reflection">仕組み</a><a href="#features">機能</a><a href="#prompts">質問を試す</a><a href="#pricing">料金</a><a href="/ja/privacy.html">プライバシー</a></div>', "アプリを入手</a>",
+    "<h1>ひとりで静かに聞いてくれる日記。</h1>",
+    "何でも書いてください。それを映し返すAIは、あなたのiPhoneの中に住んでいます。誰かのサーバーではなく、データセンターでもなく、あなたの言葉が旅をする場所はどこにもありません。",
+    "App Storeで無料ダウンロード</a>", ">仕組みを見る<",
+    "<b>無制限</b>日記はいつまでも無料", "<b>0バイト</b>どのサーバーにも送らない", "<b>端末内AI</b>Apple Foundation Models、予備にGemma 3", "<b>Editorial</b>Appleノミネート",
+    'aria-label="MirrorNotesのサンプルの一週間"', ">サンプル日記<",
+    "<h2>どのふり返りも、あなたが書いた一文から始まります。</h2>",
+    "一字一句そのまま、かぎかっこで。そのあとに、その日がどう読めるかを一行だけ。要約でも、あなたの人生についての推測でもありません。",
+    ">サンプルの日記<", ">同じ朝のふり返り<", "</svg>今日のふり返り</span>",
+    "ふり返りを表示する前に、アプリは引用した一文が本当にその日記にあるかを確認します。見つからなければ、作り話の代わりに、そのことを正直に伝えます。Apple Intelligence対応のiPhoneではAppleのFoundation Modelsで、その他の対応iPhoneでは内蔵のGemma 3モデルで動きます。どちらも端末の中で、オンラインにはなりません。",
+    "<h2>日記の文章は、あなたのiPhoneから出られません。送る先のサーバーがないからです。</h2>",
+    "クラウドAIを前提にプライバシーポリシーを書くのではなく、クラウドそのものをなくしました。モデルはあなたのiPhoneのチップ、Face IDを動かすのと同じチップで動きます。通信はゼロ。傍受されるものもありません。",
+    "<b>あなたのiPhone</b><small>日記と端末内AI</small>", "<b>あなたのiCloud</b><small>Apple IDのもとで非公開</small>", "<b>どのサーバーも</b><small>届くことはない</small>",
+    "<h2>あなたを知るAI。あなたのそばに残るAI。</h2>",
+    "日記を続けるために大切なただひとつのこと、正直さ。そのために絞った道具です。以下はすべて、あなた自身の日記から、あなたのiPhoneの中で作られます。例は上と同じサンプル日記から取っています。",
+    "<h3>週間まとめ</h3>", "毎週日曜日。あなたが書いた文だけで組み立てる、その週のまとめです。テーマ、気分、また戻ってきたい話題、試してみたいひとつのこと。", "</svg>週間まとめ</span>",
+    "<h3>日記に聞く</h3>", "ふだんの言葉で聞いてください。答えはあなた自身の日記から来て、根拠にした文がその下に並びます。", ">日記について聞く<",
+    "<h3>気分の推移</h3>", "今週の気分を一本の線で。書いた文から読み取ります。アプリには最初の一日までの全部が残ります。", "</svg>今週の気分</span>",
+    "<h3>自由に書く</h3>", "入力、音声、写真の貼り付け。タグと気分は文章から提案します。日記は無制限、30日の制限なし、ずっと無料。", ">気分は日記から提案<",
+    "<h3>Brain View</h3>", "あなたが何度も戻ってくるテーマの星座。大きさは登場した回数です。同じ日記に出てきたテーマ同士がつながります。アプリでは3Dで回ります。",
+    'aria-label="Brain View：サンプル日記のテーマ。大きさは登場回数、同じ日記に出てきたもの同士をつなぐ"',
+    "<b>アカウントは一切なし</b><p>メールも、パスワードも、ログイン画面もありません。あなたが誰かを聞いたことがないので、漏れるものもありません。</p>",
+    "<b>機内モードでも動く</b><p>AIにインターネットは要りません。機内でも、山小屋でも、圏外でも、書いてふり返れます。</p>",
+    "<b>iCloudバックアップ</b><p>日記はあなたのiCloudに同期され、Apple IDのもとで非公開です。私たちはアクセスできません。全文検索も端末の中で。</p>",
+    "<h2>話す前に、信頼を得るAI。</h2>", "MirrorNotesがあなたの文章を十分に読むまで、ひらめきは出しません。初日の弱い当てずっぽうはなし。",
+    "<b>0</b><span>日目</span>", "<b>1–3</b><span>日目</span>", "<b>4</b><span>日目</span>", "<b>2+</b><span>週目</span>",
+    "<h3>はじめに</h3><p>短い質問が三つ。最初の日記を書きます。アカウントも、メールも、ログインもなし。</p>",
+    "<h3>Mirrorが学習中</h3><p>自由に書いてください。AIはまだ動きません。ひらめきを出す前に手がかりが必要だからです。見当違いの代わりに、静かな進捗バーが出ます。</p>",
+    "<h3>最初のふり返り</h3><p>一週間分の日記で、MirrorNotesはあなたの傾向をつかみます。実際に書いた言葉を引用した、最初のふり返りが届きます。</p>",
+    "<h3>すべての機能</h3><p>毎日のふり返り、質問、週間まとめ、気分の推移。日記が増えるほど、AIは鋭くなります。</p>",
+    "<h2>雑音を切り抜ける30の質問。</h2>", "MirrorNotesが投げかけるのはこんな質問です。あなたが実際に書いたことから生まれます。刺さるものを見つけてください。",
+    ">この質問に書く<", 'aria-label="前の質問"', 'aria-label="次の質問"',
+    "<h2>書くのはずっと無料。払うのはAIの分だけ。</h2>",
+    "{date}まではすべて無料です。それ以降、AI機能は二つのプランになり、新規のご契約には7日間の無料トライアルがつきます。日記、履歴、検索、iCloudバックアップは、ずっと無料のままです。",
+    "<h3>無料</h3>", ">あなたの日記は、いつもあなたのもの<",
+    "<li>日記は無制限、ずっと</li><li>過去の日記はいつでも読める</li><li>全文検索、端末の中で</li><li>iCloudバックアップと同期</li><li>最初のふり返り</li><li>AIがすでに作ったものは読めたまま</li>",
+    ">無料でダウンロード</a>", "<small>/月</small>",
+    '<p class="tier-sub">または年額 <span data-price="core_yr">$49.99</span>、<span data-save="core">48%お得</span></p>',
+    '<p class="tier-sub">または年額 <span data-price="deep_yr">$69.99</span>、<span data-save="deep">51%お得</span></p>',
+    "<li>無料プランのすべて</li><li>書いた日ごとの今日のふり返り</li><li>日記に聞く、月15回</li><li>毎週日曜日の週間まとめ</li><li>ホーム画面ウィジェット</li>",
+    '<p class="tier-note">{date}からアプリ内で</p>',
+    "<li>Coreのすべて</li><li>質問、無制限</li><li>月間レポート</li><li>気分の推移と詳しい分析</li><li>気分アラート</li>",
+    '<span data-price-note>米国の価格</span>、<label class="store-pick">対象の国：<select data-storefront aria-label="価格を表示する国"><option value="US">United States</option></select>。</label>App Storeでは、Apple IDの国の価格で請求されます。無料トライアルはApple IDごとに一回、最初のプランで。プランの管理はApple IDの設定で行うので、私たちに解約を頼む必要はありません。',
+    "<h3>なぜAIにだけ払い、あなたの言葉には払わないのか</h3>",
+    "あなたのデータはいつもあなたのものです。払うのはAIの層の分だけ。多くの日記アプリは、あなたが書くたびにクラウド事業者に支払うので、あなたから料金を取るか、もっと悪ければ、あなた自身を収益化するしかありません。MirrorNotesのAIは、すでにあなたのポケットにあるチップで動きます。だからここまで無料でいられたし、だからプランも小さいままです。",
+    "<li><b>あなたのデータは売れません。</b>私たちに届かないからです。売るものが手元にありません。</li>",
+    "<li><b>あなたの履歴は閉じ込められません。</b>日記はあなたのiCloudに、Apple IDのもとにあります。</li>",
+    "<li><b>自分の言葉を読むのにお金を取ることは決してありません。</b>プランが分けるのは新しいAI機能であって、あなたの記録ではありません。</li>",
+    "<h2>いちばん正直な思いには、ひとりだけの場所を。</h2>", "アカウントなし。サーバーなし。データの取引なし。あなたと、あなたのiPhoneと、あるべき場所にとどまるAIだけ。", ">iPhone向けに無料ダウンロード<",
+    "<p>プライベートなAI日記。あなたの言葉は端末の中に残ります。</p>", "<h4>製品</h4>", "<h4>比較</h4>", "<h4>サポート</h4>", "<h4>開発者向け</h4>",
+    '<a href="#features">機能</a><a href="#pricing">料金</a><a href="#prompts">質問を試す</a><a href="https://apps.apple.com/app/id6769007201">ダウンロード</a>',
+    '<a href="/ja/rosebud-alternative.html">Rosebudと比較</a><a href="/ja/day-one-alternative.html">Day Oneと比較</a><a href="/ja/reflect-alternative.html">Reflectと比較</a><a href="/ja/adhd-journaling-app.html">ADHDと日記</a>',
+    '<a href="/support.html">ヘルプセンター</a><a href="mailto:hello@mirrornotes.org">お問い合わせ</a><a href="/ja/privacy.html">プライバシーポリシー</a><a href="/terms.html">利用規約</a>',
+    '<a href="/mcp.html">MCPサーバー</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">ブログ</a>',
+    "<span>言語</span>", "© 2026 MirrorNotes. 意図を込めて作りました。プライバシーが第一。", "このページの日記はサンプルです。アナリティクスも、トラッキングピクセルも、第三者のスクリプトもありません。",
+]
+T["ko"] = [
+    '<div class="nav-links"><a href="#reflection">작동 방식</a><a href="#features">기능</a><a href="#prompts">질문 써 보기</a><a href="#pricing">가격</a><a href="/ko/privacy.html">개인정보</a></div>', "앱 받기</a>",
+    "<h1>혼자 조용히 들어주는 일기.</h1>",
+    "무엇이든 쓰세요. 그것을 비춰 주는 AI는 당신의 아이폰 안에 삽니다. 누군가의 서버도, 데이터 센터도 아닙니다. 당신의 글이 어디로도 떠나지 않습니다.",
+    "App Store에서 무료로 받기</a>", ">작동 방식 보기<",
+    "<b>무제한</b>무료 일기, 영원히", "<b>0바이트</b>어떤 서버로도 전송되지 않음", "<b>온디바이스 AI</b>Apple Foundation Models, 예비로 Gemma 3", "<b>Editorial</b>Apple 추천 후보",
+    'aria-label="MirrorNotes의 샘플 일주일"', ">샘플 일기<",
+    "<h2>모든 돌아봄은 당신이 쓴 한 문장에서 시작됩니다.</h2>",
+    "한 글자도 바꾸지 않고, 따옴표 안에. 그다음 그날이 어떻게 읽히는지 한 줄. 요약도, 당신의 삶에 대한 추측도 아닙니다.",
+    ">샘플 일기<", ">같은 날 아침의 돌아봄<", "</svg>오늘의 돌아봄</span>",
+    "돌아봄을 보여 주기 전에 앱은 인용한 문장이 정말 그 일기에 있는지 확인합니다. 찾지 못하면 지어낸 내용 대신 그 사실을 솔직하게 보여 줍니다. Apple Intelligence를 지원하는 아이폰에서는 Apple의 Foundation Models로, 그 밖의 지원 아이폰에서는 내장된 Gemma 3 모델로 동작합니다. 둘 다 휴대폰 안에서, 어느 쪽도 온라인이 아닙니다.",
+    "<h2>일기의 글은 휴대폰을 떠날 수 없습니다. 보낼 서버가 없으니까요.</h2>",
+    "클라우드 AI를 전제로 개인정보 정책을 쓰는 대신, 클라우드 자체를 없앴습니다. 모델은 아이폰의 칩, Face ID를 움직이는 바로 그 칩에서 돌아갑니다. 네트워크 호출 없음. 가로챌 것도 없음.",
+    "<b>당신의 아이폰</b><small>일기와 온디바이스 AI</small>", "<b>당신의 iCloud</b><small>Apple ID 아래 비공개</small>", "<b>어떤 서버든</b><small>닿지 않음</small>",
+    "<h2>당신을 아는 AI. 당신 곁에 남는 AI.</h2>",
+    "일기를 계속 쓰게 하는 단 하나, 솔직함을 위해 추린 도구들입니다. 아래의 모든 것은 당신의 일기로부터, 당신의 휴대폰 안에서 만들어집니다. 예시는 위와 같은 샘플 일기에서 가져왔습니다.",
+    "<h3>주간 요약</h3>", "매주 일요일, 당신이 쓴 문장만으로 엮은 한 주의 요약. 주제, 기분, 다시 돌아가 볼 만한 이야기, 시도해 볼 한 가지.", "</svg>주간 요약</span>",
+    "<h3>일기에 묻기</h3>", "평소 말로 물어보세요. 답은 당신의 일기에서 나오고, 근거가 된 문장이 아래에 함께 보입니다.", ">일기에 대해 묻기<",
+    "<h3>기분 그래프</h3>", "이번 주의 기분을 한 줄로. 당신이 쓴 글에서 읽어 냅니다. 앱에는 첫 일기까지의 전체 그래프가 남습니다.", "</svg>이번 주의 기분</span>",
+    "<h3>자유롭게 쓰기</h3>", "타이핑하거나, 말하거나, 사진을 붙여 넣으세요. 태그와 기분은 글에서 제안합니다. 일기는 무제한, 30일 제한 없음, 영원히 무료.", ">기분은 일기에서 제안됨<",
+    "<h3>Brain View</h3>", "당신이 자꾸 돌아오는 주제들의 별자리. 크기는 등장한 횟수입니다. 같은 일기에 나온 주제끼리 이어집니다. 앱에서는 3D로 돌아갑니다.",
+    'aria-label="Brain View: 샘플 일기의 주제. 크기는 등장 횟수, 같은 일기에 나온 주제끼리 연결"',
+    "<b>계정은 절대 없음</b><p>이메일도, 비밀번호도, 로그인 화면도 없습니다. 당신이 누구인지 물은 적이 없으니 유출될 것도 없습니다.</p>",
+    "<b>비행기 모드에서도 동작</b><p>AI에 인터넷은 필요 없습니다. 비행기에서도, 산장에서도, 신호가 없는 곳에서도 쓰고 돌아보세요.</p>",
+    "<b>iCloud 백업</b><p>일기는 당신의 iCloud에 동기화되어 Apple ID 아래 비공개로 남습니다. 우리는 접근할 수 없습니다. 전체 텍스트 검색도 기기 안에서.</p>",
+    "<h2>말하기 전에 신뢰부터 얻는 AI.</h2>", "MirrorNotes가 당신의 글을 충분히 읽기 전에는 인사이트를 내놓지 않습니다. 첫날의 어설픈 추측은 없습니다.",
+    "<b>0</b><span>일차</span>", "<b>1–3</b><span>일차</span>", "<b>4</b><span>일차</span>", "<b>2+</b><span>주차</span>",
+    "<h3>시작하기</h3><p>짧은 질문 세 개. 첫 일기를 씁니다. 계정도, 이메일도, 로그인도 없습니다.</p>",
+    "<h3>Mirror가 배우는 중</h3><p>자유롭게 쓰세요. 아직 AI는 없습니다. 인사이트를 내놓기 전에 단서가 필요하니까요. 엉뚱한 추측 대신 조용한 진행 막대가 보입니다.</p>",
+    "<h3>첫 돌아봄</h3><p>일주일치 일기가 쌓이면 MirrorNotes는 당신의 패턴을 압니다. 실제로 쓴 글을 인용한 첫 돌아봄이 나타납니다.</p>",
+    "<h3>전체 경험</h3><p>매일의 돌아봄, 질문, 주간 요약, 기분 그래프. 기록이 쌓일수록 AI는 더 날카로워집니다.</p>",
+    "<h2>소음을 뚫고 들어오는 30가지 질문.</h2>", "MirrorNotes가 던지는 질문은 이런 것들입니다. 당신이 실제로 쓴 글에서 나옵니다. 마음에 꽂히는 하나를 찾아보세요.",
+    ">이 질문에 쓰기<", 'aria-label="이전 질문"', 'aria-label="다음 질문"',
+    "<h2>쓰는 건 영원히 무료. AI 값만 내세요.</h2>",
+    "{date}까지는 모두 무료입니다. 그 이후 AI 기능은 두 가지 플랜으로 제공되며, 새 구독자에게는 7일 무료 체험이 있습니다. 일기, 기록, 검색, iCloud 백업은 언제까지나 무료입니다.",
+    "<h3>무료</h3>", ">당신의 일기는 언제나 당신의 것<",
+    "<li>일기 무제한, 영원히</li><li>지난 일기는 언제든 읽을 수 있음</li><li>전체 텍스트 검색, 휴대폰 안에서</li><li>iCloud 백업과 동기화</li><li>첫 번째 돌아봄</li><li>AI가 이미 만들어 준 것은 계속 읽을 수 있음</li>",
+    ">무료로 받기</a>", "<small>/월</small>",
+    '<p class="tier-sub">또는 연 <span data-price="core_yr">$49.99</span>, <span data-save="core">48% 절약</span></p>',
+    '<p class="tier-sub">또는 연 <span data-price="deep_yr">$69.99</span>, <span data-save="deep">51% 절약</span></p>',
+    "<li>무료의 모든 것</li><li>쓴 날마다 오늘의 돌아봄</li><li>일기에 묻기, 월 15회</li><li>매주 일요일 주간 요약</li><li>홈 화면 위젯</li>",
+    '<p class="tier-note">{date}부터 앱에서</p>',
+    "<li>Core의 모든 것</li><li>질문 무제한</li><li>월간 심층 리포트</li><li>기분 그래프와 전체 분석</li><li>기분 알림</li>",
+    '<span data-price-note>미국 가격</span>, <label class="store-pick">국가: <select data-storefront aria-label="가격을 볼 국가"><option value="US">United States</option></select>.</label> App Store는 Apple ID 국가의 가격으로 청구합니다. 무료 체험은 Apple ID당 한 번, 첫 플랜에서. 플랜은 Apple ID 설정에서 관리하니 저희에게 해지를 요청할 일은 없습니다.',
+    "<h3>왜 AI에는 돈을 내고, 당신의 글에는 내지 않을까요?</h3>",
+    "데이터는 언제나 당신의 것입니다. 내는 돈은 AI 계층의 값입니다. 대부분의 일기 앱은 당신이 글을 쓸 때마다 클라우드 업체에 비용을 내기 때문에 당신에게 돈을 받거나, 더 나쁘게는 당신을 수익화해야 합니다. MirrorNotes의 AI는 이미 당신 주머니에 있는 칩에서 돌아갑니다. 그래서 이렇게 오래 무료일 수 있었고, 그래서 플랜도 작게 유지됩니다.",
+    "<li><b>당신의 데이터를 팔 수 없습니다.</b> 저희에게 오지 않으니까요. 팔 것이 저희 쪽에 없습니다.</li>",
+    "<li><b>당신의 기록을 가둘 수 없습니다.</b> 일기는 당신의 iCloud에, Apple ID 아래에 있습니다.</li>",
+    "<li><b>자기 글을 읽는 데 돈을 받는 일은 결코 없습니다.</b> 플랜이 가르는 것은 새 AI 기능이지, 당신의 기록이 아닙니다.</li>",
+    "<h2>가장 솔직한 생각에는 혼자만의 공간이 필요합니다.</h2>", "계정 없음. 서버 없음. 데이터 거래 없음. 당신과 당신의 휴대폰, 그리고 제자리에 머무는 AI뿐.", ">아이폰용 무료 다운로드<",
+    "<p>프라이빗 AI 일기. 당신의 글은 기기 안에 남습니다.</p>", "<h4>제품</h4>", "<h4>비교</h4>", "<h4>지원</h4>", "<h4>개발자</h4>",
+    '<a href="#features">기능</a><a href="#pricing">가격</a><a href="#prompts">질문 써 보기</a><a href="https://apps.apple.com/app/id6769007201">다운로드</a>',
+    '<a href="/ko/rosebud-alternative.html">Rosebud와 비교</a><a href="/ko/day-one-alternative.html">Day One과 비교</a><a href="/ko/reflect-alternative.html">Reflect와 비교</a><a href="/ko/adhd-journaling-app.html">ADHD와 일기</a>',
+    '<a href="/support.html">도움말 센터</a><a href="mailto:hello@mirrornotes.org">문의</a><a href="/ko/privacy.html">개인정보 처리방침</a><a href="/terms.html">서비스 약관</a>',
+    '<a href="/mcp.html">MCP 서버</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">블로그</a>',
+    "<span>언어</span>", "© 2026 MirrorNotes. 의도를 담아 만들었습니다. 개인정보가 먼저입니다.", "이 페이지의 일기는 샘플입니다. 분석 도구도, 추적 픽셀도, 외부 스크립트도 없습니다.",
+]
+T["ru"] = [
+    '<div class="nav-links"><a href="#reflection">Как это работает</a><a href="#features">Возможности</a><a href="#prompts">Попробовать вопрос</a><a href="#pricing">Цены</a><a href="/ru/privacy.html">Приватность</a></div>', "Скачать приложение</a>",
+    "<h1>Дневник, который слушает наедине.</h1>",
+    "Пишите что угодно. ИИ, который отражает написанное, живёт на вашем iPhone. Не на чужом сервере. Не в дата-центре. Нигде, куда могли бы уйти ваши слова.",
+    "Скачать бесплатно в App Store</a>", ">Посмотреть, как это работает<",
+    "<b>Без ограничений</b>бесплатные записи, навсегда", "<b>0 байт</b>отправлено на какой-либо сервер", "<b>ИИ на устройстве</b>Apple Foundation Models, запасной вариант Gemma 3", "<b>Editorial</b>номинация Apple",
+    'aria-label="Неделя-пример в MirrorNotes"', ">Дневник-пример<",
+    "<h2>Каждое размышление начинается с фразы, которую написали вы.</h2>",
+    "Слово в слово, в кавычках. Потом одна строка о том, как читается день. Не пересказ и не догадки о вашей жизни.",
+    ">Запись-пример<", ">Её размышление, тем же утром<", "</svg>Размышление дня</span>",
+    "Прежде чем показать размышление, приложение проверяет, что процитированная фраза действительно есть в записи. Если её нет, вы честно увидите это вместо выдуманных подробностей. На iPhone с Apple Intelligence это работает на Foundation Models от Apple, на всех остальных поддерживаемых iPhone — на встроенной модели Gemma 3. И то и другое на телефоне, ничего онлайн.",
+    "<h2>Текст вашего дневника не может покинуть телефон. Нет сервера, куда его отправить.</h2>",
+    "Мы не писали политику приватности вокруг облачного ИИ. Мы убрали облако целиком. Модель работает на чипе вашего iPhone, том самом, на котором работает Face ID. Ни одного сетевого запроса. Нечего перехватывать.",
+    "<b>Ваш iPhone</b><small>Дневник и ИИ на устройстве</small>", "<b>Ваш iCloud</b><small>Приватно, под вашим Apple ID</small>", "<b>Любой сервер</b><small>Недостижим</small>",
+    "<h2>ИИ, который вас знает. И остаётся с вами.</h2>",
+    "Небольшой набор инструментов вокруг единственного, что делает дневник полезным: честности. Всё ниже создаётся на вашем телефоне из ваших собственных записей. Примеры взяты из того же дневника-примера, что и выше.",
+    "<h3>Итоги недели</h3>", "Каждое воскресенье: сводка вашей недели, собранная только из фраз, которые вы написали. Темы, настроение, нити, к которым стоит вернуться, одно дело на пробу.", "</svg>Итоги недели</span>",
+    "<h3>Спросите дневник</h3>", "Спросите простыми словами. Ответ приходит из ваших записей, а фразы, на которые он опирается, показаны ниже.", ">Спросить о дневнике<",
+    "<h3>Линия настроения</h3>", "Настроение этой недели одной линией, прочитанное из того, что вы написали. Приложение хранит всю линию, до самой первой записи.", "</svg>Настроение недели</span>",
+    "<h3>Пишите свободно</h3>", "Печатайте, диктуйте или вставьте фото. Теги и настроение подсказываются по тексту. Записей без ограничений, без лимита в 30 дней, бесплатно навсегда.", ">Настроение подсказано по записи<",
+    "<h3>Brain View</h3>", "Созвездие тем, к которым вы возвращаетесь снова и снова, размером с то, как часто они встречаются. Темы из одной записи связаны. В приложении оно вращается в 3D.",
+    'aria-label="Brain View: темы дневника-примера, размер по частоте, связаны, когда встречаются в одной записи"',
+    "<b>Никакого аккаунта</b><p>Ни почты, ни пароля, ни экрана входа. Нечему утечь, потому что мы никогда не спрашивали, кто вы.</p>",
+    "<b>Работает в авиарежиме</b><p>ИИ не нужен интернет. Пишите и размышляйте в самолёте, на даче, там, где нет связи.</p>",
+    "<b>Резервная копия в iCloud</b><p>Записи синхронизируются с вашим iCloud, приватно под вашим Apple ID. У нас нет доступа. Полнотекстовый поиск тоже локальный.</p>",
+    "<h2>ИИ, который заслуживает доверие, прежде чем заговорить.</h2>", "Мы ждём, пока MirrorNotes прочитает достаточно ваших записей, прежде чем показывать выводы. Никаких слабых догадок в первый день.",
+    "<b>0</b><span>ДЕНЬ</span>", "<b>1–3</b><span>ДНИ</span>", "<b>4</b><span>ДЕНЬ</span>", "<b>2+</b><span>НЕДЕЛЯ</span>",
+    "<h3>Освоиться</h3><p>Три коротких вопроса. Напишите первую запись. Без аккаунта, без почты, без входа.</p>",
+    "<h3>Mirror учится</h3><p>Пишите свободно. ИИ пока молчит: нам нужен сигнал, прежде чем предлагать выводы. Вместо плохих догадок — тихая полоса прогресса.</p>",
+    "<h3>Первое размышление</h3><p>Через неделю записей MirrorNotes знает ваши паттерны. Появляется первое размышление с цитатой того, что вы действительно написали.</p>",
+    "<h3>Полный опыт</h3><p>Ежедневные размышления, вопросы, итоги недели, линия настроения. ИИ становится точнее по мере роста архива.</p>",
+    "<h2>30 вопросов, которые пробиваются сквозь шум.</h2>", "Такие вопросы задаёт MirrorNotes, исходя из того, что вы действительно написали. Найдите тот, что попадёт в точку.",
+    ">Написать по этому вопросу<", 'aria-label="Предыдущий вопрос"', 'aria-label="Следующий вопрос"',
+    "<h2>Писать бесплатно, навсегда. Платите только за ИИ.</h2>",
+    "До {date} всё бесплатно. После этого функции ИИ входят в два плана, с бесплатной пробной неделей для новых подписчиков. Ваши записи, история, поиск и копия в iCloud никогда ничего не стоят.",
+    "<h3>Бесплатно</h3>", ">Ваш дневник, всегда ваш<",
+    "<li>Записи без ограничений, навсегда</li><li>Каждая прошлая запись всегда доступна</li><li>Полнотекстовый поиск, на телефоне</li><li>Копия и синхронизация в iCloud</li><li>Ваше первое размышление</li><li>Всё, что ИИ уже сделал для вас, остаётся доступным</li>",
+    ">Скачать бесплатно</a>", "<small>/мес</small>",
+    '<p class="tier-sub">или <span data-price="core_yr">$49.99</span> в год, <span data-save="core">экономия 48 %</span></p>',
+    '<p class="tier-sub">или <span data-price="deep_yr">$69.99</span> в год, <span data-save="deep">экономия 51 %</span></p>',
+    "<li>Всё из бесплатного плана</li><li>Размышление дня в каждый день, когда вы пишете</li><li>Вопросы дневнику, 15 в месяц</li><li>Итоги недели каждое воскресенье</li><li>Виджеты на экране «Домой»</li>",
+    '<p class="tier-note">В приложении с {date}</p>',
+    "<li>Всё из Core</li><li>Вопросы без ограничений</li><li>Глубокий отчёт за месяц</li><li>Линия настроения и полная аналитика</li><li>Оповещения о настроении</li>",
+    '<span data-price-note>Цены в США</span>, <label class="store-pick">для <select data-storefront aria-label="Страна для цен"><option value="US">United States</option></select>.</label> App Store списывает цену страны вашего Apple ID. Одна пробная неделя на Apple ID, на первом плане. Планы управляются в настройках Apple ID, так что отменять у нас нечего.',
+    "<h3>Почему платить за ИИ и никогда — за свои слова?</h3>",
+    "Ваши данные всегда ваши. Вы платите за слой ИИ. Большинство дневниковых приложений платят облачному провайдеру за каждую вашу запись, поэтому им приходится брать деньги с вас или, хуже, зарабатывать на вас. MirrorNotes запускает ИИ на чипе, который уже лежит у вас в кармане: поэтому он так долго был бесплатным, и поэтому планы остаются небольшими.",
+    "<li><b>Мы не можем продать ваши данные.</b> Они до нас не доходят. С нашей стороны нечего продавать.</li>",
+    "<li><b>Мы не можем запереть вашу историю.</b> Записи живут в вашем iCloud, под вашим Apple ID.</li>",
+    "<li><b>Мы никогда не возьмём деньги за чтение ваших собственных слов.</b> Планы касаются новых функций ИИ, а не вашего архива.</li>",
+    "<h2>Самые честные мысли заслуживают личного пространства.</h2>", "Без аккаунта. Без сервера. Без торговли данными. Только вы, ваш телефон и ИИ, который остаётся там, где ему место.", ">Скачать бесплатно для iPhone<",
+    "<p>Приватный ИИ-дневник. Ваши слова остаются на вашем устройстве.</p>", "<h4>Продукт</h4>", "<h4>Сравнение</h4>", "<h4>Поддержка</h4>", "<h4>Разработчикам</h4>",
+    '<a href="#features">Возможности</a><a href="#pricing">Цены</a><a href="#prompts">Попробовать вопрос</a><a href="https://apps.apple.com/app/id6769007201">Скачать</a>',
+    '<a href="/ru/rosebud-alternative.html">vs Rosebud</a><a href="/ru/day-one-alternative.html">vs Day One</a><a href="/ru/reflect-alternative.html">vs Reflect</a><a href="/ru/adhd-journaling-app.html">Дневник при СДВГ</a>',
+    '<a href="/support.html">Центр помощи</a><a href="mailto:hello@mirrornotes.org">Контакты</a><a href="/ru/privacy.html">Политика конфиденциальности</a><a href="/terms.html">Условия использования</a>',
+    '<a href="/mcp.html">MCP-сервер</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">Блог</a>',
+    "<span>Языки</span>", "© 2026 MirrorNotes. Сделано осознанно. Приватность прежде всего.", "Дневник на этой странице — пример. Без аналитики, без пикселей отслеживания, без сторонних скриптов.",
+]
+T["zh"] = [
+    '<div class="nav-links"><a href="#reflection">工作原理</a><a href="#features">功能</a><a href="#prompts">试一个问题</a><a href="#pricing">价格</a><a href="/zh/privacy.html">隐私</a></div>', "获取应用</a>",
+    "<h1>一本只在你手中倾听的日记。</h1>",
+    "想写什么就写什么。把它映照回来的 AI 就住在你的 iPhone 里。不在别人的服务器上，不在数据中心里，你的文字哪儿也去不了。",
+    "在 App Store 免费下载</a>", ">看看它如何工作<",
+    "<b>无限</b>免费日记，永远", "<b>0 字节</b>发送到任何服务器", "<b>设备端 AI</b>Apple Foundation Models，备用 Gemma 3", "<b>Editorial</b>Apple 提名",
+    'aria-label="MirrorNotes 的示例一周"', ">示例日记<",
+    "<h2>每一次回看，都从你写下的一句话开始。</h2>",
+    "一字不差，加上引号。然后用一行字说说这一天读起来是什么样。不是摘要，也不是对你生活的猜测。",
+    ">一篇示例日记<", ">同一个早晨的回看<", "</svg>今日回看</span>",
+    "在显示回看之前，应用会核对引用的那句话是否真的出现在日记里。找不到的话，你看到的是坦诚的说明，而不是编造的细节。支持 Apple Intelligence 的 iPhone 上运行 Apple 的 Foundation Models；其他受支持的 iPhone 上运行内置的 Gemma 3 模型。都在手机上，都不联网。",
+    "<h2>你的日记文字离不开你的手机。根本没有可以发送的服务器。</h2>",
+    "我们没有围绕云端 AI 去写隐私政策，而是把云端整个拿掉了。模型在你 iPhone 自己的芯片上运行，就是驱动 Face ID 的那一颗。没有网络请求，也就没有什么可拦截。",
+    "<b>你的 iPhone</b><small>日记与设备端 AI</small>", "<b>你的 iCloud</b><small>在你的 Apple ID 下私密保存</small>", "<b>任何服务器</b><small>永远到不了</small>",
+    "<h2>了解你的 AI，留在你身边的 AI。</h2>",
+    "一组精简的工具，围绕让写日记真正有用的那一件事：坦诚。下面的一切都在你的手机上、从你自己的日记里生成。示例来自上面同一本示例日记。",
+    "<h3>每周摘要</h3>", "每个周日：只用你写过的句子拼出的一周综述。主题、心情、值得回头的线索，以及一件可以试试的事。", "</svg>每周摘要</span>",
+    "<h3>问问你的日记</h3>", "用平常的话提问。答案来自你自己的日记，所依据的句子就列在下面。", ">问问你的日记<",
+    "<h3>心情曲线</h3>", "这一周的心情画成一条线，从你写的文字中读出。应用会保留完整曲线，直到你的第一篇日记。", "</svg>本周心情</span>",
+    "<h3>自由书写</h3>", "打字、口述，或粘贴一张照片。标签和心情由文字自动建议。日记不限量，没有 30 天限制，永久免费。", ">心情由日记自动建议<",
+    "<h3>Brain View</h3>", "你反复回到的那些主题组成的星图，大小代表出现的次数。出现在同一篇日记里的主题会连在一起。在应用里它以 3D 旋转。",
+    'aria-label="Brain View：示例日记中的主题，大小代表出现次数，出现在同一篇日记里的主题相连"',
+    "<b>从不需要账号</b><p>没有邮箱、没有密码、没有登录页。没什么可泄露的，因为我们从没问过你是谁。</p>",
+    "<b>飞行模式也能用</b><p>AI 不需要互联网。在飞机上、小木屋里、没有信号的地方，照样写、照样回看。</p>",
+    "<b>iCloud 备份</b><p>日记同步到你的 iCloud，在你的 Apple ID 下私密保存。我们无法访问。全文搜索也在本地完成。</p>",
+    "<h2>先赢得信任，再开口的 AI。</h2>", "在 MirrorNotes 读够你的文字之前，它不会给出任何洞察。第一天不会有敷衍的猜测。",
+    "<b>0</b><span>第 0 天</span>", "<b>1–3</b><span>第 1–3 天</span>", "<b>4</b><span>第 4 天</span>", "<b>2+</b><span>第 2 周起</span>",
+    "<h3>熟悉一下</h3><p>三个简短的问题。写下第一篇日记。没有账号、没有邮箱、没有登录。</p>",
+    "<h3>Mirror 正在学习</h3><p>自由地写。此时还没有 AI：在给出洞察之前，我们需要足够的线索。你看到的是一条安静的进度条，而不是糟糕的猜测。</p>",
+    "<h3>第一次回看</h3><p>有了一周的日记，MirrorNotes 就了解了你的模式。第一次回看出现，引用的是你真正写下的话。</p>",
+    "<h3>完整体验</h3><p>每日回看、提问、每周摘要、心情曲线。随着记录增多，AI 也越来越敏锐。</p>",
+    "<h2>30 个穿透噪音的问题。</h2>", "MirrorNotes 问的就是这类问题，源自你真正写下的内容。找一个击中你的。",
+    ">就这个问题写一写<", 'aria-label="上一个问题"', 'aria-label="下一个问题"',
+    "<h2>书写永远免费。只为 AI 付费。</h2>",
+    "{date}之前一切免费。此后，AI 功能分为两种方案，新订阅者可享 7 天免费试用。你的日记、历史记录、搜索和 iCloud 备份永远不收费。",
+    "<h3>免费</h3>", ">你的日记，永远属于你<",
+    "<li>日记不限量，永远</li><li>每一篇旧日记随时可读</li><li>全文搜索，在你的手机上</li><li>iCloud 备份与同步</li><li>你的第一次回看</li><li>AI 已为你生成的内容仍可阅读</li>",
+    ">免费下载</a>", "<small>/月</small>",
+    '<p class="tier-sub">或每年 <span data-price="core_yr">$49.99</span>，<span data-save="core">省 48%</span></p>',
+    '<p class="tier-sub">或每年 <span data-price="deep_yr">$69.99</span>，<span data-save="deep">省 51%</span></p>',
+    "<li>免费版的全部内容</li><li>每个写作日的今日回看</li><li>问问你的日记，每月 15 次</li><li>每周日的每周摘要</li><li>主屏幕小组件</li>",
+    '<p class="tier-note">{date}起在应用内提供</p>',
+    "<li>Core 的全部内容</li><li>提问不限次数</li><li>每月深度报告</li><li>心情曲线与完整分析</li><li>心情提醒</li>",
+    '<span data-price-note>美国价格</span>，<label class="store-pick">国家/地区：<select data-storefront aria-label="查看价格的国家/地区"><option value="US">United States</option></select>。</label>App Store 按你 Apple ID 所在国家/地区的价格收费。每个 Apple ID 可享一次 7 天试用，用于你的第一个方案。方案在 Apple ID 设置中管理，无需向我们取消任何东西。',
+    "<h3>为什么只为 AI 付费，却永远不为你的文字付费？</h3>",
+    "你的数据永远是你的。你付费的是 AI 这一层。大多数日记应用每写一篇都要向云服务商付费，所以不得不向你收费，或者更糟，把你变成商品。MirrorNotes 的 AI 在你口袋里已有的芯片上运行，所以它能免费这么久，方案也能保持小巧。",
+    "<li><b>我们卖不了你的数据。</b>它从未到过我们手里。我们这边没有东西可卖。</li>",
+    "<li><b>我们锁不住你的历史记录。</b>你的日记在你的 iCloud 里，在你的 Apple ID 之下。</li>",
+    "<li><b>我们永远不会为你阅读自己的文字收费。</b>方案限制的是新的 AI 功能，不是你的存档。</li>",
+    "<h2>最坦诚的想法，值得一个私密的空间。</h2>", "没有账号。没有服务器。没有数据交易。只有你、你的手机，和一个待在该待的地方的 AI。", ">为 iPhone 免费下载<",
+    "<p>私密的 AI 日记。你的文字留在你的设备上。</p>", "<h4>产品</h4>", "<h4>对比</h4>", "<h4>支持</h4>", "<h4>开发者</h4>",
+    '<a href="#features">功能</a><a href="#pricing">价格</a><a href="#prompts">试一个问题</a><a href="https://apps.apple.com/app/id6769007201">下载</a>',
+    '<a href="/zh/rosebud-alternative.html">对比 Rosebud</a><a href="/zh/day-one-alternative.html">对比 Day One</a><a href="/zh/reflect-alternative.html">对比 Reflect</a><a href="/zh/adhd-journaling-app.html">ADHD 与日记</a>',
+    '<a href="/support.html">帮助中心</a><a href="mailto:hello@mirrornotes.org">联系我们</a><a href="/zh/privacy.html">隐私政策</a><a href="/terms.html">服务条款</a>',
+    '<a href="/mcp.html">MCP 服务器</a><a href="https://github.com/lokii49/mirrornotes-mcp">GitHub</a><a href="/blog/">博客</a>',
+    "<span>语言</span>", "© 2026 MirrorNotes. 用心制作。隐私优先。", "本页展示的日记是示例。没有分析工具、没有跟踪像素、没有第三方脚本。",
+]
+
+# Sentence-case labels for the digest card (the app's own labels are set in capitals).
+DIGEST_LABELS = {
+    "de": ["Thema", "Energie", "Was wächst", "Achte auf", "Stimmung", "Nächste Woche"],
+    "es": ["Tema", "Energía", "Lo que crece", "Cuidado con", "Ánimo", "La próxima semana"],
+    "fr": ["Thème", "Énergie", "Ce qui se construit", "À surveiller", "Humeur", "Semaine prochaine"],
+    "it": ["Tema", "Energia", "Cosa cresce", "Attenzione a", "Umore", "Prossima settimana"],
+    "pt": ["Tema", "Energia", "O que cresce", "Fique atento", "Humor", "Próxima semana"],
+    "ja": ["テーマ", "エネルギー", "育っているもの", "気をつけたいこと", "気分", "来週"],
+    "ko": ["주제", "에너지", "쌓여 가는 것", "주의할 점", "기분", "다음 주"],
+    "ru": ["Тема", "Энергия", "Что нарастает", "Обратить внимание", "Настроение", "Следующая неделя"],
+    "zh": ["主题", "能量", "正在累积", "需要留意", "心情", "下周"],
+}
+# Composer tags (#home, #evening) and the word-count line
+TAGS = {"de": ("zuhause", "abend"), "es": ("casa", "tarde"), "fr": ("maison", "soir"), "it": ("casa", "sera"), "pt": ("casa", "noite"),
+        "ja": ("家", "夜"), "ko": ("집", "저녁"), "ru": ("дом", "вечер"), "zh": ("家", "晚上")}
+WORDS = {"de": "{n} Wörter", "es": "{n} palabras", "fr": "{n} mots", "it": "{n} parole", "pt": "{n} palavras", "ja": "{n}文字", "ko": "{n}단어", "ru": "{n} слов", "zh": "{n} 字"}
+# L10N block strings
+L10N = {
+    "de": dict(entries='n => `${n} ${n === 1 ? "Eintrag" : "Einträge"}`', mostly='m => `Meist ${m}`', axis='["Hoch", "Mittel", "Tief"]', you="Du", save='pct => `${pct} % gespart`', us='"US-Preise"', pricesIn='cur => `Preise in ${cur}`'),
+    "es": dict(entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Sobre todo ${m}`', axis='["Alto", "Medio", "Bajo"]', you="Tú", save='pct => `ahorras un ${pct} %`', us='"Precios en EE. UU."', pricesIn='cur => `Precios en ${cur}`'),
+    "fr": dict(entries='n => `${n} ${n === 1 ? "entrée" : "entrées"}`', mostly='m => `Surtout ${m}`', axis='["Haut", "Moyen", "Bas"]', you="Toi", save='pct => `${pct} % d\'économie`', us='"Prix américains"', pricesIn='cur => `Prix en ${cur}`'),
+    "it": dict(entries='n => `${n} ${n === 1 ? "voce" : "voci"}`', mostly='m => `Soprattutto ${m}`', axis='["Alto", "Medio", "Basso"]', you="Tu", save='pct => `risparmi il ${pct}%`', us='"Prezzi USA"', pricesIn='cur => `Prezzi in ${cur}`'),
+    "pt": dict(entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Mais ${m}`', axis='["Alto", "Médio", "Baixo"]', you="Você", save='pct => `economize ${pct}%`', us='"Preços nos EUA"', pricesIn='cur => `Preços em ${cur}`'),
+    "ja": dict(entries='n => `${n}件`', mostly='m => `主に${m}`', axis='["高", "中", "低"]', you="あなた", save='pct => `${pct}%お得`', us='"米国の価格"', pricesIn='cur => `${cur}での価格`'),
+    "ko": dict(entries='n => `${n}개`', mostly='m => `주로 ${m}`', axis='["높음", "보통", "낮음"]', you="나", save='pct => `${pct}% 절약`', us='"미국 가격"', pricesIn='cur => `${cur} 기준 가격`'),
+    "ru": dict(entries='n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`', mostly='m => `В основном ${m}`', axis='["Высоко", "Средне", "Низко"]', you="Ты", save='pct => `экономия ${pct} %`', us='"Цены в США"', pricesIn='cur => `Цены в ${cur}`'),
+    "zh": dict(entries='n => `${n} 篇`', mostly='m => `多为${m}`', axis='["高", "中", "低"]', you="你", save='pct => `省 ${pct}%`', us='"美国价格"', pricesIn='cur => `以 ${cur} 计价`'),
+}
+# Brain View themes: [label, JS regex source, colour]. Counts come from matching the sample entries; zero-match themes drop out.
+THEMES = {
+    "de": [["Schwester", r"\bSchwester\b", TEAL], ["Mama", r"\bMama\b", TEAL], ["Mia", r"\bMia\b", TEAL], ["Lena", r"\bLena\b", TEAL], ["Familie", r"\bFamilie\b", TEAL], ["Chefin", r"\bChefin\b", TEAL], ["Team", r"\bTeam\b", TEAL],
+           ["laufen", r"\b(gelaufen|laufen|Lauf)\b", ORANGE], ["Meetings", r"\bMeetings?\b", ORANGE], ["Präsentation", r"\bPräsentation\b", ORANGE], ["Gespräch", r"\bVorstellungsgespräch\b", ORANGE], ["kochen", r"\b(gekocht|Pfannkuchen|gebacken)\b", ORANGE], ["Fahrrad", r"\bFahrrad\b", ORANGE], ["Training", r"\bTraining\b", ORANGE], ["lesen", r"\b(gelesen|Buch|ausgelesen)\b", ORANGE], ["Pflanzen", r"\b(Pflanzen|umgetopft|Tomaten)\b", ORANGE], ["Essen", r"\b(Abendessen|Sonntagsessen)\b", ORANGE],
+           ["Projekt", r"\bProjekts?\b", TAN], ["Release", r"\bRelease\b", TAN], ["Mail", r"\bMail\b", TAN], ["Plan", r"\bPlan\b", TAN], ["Liste", r"\bListe\b", TAN], ["Ziel", r"\bZiel\b", TAN], ["Auftakt", r"\bAuftakt\b", TAN], ["Ideen", r"\bIdeen\b", TAN],
+           ["Fluss", r"\bFluss\b", GRAY], ["Lissabon", r"\bLissabon\b", GRAY], ["Garten", r"\bGarten\b", GRAY], ["Balkon", r"\bBalkon\b", GRAY], ["zuhause", r"\b(zuhause|zu Hause)\b", GRAY], ["Park", r"\bPark\b", GRAY], ["Handy", r"\bHandy\b", GRAY], ["Regen", r"\bRegen\b", GRAY], ["Kaffee", r"\bKaffee\b", GRAY], ["Tee", r"\bTee\b", GRAY],
+           ["Schlaf", r"\b(Schlaf|schlafen|abschalten)\b", OLIVE], ["nervös", r"\b(nervös|Angst)\b", OLIVE], ["müde", r"\b(leid|erschöpft)\b", OLIVE], ["Freude", r"\bfreue\b", OLIVE], ["Morgen", r"\bMorgen\b", WHITE], ["Abend", r"\b(Abend|Abends)\b", WHITE]],
+    "es": [["hermana", r"\bhermana\b", TEAL], ["mamá", r"\bmamá\b", TEAL], ["Marta", r"\bMarta\b", TEAL], ["familia", r"\bfamilia\b", TEAL], ["jefa", r"\bjefa\b", TEAL], ["equipo", r"\bequipo\b", TEAL],
+           ["correr", r"\b(corr[íi]|correr|carrera)\b", ORANGE], ["reuniones", r"\breuniones\b", ORANGE], ["presentación", r"\bpresentación\b", ORANGE], ["entrevista", r"\bentrevista\b", ORANGE], ["cocinar", r"\b(cena|tortitas|tarta|comida)\b", ORANGE], ["bici", r"\bbici\b", ORANGE], ["entrenar", r"\bentrenar\b", ORANGE], ["leer", r"\b(le[íi]|libro)\b", ORANGE], ["plantas", r"\b(plantas|tomates)\b", ORANGE],
+           ["proyecto", r"\bproyecto\b", TAN], ["lanzamiento", r"\blanzamiento\b", TAN], ["correo", r"\bcorreo\b", TAN], ["plan", r"\bplan\b", TAN], ["lista", r"\blista\b", TAN], ["meta", r"\bmeta\b", TAN], ["ideas", r"\bideas\b", TAN],
+           ["río", r"\brío\b", GRAY], ["Lisboa", r"\bLisboa\b", GRAY], ["jardín", r"\bjardín\b", GRAY], ["balcón", r"\bbalcón\b", GRAY], ["casa", r"\bcasa\b", GRAY], ["parque", r"\bparque\b", GRAY], ["móvil", r"\bmóvil\b", GRAY], ["lluvia", r"\blluvia\b", GRAY], ["café", r"\bcafé\b", GRAY], ["té", r"\bté\b", GRAY],
+           ["sueño", r"\b(sueño|dormir|desconectar)\b", OLIVE], ["nerviosa", r"\b(nerviosa|asustada)\b", OLIVE], ["cansada", r"\bcansada\b", OLIVE], ["ilusión", r"\bilusionada\b", OLIVE], ["mañana", r"\bmañana\b", WHITE], ["tarde", r"\b(tarde|noche)\b", WHITE]],
+    "fr": [["sœur", r"\bsœur\b", TEAL], ["maman", r"\bmaman\b", TEAL], ["Inès", r"\bInès\b", TEAL], ["famille", r"\bfamille\b", TEAL], ["manager", r"\bmanager\b", TEAL], ["équipe", r"\béquipe\b", TEAL],
+           ["courir", r"\b(couru|courir|course)\b", ORANGE], ["réunions", r"\bréunions\b", ORANGE], ["présentation", r"\bprésentation\b", ORANGE], ["entretien", r"\bentretien\b", ORANGE], ["cuisine", r"\b(dîner|crêpes|gâteau|déjeuner)\b", ORANGE], ["vélo", r"\bvélo\b", ORANGE], ["entraîner", r"\bentraîner\b", ORANGE], ["lire", r"\b(lu|livre)\b", ORANGE], ["plantes", r"\b(plantes|tomates|rempoté)\b", ORANGE],
+           ["projet", r"\bprojet\b", TAN], ["sortie", r"\bsortie\b", TAN], ["mail", r"\bmail\b", TAN], ["plan", r"\bplan\b", TAN], ["liste", r"\bliste\b", TAN], ["objectif", r"\bobjectif\b", TAN], ["idées", r"\bidées\b", TAN],
+           ["rivière", r"\brivière\b", GRAY], ["Lisbonne", r"\bLisbonne\b", GRAY], ["jardin", r"\bjardin\b", GRAY], ["balcon", r"\bbalcon\b", GRAY], ["maison", r"\bmaison\b", GRAY], ["parc", r"\bparc\b", GRAY], ["téléphone", r"\btéléphone\b", GRAY], ["pluie", r"\bpluie\b", GRAY], ["café", r"\bcafé\b", GRAY], ["thé", r"\bthé\b", GRAY],
+           ["sommeil", r"\b(sommeil|dormir|décrocher)\b", OLIVE], ["nerveuse", r"\b(nerveuse|effrayée)\b", OLIVE], ["fatigue", r"\b(assez|fatigu)", OLIVE], ["contente", r"\bcontente\b", OLIVE], ["matin", r"\bmatin\b", WHITE], ["soir", r"\b(soir|soirée)\b", WHITE]],
+    "it": [["sorella", r"\bsorella\b", TEAL], ["mamma", r"\bmamma\b", TEAL], ["Sara", r"\bSara\b", TEAL], ["famiglia", r"\bfamiglia\b", TEAL], ["capo", r"\bcapo\b", TEAL], ["squadra", r"\bsquadra\b", TEAL],
+           ["correre", r"\b(corso|correre|corsa)\b", ORANGE], ["riunioni", r"\briunioni\b", ORANGE], ["presentazione", r"\bpresentazione\b", ORANGE], ["colloquio", r"\bcolloquio\b", ORANGE], ["cucinare", r"\b(cena|pancake|torta|pranzo)\b", ORANGE], ["bici", r"\bbici\b", ORANGE], ["allenarci", r"\ballenarci\b", ORANGE], ["leggere", r"\b(letto|libro)\b", ORANGE], ["piante", r"\b(piante|pomodori|rinvasato)\b", ORANGE],
+           ["progetto", r"\bprogetto\b", TAN], ["rilascio", r"\brilascio\b", TAN], ["mail", r"\bmail\b", TAN], ["piano", r"\bpiano\b", TAN], ["lista", r"\blista\b", TAN], ["obiettivo", r"\bobiettivo\b", TAN], ["idee", r"\bidee\b", TAN],
+           ["fiume", r"\bfiume\b", GRAY], ["Lisbona", r"\bLisbona\b", GRAY], ["giardino", r"\bgiardino\b", GRAY], ["balcone", r"\bbalcone\b", GRAY], ["casa", r"\bcasa\b", GRAY], ["parco", r"\bparco\b", GRAY], ["telefono", r"\btelefono\b", GRAY], ["pioggia", r"\bpioggia\b", GRAY], ["caffè", r"\bcaffè\b", GRAY], ["tè", r"\btè\b", GRAY],
+           ["sonno", r"\b(sonno|dormire|staccare)\b", OLIVE], ["nervosa", r"\b(nervosa|spaventata)\b", OLIVE], ["stanca", r"\bstanca\b", OLIVE], ["emozionata", r"\bemozionata\b", OLIVE], ["mattina", r"\b(mattina|stamattina)\b", WHITE], ["sera", r"\b(sera|stasera)\b", WHITE]],
+    "pt": [["irmã", r"\birmã\b", TEAL], ["mãe", r"\bmãe\b", TEAL], ["Bia", r"\bBia\b", TEAL], ["família", r"\bfamília\b", TEAL], ["chefe", r"\bchefe\b", TEAL], ["equipe", r"\bequipe\b", TEAL],
+           ["correr", r"\b(corri|correr|corrida)\b", ORANGE], ["reuniões", r"\breuniões\b", ORANGE], ["apresentação", r"\bapresentação\b", ORANGE], ["entrevista", r"\bentrevista\b", ORANGE], ["cozinhar", r"\b(jantar|panquecas|bolo|almoço)\b", ORANGE], ["bicicleta", r"\bbicicleta\b", ORANGE], ["treinar", r"\btreinar\b", ORANGE], ["ler", r"\b(li|livro)\b", ORANGE], ["plantas", r"\b(plantas|tomates)\b", ORANGE],
+           ["projeto", r"\bprojeto\b", TAN], ["lançamento", r"\blançamento\b", TAN], ["e-mail", r"\be-mail\b", TAN], ["plano", r"\bplano\b", TAN], ["lista", r"\blista\b", TAN], ["meta", r"\bmeta\b", TAN], ["ideias", r"\bideias\b", TAN],
+           ["rio", r"\brio\b", GRAY], ["Lisboa", r"\bLisboa\b", GRAY], ["jardim", r"\bjardim\b", GRAY], ["varanda", r"\bvaranda\b", GRAY], ["casa", r"\bcasa\b", GRAY], ["parque", r"\bparque\b", GRAY], ["celular", r"\bcelular\b", GRAY], ["chuva", r"\bchuva\b", GRAY], ["café", r"\bcafé\b", GRAY], ["chá", r"\bchá\b", GRAY],
+           ["sono", r"\b(sono|dormir|desligar)\b", OLIVE], ["nervosa", r"\b(nervosa|assustada)\b", OLIVE], ["cansada", r"\bcansada\b", OLIVE], ["animada", r"\banimada\b", OLIVE], ["manhã", r"\bmanhã\b", WHITE], ["noite", r"\bnoite\b", WHITE]],
+    "ja": [["姉", "姉", TEAL], ["母", "母", TEAL], ["由佳さん", "由佳", TEAL], ["美咲さん", "美咲", TEAL], ["家族", "家族", TEAL], ["上司", "上司", TEAL], ["チーム", "チーム", TEAL],
+           ["ランニング", "走|ランニング|マラソン", ORANGE], ["会議", "会議", ORANGE], ["プレゼン", "プレゼン", ORANGE], ["面接", "面接", ORANGE], ["料理", "夕食を作|パンケーキ|ケーキ", ORANGE], ["自転車", "自転車", ORANGE], ["トレーニング", "トレーニング", ORANGE], ["読書", "本を読|読書", ORANGE], ["植物", "植物|トマト", ORANGE],
+           ["プロジェクト", "プロジェクト", TAN], ["リリース", "リリース", TAN], ["メール", "メール", TAN], ["計画", "計画", TAN], ["リスト", "リスト", TAN], ["目標", "目標", TAN], ["アイデア", "アイデア", TAN],
+           ["川", "川", GRAY], ["リスボン", "リスボン", GRAY], ["庭", "庭", GRAY], ["ベランダ", "ベランダ", GRAY], ["家", "家で|家に", GRAY], ["公園", "公園", GRAY], ["スマホ", "スマホ", GRAY], ["雨", "雨", GRAY], ["コーヒー", "コーヒー", GRAY], ["紅茶", "紅茶", GRAY],
+           ["睡眠", "眠|寝不足|切り替え", OLIVE], ["緊張", "緊張|怖い", OLIVE], ["疲れ", "疲れ", OLIVE], ["うれしい", "うれしい", OLIVE], ["朝", "朝", WHITE], ["夜", "夜|夕食", WHITE]],
+    "ko": [["언니", "언니", TEAL], ["엄마", "엄마", TEAL], ["수진 씨", "수진", TEAL], ["지은 씨", "지은", TEAL], ["가족", "가족", TEAL], ["팀장님", "팀장", TEAL], ["팀", "팀에|팀이", TEAL],
+           ["달리기", "달렸|달리기|마라톤", ORANGE], ["회의", "회의", ORANGE], ["발표", "발표", ORANGE], ["면접", "면접", ORANGE], ["요리", "저녁을 만들|팬케이크|케이크", ORANGE], ["자전거", "자전거", ORANGE], ["운동", "운동", ORANGE], ["독서", "책", ORANGE], ["화분", "화분|토마토", ORANGE],
+           ["프로젝트", "프로젝트", TAN], ["출시", "출시", TAN], ["메일", "메일", TAN], ["계획", "계획", TAN], ["목록", "목록", TAN], ["목표", "목표", TAN], ["아이디어", "아이디어", TAN],
+           ["강가", "강가", GRAY], ["리스본", "리스본", GRAY], ["정원", "정원", GRAY], ["베란다", "베란다", GRAY], ["집", "집에", GRAY], ["공원", "공원", GRAY], ["휴대폰", "휴대폰", GRAY], ["비", "비가", GRAY], ["커피", "커피", GRAY], ["차", "차를", GRAY],
+           ["잠", "잠을|잠이|머리가 꺼지", OLIVE], ["긴장", "긴장|무섭", OLIVE], ["지침", "지쳤", OLIVE], ["설렘", "설레", OLIVE], ["아침", "아침", WHITE], ["저녁", "저녁|밤", WHITE]],
+    "ru": [["сестра", r"\bсестр[аеуы]\b", TEAL], ["мама", r"\bмам[аыеу]\b", TEAL], ["Катя", r"\bКат[яией]\b", TEAL], ["семья", r"\bсемья\b", TEAL], ["начальница", r"\bначальница\b", TEAL], ["команда", r"\bкоманд[аеуы]\b", TEAL],
+           ["бег", r"\b(пробежк[аиу]|бегала|пробежала|забег)\b", ORANGE], ["встречи", r"\bвстреч\b", ORANGE], ["презентация", r"\bпрезентацию\b", ORANGE], ["собеседование", r"\bсобеседованием\b", ORANGE], ["готовка", r"\b(ужин|блины|торт|обед)\b", ORANGE], ["велосипед", r"\bвелосипед\b", ORANGE], ["тренировки", r"\bтренироваться\b", ORANGE], ["чтение", r"\b(читала|книг[уа]|дочитала)\b", ORANGE], ["растения", r"\b(растения|помидоры)\b", ORANGE],
+           ["проект", r"\bпроект[а]?\b", TAN], ["релиз", r"\bрелиз\b", TAN], ["письмо", r"\bписьмо\b", TAN], ["план", r"\bплан\b", TAN], ["список", r"\bсписок\b", TAN], ["цель", r"\bцель\b", TAN], ["идеи", r"\bиде[йи]\b", TAN],
+           ["река", r"\bрек[аи]\b", GRAY], ["Лиссабон", r"\bЛиссабон[е]?\b", GRAY], ["сад", r"\bсаду\b", GRAY], ["балкон", r"\bбалконе\b", GRAY], ["дом", r"\bдома\b", GRAY], ["парк", r"\bпарке\b", GRAY], ["телефон", r"\bтелефон[а]?\b", GRAY], ["дождь", r"\bдождь\b", GRAY], ["кофе", r"\bкофе\b", GRAY], ["чай", r"\bча[йя]\b", GRAY],
+           ["сон", r"\b(сна|сон|отключиться)\b", OLIVE], ["нервы", r"\b(нервничала|боюсь)\b", OLIVE], ["усталость", r"\bустала\b", OLIVE], ["радость", r"\bрада\b", OLIVE], ["утро", r"\b(утром|утро)\b", WHITE], ["вечер", r"\bвечер[ом]*\b", WHITE]],
+    "zh": [["姐姐", "姐姐", TEAL], ["妈妈", "妈妈", TEAL], ["小雨", "小雨", TEAL], ["林悦", "林悦", TEAL], ["家人", "家人", TEAL], ["经理", "经理", TEAL], ["团队", "团队", TEAL],
+           ["跑步", "跑|马拉松", ORANGE], ["会议", "会议", ORANGE], ["演讲", "演讲", ORANGE], ["面试", "面试", ORANGE], ["做饭", "做了晚饭|松饼|蛋糕", ORANGE], ["自行车", "自行车", ORANGE], ["锻炼", "锻炼", ORANGE], ["看书", "看书|看完了一本书", ORANGE], ["植物", "植物|番茄", ORANGE],
+           ["项目", "项目", TAN], ["发布", "发布", TAN], ["邮件", "邮件", TAN], ["计划", "计划", TAN], ["清单", "清单", TAN], ["目标", "目标", TAN], ["想法", "想法", TAN],
+           ["河边", "河边", GRAY], ["里斯本", "里斯本", GRAY], ["花园", "花园", GRAY], ["阳台", "阳台", GRAY], ["家", "在家|家里", GRAY], ["公园", "公园", GRAY], ["手机", "手机", GRAY], ["雨", "雨", GRAY], ["咖啡", "咖啡", GRAY], ["茶", "的茶", GRAY],
+           ["睡眠", "失眠|睡眠|停不下来", OLIVE], ["紧张", "紧张|害怕", OLIVE], ["厌倦", "厌倦", OLIVE], ["兴奋", "兴奋", OLIVE], ["早上", "早上|早跑", WHITE], ["晚上", "晚上|今晚|晚饭", WHITE]],
+}
+
+# Distinctive English fragments that must not survive in a built page (copy, not data).
+ENGLISH_TELLS = ["The journal that listens", "Write anything.", "Every reflection begins", "Your journal text cannot", "AI that knows you", "AI that earns trust",
+                 "30 questions that", "Free to write, forever", "Your most honest thoughts", "Made with intention", "Sample journal", "A sample entry", "Get the app",
+                 "Download free", "Weekly Digest</h3>", "Ask your journal</h3>", "Mood timeline</h3>", "Write freely", "No account, ever", "Works in airplane mode",
+                 "Get oriented", "Mirror is learning", "Full experience", "Why pay for the AI", "We can't sell your data", "Journal and on-device AI", "In the app from 15 November"]
+
+
+def js_str(s):
+    return json.dumps(s, ensure_ascii=False)
+
+
+def build(code, base):
+    d = DATA[code]; demo = d["demo"]; g = d["g"]; head = d["head"]
+    s = base
+    tr = T[code]
+    assert len(tr) == len(KEYS), (code, len(tr), len(KEYS))
+    # 1. page copy
+    for k, v in zip(KEYS, tr):
+        v = v.replace("{date}", DATE[code])
+        c = s.count(k)
+        assert c == MULTI.get(k, 1), (code, c, k[:60])
+        s = s.replace(k, v)
+    # 2. head
+    s = s.replace('<html lang="en">', f'<html lang="{head["lang"]}">')
+    s = re.sub(r"<script>\n  \(function \(\) \{.*?\}\)\(\);\n  </script>\n", "", s, count=1, flags=re.S)  # language redirect
+    assert "mn-lang-redirected" not in s
+    s = re.sub(r"<title>[^<]+</title>", f"<title>{head['title']}</title>", s)
+    s = re.sub(r'<meta name="description" content="[^"]+">', f'<meta name="description" content="{head["description"]}">', s)
+    s = re.sub(r'<meta property="og:title" content="[^"]+">', f'<meta property="og:title" content="{head["ogTitle"]}">', s)
+    s = re.sub(r'<meta property="og:description" content="[^"]+">', f'<meta property="og:description" content="{head["ogDesc"] or head["description"]}">', s)
+    s = re.sub(r'<meta name="twitter:title" content="[^"]+">', f'<meta name="twitter:title" content="{head["twTitle"] or head["ogTitle"]}">', s)
+    s = re.sub(r'<meta name="twitter:description" content="[^"]+">', f'<meta name="twitter:description" content="{head["twDesc"] or head["description"]}">', s)
+    s = s.replace('<link rel="canonical" href="https://mirrornotes.org/">', f'<link rel="canonical" href="https://mirrornotes.org/{code}/">')
+    s = s.replace('<meta property="og:url" content="https://mirrornotes.org/">', f'<meta property="og:url" content="https://mirrornotes.org/{code}/">\n  <meta property="og:locale" content="{OG_LOCALE[code]}">')
+    s = s.replace('"url": "https://mirrornotes.org",', f'"url": "https://mirrornotes.org/{code}/", "inLanguage": "{head["lang"]}",')
+    # footer language row: current language
+    s = s.replace('<a href="/" hreflang="en" aria-current="true">English</a>', '<a href="/" hreflang="en">English</a>')
+    href = f'href="/{code}/"'
+    s = re.sub(r'<a ' + re.escape(href) + r' hreflang="([^"]+)">', lambda m: f'<a {href} hreflang="{m.group(1)}" aria-current="true">', s, count=1)
+    assert 'aria-current="true"' in s
+    if code in CJK:
+        s = s.replace("--serif: ui-serif, 'New York', 'Iowan Old Style', Georgia, serif;", f"--serif: {SERIF[code]};")
+        s = s.replace("h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.06;", "h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: 0; line-height: 1.25;")
+        s = s.replace(".reflection { font-family: var(--serif); font-size: clamp(20px, 2vw, 24px); line-height: 1.45; }", ".reflection { font-family: var(--serif); font-size: clamp(19px, 2vw, 22px); line-height: 1.7; }")
+    # 3. data: entries, reflection, digest, ask, composer, prompts, themes, L10N
+    m = re.search(r"  const TEXT = \[\n(.*?)\n  \];\n", s, re.S)
+    s = s[:m.start()] + "  const TEXT = [\n" + ",\n".join("    " + js_str(e) for e in demo["entries"]) + "\n  ];\n" + s[m.end():]
+    s = re.sub(r'const QUOTE = "[^"]*";', "const QUOTE = " + js_str(demo["reflectionQuote"]) + ";", s)
+    s = re.sub(r'const FEELING = "[^"]*";', "const FEELING = " + js_str(g["feelGood"]) + ";", s)
+    s = re.sub(r'const ALSO = "[^"]*";', 'const ALSO = "";', s)  # the second quote is an English-only feature in the app
+    picks = demo["digestPicks"]; o, c, j = g["open"], g["close"], g["joiner"]
+    rows = [[DIGEST_LABELS[code][0], g["themeGood"]], [DIGEST_LABELS[code][1], g["energyHard"] + o + picks[0] + c], [DIGEST_LABELS[code][2], o + picks[1] + c + j + g["buildingSuffix"]],
+            [DIGEST_LABELS[code][3], o + picks[2] + c + j + g["watchSuffix"]], [DIGEST_LABELS[code][4], g["boostGood"]], [DIGEST_LABELS[code][5], g["nextWeekGood"]]]
+    m = re.search(r"  const DIGEST = \[.*?\];\n", s, re.S)
+    s = s[:m.start()] + "  const DIGEST = " + json.dumps(rows, ensure_ascii=False) + ";\n" + s[m.end():]
+    # ask card (static HTML)
+    for k, v in [('<div class="bubble q reveal" style="--i:1">What keeps lifting my mood?</div>', f'<div class="bubble q reveal" style="--i:1">{demo["askQuestion"]}</div>'),
+                 ('<div class="bubble a reveal" style="--i:4">Moving and the people close to you. Your lighter days follow a morning run or time with family, and the heavier ones come after long days of meetings.</div>', f'<div class="bubble a reveal" style="--i:4">{demo["askAnswer"]}</div>'),
+                 ('<ul class="quotes reveal" style="--i:8"><li>Ran 10k this morning without stopping.</li><li>Called my sister after dinner and we laughed about the summer we got lost in Lisbon.</li></ul>', '<ul class="quotes reveal" style="--i:8">' + "".join(f"<li>{q}</li>" for q in demo["askQuotes"]) + "</ul>")]:
+        assert s.count(k) == 1, (code, k[:50]); s = s.replace(k, v)
+    # composer
+    entry5 = demo["entries"][5]
+    n = len(entry5) if code in {"ja", "zh"} else len(entry5.split())
+    for k, v in [("Quiet evening at home. I repotted the plants on the balcony and read until the light went. The phone stayed in the other room.", entry5),
+                 ('</span>Peaceful</span><span class="chip">#home</span><span class="chip">#evening</span>', f'</span>{d["moods"]["Peaceful"]}</span><span class="chip">#{TAGS[code][0]}</span><span class="chip">#{TAGS[code][1]}</span>'),
+                 ("<span>26 words</span>", "<span>" + WORDS[code].format(n=n) + "</span>")]:
+        assert s.count(k) == 1, (code, k[:50]); s = s.replace(k, v)
+    # prompts
+    m = re.search(r"  const PROMPTS = \[\n(.*?)\n  \];\n", s, re.S)
+    s = s[:m.start()] + "  const PROMPTS = [\n    " + ",".join(js_str(p) for p in d["prompts"]) + "\n  ];\n" + s[m.end():]
+    # themes
+    m = re.search(r"    const THEMES = \[\n(.*?)\n    \];\n", s, re.S)
+    def rx(w, pat):
+        # JS \b is ASCII-only: Cyrillic (and accented Latin) word edges need Unicode lookarounds.
+        if code in CJK:
+            return f"/{pat}/"
+        flags = "u" if w[0].isupper() else "iu"
+        core = pat.replace(r"\b", "")
+        return f"/(?<!\\p{{L}})(?:{core})(?!\\p{{L}})/{flags}"
+    lines = ",".join(f"[{js_str(w)},{rx(w, pat)},{col}]" for w, pat, col in THEMES[code])
+    s = s[:m.start()] + "    const THEMES = [\n      " + lines + "\n    ];\n" + s[m.end():]
+    # L10N block
+    m = re.search(r"  const L10N = \{\n.*?\n  \};\n", s, re.S)
+    l = L10N[code]; fu = g["followUp"][0]
+    block = f"""  const L10N = {{
+    dateLang: "{LANG[code]}", timeLang: "{LANG[code]}", weekStart: {WEEK_START[code]},
+    moodNames: {json.dumps(d["moods"], ensure_ascii=False)},
+    entries: {l["entries"]},
+    mostly: {l["mostly"]}, axis: {l["axis"]},
+    youWrote: {js_str(g["youWrote"])}, open: {js_str(o)}, close: {js_str(c)}, joiner: {js_str(j)},
+    alsoWrote: "", followUp: q => {js_str(fu).replace("{quote}", '" + ' + js_str(o) + ' + q + ' + js_str(c) + ' + "')},
+    you: {js_str(l["you"])}, save: {l["save"]}, usPrices: {l["us"]}, pricesIn: {l["pricesIn"]},
+    brainLabelMin: 4
+  }};
+"""
+    s = s[:m.start()] + block + s[m.end():]
+    # 4. no English copy left
+    for tell in ENGLISH_TELLS:
+        assert tell not in s, (code, tell)
+    return s
+
+
+def main():
+    base = (WEB / "index.html").read_text()
+    for code in CODES:
+        out = build(code, base)
+        (WEB / code / "index.html").write_text(out)
+        print(code, len(out), "bytes")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
