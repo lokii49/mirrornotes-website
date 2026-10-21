@@ -9,7 +9,8 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Alternative à Journey avec une vraie IA : MirrorNotes vous donne des prompts quotidiens par IA, une analyse de l'humeur et « Posez une question à votre journal », le tout sur votre iPhone, jamais dans le cloud, entièrement gratuit.">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>Alternative à Journey avec IA : MirrorNotes, journal privé gratuit</title>
   <link rel="canonical" href="https://mirrornotes.org/fr/journey-alternative.html">
   <meta property="og:title" content="Alternative à Journey avec IA : MirrorNotes">
@@ -52,12 +53,27 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
-      --crimson: #7A1E2A; --red: #E8432E; --green: #1E9E4C;
+      --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF;
+      --accent: #6341CC; --red: #E8432E; --green: #1E9E4C;
       --blue: #0A6FDB; --orange: #DB7F00;
-      --text: #16181A; --text-2: #55575B; --text-3: #8B8D90;
-      --border: rgba(20,18,16,0.07);
+      --text: #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --border: rgba(22,17,42,0.08);
     }
+    /* app theme: dark */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #08060F;
+        --surface: #110E1C;
+        --surface2: #1C1830;
+        --accent: #8B6CF0;
+        --text: #EDE9F8;
+        --text-2: #A39BC0;
+        --text-3: #7A7098;
+        --border: rgba(237,233,248,0.08);
+      }
+      .hv-dot { stroke: var(--bg); }
+    }
+
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
@@ -86,9 +102,10 @@
     .callout { background: rgba(10,111,219,0.07); border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; font-size: 15px; color: var(--text-2); }
     .callout strong { color: var(--text); }
     .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    @media (max-width: 680px) { .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
     .data-table th { text-align: left; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
     .data-table td { padding: 12px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
-    .data-table tr:hover td { background: rgba(20,18,16,0.02); }
+    .data-table tr:hover td { background: rgba(22,17,42,0.02); }
     .yes { color: var(--green); font-weight: 600; }
     .no { color: var(--text-3); }
     .warn { color: var(--orange); font-weight: 600; }
@@ -105,7 +122,7 @@
 
     /* editorial voice (matches index) */
     h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
-    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(99,65,204,0.25); box-shadow: 4px 0 0 rgba(99,65,204,0.10); z-index: 1; pointer-events: none; }
     @media (max-width: 680px) { body::after { display: none; } }
   </style>
 </head>

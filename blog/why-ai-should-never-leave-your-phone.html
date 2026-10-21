@@ -18,16 +18,32 @@
   <meta name="twitter:title" content="Why AI Should Never Leave Your Phone — MirrorNotes">
   <meta name="twitter:description" content="Why MirrorNotes runs its journaling AI entirely on-device on a 1B-parameter model, instead of sending your entries to a server — and what that trade-off actually costs.">
   <meta name="twitter:image" content="https://mirrornotes.org/og-image.png">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>Why AI Should Never Leave Your Phone — MirrorNotes</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
-      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C;
-      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
-      --border:  rgba(20,18,16,0.07);
+      --bg:      #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF;
+      --accent: #6341CC; --blue: #0A6FDB; --green: #1E9E4C;
+      --text:    #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --border:  rgba(22,17,42,0.08);
     }
+    /* app theme: dark */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #08060F;
+        --surface: #110E1C;
+        --surface2: #1C1830;
+        --accent: #8B6CF0;
+        --text: #EDE9F8;
+        --text-2: #A39BC0;
+        --text-3: #7A7098;
+        --border: rgba(237,233,248,0.08);
+      }
+      .hv-dot { stroke: var(--bg); }
+    }
+
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
@@ -49,7 +65,7 @@
     article ul, article ol { margin: 0 0 22px 22px; }
     article li { margin-bottom: 8px; }
     article code { font-family: 'SF Mono', ui-monospace, Menlo, monospace; background: var(--surface2); padding: 2px 6px; border-radius: 4px; font-size: 15px; }
-    article blockquote { border-left: 3px solid var(--crimson); padding-left: 20px; margin: 28px 0; color: var(--text-2); font-style: italic; }
+    article blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 28px 0; color: var(--text-2); font-style: italic; }
     article strong { font-weight: 600; }
 
     .pull-quote { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; font-size: 22px; line-height: 1.5; color: var(--text); margin: 40px 0; padding: 0 8px; }
@@ -58,7 +74,7 @@
     .cta-box h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
     .cta-box p { font-size: 14px; color: var(--text-2); margin-bottom: 18px; }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--crimson); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: var(--accent); border-radius: 10px; font-size: 14px; font-weight: 600; color: white; text-decoration: none; }
     .cta-btn.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
 
     .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -68,7 +84,7 @@
     .footer-nav a:hover { color: var(--text-2); }
 
     h1 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; }
-    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 700px) / 2 - 48px), 200px); width: 1px; background: rgba(99,65,204,0.25); box-shadow: 4px 0 0 rgba(99,65,204,0.10); z-index: 1; pointer-events: none; }
     @media (max-width: 680px) { body::after { display: none; } }
   </style>
 </head>

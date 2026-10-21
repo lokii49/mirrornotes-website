@@ -9,17 +9,33 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MirrorNotes MCP Server: free journaling tools (daily prompts, mood detection, weekly review, gratitude, breathing) for Claude and any MCP-compatible AI assistant.">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>MCP Server: MirrorNotes</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:      #FAF9F6; --surface: #FFFFFF; --surface2: #F5F3EE;
-      --crimson: #7A1E2A; --blue: #0A6FDB; --green: #1E9E4C; --orange: #DB7F00;
+      --bg:      #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF;
+      --accent: #6341CC; --blue: #0A6FDB; --green: #1E9E4C; --orange: #DB7F00;
       --red:     #E8432E; --yellow: #B38600;
-      --text:    #16181A; --text-2: #55575B; --text-3: #8B8D90;
-      --border:  rgba(20,18,16,0.07);
+      --text:    #16112A; --text-2: #5B5170; --text-3: #8E85A8;
+      --border:  rgba(22,17,42,0.08);
     }
+    /* app theme: dark */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #08060F;
+        --surface: #110E1C;
+        --surface2: #1C1830;
+        --accent: #8B6CF0;
+        --text: #EDE9F8;
+        --text-2: #A39BC0;
+        --text-3: #7A7098;
+        --border: rgba(237,233,248,0.08);
+      }
+      .hv-dot { stroke: var(--bg); }
+    }
+
     body { font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
     a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
     a:hover { opacity: 0.8; }
@@ -33,7 +49,7 @@
     .page-header .label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
     .page-header h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px; }
     .page-header p { font-size: 17px; color: var(--text-2); max-width: 580px; }
-    .contact-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--crimson); border-radius: 12px; font-size: 15px; font-weight: 600; color: white; text-decoration: none; margin-top: 24px; transition: opacity 0.2s, transform 0.15s; }
+    .contact-cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--accent); border-radius: 12px; font-size: 15px; font-weight: 600; color: white; text-decoration: none; margin-top: 24px; transition: opacity 0.2s, transform 0.15s; }
     .contact-cta:hover { opacity: 0.85; transform: translateY(-1px); text-decoration: none; }
     .contact-cta.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
     .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -47,7 +63,7 @@
     .tool-list { display: flex; flex-direction: column; gap: 0; }
     .tool-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
     .tool-item:first-child { border-top: 1px solid var(--border); }
-    .tool-name { font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: 14px; font-weight: 600; color: var(--crimson); margin-bottom: 8px; display: inline-block; }
+    .tool-name { font-family: 'SF Mono', ui-monospace, Menlo, monospace; font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 8px; display: inline-block; }
     .tool-status { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: rgba(30,158,76,0.1); padding: 2px 8px; border-radius: 6px; margin-left: 8px; vertical-align: middle; }
     .tool-desc { font-size: 15px; color: var(--text-2); }
     .tool-desc p { margin-bottom: 8px; }
@@ -58,7 +74,7 @@
     .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
     @media (max-width: 560px) { .contact-cards { grid-template-columns: 1fr; } }
     .contact-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.2s; }
-    .contact-card:hover { border-color: rgba(20,18,16,0.12); }
+    .contact-card:hover { border-color: rgba(22,17,42,0.12); }
     .contact-card .icon { font-size: 28px; }
     .contact-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
     .contact-card p { font-size: 14px; color: var(--text-3); }
@@ -73,7 +89,7 @@
 
     /* editorial voice (matches index) */
     h1, h2, h3 { font-family: 'Iowan Old Style', 'Palatino', 'Palatino Linotype', 'Book Antiqua', Georgia, serif; letter-spacing: -0.015em; }
-    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(122,30,42,0.25); box-shadow: 4px 0 0 rgba(122,30,42,0.10); z-index: 1; pointer-events: none; }
+    body::after { content: ''; position: fixed; top: 0; bottom: 0; left: clamp(18px, calc((100vw - 760px) / 2 - 48px), 200px); width: 1px; background: rgba(99,65,204,0.25); box-shadow: 4px 0 0 rgba(99,65,204,0.10); z-index: 1; pointer-events: none; }
     @media (max-width: 680px) { body::after { display: none; } }
   </style>
 </head>
