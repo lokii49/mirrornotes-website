@@ -16,7 +16,7 @@
       :root {
         --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
         --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);
-        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
+        --text: #EDE9F8; --text-2: #A39BC0; --text-3: #9087B0;
         --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
         --glass: rgba(8,6,15,0.78);
