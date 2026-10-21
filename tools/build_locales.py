@@ -1165,7 +1165,7 @@ def build(code, base):
                  ('<span class="followup muted">Try again</span>', f'<span class="followup muted">{d["tryAgain"]}</span>')]:
         assert s.count(k) == 1, (code, k[:40]); s = s.replace(k, v)
     # static (no-JS) markup: the same cards the script renders, in this language
-    COLOR = {"Joyful":"#FFD54F","Grateful":"#66BB6A","Peaceful":"#81D4FA","Content":"#4DB6AC","Energized":"#FF9800","Hopeful":"#9575CD","Anxious":"#FFC107","Overwhelmed":"#EF5350","Frustrated":"#F57C00","Drained":"#9E9E9E","Sad":"#42A5F5","Numb":"#CFD8DC"}
+    COLOR = {"Joyful":"#FFD54F","Grateful":"#66BB6A","Peaceful":"#81D4FA","Content":"#4DB6AC","Energized":"#FF9800","Hopeful":"#9575CD","Anxious":"#D4A84B","Overwhelmed":"#D96A63","Frustrated":"#D98A4F","Drained":"#9A96A3","Sad":"#6A9FD1","Numb":"#C3CBD1"}
     PLAN_MOODS = ["Hopeful", "Grateful", "Anxious", "Joyful", "Drained"]
     esc = lambda t: t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
     def card(i, text, full=False):
