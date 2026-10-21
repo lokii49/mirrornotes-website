@@ -79,7 +79,7 @@
   <style>
     :root {
       --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
-      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
+      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-btn: #6341CC; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
       --text: #16112A; --text-2: #5B5170; --text-3: #6E6587;
       --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
       --shadow-card: 0 1px 2px rgba(40,24,90,0.05), 0 10px 28px rgba(40,24,90,0.07);
@@ -92,7 +92,7 @@
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
         --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
-        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
+        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);
         --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
         --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -101,7 +101,7 @@
     }
     :root[data-theme="dark"] {
       --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
-      --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
+      --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);
       --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
       --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -128,8 +128,8 @@
     /* buttons */
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 14px 24px; border-radius: 100px; font-size: 16px; font-weight: 600; transition: background .15s, border-color .15s; }
     .btn svg { width: 18px; height: 18px; fill: currentColor; }
-    .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 10px 28px rgba(99,65,204,0.28); }
-    .btn-accent:hover { background: var(--accent-lt); }
+    .btn-accent { background: var(--accent-btn); color: #fff; box-shadow: 0 10px 28px rgba(99,65,204,0.28); }
+    .btn-accent:hover { background: var(--accent-btn-hover); }
     .btn-ghost { border: 1px solid var(--border-2); color: var(--text); background: var(--surface); }
     .btn-ghost:hover { border-color: var(--text-3); }
     .btn-sm { padding: 9px 16px; font-size: 14px; }
@@ -180,13 +180,13 @@
     .digest .row p { font-family: var(--serif); font-size: 17px; line-height: 1.4; }
     .ask { display: grid; gap: 10px; }
     .bubble { max-width: 88%; padding: 12px 16px; border-radius: 20px; font-size: 15px; line-height: 1.45; }
-    .bubble.q { justify-self: end; background: var(--accent); color: #fff; border-bottom-right-radius: 6px; }
+    .bubble.q { justify-self: end; background: var(--accent-btn); color: #fff; border-bottom-right-radius: 6px; }
     .bubble.a { justify-self: start; background: var(--surface3); border-bottom-left-radius: 6px; }
     .quotes { display: grid; gap: 6px; margin-top: 6px; padding-left: 4px; font-size: 14px; color: var(--text-2); }
     .quotes li { list-style: none; font-family: var(--serif); font-style: italic; }
     .quotes li::before { content: '“'; color: var(--accent); } .quotes li::after { content: '”'; color: var(--accent); }
     .ask-input { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; padding: 10px 10px 10px 16px; border-radius: 100px; background: var(--surface3); color: var(--text-3); font-size: 15px; }
-    .ask-input .send { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+    .ask-input .send { width: 32px; height: 32px; border-radius: 50%; background: var(--accent-btn); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
     .cell .card.has-input { display: flex; flex-direction: column; } .cell .card.has-input .ask { flex: 1; }
     .chips { display: flex; gap: 8px; flex-wrap: wrap; }
     .chip { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 13px; font-weight: 500; }

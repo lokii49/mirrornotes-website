@@ -2,7 +2,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;
-      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
+      --accent: #6341CC; --accent-lt: #7C5CE4; --accent-btn: #6341CC; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);
       --red: #E8432E; --green: #1E9E4C; --blue: #0A6FDB; --orange: #DB7F00;
       --text: #16112A; --text-2: #5B5170; --text-3: #6E6587;
       --border: rgba(22,17,42,0.08); --border-2: rgba(22,17,42,0.14);
@@ -15,7 +15,7 @@
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;
-        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-tint: rgba(139,108,240,0.16);
+        --accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);
         --text: #EDE9F8; --text-2: #A39BC0; --text-3: #857BA6;
         --border: rgba(237,233,248,0.08); --border-2: rgba(237,233,248,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -76,8 +76,8 @@
     .cta-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 26px; padding: 30px 28px; text-align: center; margin: 48px 0; box-shadow: var(--shadow-card); }
     .cta-card h3 { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); font-weight: 600; letter-spacing: -0.015em; margin-bottom: 10px; color: var(--text); text-wrap: balance; }
     .cta-card p { font-size: 15px; color: var(--text-2); margin: 0 auto 20px; max-width: 34em; line-height: 1.55; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 10px 28px rgba(99,65,204,0.28); transition: background .15s; }
-    .cta-btn:hover { background: var(--accent-lt); text-decoration: none; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent-btn); color: #fff; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 10px 28px rgba(99,65,204,0.28); transition: background .15s; }
+    .cta-btn:hover { background: var(--accent-btn-hover); text-decoration: none; }
 
     .page-footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .page-footer p { font-size: 13px; color: var(--text-3); }
