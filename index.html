@@ -267,7 +267,7 @@
     .node svg { width: 28px; height: 28px; margin: 0 auto 10px; color: var(--text-2); }
     .node b { display: block; font-size: 17px; font-weight: 600; } .node small { display: block; color: var(--text-3); font-size: 13px; margin-top: 3px; }
     .node.ok svg { color: #1E9E4C; }
-    .node.off { opacity: .5; } .node.off b { text-decoration: line-through; }
+    .node.off { background: var(--surface2); border-style: dashed; border-color: var(--border-2); box-shadow: none; } .node.off b { color: var(--text-2); text-decoration: line-through; } .node.off small, .node.off svg { color: var(--text-3); }
     .arch .link { color: var(--text-3); font-size: 20px; }
     @media (max-width: 640px) { .arch { grid-template-columns: 1fr; justify-items: center; } .arch .link { transform: rotate(90deg); } .node { width: 100%; max-width: 320px; } }
 
