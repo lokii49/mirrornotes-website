@@ -104,7 +104,7 @@
   <p class="section-sub" id="app-sub">From Apple's App Store analytics, for people who chose to share usage data with developers.</p>
   <section class="tiles" aria-label="App totals">
     <div class="tile"><span class="tile-label">Sessions · 7 days</span><span class="tile-value" id="t-sessions">—</span><span class="tile-note" id="n-sessions"></span></div>
-    <div class="tile"><span class="tile-label">Devices using Timer</span><span class="tile-value" id="t-devices">—</span><span class="tile-note" id="n-devices"></span></div>
+    <div class="tile"><span class="tile-label">Devices · latest day</span><span class="tile-value" id="t-devices">—</span><span class="tile-note" id="n-devices"></span></div>
     <div class="tile"><span class="tile-label">New installs · 30 days</span><span class="tile-value" id="t-installs">—</span><span class="tile-note" id="n-installs"></span></div>
     <div class="tile"><span class="tile-label">App Clip opened · 30 days</span><span class="tile-value" id="t-clip">—</span><span class="tile-note" id="n-clip"></span></div>
   </section>
@@ -160,8 +160,9 @@
     <h3>Why some numbers are missing or low</h3>
     <p>Apple's figures include only people who agreed to share analytics with developers, and Apple leaves out
       any figure from fewer than five people. Those days show as a dotted line, not zero. Apple reports each day
-      a day or two late and can revise it for five days. Devices are summed across device types and countries,
-      so they're close, not exact.</p>
+      a day or two late and can revise it for five days. Apple splits each day by device type, country, app version
+      and how the app was opened, and the device figure adds those up. A phone that appears in two of them, such as
+      before and after an update, counts twice. Treat it as an upper bound, not a count of people.</p>
     <p>Link counts miss every link opened by someone who has Timer, because the link opens straight in the app
       without asking our server, and links sent before Timer 1.0.5, which use the old lokii49.github.io address.
       The counts are kept for three months. Read the <a href="/timer/privacy">privacy policy</a>.</p>
@@ -303,7 +304,7 @@
       const week = end >= 0 ? app.sessions.slice(Math.max(0, end - 6), end + 1) : [];
       set("sessions", known(week).length ? fmt.format(sum(week)) : "—", end >= 0 ? `To ${label(app.reportedThrough)}` : "Waiting for Apple's first report");
       const lastDev = app.devices.map((v, i) => [v, i]).filter(([v]) => v !== null).pop();
-      set("devices", lastDev ? fmt.format(lastDev[0]) : "—", lastDev ? `On ${label(days[lastDev[1]])}` : "No day above Apple's 5-person floor yet");
+      set("devices", lastDev ? fmt.format(lastDev[0]) : "—", lastDev ? `At most, on ${label(days[lastDev[1]])}. A phone can count twice` : "No day above Apple's 5-person floor yet");
       set("installs", known(app.installs).length ? fmt.format(sum(app.installs)) : "—", "First-time downloads");
       set("clip", known(app.clipViews).length ? fmt.format(sum(app.clipViews)) : "—", "Card views, e.g. from Messages");
       $("s-sessions").textContent = $("s-installs").textContent =
@@ -318,7 +319,7 @@
       $("t-opens").textContent = known(links.opens).length ? fmt.format(sum(links.opens)) : "—";
     }
     const v = (o, k) => (o && o.available ? o[k] : days.map(() => null));
-    table($("tb-sessions"), days, [{ name: "Sessions", values: v(app, "sessions") }, { name: "Devices", values: v(app, "devices") }]);
+    table($("tb-sessions"), days, [{ name: "Sessions", values: v(app, "sessions") }, { name: "Devices (up to)", values: v(app, "devices") }]);
     table($("tb-installs"), days, [{ name: "New installs", values: v(app, "installs") }, { name: "App Clip views", values: v(app, "clipViews") }]);
     table($("tb-links"), days, [{ name: "Previews", values: v(links, "previews") }, { name: "Browser opens", values: v(links, "opens") }]);
   }
