@@ -101,7 +101,7 @@
   <p class="updated" id="updated" aria-live="polite">Loading…</p>
 
   <h2>In the app</h2>
-  <p class="section-sub" id="app-sub">From Apple's App Store analytics, for people who chose to share usage data with developers.</p>
+  <p class="section-sub" id="app-sub">New installs come from Apple's sales reports and count everyone. Sessions, devices and App Clip views come from Apple's App Store analytics, which only counts people who chose to share usage data with developers.</p>
   <section class="tiles" aria-label="App totals">
     <div class="tile"><span class="tile-label">Sessions · 7 days</span><span class="tile-value" id="t-sessions">—</span><span class="tile-note" id="n-sessions"></span></div>
     <div class="tile"><span class="tile-label">Devices · latest day</span><span class="tile-value" id="t-devices">—</span><span class="tile-note" id="n-devices"></span></div>
@@ -111,7 +111,7 @@
 
   <section class="chart-card">
     <h3>Sessions per day</h3>
-    <p class="chart-sub" id="s-sessions">Last 30 days</p>
+    <p class="chart-sub" id="s-sessions">Last 30 days · people who share analytics</p>
     <div class="chart" id="c-sessions"></div>
     <details><summary>Show as table</summary><table id="tb-sessions"></table></details>
   </section>
@@ -144,7 +144,8 @@
       <div>
         <h3>What's counted</h3>
         <ul>
-          <li>App sessions, devices with a session, first-time installs and App Clip card views, as Apple reports them</li>
+          <li>First-time installs per day, from Apple's sales reports</li>
+          <li>App sessions, devices with a session and App Clip card views, as Apple's analytics reports them</li>
           <li>Whether each request for a shared link was a link preview or an open in a browser</li>
         </ul>
       </div>
@@ -158,8 +159,10 @@
       </div>
     </div>
     <h3>Why some numbers are missing or low</h3>
-    <p>Apple's figures include only people who agreed to share analytics with developers, and Apple leaves out
-      any figure from fewer than five people. Those days show as a dotted line, not zero. Apple reports each day
+    <p>New installs count every first-time download, the same figure as App Store Connect's Units. Apple's
+      sales day runs on Pacific time, so a bar can sit one day off from the other charts.</p>
+    <p>Sessions, devices and App Clip views include only people who agreed to share analytics with developers, so
+      they run well below the real totals, and Apple leaves out any figure from fewer than five people. Those days show as a dotted line, not zero. Apple reports each day
       a day or two late and can revise it for five days. Apple splits each day by device type, country, app version
       and how the app was opened, and the device figure adds those up. A phone that appears in two of them, such as
       before and after an update, counts twice. Treat it as an upper bound, not a count of people.</p>
@@ -280,7 +283,7 @@
   let data = null;
 
   function draw() {
-    const { days, app, links } = data;
+    const { days, app, sales, links } = data;
     const appOn = app && app.available;
     const before = (i) => appOn && app.reportedFrom && days[i] < app.reportedFrom;
     const reported = (i) => appOn && app.reportedThrough && days[i] <= app.reportedThrough && !before(i);
@@ -290,14 +293,16 @@
     const appNote = (i) => appOn && app.completeThrough && days[i] > app.completeThrough && reported(i) ? "May still change" : "";
     const nulls = days.map(() => null);
     barChart($("c-sessions"), days, appOn ? app.sessions : nulls, "Sessions", appWhy, appNote);
-    barChart($("c-installs"), days, appOn ? app.installs : nulls, "New installs", appWhy, appNote);
+    const salesOn = sales && sales.available;
+    const salesWhy = () => salesOn ? "Apple hasn't posted this day yet" : "Apple's sales numbers aren't available yet";
+    barChart($("c-installs"), days, salesOn ? sales.installs : nulls, "New installs", salesWhy, () => "");
     const linksOn = links && links.available;
     const linkWhy = () => linksOn ? "Not counted yet: counting started later" : "Link counts aren't available yet";
     barChart($("c-previews"), days, linksOn ? links.previews : nulls, "Link previews", linkWhy, (i) => i === days.length - 1 ? "Today so far" : "");
   }
 
   function fill() {
-    const { days, app, links } = data;
+    const { days, app, sales, links } = data;
     const appOn = app && app.available;
     const set = (id, v, note) => { $("t-" + id).textContent = v; if (note !== undefined && $("n-" + id)) $("n-" + id).textContent = note; };
     if (appOn) {
@@ -307,22 +312,29 @@
       set("sessions", known(week).length ? fmt.format(sum(week)) : "—", end >= 0 ? `To ${label(app.reportedThrough)}` : "Waiting for Apple's first report");
       const lastDev = app.devices.map((v, i) => [v, i]).filter(([v]) => v !== null).pop();
       set("devices", lastDev ? fmt.format(lastDev[0]) : "—", lastDev ? `At most, on ${label(days[lastDev[1]])}. A phone can count twice` : "No day above Apple's 5-person floor yet");
-      set("installs", known(app.installs).length ? fmt.format(sum(app.installs)) : "—", "First-time downloads");
       set("clip", known(app.clipViews).length ? fmt.format(sum(app.clipViews)) : "—", "Card views, e.g. from Messages");
-      $("s-sessions").textContent = $("s-installs").textContent =
-        app.reportedThrough ? `Last 30 days · reported through ${label(app.reportedThrough)}` : "Last 30 days";
-      $("app-sub").textContent = "From Apple's App Store analytics, for people who chose to share usage data with developers." +
-        (app.staleSince ? ` Apple's numbers couldn't be refreshed; showing them as of ${ago(app.staleSince)}.` : "");
-    } else {
-      $("app-sub").textContent = "Apple's numbers aren't available yet. They appear a day or two after reporting is turned on.";
+      $("s-sessions").textContent =
+        `Last 30 days · people who share analytics${app.reportedThrough ? ` · reported through ${label(app.reportedThrough)}` : ""}`;
     }
+    const salesOn = sales && sales.available;
+    if (salesOn) {
+      set("installs", known(sales.installs).length ? fmt.format(sum(sales.installs)) : "—", "First-time downloads, everyone");
+      $("s-installs").textContent =
+        `Last 30 days · first-time downloads${sales.reportedThrough ? ` · reported through ${label(sales.reportedThrough)}` : ""}`;
+    }
+    const stale = [appOn && app.staleSince && "analytics", salesOn && sales.staleSince && "sales"].filter(Boolean);
+    const sub = $("app-sub");
+    sub.dataset.base ??= sub.textContent;
+    sub.textContent = sub.dataset.base + (stale.length
+      ? ` Apple's ${stale.join(" and ")} numbers couldn't be refreshed; showing them as of ${ago((appOn && app.staleSince) || sales.staleSince)}.`
+      : "");
     if (links && links.available) {
       $("t-previews").textContent = known(links.previews).length ? fmt.format(sum(links.previews)) : "—";
       $("t-opens").textContent = known(links.opens).length ? fmt.format(sum(links.opens)) : "—";
     }
     const v = (o, k) => (o && o.available ? o[k] : days.map(() => null));
     table($("tb-sessions"), days, [{ name: "Sessions", values: v(app, "sessions") }, { name: "Devices (up to)", values: v(app, "devices") }]);
-    table($("tb-installs"), days, [{ name: "New installs", values: v(app, "installs") }, { name: "App Clip views", values: v(app, "clipViews") }]);
+    table($("tb-installs"), days, [{ name: "New installs", values: v(sales, "installs") }, { name: "App Clip views", values: v(app, "clipViews") }]);
     table($("tb-links"), days, [{ name: "Previews", values: v(links, "previews") }, { name: "Browser opens", values: v(links, "opens") }]);
   }
 
