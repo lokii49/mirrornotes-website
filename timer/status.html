@@ -282,8 +282,10 @@
   function draw() {
     const { days, app, links } = data;
     const appOn = app && app.available;
-    const reported = (i) => appOn && app.reportedThrough && days[i] <= app.reportedThrough;
+    const before = (i) => appOn && app.reportedFrom && days[i] < app.reportedFrom;
+    const reported = (i) => appOn && app.reportedThrough && days[i] <= app.reportedThrough && !before(i);
     const appWhy = (i) => !appOn ? "Apple's numbers aren't available yet"
+      : before(i) ? "Before Apple's reporting started"
       : reported(i) ? "Not reported: fewer than 5 people, or none" : "Apple hasn't reported this day yet";
     const appNote = (i) => appOn && app.completeThrough && days[i] > app.completeThrough && reported(i) ? "May still change" : "";
     const nulls = days.map(() => null);
