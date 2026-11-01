@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Um app de diário offline onde até a IA funciona sem internet. O MirrorNotes roda o Gemma 3 no seu iPhone: escreva, reflita e receba insights em modo avião. Grátis.">
+  <meta name="description" content="Um app de diário offline onde até a IA funciona sem internet. O MirrorNotes roda o Foundation Models da Apple ou o Gemma 3 no seu iPhone: escreva, reflita e receba insights em modo avião. Grátis.">
   <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>App de Diário Offline com IA: MirrorNotes Funciona Sem Internet</title>
@@ -27,7 +27,7 @@
         "name": "Existe um app de diário que funciona totalmente offline?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "O MirrorNotes funciona totalmente offline, incluindo seus recursos de IA. O modelo (Gemma 3) roda no próprio iPhone, então prompts diários, análise de humor, resumos semanais e perguntas ao diário funcionam tudo em modo avião, sem nenhuma conexão à internet. A maioria dos apps de diário funciona offline só para escrita; seus recursos de IA exigem conexão porque a IA roda em servidores remotos."
+          "text": "O MirrorNotes funciona totalmente offline, incluindo seus recursos de IA. O modelo — o Foundation Models da própria Apple em iPhones compatíveis com Apple Intelligence, ou o modelo Gemma 3 incluso nos demais — roda no próprio iPhone, então prompts diários, análise de humor, resumos semanais e perguntas ao diário funcionam tudo em modo avião, sem nenhuma conexão à internet. A maioria dos apps de diário funciona offline só para escrita; seus recursos de IA exigem conexão porque a IA roda em servidores remotos."
         }
       },
       {
@@ -160,7 +160,7 @@
       <h2>Resumo</h2>
       <ul>
         <li>Todo recurso funciona offline: escrita, transcrição de voz e toda a IA.</li>
-        <li>O modelo (Gemma 3 1B) vive no seu iPhone e roda via CoreML. Sem chamadas de API, nunca.</li>
+        <li>O modelo vive no seu iPhone — o Foundation Models da própria Apple em iPhones compatíveis com Apple Intelligence, ou o modelo Gemma 3 1B incluso via CoreML nos demais. Sem chamadas de API, nunca.</li>
         <li>A IA offline também funciona como garantia de privacidade: texto que nunca precisa da internet nunca passa por ela.</li>
         <li>Sincronização opcional com iCloud para o seu próprio Apple ID quando você estiver online de novo. Sem conta, sem login.</li>
       </ul>
@@ -213,9 +213,9 @@
     <div class="policy-section">
       <h2>Perguntas frequentes</h2>
       <h3>Quão grande é o modelo de IA? Ele consome meu armazenamento ou bateria?</h3>
-      <p>O Gemma 3 1B é um modelo pequeno pelos padrões atuais, feito exatamente para esse tipo de uso no dispositivo. A inferência roda no Neural Engine, gera um insight curto e para; ele não fica rodando em segundo plano. Os insights são armazenados em cache, então nada é regenerado dentro de 24 horas.</p>
+      <p>Em iPhones compatíveis com Apple Intelligence, o MirrorNotes usa o Foundation Models da Apple, já integrado ao iOS. Em todos os outros, ele recorre ao Gemma 3 1B, um modelo pequeno pelos padrões atuais, feito exatamente para esse tipo de uso no dispositivo. Em ambos os casos, a inferência roda no Neural Engine, gera um insight curto e para; nada fica rodando em segundo plano. Os insights são armazenados em cache, então nada é regenerado dentro de 24 horas.</p>
       <h3>De qual iPhone eu preciso?</h3>
-      <p>O MirrorNotes exige iOS 17 ou mais recente. iPhones recentes rodam o modelo sem dificuldade; chips mais novos são simplesmente mais rápidos.</p>
+      <p>O MirrorNotes exige iOS 17 ou mais recente. Em iPhones que também suportam Apple Intelligence (iOS 26+, com Apple Intelligence ativado), o MirrorNotes usa o próprio modelo da Apple no dispositivo; todo outro iPhone compatível usa o modelo Gemma 3 incluso. iPhones recentes rodam qualquer um dos modelos sem dificuldade; chips mais novos são simplesmente mais rápidos.</p>
       <h3>Se eu perder meu telefone, minhas anotações se perdem?</h3>
       <p>Ative a sincronização com iCloud e suas anotações ficam salvas no seu próprio Apple ID e podem ser restauradas num novo aparelho. Sem sincronização, as anotações existem só no dispositivo: privacidade máxima, a sua escolha.</p>
     </div>
