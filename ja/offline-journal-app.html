@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AIさえもインターネットなしで動作するオフライン日記アプリ。MirrorNotesはGemma 3をiPhone上で実行:機内モードでも書いて、振り返り、インサイトが得られます。無料。">
+  <meta name="description" content="AIさえもインターネットなしで動作するオフライン日記アプリ。MirrorNotesはAppleのFoundation ModelsまたはGemma 3をiPhone上で実行:機内モードでも書いて、振り返り、インサイトが得られます。無料。">
   <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>AI搭載のオフライン日記アプリ:MirrorNotesはインターネットなしで動作</title>
@@ -27,7 +27,7 @@
         "name": "完全にオフラインで動作する日記アプリはありますか?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotesはAI機能を含め、完全にオフラインで動作します。モデル(Gemma 3)はiPhone自体で動作するため、デイリープロンプト、気分分析、ウィークリーダイジェスト、日記への質問応答はすべて、インターネット接続のない機内モードでも機能します。ほとんどの日記アプリは書くことだけがオフラインで動作し、AI機能はリモートサーバーで動作するため接続が必要です。"
+          "text": "MirrorNotesはAI機能を含め、完全にオフラインで動作します。モデル — Apple Intelligence対応iPhoneではApple純正のFoundation Models、それ以外では内蔵のGemma 3モデル — はiPhone自体で動作するため、デイリープロンプト、気分分析、ウィークリーダイジェスト、日記への質問応答はすべて、インターネット接続のない機内モードでも機能します。ほとんどの日記アプリは書くことだけがオフラインで動作し、AI機能はリモートサーバーで動作するため接続が必要です。"
         }
       },
       {
@@ -160,7 +160,7 @@
       <h2>TL;DR</h2>
       <ul>
         <li>すべての機能がオフラインで動作します:書くこと、音声の文字起こし、そしてすべてのAI。</li>
-        <li>モデル(Gemma 3 1B)はあなたのiPhone上にあり、CoreML経由で動作します。APIコールは一切ありません。</li>
+        <li>モデルはあなたのiPhone上にあります — Apple Intelligence対応iPhoneではApple純正のFoundation Models、それ以外では内蔵のGemma 3 1Bモデル(CoreML経由)。APIコールは一切ありません。</li>
         <li>オフラインAIはプライバシーの保証も兼ねています:インターネットを必要としないテキストは、決してそこを通過しません。</li>
         <li>オンラインに戻ったときは、あなた自身のApple IDへのオプションのiCloud同期。アカウント不要、サインイン不要。</li>
       </ul>
@@ -213,9 +213,9 @@
     <div class="policy-section">
       <h2>よくある質問</h2>
       <h3>AIモデルはどれくらいの大きさですか?ストレージやバッテリーを消費しますか?</h3>
-      <p>Gemma 3 1Bは、現代の基準では小さなモデルで、まさにこの種のオンデバイス利用のために設計されています。推論はNeural Engine上で実行され、短いインサイトを生成したら停止します。バックグラウンドで動き続けることはありません。インサイトはキャッシュされるため、24時間以内に再生成されることもありません。</p>
+      <p>Apple Intelligence対応のiPhoneでは、MirrorNotesはiOSにすでに組み込まれているAppleのFoundation Modelsを使用します。それ以外のiPhoneではGemma 3 1Bにフォールバックします。これは現代の基準では小さなモデルで、まさにこの種のオンデバイス利用のために設計されています。いずれの場合も、推論はNeural Engine上で実行され、短いインサイトを生成したら停止します。バックグラウンドで動き続けることはありません。インサイトはキャッシュされるため、24時間以内に再生成されることもありません。</p>
       <h3>どのiPhoneが必要ですか?</h3>
-      <p>MirrorNotesはiOS 17以降が必要です。最近のiPhoneならモデルを問題なく動作させられます。新しいチップほど、単純に高速です。</p>
+      <p>MirrorNotesはiOS 17以降が必要です。Apple Intelligenceにも対応しているiPhone(iOS 26以降、Apple Intelligenceが有効)では、MirrorNotesはApple純正のオンデバイスモデルを使用します。それ以外の対応iPhoneでは内蔵のGemma 3モデルを使用します。最近のiPhoneならどちらのモデルも問題なく動作させられます。新しいチップほど、単純に高速です。</p>
       <h3>端末を紛失したら、エントリーは失われますか?</h3>
       <p>iCloud同期を有効にしておけば、エントリーはあなた自身のApple IDにバックアップされ、新しい端末で復元できます。同期を使わない場合、エントリーは端末上にのみ存在します:最大限のプライバシーか、その選択はあなた次第です。</p>
     </div>
