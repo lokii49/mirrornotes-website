@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="一款连 AI 都无需联网的离线日记应用。MirrorNotes 在你的 iPhone 上运行 Gemma 3：飞行模式下也能书写、回顾、获得洞察。完全免费。">
+  <meta name="description" content="一款连 AI 都无需联网的离线日记应用。MirrorNotes 在你的 iPhone 上运行苹果的 Foundation Models 或 Gemma 3：飞行模式下也能书写、回顾、获得洞察。完全免费。">
   <meta name="theme-color" content="#F2EEF8" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#08060F" media="(prefers-color-scheme: dark)">
   <title>AI 离线日记应用：MirrorNotes 无需联网也能运行</title>
@@ -27,7 +27,7 @@
         "name": "有没有完全离线运行的日记应用？",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes 完全离线运行，包括所有 AI 功能。模型（Gemma 3）直接在 iPhone 上运行，因此每日提示、情绪分析、每周摘要和日记提问在飞行模式、没有网络连接的情况下都能正常使用。大多数日记应用只有书写功能能离线使用，它们的 AI 功能因为运行在远程服务器上，需要联网才能工作。"
+          "text": "MirrorNotes 完全离线运行，包括所有 AI 功能。模型——在支持 Apple Intelligence 的 iPhone 上使用苹果自家的 Foundation Models，在其他机型上则使用内置的 Gemma 3 模型——直接在 iPhone 上运行，因此每日提示、情绪分析、每周摘要和日记提问在飞行模式、没有网络连接的情况下都能正常使用。大多数日记应用只有书写功能能离线使用，它们的 AI 功能因为运行在远程服务器上，需要联网才能工作。"
         }
       },
       {
@@ -160,7 +160,7 @@
       <h2>核心要点</h2>
       <ul>
         <li>所有功能都能离线使用：书写、语音转写，以及全部 AI 功能。</li>
-        <li>模型（Gemma 3 1B）就在你的 iPhone 上，通过 CoreML 运行。没有任何 API 调用。</li>
+        <li>模型就在你的 iPhone 上——在支持 Apple Intelligence 的 iPhone 上使用苹果自家的 Foundation Models，在其他机型上则通过 CoreML 使用内置的 Gemma 3 1B 模型。没有任何 API 调用。</li>
         <li>离线 AI 同时也是一份隐私保证：从不需要联网的文字，自然也不会经过网络。</li>
         <li>重新联网后可选择同步到你自己的 iCloud。无需账户，无需登录。</li>
       </ul>
@@ -213,9 +213,9 @@
     <div class="policy-section">
       <h2>常见问题</h2>
       <h3>AI 模型有多大？会不会占用很多存储或耗电？</h3>
-      <p>按现在的标准来看，Gemma 3 1B 是一个小模型，专为这类设备端场景设计。推理在神经网络引擎上运行，生成一条简短的洞察后就停止，不会在后台持续运行。洞察结果会被缓存，因此 24 小时内不会重复生成。</p>
+      <p>在支持 Apple Intelligence 的 iPhone 上，MirrorNotes 使用苹果已经内置在 iOS 中的 Foundation Models。在其他机型上则会回退到 Gemma 3 1B——按现在的标准来看是一个小模型，专为这类设备端场景设计。无论使用哪种模型，推理都在神经网络引擎上运行，生成一条简短的洞察后就停止，不会在后台持续运行。洞察结果会被缓存，因此 24 小时内不会重复生成。</p>
       <h3>需要什么样的 iPhone？</h3>
-      <p>MirrorNotes 需要 iOS 17 或更高版本。近几年的 iPhone 都能流畅运行这个模型；芯片越新，速度自然越快。</p>
+      <p>MirrorNotes 需要 iOS 17 或更高版本。在同时支持 Apple Intelligence 的 iPhone 上（iOS 26 及以上，并开启 Apple Intelligence），MirrorNotes 使用苹果自家的设备端模型；其他所有受支持的 iPhone 则使用内置的 Gemma 3 模型。近几年的 iPhone 都能流畅运行这两种模型；芯片越新，速度自然越快。</p>
       <h3>如果手机丢了，日记会跟着丢失吗？</h3>
       <p>开启 iCloud 同步后，日记会备份到你自己的 Apple ID，可以在新设备上恢复。不开启同步的话，日记只存在于设备本地：隐私性最强，如何选择由你决定。</p>
     </div>
