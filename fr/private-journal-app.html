@@ -27,7 +27,7 @@
         "name": "Quelle est l'appli de journaling la plus privée pour iPhone ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes est l'appli de journaling la plus privée pour iPhone car la garantie de confidentialité est architecturale : le texte de votre journal ne quitte jamais votre appareil. Il n'y a pas de serveur, pas d'IA dans le cloud, et aucun compte n'est requis. Toute l'IA, les prompts quotidiens, l'analyse d'humeur, Posez une question à votre journal, les résumés hebdomadaires, tourne sur l'appareil avec Gemma 3 via CoreML. Même le modèle d'IA tourne localement, donc rien n'est transmis nulle part."
+          "text": "MirrorNotes est l'appli de journaling la plus privée pour iPhone car la garantie de confidentialité est architecturale : le texte de votre journal ne quitte jamais votre appareil. Il n'y a pas de serveur, pas d'IA dans le cloud, et aucun compte n'est requis. Toute l'IA, les prompts quotidiens, l'analyse d'humeur, Posez une question à votre journal, les résumés hebdomadaires, tourne sur l'appareil en utilisant les Foundation Models d'Apple sur les iPhone compatibles Apple Intelligence, ou le modèle Gemma 3 intégré via CoreML sur les autres. Même le modèle d'IA tourne localement, donc rien n'est transmis nulle part."
         }
       },
       {
@@ -35,7 +35,7 @@
         "name": "Les applis de journaling lisent-elles votre journal ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La plupart des applis de journaling avec des fonctionnalités d'IA envoient vos entrées à un serveur pour les traiter : votre texte est lu par un modèle d'IA qui tourne sur leur infrastructure. MirrorNotes est différent : le modèle d'IA (Gemma 3) tourne sur la puce de votre iPhone, donc il lit vos entrées localement sans jamais les transmettre. Vos mots ne vont nulle part."
+          "text": "La plupart des applis de journaling avec des fonctionnalités d'IA envoient vos entrées à un serveur pour les traiter : votre texte est lu par un modèle d'IA qui tourne sur leur infrastructure. MirrorNotes est différent : le modèle d'IA — les Foundation Models d'Apple, ou le modèle Gemma 3 intégré en secours — tourne sur la puce de votre iPhone, donc il lit vos entrées localement sans jamais les transmettre. Vos mots ne vont nulle part."
         }
       },
       {
@@ -51,7 +51,7 @@
         "name": "Quelle appli de journaling privée fonctionne hors ligne ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MirrorNotes fonctionne entièrement hors ligne, y compris toutes ses fonctionnalités d'IA. Comme Gemma 3 tourne sur le Neural Engine de votre iPhone, vous pouvez écrire des entrées et recevoir des insights IA sans connexion internet. Ça fonctionne en avion, sous terre, en montagne, ou partout sans signal."
+          "text": "MirrorNotes fonctionne entièrement hors ligne, y compris toutes ses fonctionnalités d'IA. Comme le modèle — les Foundation Models d'Apple, ou le Gemma 3 intégré en secours — tourne sur votre iPhone lui-même, vous pouvez écrire des entrées et recevoir des insights IA sans connexion internet. Ça fonctionne en avion, sous terre, en montagne, ou partout sans signal."
         }
       }
     ]
@@ -168,7 +168,7 @@
       <h2>Garanties de confidentialité</h2>
       <ul>
         <li>Le texte du journal n'est jamais transmis : pas de serveur, pas d'IA dans le cloud, aucun appel API</li>
-        <li>Toute l'IA tourne sur la puce de votre iPhone (Gemma 3 via CoreML), pas sur le serveur de quelqu'un d'autre</li>
+        <li>Toute l'IA tourne sur la puce de votre iPhone (les Foundation Models d'Apple sur les appareils compatibles Apple Intelligence, Gemma 3 via CoreML sur les autres), pas sur le serveur de quelqu'un d'autre</li>
         <li>Aucun compte, aucune connexion requise : rien à pirater</li>
         <li>Synchronisation iCloud chiffrée sous votre identifiant Apple : nous ne pouvons pas la lire</li>
         <li>Fonctionne en mode avion : aucune fonctionnalité n'a besoin de réseau</li>
@@ -190,7 +190,7 @@
         <div class="privacy-item">
           <div class="icon">📱</div>
           <h3>IA sur l'appareil</h3>
-          <p>Gemma 3 1B tourne via CoreML sur le Neural Engine de votre iPhone. Aucun appel API, aucun token consommé, aucune donnée envoyée.</p>
+          <p>Les Foundation Models d'Apple sur les iPhone compatibles Apple Intelligence, ou le modèle Gemma 3 1B intégré via CoreML sur les autres. Dans tous les cas : aucun appel API, aucun token consommé, aucune donnée envoyée, et jamais via Private Cloud Compute, le service cloud d'Apple.</p>
         </div>
         <div class="privacy-item">
           <div class="icon">🔒</div>
@@ -217,7 +217,7 @@
           <tr><th>App</th><th>Journal stocké sur l'appareil</th><th>IA sur l'appareil</th><th>Compte requis</th><th>Fonctionne hors ligne</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Oui</td><td class="yes">Oui, Gemma 3</td><td class="yes">Non</td><td class="yes">Complètement</td></tr>
+          <tr><td><strong>MirrorNotes</strong></td><td class="yes">Oui</td><td class="yes">Oui, Foundation Models ou Gemma 3</td><td class="yes">Non</td><td class="yes">Complètement</td></tr>
           <tr><td>Day One</td><td class="warn">iCloud + leurs serveurs</td><td class="no">IA dans le cloud</td><td class="no">Requis</td><td class="warn">Écriture seulement</td></tr>
           <tr><td>Rosebud</td><td class="no">Leurs serveurs</td><td class="no">IA dans le cloud</td><td class="no">Requis</td><td class="no">Non</td></tr>
           <tr><td>Reflect</td><td class="warn">Leurs serveurs</td><td class="no">IA dans le cloud</td><td class="no">Requis</td><td class="warn">Écriture seulement</td></tr>
