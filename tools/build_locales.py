@@ -1005,15 +1005,15 @@ TAGS = {"de": ("zuhause", "abend"), "es": ("casa", "tarde"), "fr": ("maison", "s
 WORDS = {"de": "{n} Wörter", "es": "{n} palabras", "fr": "{n} mots", "it": "{n} parole", "pt": "{n} palavras", "ja": "{n}文字", "ko": "{n}단어", "ru": "{n} слов", "zh": "{n} 字"}
 # L10N block strings
 L10N = {
-    "de": dict(entries='n => `${n} ${n === 1 ? "Eintrag" : "Einträge"}`', mostly='m => `Meist ${m}`', axis='["Hoch", "Mittel", "Tief"]', you="Du", save='pct => `${pct} % gespart`', us='"US-Preise"', pricesIn='cur => `Preise in ${cur}`'),
-    "es": dict(entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Sobre todo ${m}`', axis='["Alto", "Medio", "Bajo"]', you="Tú", save='pct => `ahorras un ${pct} %`', us='"Precios en EE. UU."', pricesIn='cur => `Precios en ${cur}`'),
-    "fr": dict(entries='n => `${n} ${n === 1 ? "entrée" : "entrées"}`', mostly='m => `Surtout ${m}`', axis='["Haut", "Moyen", "Bas"]', you="Toi", save='pct => `${pct} % d\'économie`', us='"Prix américains"', pricesIn='cur => `Prix en ${cur}`'),
-    "it": dict(entries='n => `${n} ${n === 1 ? "voce" : "voci"}`', mostly='m => `Soprattutto ${m}`', axis='["Alto", "Medio", "Basso"]', you="Tu", save='pct => `risparmi il ${pct}%`', us='"Prezzi USA"', pricesIn='cur => `Prezzi in ${cur}`'),
-    "pt": dict(entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Mais ${m}`', axis='["Alto", "Médio", "Baixo"]', you="Você", save='pct => `economize ${pct}%`', us='"Preços nos EUA"', pricesIn='cur => `Preços em ${cur}`'),
-    "ja": dict(entries='n => `${n}件`', mostly='m => `主に${m}`', axis='["高", "中", "低"]', you="あなた", save='pct => `${pct}%お得`', us='"米国の価格"', pricesIn='cur => `${cur}での価格`'),
-    "ko": dict(entries='n => `${n}개`', mostly='m => `주로 ${m}`', axis='["높음", "보통", "낮음"]', you="나", save='pct => `${pct}% 절약`', us='"미국 가격"', pricesIn='cur => `${cur} 기준 가격`'),
-    "ru": dict(entries='n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`', mostly='m => `В основном ${m}`', axis='["Высоко", "Средне", "Низко"]', you="Ты", save='pct => `экономия ${pct} %`', us='"Цены в США"', pricesIn='cur => `Цены в ${cur}`'),
-    "zh": dict(entries='n => `${n} 篇`', mostly='m => `多为${m}`', axis='["高", "中", "低"]', you="你", save='pct => `省 ${pct}%`', us='"美国价格"', pricesIn='cur => `以 ${cur} 计价`'),
+    "de": dict(words="n => `${n} W\u00f6rter`", today="Heute", yesterday="Gestern", thisWeek="Diese Woche", entries='n => `${n} ${n === 1 ? "Eintrag" : "Einträge"}`', mostly='m => `Meist ${m}`', axis='["Hoch", "Mittel", "Tief"]', you="Du", save='pct => `${pct} % gespart`', us='"US-Preise"', pricesIn='cur => `Preise in ${cur}`'),
+    "es": dict(words="n => `${n} palabras`", today="Hoy", yesterday="Ayer", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Sobre todo ${m}`', axis='["Alto", "Medio", "Bajo"]', you="Tú", save='pct => `ahorras un ${pct} %`', us='"Precios en EE. UU."', pricesIn='cur => `Precios en ${cur}`'),
+    "fr": dict(words="n => `${n} mots`", today="Aujourd’hui", yesterday="Hier", thisWeek="Cette semaine", entries='n => `${n} ${n === 1 ? "entrée" : "entrées"}`', mostly='m => `Surtout ${m}`', axis='["Haut", "Moyen", "Bas"]', you="Toi", save='pct => `${pct} % d\'économie`', us='"Prix américains"', pricesIn='cur => `Prix en ${cur}`'),
+    "it": dict(words="n => `${n} parole`", today="Oggi", yesterday="Ieri", thisWeek="Questa settimana", entries='n => `${n} ${n === 1 ? "voce" : "voci"}`', mostly='m => `Soprattutto ${m}`', axis='["Alto", "Medio", "Basso"]', you="Tu", save='pct => `risparmi il ${pct}%`', us='"Prezzi USA"', pricesIn='cur => `Prezzi in ${cur}`'),
+    "pt": dict(words="n => `${n} palavras`", today="Hoje", yesterday="Ontem", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Mais ${m}`', axis='["Alto", "Médio", "Baixo"]', you="Você", save='pct => `economize ${pct}%`', us='"Preços nos EUA"', pricesIn='cur => `Preços em ${cur}`'),
+    "ja": dict(words="n => `${n}\u8a9e`", today="今日", yesterday="昨日", thisWeek="今週", entries='n => `${n}件`', mostly='m => `主に${m}`', axis='["高", "中", "低"]', you="あなた", save='pct => `${pct}%お得`', us='"米国の価格"', pricesIn='cur => `${cur}での価格`'),
+    "ko": dict(words="n => `${n}\ub2e8\uc5b4`", today="오늘", yesterday="어제", thisWeek="이번 주", entries='n => `${n}개`', mostly='m => `주로 ${m}`', axis='["높음", "보통", "낮음"]', you="나", save='pct => `${pct}% 절약`', us='"미국 가격"', pricesIn='cur => `${cur} 기준 가격`'),
+    "ru": dict(words="n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? \"\u0441\u043b\u043e\u0432\u043e\" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? \"\u0441\u043b\u043e\u0432\u0430\" : \"\u0441\u043b\u043e\u0432\"}`", today="Сегодня", yesterday="Вчера", thisWeek="Эта неделя", entries='n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`', mostly='m => `В основном ${m}`', axis='["Высоко", "Средне", "Низко"]', you="Ты", save='pct => `экономия ${pct} %`', us='"Цены в США"', pricesIn='cur => `Цены в ${cur}`'),
+    "zh": dict(words="n => `${n} \u4e2a\u5b57`", today="今天", yesterday="昨天", thisWeek="本周", entries='n => `${n} 篇`', mostly='m => `多为${m}`', axis='["高", "中", "低"]', you="你", save='pct => `省 ${pct}%`', us='"美国价格"', pricesIn='cur => `以 ${cur} 计价`'),
 }
 # Brain View themes: [label, JS regex source, colour]. Counts come from matching the sample entries; zero-match themes drop out.
 THEMES = {
@@ -1152,6 +1152,7 @@ def build(code, base):
     dateLang: "{LANG[code]}", timeLang: "{LANG[code]}", weekStart: {WEEK_START[code]},
     moodNames: {json.dumps(d["moods"], ensure_ascii=False)},
     entries: {l["entries"]},
+    words: {l["words"]}, today: {js_str(l["today"])}, yesterday: {js_str(l["yesterday"])}, thisWeek: {js_str(l["thisWeek"])},
     mostly: {l["mostly"]}, axis: {l["axis"]},
     youWrote: {js_str(g["youWrote"])}, open: {js_str(o)}, close: {js_str(c)}, joiner: {js_str(j)},
     alsoWrote: "", followUp: q => {js_str(fu).replace("{quote}", '" + ' + js_str(o) + ' + q + ' + js_str(c) + ' + "')},

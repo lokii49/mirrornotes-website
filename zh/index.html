@@ -11,8 +11,8 @@
   <link rel="manifest" href="/site.webmanifest">
   <title>MirrorNotes：iPhone 免费私密 AI 日记应用</title>
   <meta name="description" content="MirrorNotes：完全在你的 iPhone 上运行的 AI 日记应用。你的文字永远不会离开设备。设备端 Gemma 3、每日提示、情绪追踪。完全免费。">
-  <meta name="theme-color" content="#F6F2F3" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0E0A0D" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F7F3EE" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141012" media="(prefers-color-scheme: dark)">
   <meta name="apple-itunes-app" content="app-id=6769007201">
   <meta property="og:title" content="MirrorNotes：私密 AI 日记">
   <meta property="og:description" content="由 AI 驱动、完全在你的 iPhone 上运行的日记应用。你的文字永远不会离开设备。完全免费。">
@@ -86,12 +86,12 @@
   </script>
   <style>
     :root {
-      --bg: #F6F2F3; --surface: #FFFFFF; --surface2: #FAF6F8; --surface3: #F4E4EE;
+      --bg: #F7F3EE; --surface: #FFFDFB; --surface2: #FCF9F5; --surface3: #F4E4EE;
       --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
       --text: #1D1419; --text-2: #61525C; --text-3: #71636B;
       --border: rgba(29,20,25,0.08); --border-2: rgba(29,20,25,0.14);
       --shadow-card: 0 1px 2px rgba(52,24,42,0.05), 0 10px 28px rgba(52,24,42,0.07);
-      --glass: rgba(246,242,243,0.78);
+      --glass: rgba(247,243,238,0.78);
       --serif: ui-serif, 'Songti SC', 'PingFang SC', 'Noto Serif SC', 'New York', Georgia, serif;
       --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
       --rounded: ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -99,21 +99,21 @@
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg: #0E0A0D; --surface: #1A1418; --surface2: #241C22; --surface3: #31252F;
+        --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
         --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
         --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
         --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
-        --glass: rgba(14,10,13,0.78);
+        --glass: rgba(20,16,18,0.78);
       }
     }
     :root[data-theme="dark"] {
-      --bg: #0E0A0D; --surface: #1A1418; --surface2: #241C22; --surface3: #31252F;
+      --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
       --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
       --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
       --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
-      --glass: rgba(14,10,13,0.78);
+      --glass: rgba(20,16,18,0.78);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -159,16 +159,30 @@
     .day.future { color: var(--text-2); background: var(--surface2); }
     .day.today { outline: 2px solid var(--text); outline-offset: -2px; }
     .day.mood { color: rgba(0,0,0,.78); }
+    .week .day { background: transparent; color: var(--text-3); }
+    .week .day b { font-family: var(--serif); font-size: 21px; font-weight: 400; }
+    .week .day .md { width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-top: 6px; }
+    .week .day.future { background: transparent; color: var(--text-3); }
+    .week .day.mood { color: var(--text); }
+    .week .day.today { outline: 0; background: var(--accent-btn); color: #fff; }
+    .week .day.today .md { background: #fff; }
     .month-row { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 6px 8px; font-size: 13px; color: var(--text-3); }
     .month-row b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-family: var(--rounded); color: var(--text-3); min-height: 1.3em; min-width: 1px; }
-    .entry { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 14px; padding: 16px 16px 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); box-shadow: var(--shadow-card); overflow: hidden; text-align: left; }
-    .entry + .entry { margin-top: 12px; }
-    .entry::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 0 4px 4px 0; background: var(--rail, var(--accent)); }
-    .entry .tile { align-self: start; width: 56px; height: 62px; border-radius: 14px; background: var(--tint, var(--surface3)); display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .entry .tile b { font-size: 23px; font-weight: 700; line-height: 1; margin-bottom: 4px; } .entry .tile span { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--text-2); font-family: var(--rounded); }
+    /* Entries rows as in the app's Paper & Ink list: flat between hairlines, mood line at the left edge,
+       serif day numeral, one meta line (time · words · mood). */
+    .entry { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 14px 6px 14px 16px; background: transparent; border-top: 1px solid var(--border); text-align: left; }
+    .entry.full { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); box-shadow: var(--shadow-card); padding: 18px 18px 18px 22px; overflow: hidden; }
+    .feed-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); padding: 18px 6px 8px 16px; }
+    .feed-label:first-child { padding-top: 6px; }
+    .feed-label + .entry { border-top: 0; }
+    .entry::before { content: ''; position: absolute; left: 0; top: 16px; bottom: 16px; width: 3px; border-radius: 2px; background: var(--rail, var(--accent)); }
+    .entry .tile { align-self: start; display: flex; flex-direction: column; align-items: center; padding-top: 2px; }
+    .entry .tile b { font-family: var(--serif); font-size: 28px; font-weight: 400; line-height: 1; margin-bottom: 5px; } .entry .tile span { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; color: var(--text-3); }
     .entry .txt { font-size: 16px; line-height: 1.4; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .entry.full .txt { display: block; -webkit-line-clamp: unset; font-family: var(--serif); font-size: 19px; line-height: 1.5; }
-    .entry .meta { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 13px; color: var(--text-3); }
+    .entry .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 6px; font-size: 13px; color: var(--text-3); }
+    .entry .meta .mood-pill { background: none; padding: 0; gap: 5px; color: var(--text-3); font-weight: 400; }
+    .entry .meta span:first-child:not(:empty)::after { content: '\00B7'; margin-left: 6px; }
     .mood-pill { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 100px; background: var(--tint, var(--surface3)); color: var(--text); font-size: 13px; font-weight: 500; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); flex: 0 0 8px; }
     mark { background: var(--accent-tint); color: inherit; border-radius: 4px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
@@ -224,7 +238,7 @@
     .entry, .card { transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s; }
     .day { position: relative; transition: transform .18s; }
     @media (hover: hover) {
-      .entry:hover, .cell .card:hover, .pair .card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(52,24,42,0.06), 0 18px 40px rgba(52,24,42,0.12); }
+      .entry.full:hover, .cell .card:hover, .pair .card:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(52,24,42,0.06), 0 18px 40px rgba(52,24,42,0.12); }
       .pair .card.accent:hover { box-shadow: 0 0 0 6px var(--accent-tint), 0 2px 4px rgba(52,24,42,0.06), 0 18px 40px rgba(52,24,42,0.12); }
       .day.mood:hover { transform: scale(1.08); z-index: 2; }
       .day[data-tip]:hover::after { content: attr(data-tip); position: absolute; left: 50%; top: -34px; transform: translateX(-50%); white-space: nowrap; padding: 5px 9px; border-radius: 8px; background: var(--text); color: var(--bg); font-size: 11px; font-weight: 600; pointer-events: none; }
@@ -630,6 +644,7 @@
     dateLang: "zh-CN", timeLang: "zh-CN", weekStart: 1,
     moodNames: {"Joyful": "喜悦", "Grateful": "感恩", "Peaceful": "平静", "Content": "满足", "Energized": "充满活力", "Hopeful": "充满希望", "Anxious": "焦虑", "Overwhelmed": "不堪重负", "Frustrated": "沮丧", "Drained": "疲惫", "Sad": "难过", "Numb": "麻木"},
     entries: n => `${n} 篇`,
+    words: n => `${n} 个字`, today: "今天", yesterday: "昨天", thisWeek: "本周",
     mostly: m => `多为${m}`, axis: ["高", "中", "低"],
     youWrote: "你写道：", open: "“", close: "”", joiner: "",
     alsoWrote: "", followUp: q => "" + "“" + q + "”" + "背后是什么感受？",
@@ -663,7 +678,7 @@
     const dayEntries = inWeek.filter(e => { const x = new Date(e.date); x.setHours(0,0,0,0); return x.getTime() === d.getTime(); }).sort((a, b) => b.date - a.date);
     const mood = dayEntries[0]?.mood, future = d > today, isToday = d.getTime() === today.getTime();
     const tip = mood ? ` data-tip="${NAME(mood)}, ${L10N.entries(dayEntries.length)}"` : "";
-    wk += `<div class="day${future ? " future" : ""}${isToday ? " today" : ""}${mood ? " mood" : ""}" style="--i:${i}${mood ? `;background:${COLOR[mood]}` : ""}"${tip}><b>${d.getDate()}</b><span>${dayEntries.length || ""}</span></div>`;
+    wk += `<div class="day${future ? " future" : ""}${isToday ? " today" : ""}${mood ? " mood" : ""}" style="--i:${i}"${tip}><b>${d.getDate()}</b>${mood ? `<i class="md" style="--c:${COLOR[mood]}"></i>` : ""}</div>`;
   }
   $("[data-week]").innerHTML = wk;
 
@@ -675,8 +690,12 @@
   const card = (e, full, i = 0) => `<article class="entry${full ? " full" : ""}" style="--rail:${COLOR[e.mood]};--tint:${tint(e.mood)};--i:${i}">
     <div class="tile"><b>${e.date.getDate()}</b><span>${fmt(e.date, { weekday: "short" }).toUpperCase()}</span></div>
     <div><p class="txt">${full ? esc(e.text).replace(esc(QUOTE), `<mark class="draw">${esc(QUOTE)}</mark>`) : esc(e.text)}</p>
-    <div class="meta"><span>${fTime(e.date)} &nbsp; ${words(e.text)}w</span><span class="mood-pill"><span class="dot" style="--c:${COLOR[e.mood]}"></span>${NAME(e.mood)}</span></div></div></article>`;
-  $("[data-feed]").innerHTML = sorted.slice(0, 5).map((e, i) => card(e, false, i)).join("");
+    <div class="meta"><span>${fTime(e.date)} · ${L10N.words(words(e.text))}</span><span class="mood-pill"><span class="dot" style="--c:${COLOR[e.mood]}"></span>${NAME(e.mood)}</span></div></div></article>`;
+  // Today / Yesterday / This week labels, as in the app's current month
+  const dayLabel = e => { const x = new Date(e.date); x.setHours(0,0,0,0); const ago = Math.round((today - x) / 86400000);
+    return ago === 0 ? L10N.today : ago === 1 ? L10N.yesterday : ago < 7 ? L10N.thisWeek : ""; };
+  let lastLabel = null;
+  $("[data-feed]").innerHTML = sorted.slice(0, 5).map((e, i) => { const lab = dayLabel(e); const head = lab && lab !== lastLabel ? `<div class="feed-label">${lab}</div>` : ""; lastLabel = lab; return head + card(e, false, i); }).join("");
 
   // reflection pair
   $("[data-entry-full]").innerHTML = card(entries[0], true);

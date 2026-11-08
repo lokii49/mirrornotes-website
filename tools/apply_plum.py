@@ -7,14 +7,14 @@ files = [f for f in subprocess.run(["git","ls-files"],capture_output=True,text=T
          if re.search(r"\.(html|css|svg|webmanifest)$", f) and not f.startswith(SKIP)]
 
 LINES = [  # exact token lines (role-aware)
- ("--bg: #F2EEF8; --surface: #FFFFFF; --surface2: #F8F5FF; --surface3: #EDE8FC;",
-  "--bg: #F6F2F3; --surface: #FFFFFF; --surface2: #FAF6F8; --surface3: #F4E4EE;"),
+ ("--bg: #F2EEF8; --surface: #FFFDFB; --surface2: #F8F5FF; --surface3: #EDE8FC;",
+  "--bg: #F7F3EE; --surface: #FFFDFB; --surface2: #FCF9F5; --surface3: #F4E4EE;"),
  ("--accent: #6341CC; --accent-lt: #7C5CE4; --accent-btn: #6341CC; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(99,65,204,0.10);",
   "--accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);"),
  ("--text: #16112A; --text-2: #5B5170; --text-3: #6E6587;",
   "--text: #1D1419; --text-2: #61525C; --text-3: #71636B;"),
  ("--bg: #08060F; --surface: #110E1C; --surface2: #1C1830; --surface3: #241F3D;",
-  "--bg: #0E0A0D; --surface: #1A1418; --surface2: #241C22; --surface3: #31252F;"),
+  "--bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;"),
  ("--accent: #8B6CF0; --accent-lt: #A78BFA; --accent-btn: #6E4FE0; --accent-btn-hover: #7C5CE4; --accent-tint: rgba(139,108,240,0.16);",
   "--accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);"),
  ("--text: #EDE9F8; --text-2: #A39BC0; --text-3: #9087B0;",
@@ -24,8 +24,8 @@ LINES = [  # exact token lines (role-aware)
 ]
 LIT = {  # remaining literals, one role each
  "#6341CC":"#8E3A6E", "#8B6CF0":"#C98BC6", "#7C5CE4":"#9A4478", "#A78BFA":"#D8A3D4", "#6E4FE0":"#8A3769",
- "#F2EEF8":"#F6F2F3", "#F8F5FF":"#FAF6F8", "#EDE8FC":"#F4E4EE",
- "#08060F":"#0E0A0D", "#110E1C":"#1A1418", "#1C1830":"#241C22", "#241F3D":"#31252F",
+ "#F2EEF8":"#F7F3EE", "#F8F5FF":"#FCF9F5", "#EDE8FC":"#F4E4EE",
+ "#08060F":"#141012", "#110E1C":"#1A1418", "#1C1830":"#241C22", "#241F3D":"#31252F",
  "#16112A":"#1D1419", "#5B5170":"#61525C", "#6E6587":"#71636B", "#8E85A8":"#71636B",
  "#EDE9F8":"#F0E8EC", "#A39BC0":"#AB9CA8", "#9087B0":"#9C8D99", "#7A7098":"#9C8D99",
 }
