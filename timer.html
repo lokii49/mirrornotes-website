@@ -33,9 +33,14 @@
     font-size: clamp(56px, 17vw, 96px); font-weight: 100; letter-spacing: 0.01em; margin: 0;
   }
   body.done .clock { opacity: 0.55; }
+  /* Overtime (1.0.7): a finished plain timer counts up in the ember sky's orange. */
+  body.done.overtime .clock { opacity: 1; color: rgb(255, 153, 82); }
   .sub { font-size: 14px; opacity: 0.75; margin: 0; }
   .calendar { color: #fff; font-size: 14px; padding: 12px 18px; border: 1px solid #ffffff40; border-radius: 24px; text-decoration: none; margin-top: 18px; }
   .hint { position: fixed; bottom: 22px; font-size: 11px; opacity: 0.45; }
+  /* "Open in Timer" (1.0.7, D6 · B): frosted like the app's glass pills. */
+  .open { color: #fff; font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 24px; text-decoration: none;
+          background: #ffffff2b; border: 1px solid #ffffff38; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -44,6 +49,7 @@
   <p class="sub" id="status">loading&hellip;</p>
   <p class="sub" id="phase" hidden></p>
   <a class="calendar" id="calendar" hidden download="countdown.ics">Add to Calendar</a>
+  <a class="open" id="open" hidden>Open in Timer</a>
   <p class="hint">Shared with Timer for iMessage</p>
 
 <script>
@@ -312,6 +318,21 @@
   }
   let timer = null;
   const calendarEl = document.getElementById("calendar");
+  // "Open in Timer" for people Safari's App Clip banner doesn't reach (Android,
+  // desktop, in-app browsers). Safari never opens an app for a link to the page's own
+  // domain, so on iPhone it goes through the old host, which the app still claims;
+  // if that page loads instead (no app), its pill points at the App Store.
+  const openEl = document.getElementById("open");
+  if (openEl && !invalidSequence) {
+    const agent = typeof navigator === "undefined" ? "" : navigator.userAgent || "";
+    const touchMac = typeof navigator !== "undefined" && navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+    const ios = /iPhone|iPad|iPod/.test(agent) || touchMac;
+    const store = "https://apps.apple.com/app/id6804558361";
+    const host = (window.location && window.location.host) || "";
+    openEl.href = ios && host !== "lokii49.github.io" ? "https://lokii49.github.io/sharedTimer/t.html" + window.location.search : store;
+    openEl.textContent = ios ? "Open in Timer" : "Get Timer for iPhone";
+    openEl.hidden = false;
+  }
   let exportEnd = null, exportURL = null;
   function tick() {
     const now = Date.now() / 1000;
@@ -342,7 +363,12 @@
       }
     }
     document.body.classList.toggle("done", done);
-    clockEl.textContent = formatRemaining(remaining);
+    // Overtime, like the app (TimerPayload.overtime): a finished plain timer or
+    // countdown counts up for an hour. Not sequences or yearly countdowns, never paused.
+    const over = done && !sequence && !recurrence && !Number.isFinite(pausedSeconds) ? now - endSeconds : -1;
+    const overtime = over >= 0 && over < 3600;
+    document.body.classList.toggle("overtime", overtime);
+    clockEl.textContent = overtime ? "+" + formatRemaining(over) : formatRemaining(remaining);
     statusEl.textContent = done ? "Time's up" : pending
       ? `Starts ${new Date(startSeconds * 1000).toLocaleString()}`
       : Number.isFinite(pausedSeconds) ? "Paused" : sequence ? "counting down"
@@ -354,7 +380,7 @@
     // projected to a later phase has started a fresh run.
     const span = currentDuration + (!projected && Number.isFinite(extraSeconds) && extraSeconds > 0 ? extraSeconds : 0);
     paintSky(family, done || pending || Number.isFinite(pausedSeconds) ? 0 : Math.min(1, Math.max(0, 1 - remaining / Math.max(1, span))));
-    return !done && !Number.isFinite(pausedSeconds);
+    return (!done && !Number.isFinite(pausedSeconds)) || overtime;
   }
   if (tick()) {
     timer = setInterval(() => { if (!tick()) { clearInterval(timer); timer = null; } }, 1000);
