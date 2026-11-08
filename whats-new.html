@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What's new in MirrorNotes 3.1.8: the Paper &amp; Ink look, Suggestions from your day, Scratch notes with checklists and reminders, Still Open, entry links, Patterns and Year in Review, Apple Watch voice notes and Apple Health.">
+  <meta name="theme-color" content="#F6F2F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0E0A0D" media="(prefers-color-scheme: dark)">
+  <title>What's New in MirrorNotes 3.1.8</title>
+  <link rel="canonical" href="https://mirrornotes.org/whats-new.html">
+  <meta property="og:title" content="What's New in MirrorNotes 3.1.8">
+  <meta property="og:description" content="Paper &amp; Ink, Suggestions from your day, Scratch notes, Still Open, entry links, Patterns, Apple Watch and more.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://mirrornotes.org/og-image-v5.png">
+  <meta property="og:url" content="https://mirrornotes.org/whats-new.html">
+  <style>
+    /* MirrorNotes article pages: the homepage's components (tokens, cards, pills, New York serif). Applied by tools/apply_altpage_css.py. */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F6F2F3; --surface: #FFFFFF; --surface2: #FAF6F8; --surface3: #F4E4EE;
+      --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
+      --red: #E8432E; --green: #1E9E4C; --blue: #0A6FDB; --orange: #DB7F00;
+      --text: #1D1419; --text-2: #61525C; --text-3: #71636B;
+      --border: rgba(29,20,25,0.08); --border-2: rgba(29,20,25,0.14);
+      --shadow-card: 0 1px 2px rgba(52,24,42,0.05), 0 10px 28px rgba(52,24,42,0.07);
+      --glass: rgba(246,242,243,0.78);
+      --serif: ui-serif, 'New York', 'Iowan Old Style', Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --rounded: ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0E0A0D; --surface: #1A1418; --surface2: #241C22; --surface3: #31252F;
+        --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
+        --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
+        --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
+        --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
+        --glass: rgba(14,10,13,0.78);
+      }
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    nav { position: sticky; top: 0; z-index: 40; height: 60px; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: var(--glass); backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid var(--border); }
+    .nav-back { display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--text); text-decoration: none; }
+    .nav-back::before { content: ''; width: 24px; height: 24px; border-radius: 6px; background: url('/icon-192.png') center / cover; }
+    .nav-sep { color: var(--text-3); }
+    .nav-title { font-size: 14px; font-weight: 500; color: var(--text-2); }
+
+    .page-wrap { max-width: 760px; margin: 0 auto; padding: 56px 20px 96px; }
+    .page-header { margin-bottom: 40px; }
+    .page-header .label { display: inline-flex; padding: 5px 12px; border-radius: 100px; background: var(--surface3); color: var(--text-2); font-size: 12px; font-weight: 600; margin-bottom: 18px; }
+    .page-header h1 { font-family: var(--serif); font-size: clamp(32px, 5vw, 46px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 18px; text-wrap: balance; }
+    .page-header p { font-size: 17px; color: var(--text-2); max-width: 36em; line-height: 1.6; }
+
+    .tldr { background: var(--surface); border: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 26px; padding: 22px 24px; margin-bottom: 48px; box-shadow: 0 0 0 6px var(--accent-tint), var(--shadow-card); }
+    .tldr h2 { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--accent); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .tldr h2::before { content: '✦'; }
+    .tldr ul { list-style: none; display: grid; gap: 10px; }
+    .tldr li { display: flex; gap: 10px; font-size: 15px; color: var(--text-2); line-height: 1.5; }
+    .tldr li::before { content: '✓'; color: var(--green); font-weight: 700; flex: 0 0 auto; }
+
+    .policy-section { margin-bottom: 48px; }
+    .policy-section h2 { font-family: var(--serif); font-size: clamp(24px, 3.2vw, 30px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 16px; color: var(--text); }
+    .policy-section h3 { font-size: 17px; font-weight: 600; margin: 24px 0 8px; color: var(--text); }
+    .policy-section p { font-size: 16px; color: var(--text-2); margin-bottom: 14px; line-height: 1.65; }
+    .policy-section ul { list-style: none; display: grid; gap: 8px; margin-bottom: 14px; }
+    .policy-section li { font-size: 16px; color: var(--text-2); padding-left: 18px; position: relative; line-height: 1.55; }
+    .policy-section li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); opacity: 0.6; }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 0 18px 18px 0; padding: 16px 20px; margin: 18px 0; font-size: 15px; color: var(--text-2); box-shadow: var(--shadow-card); line-height: 1.6; }
+    .callout strong { color: var(--text); }
+
+    .privacy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin: 22px 0; }
+    .privacy-item { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 18px 18px 16px; box-shadow: var(--shadow-card); }
+    .privacy-item .icon { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-tint); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+    .privacy-item h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .privacy-item p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.5; }
+
+    .data-table:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; font-size: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-card); }
+    @media (max-width: 680px) { .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
+    .data-table th { text-align: left; padding: 12px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); color: var(--text-2); font-weight: 600; font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+    .data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: top; line-height: 1.45; }
+    .data-table tr:last-child td { border-bottom: 0; }
+    .data-table td strong { color: var(--text); }
+    .yes, .no, .warn { font-weight: 600; }
+    .yes { color: var(--green); } .no { color: var(--red); } .warn { color: var(--orange); }
+
+    .cta-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 26px; padding: 30px 28px; text-align: center; margin: 48px 0; box-shadow: var(--shadow-card); }
+    .cta-card h3 { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); font-weight: 600; letter-spacing: -0.015em; margin-bottom: 10px; color: var(--text); text-wrap: balance; }
+    .cta-card p { font-size: 15px; color: var(--text-2); margin: 0 auto 20px; max-width: 34em; line-height: 1.55; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 9px; background: var(--accent-btn); color: #fff; font-size: 16px; font-weight: 600; padding: 14px 24px; border-radius: 100px; text-decoration: none; box-shadow: 0 10px 28px rgba(142,58,110,0.28); transition: background .15s; }
+    .cta-btn:hover { background: var(--accent-btn-hover); text-decoration: none; }
+
+    .page-footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .page-footer p { font-size: 13px; color: var(--text-3); }
+    .footer-nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .footer-nav a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .footer-nav a:hover { color: var(--text); }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-back">← MirrorNotes</a>
+    <span class="nav-sep">/</span>
+    <span class="nav-title">What's New</span>
+  </nav>
+
+  <main class="page-wrap">
+
+    <div class="page-header">
+      <div class="label">Coming in the next update</div>
+      <h1>What's new in MirrorNotes 3.1.8</h1>
+      <p>The next update for iPhone, iPad and Mac (3.1.8 on iPhone and iPad, 1.1.8 on Mac) brings a new look, new ways to start and keep notes, and MirrorNotes on Apple Watch. Everything still runs on your own devices: no account, no server, no one reading your journal.</p>
+    </div>
+
+    <div class="tldr">
+      <h2>TL;DR</h2>
+      <ul>
+        <li>A new look, Paper &amp; Ink: warm paper pages, a plum accent, serif titles.</li>
+        <li>Suggestions from your day turn a walk, a song or a place into the start of an entry.</li>
+        <li>Scratch notes for lists and numbers, kept out of your reflections, now with checklists and reminders.</li>
+        <li>Still Open, links between entries, Patterns and Year in Review, Apple Watch and Apple Health.</li>
+        <li>Core and Deep plans for the AI features. Writing, reading, search and iCloud backup stay free, forever.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>A new look: Paper &amp; Ink</h2>
+      <ul>
+        <li>Warm paper pages with a plum accent and serif titles, easier on the eyes when you write at night and closer to the leather journal on the app icon.</li>
+        <li>Today's reflection sits on top, as the one raised card on the screen.</li>
+        <li>Entries show a title, a photo thumbnail and tags at a glance, grouped under Today, Yesterday and This week.</li>
+        <li>Touch and hold an entry to preview it, with Open, Pin, Move to and Delete.</li>
+        <li>Sentinel mode has been retired, so everyone gets the new look. To see how a reflection was made, turn on Settings › About › Show how insights are made.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Writing</h2>
+      <ul>
+        <li><strong>A calmer Write screen:</strong> the date is the title, Mood sits beside it, Save is a button, and Delete and focus mode live in the ⋯ menu.</li>
+        <li><strong>Focus mode, just your words:</strong> the toolbar, the starter and the cards step aside, and one button brings them back.</li>
+        <li><strong>Templates:</strong> Evening Review, Weekly Plan and Morning Pages, plus your own, kept on your device.</li>
+        <li><strong>Suggestions from your day</strong> (iPhone): start an entry from Apple's Journaling Suggestions. Songs, podcasts, workouts, places, people and steps come in as short lines, with photos, artwork and a map of your route or place. Tap a place or its map to open it in Maps, or a song to find it in Apple Music.</li>
+        <li><strong>Link your entries:</strong> select a few words, choose Add Link, then Link to an Entry. Under each entry, Linked from shows the entries that point to it.</li>
+        <li>The first time the keyboard opens, a tip shows that swiping down on the page hides it.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Quick notes that stay out of reflections</h2>
+      <ul>
+        <li><strong>Scratch:</strong> a collection for quick notes, lists and numbers. Reflections, Ask, mood charts and mood alerts don't read it, and any collection can be kept out the same way.</li>
+        <li><strong>New Scratch Note</strong> from Control Center, Siri or the Entries menu.</li>
+        <li>Scratch notes have checklists and numbered and bulleted lists.</li>
+        <li><strong>Remind me:</strong> set a time and get a notification that says only “Scratch note reminder”, never the note's words. The note shows its pending reminder, and you can change or remove it.</li>
+        <li><strong>Still Open:</strong> every checklist item you haven't ticked, from all your entries, in one list. Tick it there or open its entry.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Insights</h2>
+      <ul>
+        <li><strong>Patterns</strong> (Deep): the moods that come with your days, times of day, tags and collections. Counted by the app from the moods you picked, so nothing is guessed.</li>
+        <li><strong>Year in Review and Month in Review</strong> (Deep): entries, words, days written, your longest streak and top moods.</li>
+        <li><strong>Every past reflection:</strong> past reflections and digests end with Show all, so you can read every one, not just the latest 14.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Apple Watch, Apple Health and Mac</h2>
+      <ul>
+        <li><strong>MirrorNotes on Apple Watch:</strong> record a voice note, type a quick note or log a mood from your wrist. Each is saved in MirrorNotes on your iPhone, which keeps your journal's key, and voice notes get a transcript there.</li>
+        <li><strong>Moods in Apple Health</strong> (optional): turn on Settings › Journal › Save mood check-ins to Health, and each check-in is saved as a State of Mind. MirrorNotes never reads from Health.</li>
+        <li><strong>On Mac:</strong> record voice notes as on iPhone (pause, listen back, then add), focus mode, the daily word goal, tag suggestions, drag checklist lines to reorder them, and Continuity Camera to take a photo or scan a document with your iPhone straight into an entry.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Faster, clearer</h2>
+      <ul>
+        <li>Big journals are faster: the Entries list, search, Insights, the mood timeline and the calendar no longer re-read every entry whenever the screen changes, and opening an entry no longer loads the whole journal.</li>
+        <li>MirrorNotes opens a little faster and uses less memory.</li>
+        <li>Tapping Entries again scrolls back to the top, and tapping a day in the calendar keeps that day in view.</li>
+        <li>Settings has a Done button and a grab handle, entry rows spell out the word count, and better support for larger text and VoiceOver throughout.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>Core and Deep</h2>
+      <p>From this update, the AI features come in two plans. Prices are shown in the app for your country.</p>
+      <ul>
+        <li>New daily reflections, Ask, new weekly digests and monthly reports, the mood timeline and widgets come with Core or Deep. Deep adds unlimited Ask, the monthly report, the mood timeline, mood alerts, Patterns and Year in Review.</li>
+        <li>Writing, reading, search and iCloud backup stay free, forever. Everything already made for you stays readable on every plan.</li>
+        <li>New subscribers get a 7-day free trial. Have an App Store offer code? Tap Redeem Code in Settings › Subscription or on the plans screen.</li>
+      </ul>
+    </div>
+
+    <div class="cta-card">
+      <h3>The journal that listens in private.</h3>
+      <p>Free to write, forever. Core and Deep add the on-device AI, with a 7-day free trial for new subscribers.</p>
+      <a class="cta-btn" href="https://apps.apple.com/app/id6769007201">Download on the App Store</a>
+    </div>
+
+    <div class="page-footer">
+      <p>© 2026 MirrorNotes. All rights reserved.</p>
+      <div class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="support.html">Help Center</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="blog/">Blog</a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
