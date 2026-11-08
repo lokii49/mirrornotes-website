@@ -364,6 +364,16 @@
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
+    /* ───── coming in 3.1.8 ───── */
+    .new-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .new-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .new-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); padding: 22px 22px 20px; box-shadow: var(--shadow-card); }
+    .new-tile .new-t { font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--text); }
+    .new-tile .new-b { font-size: 15px; color: var(--text-2); line-height: 1.55; }
+    .new-more { display: inline-block; margin-top: 26px; font-weight: 600; color: var(--accent); }
+    .new-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
@@ -386,7 +396,7 @@
 <nav aria-label="Main">
   <div class="wrap">
     <a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a>
-    <div class="nav-links"><a href="#reflection">工作原理</a><a href="#features">功能</a><a href="#prompts">试一个问题</a><a href="#pricing">价格</a><a href="/zh/privacy.html">隐私</a></div>
+    <div class="nav-links"><a href="#reflection">工作原理</a><a href="#features">功能</a><a href="#prompts">试一个问题</a><a href="#pricing">价格</a><a href="/whats-new.html">新功能</a><a href="/zh/privacy.html">隐私</a></div>
     <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>获取应用</a>
   </div>
 </nav>
@@ -507,6 +517,18 @@
       <div><b>飞行模式也能用</b><p>AI 不需要互联网。在飞机上、小木屋里、没有信号的地方，照样写、照样回看。</p></div>
       <div><b>iCloud 备份</b><p>日记同步到你的 iCloud，在你的 Apple ID 下私密保存。我们无法访问。全文搜索也在本地完成。</p></div>
     </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="wrap">
+    <div class="intro">
+      <div class="new-kicker">3.1.8 即将推出</div>
+      <h2 id="new-h">全新外观，记录方式也更多了。</h2>
+      <p class="lede new-lede">iPhone、iPad 和 Mac 的下一次更新。一切依然只在你自己的设备上运行：没有账户，没有服务器。</p>
+    </div>
+    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">温暖的纸张质感页面、梅子色点缀和衬线标题。条目的标题、照片和标签一目了然。</p></div><div class="new-tile"><h3 class="new-t">来自今天的建议</h3><p class="new-b">一次散步、一首歌或一个地点，配上照片和地图，成为一篇条目的开头。</p></div><div class="new-tile"><h3 class="new-t">随手记</h3><p class="new-b">带提醒的快速清单、数字和待办事项，不会进入你的回顾。</p></div><div class="new-tile"><h3 class="new-t">未完成</h3><p class="new-b">所有条目里还没勾选的事项汇成一个列表。条目之间也可以互相链接。</p></div><div class="new-tile"><h3 class="new-t">规律 · 年度回顾</h3><p class="new-b">哪些心情伴随你的日子、时段和标签，以及用数字回顾这一年。由 App 计算，Deep 方案提供。</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">在手腕上录语音笔记、记录心情；如果你愿意，心情打卡会保存到“健康”。</p></div></div>
+    <a class="new-more" href="/whats-new.html">查看 3.1.8 的全部新功能 →</a>
   </div>
 </section>
 

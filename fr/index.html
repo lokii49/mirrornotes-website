@@ -364,6 +364,16 @@
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
+    /* ───── coming in 3.1.8 ───── */
+    .new-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .new-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .new-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); padding: 22px 22px 20px; box-shadow: var(--shadow-card); }
+    .new-tile .new-t { font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--text); }
+    .new-tile .new-b { font-size: 15px; color: var(--text-2); line-height: 1.55; }
+    .new-more { display: inline-block; margin-top: 26px; font-weight: 600; color: var(--accent); }
+    .new-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
@@ -386,7 +396,7 @@
 <nav aria-label="Main">
   <div class="wrap">
     <a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a>
-    <div class="nav-links"><a href="#reflection">Comment ça marche</a><a href="#features">Fonctions</a><a href="#prompts">Essayer une question</a><a href="#pricing">Tarifs</a><a href="/fr/privacy.html">Confidentialité</a></div>
+    <div class="nav-links"><a href="#reflection">Comment ça marche</a><a href="#features">Fonctions</a><a href="#prompts">Essayer une question</a><a href="#pricing">Tarifs</a><a href="/whats-new.html">Nouveautés</a><a href="/fr/privacy.html">Confidentialité</a></div>
     <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Télécharger l'app</a>
   </div>
 </nav>
@@ -507,6 +517,18 @@
       <div><b>Fonctionne en mode avion</b><p>L'IA n'a pas besoin d'internet. Écrivez et réfléchissez en vol, dans un chalet, dans une zone blanche.</p></div>
       <div><b>Sauvegarde iCloud</b><p>Les entrées se synchronisent dans votre iCloud, en privé sous votre identifiant Apple. Nous n'y avons pas accès. La recherche plein texte est locale aussi.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="wrap">
+    <div class="intro">
+      <div class="new-kicker">Arrive avec la 3.1.8</div>
+      <h2 id="new-h">Un nouveau look et de nouvelles façons de prendre des notes.</h2>
+      <p class="lede new-lede">La prochaine mise à jour pour iPhone, iPad et Mac. Tout fonctionne toujours sur vos propres appareils : pas de compte, pas de serveur.</p>
+    </div>
+    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">Des pages couleur papier, un accent prune et des titres à empattements. Les entrées montrent titres, photos et tags d’un coup d’œil.</p></div><div class="new-tile"><h3 class="new-t">Suggestions de votre journée</h3><p class="new-b">Une balade, une chanson ou un lieu devient le début d’une entrée, avec photos et carte.</p></div><div class="new-tile"><h3 class="new-t">Pense-bête</h3><p class="new-b">Listes rapides, chiffres et listes de tâches avec rappels, tenus à l’écart de vos réflexions.</p></div><div class="new-tile"><h3 class="new-t">Encore à faire</h3><p class="new-b">Toutes les cases non cochées de vos entrées dans une seule liste. Les entrées peuvent aussi renvoyer les unes aux autres.</p></div><div class="new-tile"><h3 class="new-t">Tendances · Bilan de l’année</h3><p class="new-b">Les humeurs liées à vos jours, à vos heures et à vos tags, et votre année en chiffres. Comptées par l’app, avec Deep.</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">Notes vocales et humeurs depuis votre poignet, et relevés d’humeur enregistrés dans Santé si vous le souhaitez.</p></div></div>
+    <a class="new-more" href="/whats-new.html">Voir toutes les nouveautés de la 3.1.8 →</a>
   </div>
 </section>
 

@@ -364,6 +364,16 @@
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
+    /* ───── coming in 3.1.8 ───── */
+    .new-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .new-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .new-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); padding: 22px 22px 20px; box-shadow: var(--shadow-card); }
+    .new-tile .new-t { font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--text); }
+    .new-tile .new-b { font-size: 15px; color: var(--text-2); line-height: 1.55; }
+    .new-more { display: inline-block; margin-top: 26px; font-weight: 600; color: var(--accent); }
+    .new-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
@@ -386,7 +396,7 @@
 <nav aria-label="Main">
   <div class="wrap">
     <a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a>
-    <div class="nav-links"><a href="#reflection">Как это работает</a><a href="#features">Возможности</a><a href="#prompts">Попробовать вопрос</a><a href="#pricing">Цены</a><a href="/ru/privacy.html">Приватность</a></div>
+    <div class="nav-links"><a href="#reflection">Как это работает</a><a href="#features">Возможности</a><a href="#prompts">Попробовать вопрос</a><a href="#pricing">Цены</a><a href="/whats-new.html">Что нового</a><a href="/ru/privacy.html">Приватность</a></div>
     <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Скачать приложение</a>
   </div>
 </nav>
@@ -507,6 +517,18 @@
       <div><b>Работает в авиарежиме</b><p>ИИ не нужен интернет. Пишите и размышляйте в самолёте, на даче, там, где нет связи.</p></div>
       <div><b>Резервная копия в iCloud</b><p>Записи синхронизируются с вашим iCloud, приватно под вашим Apple ID. У нас нет доступа. Полнотекстовый поиск тоже локальный.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="wrap">
+    <div class="intro">
+      <div class="new-kicker">Скоро в 3.1.8</div>
+      <h2 id="new-h">Новый вид и новые способы делать заметки.</h2>
+      <p class="lede new-lede">Следующее обновление для iPhone, iPad и Mac. Всё по-прежнему работает на ваших устройствах: без аккаунта и без сервера.</p>
+    </div>
+    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">Тёплые страницы цвета бумаги, сливовый акцент и заголовки с засечками. В записях сразу видны заголовки, фото и теги.</p></div><div class="new-tile"><h3 class="new-t">Подсказки из вашего дня</h3><p class="new-b">Прогулка, песня или место становятся началом записи — с фото и картой.</p></div><div class="new-tile"><h3 class="new-t">Заметки</h3><p class="new-b">Быстрые списки, числа и чек-листы с напоминаниями, которые не попадают в ваши размышления.</p></div><div class="new-tile"><h3 class="new-t">Ещё не сделано</h3><p class="new-b">Все неотмеченные пункты чек-листов из ваших записей в одном списке. Записи можно связывать друг с другом.</p></div><div class="new-tile"><h3 class="new-t">Закономерности · Итоги года</h3><p class="new-b">Какие настроения связаны с вашими днями, временем и тегами, и ваш год в цифрах. Подсчитано приложением, с Deep.</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">Голосовые заметки и настроение с запястья, а отметки настроения — в Здоровье, если хотите.</p></div></div>
+    <a class="new-more" href="/whats-new.html">Все новинки 3.1.8 →</a>
   </div>
 </section>
 

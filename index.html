@@ -381,6 +381,16 @@
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
+    /* ───── coming in 3.1.8 ───── */
+    .new-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .new-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .new-tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-entry); padding: 22px 22px 20px; box-shadow: var(--shadow-card); }
+    .new-tile .new-t { font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; color: var(--text); }
+    .new-tile .new-b { font-size: 15px; color: var(--text-2); line-height: 1.55; }
+    .new-more { display: inline-block; margin-top: 26px; font-weight: 600; color: var(--accent); }
+    .new-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
@@ -403,7 +413,7 @@
 <nav aria-label="Main">
   <div class="wrap">
     <a class="wordmark" href="/"><img src="/icon-192.png" alt="" width="28" height="28">MirrorNotes</a>
-    <div class="nav-links"><a href="#reflection">How it works</a><a href="#features">Features</a><a href="#prompts">Try a prompt</a><a href="#pricing">Pricing</a><a href="/privacy.html">Privacy</a></div>
+    <div class="nav-links"><a href="#reflection">How it works</a><a href="#features">Features</a><a href="#prompts">Try a prompt</a><a href="#pricing">Pricing</a><a href="/whats-new.html">What’s new</a><a href="/privacy.html">Privacy</a></div>
     <a class="btn btn-accent btn-sm" href="https://apps.apple.com/app/id6769007201"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9C6.1 7 4.5 8 3.6 9.5c-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.5.9c1.5 0 2.4-1.3 3.3-2.6 1-1.5 1.5-3 1.5-3.1-.1 0-2.8-1.1-2.8-4.8zM14 5.3c.7-.9 1.2-2.1 1.1-3.3-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.2 1.1.1 2.3-.6 3-1.5z"/></svg>Get the app</a>
   </div>
 </nav>
@@ -530,6 +540,18 @@
       <div><b>Works in airplane mode</b><p>The AI doesn't need the internet. Write and reflect on a flight, in a cabin, in a dead zone.</p></div>
       <div><b>iCloud backup</b><p>Entries sync to your iCloud, private to your Apple ID. We don't have access. Full-text search is local too.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="wrap">
+    <div class="intro">
+      <div class="new-kicker">Coming in 3.1.8</div>
+      <h2 id="new-h">A new look, and new ways to keep notes.</h2>
+      <p class="lede new-lede">The next update for iPhone, iPad and Mac. Everything still runs on your own devices: no account, no server.</p>
+    </div>
+    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">Warm paper pages, a plum accent and serif titles. Entries show titles, photos and tags at a glance.</p></div><div class="new-tile"><h3 class="new-t">Suggestions from your day</h3><p class="new-b">A walk, a song or a place becomes the start of an entry, with photos and a map.</p></div><div class="new-tile"><h3 class="new-t">Scratch</h3><p class="new-b">Quick lists, numbers and checklists with reminders, kept out of your reflections.</p></div><div class="new-tile"><h3 class="new-t">Still Open</h3><p class="new-b">Every unticked checklist item from all your entries in one list. Entries can link to each other, too.</p></div><div class="new-tile"><h3 class="new-t">Patterns · Year in Review</h3><p class="new-b">The moods that come with your days, times and tags, and your year in numbers. Counted by the app, with Deep.</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">Voice notes and moods from your wrist, and mood check-ins saved to Health if you choose.</p></div></div>
+    <a class="new-more" href="/whats-new.html">See everything new in 3.1.8 →</a>
   </div>
 </section>
 
