@@ -364,6 +364,27 @@
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
     @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
 
+    /* ───── 3.1.8 feature cells ───── */
+    .card.nc { min-height: 236px; }
+    .nc .nc-k { display: flex; align-items: center; gap: 8px; color: var(--accent); font-weight: 600; font-size: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+    .nc .nc-day { font-family: var(--serif); font-size: 22px; font-weight: 600; }
+    .nc .nc-line { font-size: 15px; margin-top: 6px; } .nc .nc-line a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .nc .nc-map { display: block; width: 100%; height: auto; margin: 12px 0; border-radius: 12px; }
+    .nc .nc-txt { font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--text); }
+    .nc .nc-check { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--border); font-size: 15px; }
+    .nc .nc-check:first-of-type { border-top: 0; }
+    .nc .nc-box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--text-3); flex: 0 0 18px; display: grid; place-items: center; color: #fff; font-size: 12px; }
+    .nc .nc-box.round { border-radius: 50%; }
+    .nc .nc-box.on { background: var(--accent-btn); border-color: var(--accent-btn); }
+    .nc .nc-check.done span:last-of-type { text-decoration: line-through; color: var(--text-3); }
+    .nc .nc-date { margin-left: auto; color: var(--text-3); font-size: 13px; white-space: nowrap; }
+    .nc .nc-chip { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 5px 11px; border-radius: 100px; background: var(--surface3); color: var(--accent); font-size: 13px; font-weight: 600; }
+    .nc .nc-out { display: flex; align-items: center; gap: 7px; margin-top: 12px; color: var(--accent); font-size: 13px; font-weight: 600; }
+    .nc .nc-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .nc .nc-tile { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; }
+    .nc .nc-tile b { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .nc .nc-tile span { font-size: 13px; color: var(--text-2); }
+    .nc .nc-moods { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     /* ───── coming in 3.1.8 ───── */
     .new-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
     .new-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
@@ -423,6 +444,18 @@
       <div class="month-row"><b data-month></b><span data-month-count></span></div>
       <div data-feed><!-- static:feed --><article class="entry" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">带领新项目的第一周。今天早上我很紧张，但启动会比我预想的顺利。林悦说我的计划是她见过最清楚的。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>充满希望</span></div></div></article><article class="entry" style="--rail:#66BB6A;--tint:#66BB6A33;--i:1"><div class="tile"><b></b><span></span></div><div><p class="txt">晚饭后给姐姐打了电话，我们聊起那年夏天在里斯本迷路的事，笑了很久。我想在年底前去看她。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#66BB6A"></span>感恩</span></div></div></article><article class="entry" style="--rail:#D4A84B;--tint:#D4A84B33;--i:2"><div class="tile"><b></b><span></span></div><div><p class="txt">今晚怎么也停不下来。我在脑子里一遍遍过明天的演讲。开头写了三个版本，全都删掉了。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#D4A84B"></span>焦虑</span></div></div></article><article class="entry" style="--rail:#FFD54F;--tint:#FFD54F33;--i:3"><div class="tile"><b></b><span></span></div><div><p class="txt">今天早上一口气跑了十公里。一开始腿很沉，后来一切都变得轻松了。做了松饼庆祝一下。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#FFD54F"></span>喜悦</span></div></div></article><article class="entry" style="--rail:#9A96A3;--tint:#9A96A333;--i:4"><div class="tile"><b></b><span></span></div><div><p class="txt">一整天的会议一个接一个。我又答应了两件根本没时间做的事。明天得拒绝点什么。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9A96A3"></span>疲惫</span></div></div></article><!-- /static:feed --></div>
     </div>
+  </div>
+</section>
+
+<section id="new" aria-labelledby="new-h">
+  <div class="wrap">
+    <div class="intro">
+      <div class="new-kicker">3.1.8 新功能</div>
+      <h2 id="new-h">全新外观，记录方式也更多了。</h2>
+      <p class="lede new-lede">适用于 iPhone 和 iPad 的 MirrorNotes 3.1.8，以及适用于 Mac 的 1.1.8。一切依然只在你自己的设备上运行：没有账户，没有服务器。</p>
+    </div>
+    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">温暖的纸张质感页面、梅子色点缀和衬线标题。条目的标题、照片和标签一目了然。</p></div><div class="new-tile"><h3 class="new-t">来自今天的建议</h3><p class="new-b">一次散步、一首歌或一个地点，配上照片和地图，成为一篇条目的开头。</p></div><div class="new-tile"><h3 class="new-t">随手记</h3><p class="new-b">带提醒的快速清单、数字和待办事项，不会进入你的回顾。</p></div><div class="new-tile"><h3 class="new-t">未完成</h3><p class="new-b">所有条目里还没勾选的事项汇成一个列表。条目之间也可以互相链接。</p></div><div class="new-tile"><h3 class="new-t">规律 · 年度回顾</h3><p class="new-b">哪些心情伴随你的日子、时段和标签，以及用数字回顾这一年。由 App 计算，Deep 方案提供。</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">在手腕上录语音笔记、记录心情；如果你愿意，心情打卡会保存到“健康”。</p></div></div>
+    <a class="new-more" href="/whats-new.html">查看 3.1.8 的全部新功能 →</a>
   </div>
 </section>
 
@@ -511,24 +544,32 @@
         <p>你反复回到的那些主题组成的星图，大小代表出现的次数。出现在同一篇日记里的主题会连在一起。在应用里它以 3D 旋转。</p>
         <article class="card"><div class="brain-bar"><span>Brain View</span><span class="seg3d" role="group" aria-label="Brain View projection"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View：示例日记中的主题，大小代表出现次数，出现在同一篇日记里的主题相连" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
+      <div class="cell" data-reveal>
+        <h3>来自今天的建议</h3>
+        <p>用你的一天开始一篇条目。一次跑步、一首歌或一个地点，会带着照片和地图以简短几行出现，剩下的由你来写。在 iPhone 上，来自 Apple 的日记建议。</p>
+        <article class="card nc" data-suggest></article>
+      </div>
+      <div class="cell" data-reveal>
+        <h3>年度回顾</h3>
+        <p>由 App 根据你自己的条目和心情算出的这一年。示例统计的是上面的示例日记。Deep 方案提供。</p>
+        <article class="card nc" data-yir></article>
+      </div>
+      <div class="cell" data-reveal>
+        <h3>随手记</h3>
+        <p>放快速清单和数字的地方，可以加待办事项和你选定时间的提醒。回顾、提问和心情图表都不会读取它。</p>
+        <article class="card nc" data-scratch></article>
+      </div>
+      <div class="cell" data-reveal>
+        <h3>未完成</h3>
+        <p>所有条目里还没勾选的事项汇成一个列表。在那里勾选，或打开它所在的条目。</p>
+        <article class="card nc" data-stillopen></article>
+      </div>
     </div>
     <div class="plain-list">
       <div><b>从不需要账号</b><p>没有邮箱、没有密码、没有登录页。没什么可泄露的，因为我们从没问过你是谁。</p></div>
       <div><b>飞行模式也能用</b><p>AI 不需要互联网。在飞机上、小木屋里、没有信号的地方，照样写、照样回看。</p></div>
       <div><b>iCloud 备份</b><p>日记同步到你的 iCloud，在你的 Apple ID 下私密保存。我们无法访问。全文搜索也在本地完成。</p></div>
     </div>
-  </div>
-</section>
-
-<section id="new" aria-labelledby="new-h">
-  <div class="wrap">
-    <div class="intro">
-      <div class="new-kicker">3.1.8 新功能</div>
-      <h2 id="new-h">全新外观，记录方式也更多了。</h2>
-      <p class="lede new-lede">适用于 iPhone 和 iPad 的 MirrorNotes 3.1.8，以及适用于 Mac 的 1.1.8。一切依然只在你自己的设备上运行：没有账户，没有服务器。</p>
-    </div>
-    <div class="new-grid"><div class="new-tile"><h3 class="new-t">Paper &amp; Ink</h3><p class="new-b">温暖的纸张质感页面、梅子色点缀和衬线标题。条目的标题、照片和标签一目了然。</p></div><div class="new-tile"><h3 class="new-t">来自今天的建议</h3><p class="new-b">一次散步、一首歌或一个地点，配上照片和地图，成为一篇条目的开头。</p></div><div class="new-tile"><h3 class="new-t">随手记</h3><p class="new-b">带提醒的快速清单、数字和待办事项，不会进入你的回顾。</p></div><div class="new-tile"><h3 class="new-t">未完成</h3><p class="new-b">所有条目里还没勾选的事项汇成一个列表。条目之间也可以互相链接。</p></div><div class="new-tile"><h3 class="new-t">规律 · 年度回顾</h3><p class="new-b">哪些心情伴随你的日子、时段和标签，以及用数字回顾这一年。由 App 计算，Deep 方案提供。</p></div><div class="new-tile"><h3 class="new-t">Apple Watch · Apple Health</h3><p class="new-b">在手腕上录语音笔记、记录心情；如果你愿意，心情打卡会保存到“健康”。</p></div></div>
-    <a class="new-more" href="/whats-new.html">查看 3.1.8 的全部新功能 →</a>
   </div>
 </section>
 
@@ -667,12 +708,14 @@
     moodNames: {"Joyful": "喜悦", "Grateful": "感恩", "Peaceful": "平静", "Content": "满足", "Energized": "充满活力", "Hopeful": "充满希望", "Anxious": "焦虑", "Overwhelmed": "不堪重负", "Frustrated": "沮丧", "Drained": "疲惫", "Sad": "难过", "Numb": "麻木"},
     entries: n => `${n} 篇`,
     words: n => `${n} 个字`, today: "今天", yesterday: "昨天", thisWeek: "本周",
+    suggest: "来自今天的建议", scratch: "随手记", keepOut: "不用于回顾", note: "燕麦、柠檬、胶带", items: ["给牙医打电话", "去图书馆还书", "把照片发过去"], stillOpen: "未完成", yir: "年度回顾", tile: { entries: n => "条目", words: n => "字", days: n => "天有写作", streak: n => "天，最长连续" },
     mostly: m => `多为${m}`, axis: ["高", "中", "低"],
     youWrote: "你写道：", open: "“", close: "”", joiner: "",
     alsoWrote: "", followUp: q => "" + "“" + q + "”" + "背后是什么感受？",
     you: "你", save: pct => `省 ${pct}%`, usPrices: "美国价格", pricesIn: cur => `以 ${cur} 计价`,
     brainLabelMin: 4
   };
+  const RU = (n, one, few, many) => n % 10 === 1 && n % 100 !== 11 ? one : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? few : many;
   const NAME = m => L10N.moodNames[m] || m;
   const $ = s => document.querySelector(s);
   const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -751,6 +794,45 @@
       ${pts.map((p, i) => `<circle class="pt" style="--i:${i}" cx="${p.X.toFixed(1)}" cy="${p.Y.toFixed(1)}" r="7" fill="${COLOR[p.m]}" data-when="${fmt(p.dt, { weekday: "short", day: "numeric", month: "short" })}" data-mood="${NAME(p.m)}" data-c="${COLOR[p.m]}"></circle>`).join("")}
       ${days.map((o, i) => `<text x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${fmt(o.dt, { weekday: "short" })}</text>`).join("")}
     </svg>`;
+  })();
+
+
+  // 3.1.8 cells, drawn from the sample journal and the app's own strings
+  (() => {
+    const ic = d => `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+    const num = (v, o) => new Intl.NumberFormat(L10N.dateLang, o).format(v);
+    // Suggestions from your day: the sample's 10 km run arriving as the start of its entry
+    const run = entries[3];
+    const el1 = $("[data-suggest]");
+    if (el1) el1.innerHTML = `<div class="nc-k">${ic('<path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/>')}${esc(L10N.suggest)}</div>
+      <div class="nc-day">${fmt(run.date, { weekday: "long", day: "numeric", month: "long" })}</div>
+      <div class="nc-line">\u{1F3C3} ${num(10, { style: "unit", unit: "kilometer", unitDisplay: "short" })} · ${fTime(run.date)}</div>
+      <svg class="nc-map" viewBox="0 0 320 96" role="img" aria-label="${esc(L10N.suggest)}"><rect width="320" height="96" rx="12" fill="#E9E4DA"/><path d="M0 70 C70 40 120 92 180 58 S280 20 320 32" stroke="#fff" stroke-width="10" fill="none"/><path d="M26 72 C80 44 118 84 170 60 S262 26 296 30" stroke="#8E3A6E" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="26" cy="72" r="6" fill="#8E3A6E"/><circle cx="296" cy="30" r="6" fill="#fff" stroke="#8E3A6E" stroke-width="3"/></svg>
+      <p class="nc-txt">${esc(run.text)}</p>`;
+    // Year in Review: the sample journal counted the way the app counts it
+    const days = new Set(entries.map(e => { const x = new Date(e.date); x.setHours(0,0,0,0); return x.getTime(); }));
+    const sortedDays = [...days].sort((a, b) => a - b); let streak = 1, best = 1;
+    for (let i = 1; i < sortedDays.length; i++) { streak = Math.round((sortedDays[i] - sortedDays[i - 1]) / 86400000) === 1 ? streak + 1 : 1; best = Math.max(best, streak); }
+    const wordCount = entries.reduce((n, e) => n + words(e.text), 0);
+    const moodCount = {}; entries.forEach(e => moodCount[e.mood] = (moodCount[e.mood] || 0) + 1);
+    const topMoods = Object.entries(moodCount).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    const tile = (v, f) => `<div class="nc-tile"><b>${num(v)}</b><span>${esc(f(v))}</span></div>`;
+    const el2 = $("[data-yir]");
+    if (el2) el2.innerHTML = `<div class="nc-k">${ic('<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/>')}${esc(L10N.yir)} <span style="margin-left:auto;color:var(--text-3);font-weight:500">${today.getFullYear()}</span></div>
+      <div class="nc-tiles">${tile(entries.length, L10N.tile.entries)}${tile(wordCount, L10N.tile.words)}${tile(days.size, L10N.tile.days)}${tile(best, L10N.tile.streak)}</div>
+      <div class="nc-moods">${topMoods.map(([m]) => `<span class="mood-pill" style="--tint:${tint(m)}"><span class="dot" style="--c:${COLOR[m]}"></span>${NAME(m)}</span>`).join("")}</div>`;
+    // Scratch: a quick note with a reminder, kept out of reflections
+    const remind = new Date(today); remind.setHours(18, 0);
+    const el3 = $("[data-scratch]");
+    if (el3) el3.innerHTML = `<div class="nc-k">${ic('<path d="M5 4h10l4 4v12H5z"/><path d="M15 4v4h4"/>')}${esc(L10N.scratch)}</div>
+      ${L10N.items.slice(0, 2).map((t, i) => `<div class="nc-check${i === 1 ? " done" : ""}"><span class="nc-box${i === 1 ? " on" : ""}">${i === 1 ? "✓" : ""}</span><span>${esc(t)}</span></div>`).join("")}
+      <div class="nc-check"><span class="nc-box"></span><span>${esc(L10N.note)}</span></div>
+      <span class="nc-chip">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/>')}${fTime(remind)}</span>
+      <div class="nc-out">${ic('<path d="M3 3l18 18"/><path d="M10.6 5.1A10 10 0 0 1 22 12a17 17 0 0 1-3 3.9M6.6 6.6A17 17 0 0 0 2 12a10 10 0 0 0 13.4 5.4"/>')}${esc(L10N.keepOut)}</div>`;
+    // Still Open: unticked checklist items gathered from three entries
+    const el4 = $("[data-stillopen]");
+    if (el4) el4.innerHTML = `<div class="nc-k">${ic('<rect x="3" y="4" width="4" height="4" rx="1"/><path d="M11 6h10M11 12h10M11 18h10"/><rect x="3" y="10" width="4" height="4" rx="1"/><rect x="3" y="16" width="4" height="4" rx="1"/>')}${esc(L10N.stillOpen)} <span style="margin-left:auto;color:var(--text-3);font-weight:500">${num(3)}</span></div>
+      ${[[L10N.items[0], today], [L10N.note, today], [L10N.items[2], entries[4].date]].map(([t, d]) => `<div class="nc-check"><span class="nc-box round"></span><span>${esc(t)}</span><span class="nc-date">${fmt(d, { day: "numeric", month: "short" })}</span></div>`).join("")}`;
   })();
 
   // the live proof: count bytes typed on this page; the "sent" figure is a constant because nothing is sent

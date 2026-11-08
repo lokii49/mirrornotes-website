@@ -153,6 +153,14 @@ KEYS = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Voice notes and moods from your wrist, and mood check-ins saved to Health if you choose.</p>',
     '<a class="new-more" href="/whats-new.html">See everything new in 3.1.8 →</a>',
+    '<h3>Suggestions from your day</h3>',
+    '<p>Start an entry from your day. A run, a song or a place comes in as short lines with photos and a map, and you write the rest. On iPhone, from Apple’s Journaling Suggestions.</p>',
+    '<h3>Year in Review</h3>',
+    '<p>Your year in numbers, counted by the app from your own entries and moods. The example counts the sample journal above. With Deep.</p>',
+    '<h3>Scratch</h3>',
+    '<p>A place for quick lists and numbers, with checklists and a reminder at a time you pick. Reflections, Ask and mood charts never read it.</p>',
+    '<h3>Still Open</h3>',
+    '<p>Every checklist item you haven’t ticked, from all your entries, in one list. Tick it there or open the entry it came from.</p>',
 ]
 
 T = {}
@@ -265,6 +273,14 @@ T["de"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Sprachnotizen und Stimmungen vom Handgelenk, und Stimmungsabfragen in Health, wenn du möchtest.</p>',
     '<a class="new-more" href="/whats-new.html">Alles Neue in 3.1.8 ansehen →</a>',
+    '<h3>Vorschläge aus deinem Tag</h3>',
+    '<p>Beginne einen Eintrag mit deinem Tag. Ein Lauf, ein Song oder ein Ort kommt als kurze Zeilen mit Fotos und Karte, den Rest schreibst du. Auf dem iPhone, aus Apples Journaling-Vorschlägen.</p>',
+    '<h3>Jahresrückblick</h3>',
+    '<p>Dein Jahr in Zahlen, von der App aus deinen eigenen Einträgen und Stimmungen gezählt. Das Beispiel zählt das Beispieltagebuch oben. Mit Deep.</p>',
+    '<h3>Notizen</h3>',
+    '<p>Ein Ort für schnelle Listen und Zahlen, mit Checklisten und einer Erinnerung zur gewünschten Zeit. Reflexionen, Fragen und Stimmungsdiagramme lesen sie nie.</p>',
+    '<h3>Noch offen</h3>',
+    '<p>Alle nicht abgehakten Checklisten-Punkte aus deinen Einträgen in einer Liste. Hak sie dort ab oder öffne den Eintrag, aus dem sie stammen.</p>',
 ]
 T["es"] = [
     '<div class="nav-links"><a href="#reflection">Cómo funciona</a><a href="#features">Funciones</a><a href="#prompts">Prueba una pregunta</a><a href="#pricing">Precios</a><a href="/whats-new.html">Novedades</a><a href="/es/privacy.html">Privacidad</a></div>',
@@ -375,6 +391,14 @@ T["es"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Notas de voz y estados de ánimo desde la muñeca, y registros de ánimo guardados en Salud si quieres.</p>',
     '<a class="new-more" href="/whats-new.html">Ver todo lo nuevo de la 3.1.8 →</a>',
+    '<h3>Sugerencias de tu día</h3>',
+    '<p>Empieza una entrada con tu día. Una carrera, una canción o un lugar llegan como líneas cortas con fotos y un mapa, y tú escribes el resto. En el iPhone, con las sugerencias de diario de Apple.</p>',
+    '<h3>Resumen del año</h3>',
+    '<p>Tu año en cifras, contado por la app a partir de tus propias entradas y estados de ánimo. El ejemplo cuenta el diario de muestra de arriba. Con Deep.</p>',
+    '<h3>Apuntes</h3>',
+    '<p>Un sitio para listas rápidas y números, con listas de tareas y un recordatorio a la hora que elijas. Las reflexiones, las preguntas y los gráficos de ánimo nunca lo leen.</p>',
+    '<h3>Pendientes</h3>',
+    '<p>Todas las tareas sin marcar de tus entradas en una sola lista. Márcalas ahí o abre la entrada de la que vienen.</p>',
 ]
 T["fr"] = [
     '<div class="nav-links"><a href="#reflection">Comment ça marche</a><a href="#features">Fonctions</a><a href="#prompts">Essayer une question</a><a href="#pricing">Tarifs</a><a href="/whats-new.html">Nouveautés</a><a href="/fr/privacy.html">Confidentialité</a></div>',
@@ -485,6 +509,14 @@ T["fr"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Notes vocales et humeurs depuis votre poignet, et relevés d’humeur enregistrés dans Santé si vous le souhaitez.</p>',
     '<a class="new-more" href="/whats-new.html">Voir toutes les nouveautés de la 3.1.8 →</a>',
+    '<h3>Suggestions de votre journée</h3>',
+    '<p>Commencez une entrée avec votre journée. Une course, une chanson ou un lieu arrive en quelques lignes avec photos et carte, et vous écrivez la suite. Sur iPhone, avec les suggestions de journal d’Apple.</p>',
+    '<h3>Bilan de l’année</h3>',
+    '<p>Votre année en chiffres, comptée par l’app à partir de vos propres entrées et humeurs. L’exemple compte le journal d’exemple ci-dessus. Avec Deep.</p>',
+    '<h3>Pense-bête</h3>',
+    '<p>Un endroit pour les listes rapides et les chiffres, avec des listes de tâches et un rappel à l’heure choisie. Les réflexions, les questions et les graphiques d’humeur ne le lisent jamais.</p>',
+    '<h3>Encore à faire</h3>',
+    '<p>Toutes les cases non cochées de vos entrées dans une seule liste. Cochez-les là ou ouvrez l’entrée d’où elles viennent.</p>',
 ]
 T["it"] = [
     '<div class="nav-links"><a href="#reflection">Come funziona</a><a href="#features">Funzioni</a><a href="#prompts">Prova una domanda</a><a href="#pricing">Prezzi</a><a href="/whats-new.html">Novità</a><a href="/it/privacy.html">Privacy</a></div>',
@@ -595,6 +627,14 @@ T["it"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Note vocali e umori dal polso, e rilevazioni dell’umore salvate in Salute, se vuoi.</p>',
     '<a class="new-more" href="/whats-new.html">Scopri tutte le novità della 3.1.8 →</a>',
+    '<h3>Suggerimenti dalla tua giornata</h3>',
+    '<p>Inizia una voce dalla tua giornata. Una corsa, una canzone o un luogo arrivano come righe brevi con foto e mappa, e tu scrivi il resto. Su iPhone, dai suggerimenti per il diario di Apple.</p>',
+    '<h3>Anno in rassegna</h3>',
+    '<p>Il tuo anno in numeri, contato dall’app dalle tue voci e dai tuoi umori. L’esempio conta il diario di esempio qui sopra. Con Deep.</p>',
+    '<h3>Appunti</h3>',
+    '<p>Un posto per liste veloci e numeri, con checklist e un promemoria all’ora che scegli. Riflessioni, domande e grafici dell’umore non lo leggono mai.</p>',
+    '<h3>Ancora aperti</h3>',
+    '<p>Tutte le voci di checklist non spuntate in un’unica lista. Spuntale lì o apri la voce da cui arrivano.</p>',
 ]
 T["pt"] = [
     '<div class="nav-links"><a href="#reflection">Como funciona</a><a href="#features">Recursos</a><a href="#prompts">Experimente uma pergunta</a><a href="#pricing">Preços</a><a href="/whats-new.html">Novidades</a><a href="/pt/privacy.html">Privacidade</a></div>',
@@ -705,6 +745,14 @@ T["pt"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Notas de voz e humores pelo pulso, e registros de humor salvos no Saúde, se você quiser.</p>',
     '<a class="new-more" href="/whats-new.html">Ver tudo o que há de novo na 3.1.8 →</a>',
+    '<h3>Sugestões do seu dia</h3>',
+    '<p>Comece uma entrada pelo seu dia. Uma corrida, uma música ou um lugar chegam como linhas curtas com fotos e mapa, e você escreve o resto. No iPhone, com as sugestões de diário da Apple.</p>',
+    '<h3>Retrospectiva do ano</h3>',
+    '<p>Seu ano em números, contado pelo app a partir das suas próprias entradas e humores. O exemplo conta o diário de exemplo acima. Com o Deep.</p>',
+    '<h3>Anotações</h3>',
+    '<p>Um lugar para listas rápidas e números, com checklists e um lembrete na hora que você escolher. Reflexões, perguntas e gráficos de humor nunca leem isso.</p>',
+    '<h3>Em aberto</h3>',
+    '<p>Todos os itens de checklist não marcados das suas entradas em uma lista só. Marque ali ou abra a entrada de onde vieram.</p>',
 ]
 T["ja"] = [
     '<div class="nav-links"><a href="#reflection">仕組み</a><a href="#features">機能</a><a href="#prompts">質問を試す</a><a href="#pricing">料金</a><a href="/whats-new.html">新機能</a><a href="/ja/privacy.html">プライバシー</a></div>',
@@ -815,6 +863,14 @@ T["ja"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">手首からボイスメモや気分を記録。気分のチェックインは、希望すればヘルスケアに保存されます。</p>',
     '<a class="new-more" href="/whats-new.html">3.1.8の新機能をすべて見る →</a>',
+    '<h3>今日の提案</h3>',
+    '<p>今日のできごとからエントリーを始めましょう。ランニングや曲、場所が写真と地図つきの短い行として入り、続きはあなたが書きます。iPhoneで、Appleのジャーナリングの提案から。</p>',
+    '<h3>1年の振り返り</h3>',
+    '<p>あなた自身のエントリーと気分から、アプリが数えた1年の数字。例は上のサンプル日記を数えたものです。Deepで利用できます。</p>',
+    '<h3>メモ</h3>',
+    '<p>手早いリストや数字のための場所。チェックリストと好きな時刻のリマインダーをつけられます。振り返り、質問、気分のグラフには使われません。</p>',
+    '<h3>未完了</h3>',
+    '<p>すべてのエントリーから、チェックしていない項目を1つのリストに。そこでチェックするか、元のエントリーを開けます。</p>',
 ]
 T["ko"] = [
     '<div class="nav-links"><a href="#reflection">작동 방식</a><a href="#features">기능</a><a href="#prompts">질문 써 보기</a><a href="#pricing">가격</a><a href="/whats-new.html">새로운 기능</a><a href="/ko/privacy.html">개인정보</a></div>',
@@ -925,6 +981,14 @@ T["ko"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">손목에서 음성 메모와 기분을 기록하고, 원하면 기분 체크인을 건강 앱에 저장합니다.</p>',
     '<a class="new-more" href="/whats-new.html">3.1.8의 새로운 기능 모두 보기 →</a>',
+    '<h3>오늘의 제안</h3>',
+    '<p>하루로 항목을 시작하세요. 달리기, 노래, 장소가 사진과 지도와 함께 짧은 줄로 들어오고, 나머지는 직접 씁니다. iPhone에서 Apple의 저널링 제안으로.</p>',
+    '<h3>올해 돌아보기</h3>',
+    '<p>내 항목과 기분으로 앱이 직접 센 한 해의 숫자. 예시는 위의 샘플 일기를 센 것입니다. Deep에서 이용할 수 있습니다.</p>',
+    '<h3>메모</h3>',
+    '<p>빠른 목록과 숫자를 위한 공간. 체크리스트와 원하는 시간의 알림을 넣을 수 있습니다. 회고, 질문, 기분 그래프는 이 내용을 읽지 않습니다.</p>',
+    '<h3>남은 항목</h3>',
+    '<p>모든 항목에서 체크하지 않은 할 일을 한 목록에. 거기서 체크하거나 원래 항목을 열 수 있습니다.</p>',
 ]
 T["ru"] = [
     '<div class="nav-links"><a href="#reflection">Как это работает</a><a href="#features">Возможности</a><a href="#prompts">Попробовать вопрос</a><a href="#pricing">Цены</a><a href="/whats-new.html">Что нового</a><a href="/ru/privacy.html">Приватность</a></div>',
@@ -1035,6 +1099,14 @@ T["ru"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">Голосовые заметки и настроение с запястья, а отметки настроения — в Здоровье, если хотите.</p>',
     '<a class="new-more" href="/whats-new.html">Все новинки 3.1.8 →</a>',
+    '<h3>Подсказки из вашего дня</h3>',
+    '<p>Начните запись со своего дня. Пробежка, песня или место приходят короткими строками с фото и картой, а остальное пишете вы. На iPhone, из подсказок для дневника Apple.</p>',
+    '<h3>Итоги года</h3>',
+    '<p>Ваш год в цифрах, подсчитанный приложением по вашим записям и настроениям. Пример считает образец дневника выше. С Deep.</p>',
+    '<h3>Заметки</h3>',
+    '<p>Место для быстрых списков и чисел, с чек-листами и напоминанием в нужное время. Размышления, вопросы и графики настроения их не читают.</p>',
+    '<h3>Ещё не сделано</h3>',
+    '<p>Все неотмеченные пункты чек-листов из ваших записей в одном списке. Отметьте их там или откройте запись, откуда они пришли.</p>',
 ]
 T["zh"] = [
     '<div class="nav-links"><a href="#reflection">工作原理</a><a href="#features">功能</a><a href="#prompts">试一个问题</a><a href="#pricing">价格</a><a href="/whats-new.html">新功能</a><a href="/zh/privacy.html">隐私</a></div>',
@@ -1145,6 +1217,14 @@ T["zh"] = [
     '<h3 class="new-t">Apple Watch · Apple Health</h3>',
     '<p class="new-b">在手腕上录语音笔记、记录心情；如果你愿意，心情打卡会保存到“健康”。</p>',
     '<a class="new-more" href="/whats-new.html">查看 3.1.8 的全部新功能 →</a>',
+    '<h3>来自今天的建议</h3>',
+    '<p>用你的一天开始一篇条目。一次跑步、一首歌或一个地点，会带着照片和地图以简短几行出现，剩下的由你来写。在 iPhone 上，来自 Apple 的日记建议。</p>',
+    '<h3>年度回顾</h3>',
+    '<p>由 App 根据你自己的条目和心情算出的这一年。示例统计的是上面的示例日记。Deep 方案提供。</p>',
+    '<h3>随手记</h3>',
+    '<p>放快速清单和数字的地方，可以加待办事项和你选定时间的提醒。回顾、提问和心情图表都不会读取它。</p>',
+    '<h3>未完成</h3>',
+    '<p>所有条目里还没勾选的事项汇成一个列表。在那里勾选，或打开它所在的条目。</p>',
 ]
 
 # Sentence-case labels for the digest card (the app's own labels are set in capitals).
@@ -1163,17 +1243,25 @@ DIGEST_LABELS = {
 TAGS = {"de": ("zuhause", "abend"), "es": ("casa", "tarde"), "fr": ("maison", "soir"), "it": ("casa", "sera"), "pt": ("casa", "noite"),
         "ja": ("家", "夜"), "ko": ("집", "저녁"), "ru": ("дом", "вечер"), "zh": ("家", "晚上")}
 WORDS = {"de": "{n} Wörter", "es": "{n} palabras", "fr": "{n} mots", "it": "{n} parole", "pt": "{n} palavras", "ja": "{n}文字", "ko": "{n}단어", "ru": "{n} слов", "zh": "{n} 字"}
+
+def vis_js(raw):
+    v = json.loads(raw)
+    tile = v.pop("tile")
+    parts = [f"{k}: {json.dumps(val, ensure_ascii=False)}" for k, val in v.items()]
+    parts.append("tile: { entries: %s, words: %s, days: %s, streak: %s }" % tuple(tile))
+    return ", ".join(parts) + ","
+
 # L10N block strings
 L10N = {
-    "de": dict(words="n => `${n} W\u00f6rter`", today="Heute", yesterday="Gestern", thisWeek="Diese Woche", entries='n => `${n} ${n === 1 ? "Eintrag" : "Einträge"}`', mostly='m => `Meist ${m}`', axis='["Hoch", "Mittel", "Tief"]', you="Du", save='pct => `${pct} % gespart`', us='"US-Preise"', pricesIn='cur => `Preise in ${cur}`'),
-    "es": dict(words="n => `${n} palabras`", today="Hoy", yesterday="Ayer", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Sobre todo ${m}`', axis='["Alto", "Medio", "Bajo"]', you="Tú", save='pct => `ahorras un ${pct} %`', us='"Precios en EE. UU."', pricesIn='cur => `Precios en ${cur}`'),
-    "fr": dict(words="n => `${n} mots`", today="Aujourd’hui", yesterday="Hier", thisWeek="Cette semaine", entries='n => `${n} ${n === 1 ? "entrée" : "entrées"}`', mostly='m => `Surtout ${m}`', axis='["Haut", "Moyen", "Bas"]', you="Toi", save='pct => `${pct} % d\'économie`', us='"Prix américains"', pricesIn='cur => `Prix en ${cur}`'),
-    "it": dict(words="n => `${n} parole`", today="Oggi", yesterday="Ieri", thisWeek="Questa settimana", entries='n => `${n} ${n === 1 ? "voce" : "voci"}`', mostly='m => `Soprattutto ${m}`', axis='["Alto", "Medio", "Basso"]', you="Tu", save='pct => `risparmi il ${pct}%`', us='"Prezzi USA"', pricesIn='cur => `Prezzi in ${cur}`'),
-    "pt": dict(words="n => `${n} palavras`", today="Hoje", yesterday="Ontem", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Mais ${m}`', axis='["Alto", "Médio", "Baixo"]', you="Você", save='pct => `economize ${pct}%`', us='"Preços nos EUA"', pricesIn='cur => `Preços em ${cur}`'),
-    "ja": dict(words="n => `${n}\u8a9e`", today="今日", yesterday="昨日", thisWeek="今週", entries='n => `${n}件`', mostly='m => `主に${m}`', axis='["高", "中", "低"]', you="あなた", save='pct => `${pct}%お得`', us='"米国の価格"', pricesIn='cur => `${cur}での価格`'),
-    "ko": dict(words="n => `${n}\ub2e8\uc5b4`", today="오늘", yesterday="어제", thisWeek="이번 주", entries='n => `${n}개`', mostly='m => `주로 ${m}`', axis='["높음", "보통", "낮음"]', you="나", save='pct => `${pct}% 절약`', us='"미국 가격"', pricesIn='cur => `${cur} 기준 가격`'),
-    "ru": dict(words="n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? \"\u0441\u043b\u043e\u0432\u043e\" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? \"\u0441\u043b\u043e\u0432\u0430\" : \"\u0441\u043b\u043e\u0432\"}`", today="Сегодня", yesterday="Вчера", thisWeek="Эта неделя", entries='n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`', mostly='m => `В основном ${m}`', axis='["Высоко", "Средне", "Низко"]', you="Ты", save='pct => `экономия ${pct} %`', us='"Цены в США"', pricesIn='cur => `Цены в ${cur}`'),
-    "zh": dict(words="n => `${n} \u4e2a\u5b57`", today="今天", yesterday="昨天", thisWeek="本周", entries='n => `${n} 篇`', mostly='m => `多为${m}`', axis='["高", "中", "低"]', you="你", save='pct => `省 ${pct}%`', us='"美国价格"', pricesIn='cur => `以 ${cur} 计价`'),
+    "de": dict(vis='{"suggest": "Vorschläge aus deinem Tag", "scratch": "Notizen", "keepOut": "Aus Reflexionen heraushalten", "note": "Haferflocken, Zitronen, Klebeband", "items": ["Zahnarzt anrufen", "Bücher in die Bibliothek zurückbringen", "Die Fotos schicken"], "stillOpen": "Noch offen", "yir": "Jahresrückblick", "tile": ["n => n === 1 ? \\"Eintrag\\" : \\"Einträge\\"", "n => n === 1 ? \\"Wort\\" : \\"Wörter\\"", "n => n === 1 ? \\"Tag geschrieben\\" : \\"Tage geschrieben\\"", "n => n === 1 ? \\"Tag, längste Serie\\" : \\"Tage, längste Serie\\""]}', words="n => `${n} W\u00f6rter`", today="Heute", yesterday="Gestern", thisWeek="Diese Woche", entries='n => `${n} ${n === 1 ? "Eintrag" : "Einträge"}`', mostly='m => `Meist ${m}`', axis='["Hoch", "Mittel", "Tief"]', you="Du", save='pct => `${pct} % gespart`', us='"US-Preise"', pricesIn='cur => `Preise in ${cur}`'),
+    "es": dict(vis='{"suggest": "Sugerencias de tu día", "scratch": "Apuntes", "keepOut": "Excluir de las reflexiones", "note": "Avena, limones, cinta adhesiva", "items": ["Llamar al dentista", "Devolver los libros a la biblioteca", "Enviar las fotos"], "stillOpen": "Pendientes", "yir": "Resumen del año", "tile": ["n => n === 1 ? \\"entrada\\" : \\"entradas\\"", "n => n === 1 ? \\"palabra\\" : \\"palabras\\"", "n => n === 1 ? \\"día escrito\\" : \\"días escritos\\"", "n => n === 1 ? \\"día, racha más larga\\" : \\"días, racha más larga\\""]}', words="n => `${n} palabras`", today="Hoy", yesterday="Ayer", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Sobre todo ${m}`', axis='["Alto", "Medio", "Bajo"]', you="Tú", save='pct => `ahorras un ${pct} %`', us='"Precios en EE. UU."', pricesIn='cur => `Precios en ${cur}`'),
+    "fr": dict(vis='{"suggest": "Suggestions de votre journée", "scratch": "Pense-bête", "keepOut": "Exclure des réflexions", "note": "Flocons d’avoine, citrons, scotch", "items": ["Appeler le dentiste", "Rendre les livres à la bibliothèque", "Envoyer les photos"], "stillOpen": "Encore à faire", "yir": "Bilan de l’année", "tile": ["n => n <= 1 ? \\"entrée\\" : \\"entrées\\"", "n => n <= 1 ? \\"mot\\" : \\"mots\\"", "n => n <= 1 ? \\"jour d’écriture\\" : \\"jours d’écriture\\"", "n => n <= 1 ? \\"jour, plus longue série\\" : \\"jours, plus longue série\\""]}', words="n => `${n} mots`", today="Aujourd’hui", yesterday="Hier", thisWeek="Cette semaine", entries='n => `${n} ${n === 1 ? "entrée" : "entrées"}`', mostly='m => `Surtout ${m}`', axis='["Haut", "Moyen", "Bas"]', you="Toi", save='pct => `${pct} % d\'économie`', us='"Prix américains"', pricesIn='cur => `Prix en ${cur}`'),
+    "it": dict(vis='{"suggest": "Suggerimenti dalla tua giornata", "scratch": "Appunti", "keepOut": "Escludi dalle riflessioni", "note": "Avena, limoni, nastro adesivo", "items": ["Chiamare il dentista", "Restituire i libri alla biblioteca", "Mandare le foto"], "stillOpen": "Ancora aperti", "yir": "Anno in rassegna", "tile": ["n => n === 1 ? \\"voce\\" : \\"voci\\"", "n => n === 1 ? \\"parola\\" : \\"parole\\"", "n => n === 1 ? \\"giorno di scrittura\\" : \\"giorni di scrittura\\"", "n => n === 1 ? \\"giorno, serie più lunga\\" : \\"giorni, serie più lunga\\""]}', words="n => `${n} parole`", today="Oggi", yesterday="Ieri", thisWeek="Questa settimana", entries='n => `${n} ${n === 1 ? "voce" : "voci"}`', mostly='m => `Soprattutto ${m}`', axis='["Alto", "Medio", "Basso"]', you="Tu", save='pct => `risparmi il ${pct}%`', us='"Prezzi USA"', pricesIn='cur => `Prezzi in ${cur}`'),
+    "pt": dict(vis='{"suggest": "Sugestões do seu dia", "scratch": "Anotações", "keepOut": "Deixar fora das reflexões", "note": "Aveia, limões, fita adesiva", "items": ["Ligar para o dentista", "Devolver os livros da biblioteca", "Enviar as fotos"], "stillOpen": "Em aberto", "yir": "Retrospectiva do ano", "tile": ["n => n === 1 ? \\"entrada\\" : \\"entradas\\"", "n => n === 1 ? \\"palavra\\" : \\"palavras\\"", "n => n === 1 ? \\"dia escrito\\" : \\"dias escritos\\"", "n => n === 1 ? \\"dia, maior sequência\\" : \\"dias, maior sequência\\""]}', words="n => `${n} palavras`", today="Hoje", yesterday="Ontem", thisWeek="Esta semana", entries='n => `${n} ${n === 1 ? "entrada" : "entradas"}`', mostly='m => `Mais ${m}`', axis='["Alto", "Médio", "Baixo"]', you="Você", save='pct => `economize ${pct}%`', us='"Preços nos EUA"', pricesIn='cur => `Preços em ${cur}`'),
+    "ja": dict(vis='{"suggest": "今日の提案", "scratch": "メモ", "keepOut": "リフレクションに使わない", "note": "オーツ麦、レモン、テープ", "items": ["歯医者に電話する", "図書館の本を返す", "写真を送る"], "stillOpen": "未完了", "yir": "1年の振り返り", "tile": ["n => \\"エントリー\\"", "n => \\"語\\"", "n => \\"日書いた\\"", "n => \\"日、最長連続\\""]}', words="n => `${n}\u8a9e`", today="今日", yesterday="昨日", thisWeek="今週", entries='n => `${n}件`', mostly='m => `主に${m}`', axis='["高", "中", "低"]', you="あなた", save='pct => `${pct}%お得`', us='"米国の価格"', pricesIn='cur => `${cur}での価格`'),
+    "ko": dict(vis='{"suggest": "오늘의 제안", "scratch": "메모", "keepOut": "리플렉션에서 제외", "note": "오트밀, 레몬, 테이프", "items": ["치과에 전화하기", "도서관 책 반납하기", "사진 보내기"], "stillOpen": "남은 항목", "yir": "올해 돌아보기", "tile": ["n => \\"항목\\"", "n => \\"단어\\"", "n => \\"일 작성\\"", "n => \\"일, 최장 연속\\""]}', words="n => `${n}\ub2e8\uc5b4`", today="오늘", yesterday="어제", thisWeek="이번 주", entries='n => `${n}개`', mostly='m => `주로 ${m}`', axis='["높음", "보통", "낮음"]', you="나", save='pct => `${pct}% 절약`', us='"미국 가격"', pricesIn='cur => `${cur} 기준 가격`'),
+    "ru": dict(vis='{"suggest": "Подсказки из вашего дня", "scratch": "Заметки", "keepOut": "Не использовать в размышлениях", "note": "Овсянка, лимоны, скотч", "items": ["Позвонить стоматологу", "Вернуть книги в библиотеку", "Отправить фотографии"], "stillOpen": "Ещё не сделано", "yir": "Итоги года", "tile": ["n => RU(n, \\"запись\\", \\"записи\\", \\"записей\\")", "n => RU(n, \\"слово\\", \\"слова\\", \\"слов\\")", "n => RU(n, \\"день с записью\\", \\"дня с записями\\", \\"дней с записями\\")", "n => RU(n, \\"день, самая длинная серия\\", \\"дня, самая длинная серия\\", \\"дней, самая длинная серия\\")"]}', words="n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? \"\u0441\u043b\u043e\u0432\u043e\" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? \"\u0441\u043b\u043e\u0432\u0430\" : \"\u0441\u043b\u043e\u0432\"}`", today="Сегодня", yesterday="Вчера", thisWeek="Эта неделя", entries='n => `${n} ${n % 10 === 1 && n % 100 !== 11 ? "запись" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? "записи" : "записей"}`', mostly='m => `В основном ${m}`', axis='["Высоко", "Средне", "Низко"]', you="Ты", save='pct => `экономия ${pct} %`', us='"Цены в США"', pricesIn='cur => `Цены в ${cur}`'),
+    "zh": dict(vis='{"suggest": "来自今天的建议", "scratch": "随手记", "keepOut": "不用于回顾", "note": "燕麦、柠檬、胶带", "items": ["给牙医打电话", "去图书馆还书", "把照片发过去"], "stillOpen": "未完成", "yir": "年度回顾", "tile": ["n => \\"条目\\"", "n => \\"字\\"", "n => \\"天有写作\\"", "n => \\"天，最长连续\\""]}', words="n => `${n} \u4e2a\u5b57`", today="今天", yesterday="昨天", thisWeek="本周", entries='n => `${n} 篇`', mostly='m => `多为${m}`', axis='["高", "中", "低"]', you="你", save='pct => `省 ${pct}%`', us='"美国价格"', pricesIn='cur => `以 ${cur} 计价`'),
 }
 # Brain View themes: [label, JS regex source, colour]. Counts come from matching the sample entries; zero-match themes drop out.
 THEMES = {
@@ -1313,6 +1401,7 @@ def build(code, base):
     moodNames: {json.dumps(d["moods"], ensure_ascii=False)},
     entries: {l["entries"]},
     words: {l["words"]}, today: {js_str(l["today"])}, yesterday: {js_str(l["yesterday"])}, thisWeek: {js_str(l["thisWeek"])},
+    {vis_js(l["vis"])}
     mostly: {l["mostly"]}, axis: {l["axis"]},
     youWrote: {js_str(g["youWrote"])}, open: {js_str(o)}, close: {js_str(c)}, joiner: {js_str(j)},
     alsoWrote: "", followUp: q => {js_str(fu).replace("{quote}", '" + ' + js_str(o) + ' + q + ' + js_str(c) + ' + "')},
