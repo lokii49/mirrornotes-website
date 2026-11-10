@@ -87,7 +87,7 @@
   <style>
     :root {
       --bg: #F7F3EE; --surface: #FFFDFB; --surface2: #FCF9F5; --surface3: #F4E4EE;
-      --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
+      --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --tag-free: #176B37; --tag-free-bg: #E3F1E7; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
       --text: #1D1419; --text-2: #61525C; --text-3: #71636B;
       --border: rgba(29,20,25,0.08); --border-2: rgba(29,20,25,0.14);
       --shadow-card: 0 1px 2px rgba(52,24,42,0.05), 0 10px 28px rgba(52,24,42,0.07);
@@ -100,7 +100,7 @@
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
         --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
-        --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
+        --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --tag-free: #8FD9A8; --tag-free-bg: rgba(30,158,76,0.16); --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
         --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
         --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -109,7 +109,7 @@
     }
     :root[data-theme="dark"] {
       --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
-      --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
+      --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --tag-free: #8FD9A8; --tag-free-bg: rgba(30,158,76,0.16); --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
       --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
       --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -300,7 +300,15 @@
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
     .cell { grid-column: span 6; display: flex; flex-direction: column; gap: 14px; }
     .cell.third { grid-column: span 4; }
-    .cell > h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cell > h3, .cell-h h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cell-h { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .tt { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: .02em; line-height: 1; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+    .tt.free { color: var(--tag-free); background: var(--tag-free-bg); }
+    .tt.core { color: var(--accent); background: var(--surface3); }
+    .tt.deep { color: #fff; background: var(--accent-btn); }
+    .tier-legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; font-size: 15px; color: var(--text-2); }
+    .tier-legend a { color: var(--accent); font-weight: 600; text-decoration: none; margin-left: 4px; }
+    .tier-legend a:hover { text-decoration: underline; }
     .cell > p { color: var(--text-2); font-size: 15px; max-width: 34em; }
     .cell .card { flex: 1; }
     @media (max-width: 900px) { .cell, .cell.third { grid-column: span 12; } }
@@ -356,6 +364,7 @@
     .checks li { list-style: none; display: flex; gap: 10px; padding: 6px 0; font-size: 15px; color: var(--text-2); }
     .checks li::before { content: '✓'; color: #1E9E4C; font-weight: 700; flex: 0 0 auto; }
     .tier .btn { align-self: flex-start; }
+    .tier-foot { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     .tier-note { font-size: 14px; color: var(--text-2); padding: 10px 14px; border-radius: 12px; background: var(--surface3); align-self: flex-start; }
     .store-pick select { font: inherit; font-weight: 600; color: var(--accent); background: transparent; border: 0; border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); padding: 0 2px 1px; max-width: 14em; cursor: pointer; }
     .store-pick select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
@@ -517,50 +526,51 @@
     <div class="intro">
       <h2>KI, die dich kennt. Und bei dir bleibt.</h2>
       <p class="lede">Wenige Werkzeuge, gebaut um das Eine, das Tagebuchschreiben wirksam macht: Ehrlichkeit. Alles hier unten entsteht auf deinem Telefon, aus deinen eigenen Einträgen. Die Beispiele stammen aus demselben Beispiel-Tagebuch wie oben.</p>
+      <p class="tier-legend"><span class="tt free">Kostenlos</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>zeigen, welchen Plan es jeweils braucht.</span><a href="#pricing">Pläne vergleichen</a></p>
     </div>
     <div class="grid">
       <div class="cell" data-reveal>
-        <h3>Wochenrückblick</h3>
+        <div class="cell-h"><h3>Wochenrückblick</h3><span class="tt core">Core</span></div>
         <p>Jeden Sonntag: eine Zusammenschau deiner Woche, nur aus Sätzen gebaut, die du geschrieben hast. Themen, Stimmung, Fäden, zu denen es sich zurückzukehren lohnt, eine Sache zum Ausprobieren.</p>
         <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/></svg>Wochenrückblick</span><time data-digest-time></time></div><div class="digest" data-digest><!-- static:digest --><div class="row reveal" style="--i:0"><small>Thema</small><p>Eine Woche mit guten Momenten.</p></div><div class="row reveal" style="--i:2"><small>Energie</small><p>Am schwersten wirkte es, als du schriebst: „Ich gehe die Präsentation von morgen immer wieder im Kopf durch.“</p></div><div class="row reveal" style="--i:4"><small>Was wächst</small><p>„Ich will sie noch vor Jahresende besuchen.“ Daran lässt sich anknüpfen.</p></div><div class="row reveal" style="--i:6"><small>Achte auf</small><p>„Ich habe zwei weiteren Aufgaben zugesagt, für die ich keine Zeit habe.“ Behalte das im Blick.</p></div><div class="row reveal" style="--i:8"><small>Stimmung</small><p>Mach mehr von dem, was dir diese Woche gutgetan hat.</p></div><div class="row reveal" style="--i:10"><small>Nächste Woche</small><p>Bleib bei dem, was funktioniert hat.</p></div><!-- /static:digest --></div></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>Frag dein Tagebuch</h3>
+        <div class="cell-h"><h3>Frag dein Tagebuch</h3><span class="tt core">Core</span></div>
         <p>Frag in einfachen Worten. Die Antwort kommt aus deinen eigenen Einträgen, die Sätze, auf die sie sich stützt, stehen darunter.</p>
         <article class="card has-input"><div class="ask"><div class="bubble q reveal" style="--i:1">Was hebt meine Stimmung immer wieder?</div><div class="bubble a reveal" style="--i:4">Bewegung und die Menschen, die dir nahe sind. Deine leichteren Tage folgen auf einen Lauf am Morgen oder Zeit mit der Familie, die schweren kommen nach langen Tagen voller Meetings.</div><ul class="quotes reveal" style="--i:8"></ul></div><div class="ask-input" aria-hidden="true"><span>Frag dein Tagebuch</span><span class="send">↑</span></div></article>
       </div>
       <div class="cell third" data-reveal>
-        <h3>Stimmungsverlauf</h3>
+        <div class="cell-h"><h3>Stimmungsverlauf</h3><span class="tt deep">Deep</span></div>
         <p>Die Stimmung dieser Woche auf einer Linie, abgelesen aus dem, was du geschrieben hast. Die App bewahrt den ganzen Verlauf, zurück bis zu deinem ersten Eintrag.</p>
         <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3-1 4-6 7-6s4 3 6 3 3-5 5-7"/></svg>Stimmung dieser Woche</span><span class="mostly" data-mostly></span></div><div class="chart-wrap"><div data-chart></div><div class="tip" data-chart-tip hidden></div></div></article>
       </div>
       <div class="cell third" data-reveal>
-        <h3>Schreib frei</h3>
-        <p>Tippen, diktieren oder ein Foto einfügen. Tags und eine Stimmung, aus dem Text vorgeschlagen. Unbegrenzt viele Einträge, keine 30-Tage-Grenze, für immer kostenlos.</p>
+        <div class="cell-h"><h3>Schreib frei</h3><span class="tt free">Kostenlos</span></div>
+        <p>Tippen, diktieren oder ein Foto einfügen. Tags und eine Stimmung dazu; mit Core wird die Stimmung aus deinen Worten vorgeschlagen. Unbegrenzt viele Einträge, keine 30-Tage-Grenze, für immer kostenlos.</p>
         <article class="card composer"><div class="when" data-today-upper></div><p>Ein ruhiger Abend zu Hause. Ich habe die Pflanzen auf dem Balkon umgetopft und gelesen, bis es dunkel wurde. Das Handy blieb im anderen Zimmer.<span class="caret" aria-hidden="true"></span></p><div class="chips"><span class="chip on pop" style="--c:#81D4FA;--on:rgba(0,0,0,.78)"><span class="dot" style="--c:#81D4FA"></span>Friedlich</span><span class="chip">#zuhause</span><span class="chip">#abend</span></div><div class="toolbar"><span>25 Wörter</span><span>Stimmung aus deinem Eintrag vorgeschlagen</span></div></article>
       </div>
       <div class="cell third brain">
-        <h3>Brain View</h3>
+        <div class="cell-h"><h3>Brain View</h3><span class="tt deep">Deep</span></div>
         <p>Eine Konstellation der Themen, zu denen du immer wieder zurückkehrst, so groß, wie oft sie vorkommen. Themen aus demselben Eintrag sind verbunden. In der App dreht sie sich in 3D.</p>
         <article class="card"><div class="brain-bar"><span>Brain View</span><span class="seg3d" role="group" aria-label="Brain View projection"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View: Themen aus dem Beispiel-Tagebuch, so groß, wie oft sie vorkommen, verbunden, wenn sie einen Eintrag teilen" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>Vorschläge aus deinem Tag</h3>
+        <div class="cell-h"><h3>Vorschläge aus deinem Tag</h3><span class="tt free">Kostenlos</span></div>
         <p>Beginne einen Eintrag mit deinem Tag. Ein Lauf, ein Song oder ein Ort kommt als kurze Zeilen mit Fotos und Karte, den Rest schreibst du. Auf dem iPhone, aus Apples Journaling-Vorschlägen.</p>
         <article class="card nc" data-suggest></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>Jahresrückblick</h3>
+        <div class="cell-h"><h3>Jahresrückblick</h3><span class="tt deep">Deep</span></div>
         <p>Dein Jahr in Zahlen, von der App aus deinen eigenen Einträgen und Stimmungen gezählt. Das Beispiel zählt das Beispieltagebuch oben. Mit Deep.</p>
         <article class="card nc" data-yir></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>Notizen</h3>
+        <div class="cell-h"><h3>Notizen</h3><span class="tt free">Kostenlos</span></div>
         <p>Ein Ort für schnelle Listen und Zahlen, mit Checklisten und einer Erinnerung zur gewünschten Zeit. Reflexionen, Fragen und Stimmungsdiagramme lesen sie nie.</p>
         <article class="card nc" data-scratch></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>Noch offen</h3>
+        <div class="cell-h"><h3>Noch offen</h3><span class="tt free">Kostenlos</span></div>
         <p>Alle nicht abgehakten Checklisten-Punkte aus deinen Einträgen in einer Liste. Hak sie dort ab oder öffne den Eintrag, aus dem sie stammen.</p>
         <article class="card nc" data-stillopen></article>
       </div>
@@ -610,11 +620,11 @@
   <div class="wrap">
     <div class="intro">
       <h2>Schreiben bleibt kostenlos, für immer. Du zahlst nur für die KI.</h2>
-      <p class="lede">Bis zum 15. November 2026 ist alles kostenlos. Danach gibt es die KI-Funktionen in zwei Plänen, mit 7 Tagen kostenlos zum Ausprobieren für neue Abonnenten. Deine Einträge, dein Verlauf, die Suche und das iCloud-Backup kosten nie etwas.</p>
+      <p class="lede">Schreiben ist kostenlos, für immer. Ab dem 15. November 2026 gibt es die KI in zwei Plänen, mit 7 Tagen kostenlos zum Ausprobieren für neue Abonnenten. Deine Einträge, dein Verlauf, die Suche und das iCloud-Backup kosten nie etwas.</p>
     </div>
     <div class="tiers">
       <article class="card tier">
-        <div class="tier-head"><h3>Kostenlos</h3><p class="amount">$0</p></div>
+        <div class="tier-head"><h3>Kostenlos</h3><p class="amount"><span data-price="free">$0</span></p></div>
         <p class="tier-sub">Dein Tagebuch, immer deins</p>
         <ul class="checks"><li>Unbegrenzt viele Einträge, für immer</li><li>Jeder frühere Eintrag, immer lesbar</li><li>Volltextsuche, auf deinem Telefon</li><li>iCloud-Backup und Synchronisation</li><li>Deine erste Reflexion</li><li>Alles, was die KI schon für dich gemacht hat, bleibt lesbar</li></ul>
         <a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Kostenlos laden</a>
@@ -622,14 +632,14 @@
       <article class="card tier accent">
         <div class="tier-head"><h3>Core</h3><p class="amount"><span data-price="core_mo">$7.99</span><small>/Monat</small></p></div>
         <p class="tier-sub">oder <span data-price="core_yr">$49.99</span> im Jahr, <span data-save="core">48 % gespart</span></p>
-        <ul class="checks"><li>Alles aus Kostenlos</li><li>Tagesreflexion, an jedem Tag, an dem du schreibst</li><li>Frag dein Tagebuch, 15-mal im Monat</li><li>Wochenrückblick jeden Sonntag</li><li>Widgets für den Home-Bildschirm</li></ul>
-        <p class="tier-note">In der App ab 15. November 2026</p>
+        <ul class="checks"><li>Alles aus Kostenlos</li><li>Tagesreflexion, an jedem Tag, an dem du schreibst</li><li>Frag dein Tagebuch, 15-mal im Monat</li><li>Wochenrückblick jeden Sonntag</li><li>Stimmung bei jedem Speichern vorgeschlagen</li><li>Durchsprechen: Fragen, die dich tiefer gehen lassen</li><li>Widgets für den Home-Bildschirm</li></ul>
+        <div class="tier-foot"><a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Kostenlos ausprobieren</a><p class="tier-note">In der App ab 15. November 2026</p></div>
       </article>
       <article class="card tier">
         <div class="tier-head"><h3>Deep</h3><p class="amount"><span data-price="deep_mo">$11.99</span><small>/Monat</small></p></div>
         <p class="tier-sub">oder <span data-price="deep_yr">$69.99</span> im Jahr, <span data-save="deep">51 % gespart</span></p>
-        <ul class="checks"><li>Alles aus Core</li><li>Fragen, unbegrenzt</li><li>Monatsbericht</li><li>Stimmungsverlauf und alle Auswertungen</li><li>Stimmungshinweise</li></ul>
-        <p class="tier-note">In der App ab 15. November 2026</p>
+        <ul class="checks"><li>Alles aus Core</li><li>Fragen, unbegrenzt</li><li>Monatsbericht</li><li>Stimmungsverlauf und Muster</li><li>Jahresrückblick</li><li>Brain View</li><li>Stimmungshinweise</li></ul>
+        <div class="tier-foot"><a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Kostenlos ausprobieren</a><p class="tier-note">In der App ab 15. November 2026</p></div>
       </article>
     </div>
     <p class="fine"><span data-price-note>US-Preise</span>, <label class="store-pick">für <select data-storefront aria-label="Land für die Preise"><option value="US">United States</option></select>.</label> Der App Store berechnet den Preis des Landes deiner Apple-ID. Eine 7-tägige Testphase pro Apple-ID, beim ersten Plan. Pläne verwaltest du in den Einstellungen deiner Apple-ID, bei uns gibt es nichts zu kündigen.</p>
@@ -925,6 +935,7 @@
     function apply(code) {
       const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US";
       const [name, cur, cm, cy, dm, dy] = s;
+      const fp = $("[data-price='free']"); if (fp) fp.textContent = money(0, cur);
       $("[data-price='core_mo']").textContent = money(cm, cur); $("[data-price='core_yr']").textContent = money(cy, cur);
       $("[data-price='deep_mo']").textContent = money(dm, cur); $("[data-price='deep_yr']").textContent = money(dy, cur);
       $("[data-save='core']").textContent = L10N.save(Math.round((1 - cy / (cm * 12)) * 100)); $("[data-save='deep']").textContent = L10N.save(Math.round((1 - dy / (dm * 12)) * 100));

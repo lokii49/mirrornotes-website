@@ -87,7 +87,7 @@
   <style>
     :root {
       --bg: #F7F3EE; --surface: #FFFDFB; --surface2: #FCF9F5; --surface3: #F4E4EE;
-      --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
+      --accent: #8E3A6E; --accent-lt: #9B4C85; --accent-btn: #8E3A6E; --tag-free: #176B37; --tag-free-bg: #E3F1E7; --accent-btn-hover: #9A4478; --accent-tint: rgba(142,58,110,0.10);
       --text: #1D1419; --text-2: #61525C; --text-3: #71636B;
       --border: rgba(29,20,25,0.08); --border-2: rgba(29,20,25,0.14);
       --shadow-card: 0 1px 2px rgba(52,24,42,0.05), 0 10px 28px rgba(52,24,42,0.07);
@@ -100,7 +100,7 @@
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
         --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
-        --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
+        --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --tag-free: #8FD9A8; --tag-free-bg: rgba(30,158,76,0.16); --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
         --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
         --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
         --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -109,7 +109,7 @@
     }
     :root[data-theme="dark"] {
       --bg: #141012; --surface: #1C171A; --surface2: #241C22; --surface3: #31252F;
-      --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
+      --accent: #C98BC6; --accent-lt: #D8A3D4; --accent-btn: #8A3769; --tag-free: #8FD9A8; --tag-free-bg: rgba(30,158,76,0.16); --accent-btn-hover: #9A4478; --accent-tint: rgba(201,139,198,0.16);
       --text: #F0E8EC; --text-2: #AB9CA8; --text-3: #9C8D99;
       --border: rgba(240,232,236,0.08); --border-2: rgba(240,232,236,0.16);
       --shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 10px 28px rgba(0,0,0,0.35);
@@ -300,7 +300,15 @@
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
     .cell { grid-column: span 6; display: flex; flex-direction: column; gap: 14px; }
     .cell.third { grid-column: span 4; }
-    .cell > h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cell > h3, .cell-h h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+    .cell-h { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .tt { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; letter-spacing: .02em; line-height: 1; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+    .tt.free { color: var(--tag-free); background: var(--tag-free-bg); }
+    .tt.core { color: var(--accent); background: var(--surface3); }
+    .tt.deep { color: #fff; background: var(--accent-btn); }
+    .tier-legend { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; font-size: 15px; color: var(--text-2); }
+    .tier-legend a { color: var(--accent); font-weight: 600; text-decoration: none; margin-left: 4px; }
+    .tier-legend a:hover { text-decoration: underline; }
     .cell > p { color: var(--text-2); font-size: 15px; max-width: 34em; }
     .cell .card { flex: 1; }
     @media (max-width: 900px) { .cell, .cell.third { grid-column: span 12; } }
@@ -356,6 +364,7 @@
     .checks li { list-style: none; display: flex; gap: 10px; padding: 6px 0; font-size: 15px; color: var(--text-2); }
     .checks li::before { content: '✓'; color: #1E9E4C; font-weight: 700; flex: 0 0 auto; }
     .tier .btn { align-self: flex-start; }
+    .tier-foot { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     .tier-note { font-size: 14px; color: var(--text-2); padding: 10px 14px; border-radius: 12px; background: var(--surface3); align-self: flex-start; }
     .store-pick select { font: inherit; font-weight: 600; color: var(--accent); background: transparent; border: 0; border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); padding: 0 2px 1px; max-width: 14em; cursor: pointer; }
     .store-pick select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
@@ -517,50 +526,51 @@
     <div class="intro">
       <h2>了解你的 AI，留在你身边的 AI。</h2>
       <p class="lede">一组精简的工具，围绕让写日记真正有用的那一件事：坦诚。下面的一切都在你的手机上、从你自己的日记里生成。示例来自上面同一本示例日记。</p>
+      <p class="tier-legend"><span class="tt free">免费</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>标出每项功能所需的方案。</span><a href="#pricing">比较方案</a></p>
     </div>
     <div class="grid">
       <div class="cell" data-reveal>
-        <h3>每周摘要</h3>
+        <div class="cell-h"><h3>每周摘要</h3><span class="tt core">Core</span></div>
         <p>每个周日：只用你写过的句子拼出的一周综述。主题、心情、值得回头的线索，以及一件可以试试的事。</p>
         <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/></svg>每周摘要</span><time data-digest-time></time></div><div class="digest" data-digest><!-- static:digest --><div class="row reveal" style="--i:0"><small>主题</small><p>有美好时刻的一周。</p></div><div class="row reveal" style="--i:2"><small>能量</small><p>最辛苦的时候，似乎是你写下这句话时：“我在脑子里一遍遍过明天的演讲。”</p></div><div class="row reveal" style="--i:4"><small>正在累积</small><p>“我想在年底前去看她。”这是个好苗头，可以继续下去。</p></div><div class="row reveal" style="--i:6"><small>需要留意</small><p>“我又答应了两件根本没时间做的事。”这一点值得留意。</p></div><div class="row reveal" style="--i:8"><small>心情</small><p>多做一些这周让你感觉好的事。</p></div><div class="row reveal" style="--i:10"><small>下周</small><p>重复那些有效的做法。</p></div><!-- /static:digest --></div></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>问问你的日记</h3>
+        <div class="cell-h"><h3>问问你的日记</h3><span class="tt core">Core</span></div>
         <p>用平常的话提问。答案来自你自己的日记，所依据的句子就列在下面。</p>
         <article class="card has-input"><div class="ask"><div class="bubble q reveal" style="--i:1">什么总能让我心情变好？</div><div class="bubble a reveal" style="--i:4">运动和身边的人。你轻松的日子往往跟在晨跑或陪家人之后，沉重的日子则出现在开了一整天会之后。</div><ul class="quotes reveal" style="--i:8"></ul></div><div class="ask-input" aria-hidden="true"><span>问问你的日记</span><span class="send">↑</span></div></article>
       </div>
       <div class="cell third" data-reveal>
-        <h3>心情曲线</h3>
+        <div class="cell-h"><h3>心情曲线</h3><span class="tt deep">Deep</span></div>
         <p>这一周的心情画成一条线，从你写的文字中读出。应用会保留完整曲线，直到你的第一篇日记。</p>
         <article class="card"><div class="card-head"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17c3-1 4-6 7-6s4 3 6 3 3-5 5-7"/></svg>本周心情</span><span class="mostly" data-mostly></span></div><div class="chart-wrap"><div data-chart></div><div class="tip" data-chart-tip hidden></div></div></article>
       </div>
       <div class="cell third" data-reveal>
-        <h3>自由书写</h3>
-        <p>打字、口述，或粘贴一张照片。标签和心情由文字自动建议。日记不限量，没有 30 天限制，永久免费。</p>
+        <div class="cell-h"><h3>自由书写</h3><span class="tt free">免费</span></div>
+        <p>打字、口述，或粘贴一张照片。可以加标签和心情；使用 Core 时，心情会根据你的文字自动建议。日记不限量，没有 30 天限制，永久免费。</p>
         <article class="card composer"><div class="when" data-today-upper></div><p>在家度过了一个安静的晚上。我给阳台的植物换了盆，一直看书到天黑。手机一直放在另一个房间。<span class="caret" aria-hidden="true"></span></p><div class="chips"><span class="chip on pop" style="--c:#81D4FA;--on:rgba(0,0,0,.78)"><span class="dot" style="--c:#81D4FA"></span>平静</span><span class="chip">#家</span><span class="chip">#晚上</span></div><div class="toolbar"><span>44 字</span><span>心情由日记自动建议</span></div></article>
       </div>
       <div class="cell third brain">
-        <h3>Brain View</h3>
+        <div class="cell-h"><h3>Brain View</h3><span class="tt deep">Deep</span></div>
         <p>你反复回到的那些主题组成的星图，大小代表出现的次数。出现在同一篇日记里的主题会连在一起。在应用里它以 3D 旋转。</p>
         <article class="card"><div class="brain-bar"><span>Brain View</span><span class="seg3d" role="group" aria-label="Brain View projection"><button type="button" data-brain-mode="3d" aria-pressed="true">3D</button><button type="button" data-brain-mode="2d" aria-pressed="false">2D</button></span></div><canvas data-brain aria-label="Brain View：示例日记中的主题，大小代表出现次数，出现在同一篇日记里的主题相连" role="img"></canvas><noscript><img src="/img/mac-brain.jpg" alt="Brain View: a constellation of recurring themes" width="1400" height="875"></noscript><div class="tip" data-brain-tip hidden></div></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>来自今天的建议</h3>
+        <div class="cell-h"><h3>来自今天的建议</h3><span class="tt free">免费</span></div>
         <p>用你的一天开始一篇条目。一次跑步、一首歌或一个地点，会带着照片和地图以简短几行出现，剩下的由你来写。在 iPhone 上，来自 Apple 的日记建议。</p>
         <article class="card nc" data-suggest></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>年度回顾</h3>
+        <div class="cell-h"><h3>年度回顾</h3><span class="tt deep">Deep</span></div>
         <p>由 App 根据你自己的条目和心情算出的这一年。示例统计的是上面的示例日记。Deep 方案提供。</p>
         <article class="card nc" data-yir></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>随手记</h3>
+        <div class="cell-h"><h3>随手记</h3><span class="tt free">免费</span></div>
         <p>放快速清单和数字的地方，可以加待办事项和你选定时间的提醒。回顾、提问和心情图表都不会读取它。</p>
         <article class="card nc" data-scratch></article>
       </div>
       <div class="cell" data-reveal>
-        <h3>未完成</h3>
+        <div class="cell-h"><h3>未完成</h3><span class="tt free">免费</span></div>
         <p>所有条目里还没勾选的事项汇成一个列表。在那里勾选，或打开它所在的条目。</p>
         <article class="card nc" data-stillopen></article>
       </div>
@@ -610,11 +620,11 @@
   <div class="wrap">
     <div class="intro">
       <h2>书写永远免费。只为 AI 付费。</h2>
-      <p class="lede">2026年11月15日之前一切免费。此后，AI 功能分为两种方案，新订阅者可享 7 天免费试用。你的日记、历史记录、搜索和 iCloud 备份永远不收费。</p>
+      <p class="lede">写日记永远免费。自2026年11月15日起，AI 分为两种方案，新订阅者可享 7 天免费试用。你的日记、历史记录、搜索和 iCloud 备份永远不收费。</p>
     </div>
     <div class="tiers">
       <article class="card tier">
-        <div class="tier-head"><h3>免费</h3><p class="amount">$0</p></div>
+        <div class="tier-head"><h3>免费</h3><p class="amount"><span data-price="free">$0</span></p></div>
         <p class="tier-sub">你的日记，永远属于你</p>
         <ul class="checks"><li>日记不限量，永远</li><li>每一篇旧日记随时可读</li><li>全文搜索，在你的手机上</li><li>iCloud 备份与同步</li><li>你的第一次回看</li><li>AI 已为你生成的内容仍可阅读</li></ul>
         <a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">免费下载</a>
@@ -622,14 +632,14 @@
       <article class="card tier accent">
         <div class="tier-head"><h3>Core</h3><p class="amount"><span data-price="core_mo">$7.99</span><small>/月</small></p></div>
         <p class="tier-sub">或每年 <span data-price="core_yr">$49.99</span>，<span data-save="core">省 48%</span></p>
-        <ul class="checks"><li>免费版的全部内容</li><li>每个写作日的今日回看</li><li>问问你的日记，每月 15 次</li><li>每周日的每周摘要</li><li>主屏幕小组件</li></ul>
-        <p class="tier-note">2026年11月15日起在应用内提供</p>
+        <ul class="checks"><li>免费版的全部内容</li><li>每个写作日的今日回看</li><li>问问你的日记，每月 15 次</li><li>每周日的每周摘要</li><li>每次保存时建议心情</li><li>聊一聊：帮你想得更深的问题</li><li>主屏幕小组件</li></ul>
+        <div class="tier-foot"><a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">免费试用</a><p class="tier-note">2026年11月15日起在应用内提供</p></div>
       </article>
       <article class="card tier">
         <div class="tier-head"><h3>Deep</h3><p class="amount"><span data-price="deep_mo">$11.99</span><small>/月</small></p></div>
         <p class="tier-sub">或每年 <span data-price="deep_yr">$69.99</span>，<span data-save="deep">省 51%</span></p>
-        <ul class="checks"><li>Core 的全部内容</li><li>提问不限次数</li><li>每月深度报告</li><li>心情曲线与完整分析</li><li>心情提醒</li></ul>
-        <p class="tier-note">2026年11月15日起在应用内提供</p>
+        <ul class="checks"><li>Core 的全部内容</li><li>提问不限次数</li><li>每月深度报告</li><li>心情曲线与规律</li><li>年度回顾</li><li>Brain View</li><li>心情提醒</li></ul>
+        <div class="tier-foot"><a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">免费试用</a><p class="tier-note">2026年11月15日起在应用内提供</p></div>
       </article>
     </div>
     <p class="fine"><span data-price-note>美国价格</span>，<label class="store-pick">国家/地区：<select data-storefront aria-label="查看价格的国家/地区"><option value="US">United States</option></select>。</label>App Store 按你 Apple ID 所在国家/地区的价格收费。每个 Apple ID 可享一次 7 天试用，用于你的第一个方案。方案在 Apple ID 设置中管理，无需向我们取消任何东西。</p>
@@ -925,6 +935,7 @@
     function apply(code) {
       const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US";
       const [name, cur, cm, cy, dm, dy] = s;
+      const fp = $("[data-price='free']"); if (fp) fp.textContent = money(0, cur);
       $("[data-price='core_mo']").textContent = money(cm, cur); $("[data-price='core_yr']").textContent = money(cy, cur);
       $("[data-price='deep_mo']").textContent = money(dm, cur); $("[data-price='deep_yr']").textContent = money(dy, cur);
       $("[data-save='core']").textContent = L10N.save(Math.round((1 - cy / (cm * 12)) * 100)); $("[data-save='deep']").textContent = L10N.save(Math.round((1 - dy / (dm * 12)) * 100));
