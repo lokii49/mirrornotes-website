@@ -353,21 +353,38 @@
     .prompt-nav .btn { margin-left: auto; }
 
     /* ───── pricing ───── */
+    .price-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; margin-bottom: 30px; }
+    .seg { display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--surface3); }
+    .seg button { font: inherit; font-size: 15px; font-weight: 600; color: var(--text-2); background: transparent; border: 0; border-radius: 999px; padding: 9px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background .15s, color .15s, box-shadow .15s; }
+    .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(29,20,25,.08), 0 6px 16px -8px rgba(29,20,25,.25); }
+    .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .seg .save { font-size: 12px; font-weight: 700; color: var(--tag-free); background: var(--tag-free-bg); padding: 3px 8px; border-radius: 999px; }
+    .price-bar .store-pick { font-size: 15px; color: var(--text-2); }
     .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-    .tier { display: flex; flex-direction: column; }
-    .tier-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .tier-head h3 { font-size: 20px; font-weight: 600; }
-    .tier .amount { font-family: var(--serif); font-size: 34px; letter-spacing: -0.02em; line-height: 1; }
-    .tier .amount small { font-family: var(--sans); font-size: 13px; color: var(--text-3); letter-spacing: 0; margin-left: 2px; }
-    .tier-sub { color: var(--text-3); font-size: 14px; margin-top: 6px; }
-    .checks { margin: 16px 0 18px; padding: 0; flex: 1; }
-    .checks li { list-style: none; display: flex; gap: 10px; padding: 6px 0; font-size: 15px; color: var(--text-2); }
-    .checks li::before { content: '✓'; color: #1E9E4C; font-weight: 700; flex: 0 0 auto; }
-    .tier .btn { align-self: flex-start; }
-    .tier-foot { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
-    .tier-note { font-size: 14px; color: var(--text-2); padding: 10px 14px; border-radius: 12px; background: var(--surface3); align-self: flex-start; }
+    .tier { display: flex; flex-direction: column; padding: 30px 28px 28px; position: relative; }
+    .tier h3 { font-size: 22px; font-weight: 650; letter-spacing: -0.01em; }
+    .tier-pitch { color: var(--text-2); font-size: 15px; line-height: 1.45; margin-top: 6px; min-height: 2.9em; }
+    .tier-price { display: flex; align-items: baseline; gap: 6px; margin-top: 20px; }
+    .tier-price .amt { font-family: var(--serif); font-size: 50px; letter-spacing: -0.025em; line-height: 1; }
+    .tier-price .per { color: var(--text-3); font-size: 15px; }
+    .tier-alt { color: var(--text-3); font-size: 14px; margin-top: 10px; min-height: 1.45em; }
+    .tier .btn { width: 100%; margin-top: 22px; }
+    .tier-list-h { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--border); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); }
+    .checks { margin: 12px 0 0; padding: 0; }
+    .checks li { list-style: none; display: flex; gap: 11px; padding: 6px 0; font-size: 15px; color: var(--text); line-height: 1.45; }
+    .checks li::before { content: ''; flex: 0 0 18px; height: 18px; margin-top: 2px; border-radius: 50%; background: var(--tag-free-bg) center/11px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.3l2.4 2.3 5.2-5.2' fill='none' stroke='%23176B37' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+    .tier.paid .checks li::before { background-color: var(--surface3); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 1.2l1.2 3.4 3.6 1.4-3.6 1.4L6 10.8 4.8 7.4 1.2 6l3.6-1.4z' fill='%238E3A6E'/%3E%3C/svg%3E"); }
+    .tier.accent { border: 1.5px solid var(--accent); box-shadow: 0 0 0 6px var(--accent-tint), 0 24px 48px -28px rgba(78,27,60,.45); background: linear-gradient(180deg, color-mix(in srgb, var(--surface3) 70%, var(--surface)) 0, var(--surface) 220px); }
+    .tier-chip { position: absolute; top: -13px; left: 26px; font-size: 12.5px; font-weight: 700; letter-spacing: .01em; color: #fff; background: var(--accent-btn); padding: 6px 12px; border-radius: 999px; box-shadow: 0 6px 14px -6px rgba(78,27,60,.6); }
+    .tier:not(.accent) .tier-chip { color: var(--accent); background: var(--surface3); box-shadow: none; }
+    .assure { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin: 30px 0 0; padding: 0; }
+    .assure li { list-style: none; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; color: var(--text-2); }
+    .assure svg { width: 17px; height: 17px; color: var(--accent); flex: none; }
+    .fine { margin-top: 14px; text-align: center; font-size: 13.5px; color: var(--text-3); max-width: none; }
+    @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; gap: 28px; } .tier-pitch { min-height: 0; } .price-bar { justify-content: center; } }
     .store-pick select { font: inherit; font-weight: 600; color: var(--accent); background: transparent; border: 0; border-bottom: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); padding: 0 2px 1px; max-width: 14em; cursor: pointer; }
     .store-pick select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tier.paid .checks li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 1.2l1.2 3.4 3.6 1.4-3.6 1.4L6 10.8 4.8 7.4 1.2 6l3.6-1.4z' fill='%23C98BC6'/%3E%3C/svg%3E"); } :root:not([data-theme="light"]) .checks li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.3l2.4 2.3 5.2-5.2' fill='none' stroke='%238FD9A8' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); } }
     .why { margin-top: 44px; max-width: 760px; }
     .why h3 { font-size: 19px; font-weight: 600; margin-bottom: 10px; } .why p { color: var(--text-2); font-size: 15px; margin-bottom: 14px; line-height: 1.6; }
     .why li { list-style: none; font-size: 15px; color: var(--text-2); padding: 10px 0; border-top: 1px solid var(--border); } .why li b { color: var(--text); }
@@ -622,27 +639,47 @@
       <h2>Escribir es gratis, para siempre. Pagas solo por la IA.</h2>
       <p class="lede">Escribir es gratis, para siempre. A partir del 15 de noviembre de 2026, la IA viene en dos planes, con una prueba gratuita de 7 días para nuevos suscriptores. Tus entradas, tu historial, la búsqueda y la copia en iCloud nunca cuestan nada.</p>
     </div>
+    <div class="price-bar">
+      <div class="seg" role="group" aria-label="Periodo de facturación"><button type="button" data-period="mo" aria-pressed="false">Mensual</button><button type="button" data-period="yr" aria-pressed="true">Anual <span class="save" data-save-max>ahorra hasta un 51 %</span></button></div>
+      <label class="store-pick"><span data-price-note>Precios en EE. UU.</span> para <select data-storefront aria-label="País para los precios"><option value="US">United States</option></select></label>
+    </div>
     <div class="tiers">
       <article class="card tier">
-        <div class="tier-head"><h3>Gratis</h3><p class="amount"><span data-price="free">$0</span></p></div>
-        <p class="tier-sub">Tu diario, siempre tuyo</p>
-        <ul class="checks"><li>Entradas ilimitadas, para siempre</li><li>Cada entrada pasada, siempre legible</li><li>Búsqueda de texto completo, en tu teléfono</li><li>Copia y sincronización en iCloud</li><li>Tu primera reflexión</li><li>Todo lo que la IA ya hizo para ti sigue legible</li></ul>
+        <h3>Gratis</h3>
+        <p class="tier-pitch">Tu diario, siempre tuyo</p>
+        <div class="tier-price"><span class="amt" data-price="free">$0</span><span class="per">para siempre</span></div>
+        <p class="tier-alt">Sin cuenta, sin tarjeta</p>
         <a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Descargar gratis</a>
+        <p class="tier-list-h">Siempre incluido</p>
+        <ul class="checks"><li>Entradas ilimitadas, para siempre</li><li>Cada entrada pasada, siempre legible</li><li>Búsqueda de texto completo, en tu teléfono</li><li>Copia y sincronización en iCloud</li><li>Tu primera reflexión</li><li>Todo lo que la IA ya hizo para ti sigue legible</li></ul>
       </article>
-      <article class="card tier accent">
-        <div class="tier-head"><h3>Core</h3><p class="amount"><span data-price="core_mo">$7.99</span><small>/mes</small></p></div>
-        <p class="tier-sub">o <span data-price="core_yr">$49.99</span> al año, <span data-save="core">ahorras un 48 %</span></p>
-        <ul class="checks"><li>Todo lo de Gratis</li><li>Reflexión diaria, cada día que escribes</li><li>Pregúntale a tu diario, 15 al mes</li><li>Resumen semanal cada domingo</li><li>Ánimo sugerido cada vez que guardas</li><li>Hablarlo: preguntas que te ayudan a ir más a fondo</li><li>Widgets para la pantalla de inicio</li></ul>
-        <div class="tier-foot"><a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Pruébalo gratis</a><p class="tier-note">En la app a partir del 15 de noviembre de 2026</p></div>
+      <article class="card tier paid accent">
+        <span class="tier-chip">Prueba gratis de 7 días</span>
+        <h3>Core</h3>
+        <p class="tier-pitch">Inteligencia privada para tu diario, creada en torno a lo que escribes.</p>
+        <div class="tier-price"><span class="amt" data-amt="core">$49.99</span><span class="per" data-per="core">/año</span></div>
+        <p class="tier-alt" data-alt="core">$4.17 al mes, facturado anualmente</p>
+        <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Pruébalo gratis</a>
+        <p class="tier-list-h">Todo lo de Gratis, y además</p>
+        <ul class="checks"><li>Reflexión diaria, cada día que escribes</li><li>Pregúntale a tu diario, 15 al mes</li><li>Resumen semanal cada domingo</li><li>Ánimo sugerido cada vez que guardas</li><li>Hablarlo: preguntas que te ayudan a ir más a fondo</li><li>Widgets para la pantalla de inicio</li></ul>
       </article>
-      <article class="card tier">
-        <div class="tier-head"><h3>Deep</h3><p class="amount"><span data-price="deep_mo">$11.99</span><small>/mes</small></p></div>
-        <p class="tier-sub">o <span data-price="deep_yr">$69.99</span> al año, <span data-save="deep">ahorras un 51 %</span></p>
-        <ul class="checks"><li>Todo lo de Core</li><li>Preguntas ilimitadas</li><li>Informe mensual a fondo</li><li>Línea de ánimo y patrones</li><li>Resumen del año</li><li>Brain View</li><li>Alertas de ánimo</li></ul>
-        <div class="tier-foot"><a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Pruébalo gratis</a><p class="tier-note">En la app a partir del 15 de noviembre de 2026</p></div>
+      <article class="card tier paid">
+        <span class="tier-chip">Prueba gratis de 7 días</span>
+        <h3>Deep</h3>
+        <p class="tier-pitch">El panorama completo: ánimo, patrones y una reflexión mensual profunda.</p>
+        <div class="tier-price"><span class="amt" data-amt="deep">$69.99</span><span class="per" data-per="deep">/año</span></div>
+        <p class="tier-alt" data-alt="deep">$5.83 al mes, facturado anualmente</p>
+        <a class="btn btn-ghost" href="https://apps.apple.com/app/id6769007201">Pruébalo gratis</a>
+        <p class="tier-list-h">Todo lo de Core, y además</p>
+        <ul class="checks"><li>Preguntas ilimitadas</li><li>Informe mensual a fondo</li><li>Línea de ánimo y patrones</li><li>Resumen del año</li><li>Brain View</li><li>Alertas de ánimo</li></ul>
       </article>
     </div>
-    <p class="fine"><span data-price-note>Precios en EE. UU.</span>, <label class="store-pick">para <select data-storefront aria-label="País para los precios"><option value="US">United States</option></select>.</label> El App Store cobra el precio del país de tu Apple ID. Una prueba de 7 días por Apple ID, en tu primer plan. Los planes se gestionan en los ajustes de tu Apple ID, así que no hay nada que cancelar con nosotros.</p>
+    <ul class="assure">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>Una prueba gratis de 7 días por Apple ID, para nuevos suscriptores</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>Cancela cuando quieras en los ajustes de tu Apple ID</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></svg>La IA funciona en tu dispositivo, en todos los planes</li>
+    </ul>
+    <p class="fine">El App Store cobra el precio del país de tu Apple ID.</p>
     <div class="why">
       <h3>¿Por qué pagar por la IA y nunca por tus palabras?</h3>
       <p>Tus datos siempre son tuyos. Pagas por la capa de IA. La mayoría de las apps de diario pagan a un proveedor en la nube por cada entrada que escribes, así que tienen que cobrarte o, peor, monetizarte. MirrorNotes ejecuta su IA en el chip que ya llevas en el bolsillo; por eso pudo ser gratis tanto tiempo y por eso los planes se mantienen pequeños.</p>
@@ -723,6 +760,7 @@
     youWrote: "Escribiste: ", open: "“", close: "”", joiner: " ",
     alsoWrote: "", followUp: q => "¿Qué hay detrás de " + "“" + q + "”" + "?",
     you: "Tú", save: pct => `ahorras un ${pct} %`, usPrices: "Precios en EE. UU.", pricesIn: cur => `Precios en ${cur}`,
+    perMonth: "/mes", perYear: "/año", billedYearly: m => `${m} al mes, facturado anualmente`, orYearly: (y, p) => `o ${y} al año, ahorras un ${p} %`, saveUpTo: p => `ahorra hasta un ${p} %`,
     brainLabelMin: 4
   };
   const RU = (n, one, few, many) => n % 10 === 1 && n % 100 !== 11 ? one : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? few : many;
@@ -932,16 +970,24 @@
     const dn = (() => { try { return new Intl.DisplayNames([L10N.dateLang], { type: "region" }); } catch { return null; } })(); const cname = c => { try { return dn?.of(c) || STOREFRONTS[c][0]; } catch { return STOREFRONTS[c][0]; } };
     sel.innerHTML = codes.map(c => `<option value="${c}">${cname(c)}</option>`).sort((a, b) => a.replace(/<[^>]+>/g, "").localeCompare(b.replace(/<[^>]+>/g, ""), L10N.dateLang)).join("");
     const money = (v, cur) => { try { return new Intl.NumberFormat(L10N.dateLang, { style: "currency", currency: cur, minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 }).format(v); } catch { return `${cur} ${v}`; } };
+    let period = "yr", cur0 = "US";
+    const segs = [...document.querySelectorAll("[data-period]")];
     function apply(code) {
-      const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US";
+      const s = STOREFRONTS[code] || STOREFRONTS.US; code = STOREFRONTS[code] ? code : "US"; cur0 = code;
       const [name, cur, cm, cy, dm, dy] = s;
       const fp = $("[data-price='free']"); if (fp) fp.textContent = money(0, cur);
-      $("[data-price='core_mo']").textContent = money(cm, cur); $("[data-price='core_yr']").textContent = money(cy, cur);
-      $("[data-price='deep_mo']").textContent = money(dm, cur); $("[data-price='deep_yr']").textContent = money(dy, cur);
-      $("[data-save='core']").textContent = L10N.save(Math.round((1 - cy / (cm * 12)) * 100)); $("[data-save='deep']").textContent = L10N.save(Math.round((1 - dy / (dm * 12)) * 100));
+      const pct = (m, y) => Math.round((1 - y / (m * 12)) * 100);
+      for (const [k, m, y] of [["core", cm, cy], ["deep", dm, dy]]) {
+        const yr = period === "yr";
+        $(`[data-amt='${k}']`).textContent = money(yr ? y : m, cur);
+        $(`[data-per='${k}']`).textContent = yr ? L10N.perYear : L10N.perMonth;
+        $(`[data-alt='${k}']`).textContent = yr ? L10N.billedYearly(money(y / 12 >= 100 ? Math.round(y / 12) : Math.round(y / 12 * 100) / 100, cur)) : L10N.orYearly(money(y, cur), pct(m, y));
+      }
+      const sm = $("[data-save-max]"); if (sm) sm.textContent = L10N.saveUpTo(Math.max(pct(cm, cy), pct(dm, dy)));
       note.textContent = code === "US" ? L10N.usPrices : L10N.pricesIn(cur);
       sel.value = code; document.documentElement.dataset.storeCountry = code;
     }
+    segs.forEach(b => b.addEventListener("click", () => { period = b.dataset.period; segs.forEach(x => x.setAttribute("aria-pressed", String(x === b))); apply(cur0); }));
     sel.addEventListener("change", () => { try { localStorage.setItem("mn.storefront", sel.value); } catch {} apply(sel.value); });
     let chosen = null; try { chosen = localStorage.getItem("mn.storefront"); } catch {}
     if (chosen && STOREFRONTS[chosen]) return apply(chosen);
