@@ -1,0 +1,81 @@
+# One-time job: publish the launch-day website changes (branch launch-2026-11-15)
+# after the app's paid plans go live on 15 November 2026 at 02:00 PT.
+# Runs at 10:15 UTC (02:15 PT, 15:45 IST). The cron fires every 15 November, so the
+# first step skips any year but 2026. Delete this file once the launch is live.
+name: Launch day website (15 Nov 2026)
+
+on:
+  schedule:
+    - cron: "15 10 15 11 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: launch-2026-11-15
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only in 2026, not before 15 November 10:00 UTC
+        id: gate
+        run: |
+          now=$(date -u +%Y%m%d%H%M)
+          if [ "$now" -lt 202611151000 ] || [ "$(date -u +%Y)" != "2026" ]; then
+            echo "Outside the launch window ($now UTC); nothing to do."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out main
+        if: steps.gate.outputs.go == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Merge launch-2026-11-15 into main
+        if: steps.gate.outputs.go == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin launch-2026-11-15
+          if git merge-base --is-ancestor origin/launch-2026-11-15 HEAD; then
+            echo "Already merged; nothing to publish."
+            exit 0
+          fi
+          if git merge --ff-only origin/launch-2026-11-15; then
+            echo "Fast-forwarded main."
+          else
+            echo "main moved since the branch was made; trying a normal merge."
+            git merge --no-ff --no-edit origin/launch-2026-11-15 || {
+              git merge --abort
+              echo "::error::launch-2026-11-15 does not merge cleanly into main. Nothing was published. Rebase the branch (and re-run tools/build_locales.py) by hand."
+              exit 1
+            }
+          fi
+          git push origin HEAD:main
+
+      - name: Ask GitHub Pages to rebuild
+        if: steps.gate.outputs.go == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Build request failed; the push should still trigger a build."
+
+      - name: Wait until the live site shows the launch wording
+        if: steps.gate.outputs.go == 'true'
+        run: |
+          for i in $(seq 1 40); do
+            if curl -fsS "https://mirrornotes.org/llms.txt?v=$(date +%s)" | grep -q "Paid plans started 15 November 2026"; then
+              echo "Live after about $((i * 15)) seconds."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::The merge was pushed, but mirrornotes.org did not show the launch wording within 10 minutes. Check the Pages deployment in the Actions tab."
+          exit 1
