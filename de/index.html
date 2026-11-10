@@ -422,6 +422,47 @@
     @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
+
+    /* ── 2026-11-10 page pass ── */
+    .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    /* reflection: what the app checks, under the entry */
+    .checks-card { margin-top: 18px; padding: 18px 20px; border-radius: 18px; background: var(--surface2); border: 1px solid var(--border); }
+    .checks-card h3 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .checks-card ol { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+    .checks-card li { counter-increment: c; display: flex; gap: 12px; padding: 7px 0; font-size: 15px; color: var(--text); line-height: 1.45; }
+    .checks-card li::before { content: counter(c); flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--surface3); color: var(--accent); font-size: 12px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+    .engine-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 36px; padding: 16px 20px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); font-size: 14.5px; color: var(--text-2); line-height: 1.55; max-width: 760px; text-align: left; }
+    .engine-note svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 1px; }
+    /* privacy band */
+    #privacy { background: linear-gradient(160deg, #4E1B3C 0%, #6E2A55 62%, #7E3364 100%); color: #fff; }
+    #privacy .kicker { color: #F1C9E2; }
+    #privacy h2 { color: #fff; } #privacy .lede { color: rgba(255,255,255,.84); }
+    #privacy .arch { max-width: none; margin-top: 8px; }
+    #privacy .node { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); box-shadow: none; padding: 30px 18px 26px; }
+    #privacy .node b { color: #fff; font-size: 18px; } #privacy .node small { color: rgba(255,255,255,.75); font-size: 14px; }
+    #privacy .node.ok svg { color: #8FD9A8; width: 32px; height: 32px; }
+    #privacy .node.off { background: transparent; border: 1.5px dashed rgba(255,255,255,.3); }
+    #privacy .node.off b { color: rgba(255,255,255,.7); } #privacy .node.off small, #privacy .node.off svg { color: rgba(255,255,255,.6); }
+    #privacy .arch .link { color: rgba(255,255,255,.7); font-size: 22px; }
+    #privacy .plain-list { border-top: 1px solid rgba(255,255,255,.16); margin-top: 48px; }
+    #privacy .plain-list b { color: #fff; font-size: 17px; } #privacy .plain-list p { color: rgba(255,255,255,.78); font-size: 15px; }
+    /* journey timeline */
+    .steps { position: relative; }
+    .steps::before { content: ''; position: absolute; left: 31px; right: calc((100% - 48px) / 4 - 31px); top: 31px; height: 2px; background: linear-gradient(90deg, var(--surface3), var(--accent)); z-index: 0; }
+    .step { position: relative; z-index: 1; grid-template-columns: 1fr; gap: 16px; align-content: start; }
+    .step .day { width: 62px; height: 62px; border-radius: 50%; background: var(--surface3); color: var(--accent); box-shadow: 0 0 0 6px var(--bg); }
+    .step .day span { opacity: 1; }
+    .step .day.lit { background: var(--accent-btn); color: #fff; }
+    .step .day.full { background: #4E1B3C; color: #fff; }
+    .step h3 { font-size: 18px; } .step p { font-size: 15px; line-height: 1.5; }
+    @media (max-width: 900px) { .steps::before { display: none; } .step { grid-template-columns: 62px 1fr; } }
+    /* final CTA card */
+    #final .cta-card { position: relative; overflow: hidden; border-radius: 32px; padding: 64px 28px 60px; background: linear-gradient(150deg, #4E1B3C 0%, #6E2A55 55%, #9A4478 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(78,27,60,.6); }
+    #final .cta-card::after { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -180px; border-radius: 50%; background: rgba(255,255,255,.06); pointer-events: none; }
+    #final .cta-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 22px; display: block; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35), 0 10px 24px -8px rgba(0,0,0,.45); }
+    #final h2 { color: #fff; } #final .lede { color: rgba(255,255,255,.84); }
+    #final .btn-light { background: #fff; color: #4E1B3C; box-shadow: 0 12px 28px -10px rgba(0,0,0,.45); }
+    #final .btn-light:hover { background: #F7EEF3; }
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
     #final .lede { margin: 0 auto 30px; }
@@ -488,6 +529,7 @@
 <section id="reflection">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">So funktioniert es</div>
       <h2>Jede Reflexion beginnt mit einem Satz, den du geschrieben hast.</h2>
       <p class="lede">Wort für Wort, in Anführungszeichen. Dann ein Satz dazu, wie sich der Tag liest. Keine Zusammenfassung, keine Vermutung über dein Leben.</p>
     </div>
@@ -495,6 +537,7 @@
       <div>
         <p class="lead-in">Ein Beispieleintrag</p>
         <div data-entry-full><!-- static:entry --><article class="entry full" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">Erste Woche als Leiterin des neuen Projekts. <mark class="draw">Heute Morgen war ich nervös, aber der Auftakt lief besser als erwartet.</mark> Lena meinte, mein Plan sei der klarste, den sie je gesehen hat.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Hoffnungsvoll</span></div></div></article><!-- /static:entry --></div>
+        <div class="checks-card"><h3>Bevor sie erscheint</h3><ol><li>Ein Satz wird Wort für Wort aus deinem Eintrag übernommen.</li><li>Die App prüft, ob dieser Satz wirklich im Eintrag steht.</li><li>Kein Satz, den sie zitieren kann, keine Reflexion: Du siehst die ehrliche Karte unten.</li></ol></div>
       </div>
       <div>
         <p class="lead-in">Seine Reflexion, am selben Morgen</p>
@@ -508,7 +551,7 @@
     <div class="pair honest" data-reveal>
       <div>
         <p class="lead-in">Und wenn sich im Eintrag nichts zitieren lässt</p>
-        <p class="honest-copy">Bevor eine Reflexion erscheint, prüft die App, ob der zitierte Satz wirklich im Eintrag steht. Findet sie keinen, ist das die ganze Karte. Keine erfundenen Details, kein Füllmaterial. Niemand sonst kann dir diese Karte zeigen.</p>
+        <p class="honest-copy">Findet sie keinen, ist das die ganze Karte. Keine erfundenen Details, kein Füllmaterial. Niemand sonst kann dir diese Karte zeigen.</p>
       </div>
       <div>
         <article class="card honest-card reveal" style="--i:2">
@@ -518,13 +561,14 @@
         </article>
       </div>
     </div>
-    <p class="fine">Auf iPhones mit Apple Intelligence läuft die Reflexion auf Apples Foundation Models, auf jedem anderen unterstützten iPhone auf dem mitgelieferten Gemma-3-Modell. Beides auf dem Telefon, nichts online.</p>
+    <p class="fine engine-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></svg><span>Auf iPhones mit Apple Intelligence läuft die Reflexion auf Apples Foundation Models, auf jedem anderen unterstützten iPhone auf dem mitgelieferten Gemma-3-Modell. Beides auf dem Telefon, nichts online.</span></p>
   </div>
 </section>
 
 <section id="privacy">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Datenschutz</div>
       <h2>Dein Tagebuchtext kann dein Telefon nicht verlassen. Es gibt keinen Server, an den er gehen könnte.</h2>
       <p class="lede">Wir haben keine Datenschutzerklärung um Cloud-KI herum gebaut. Wir haben die Cloud ganz weggelassen. Das Modell läuft auf dem Chip deines iPhones, demselben, der Face ID antreibt. Kein Netzwerkaufruf. Nichts, was man abfangen könnte.</p>
     </div>
@@ -535,12 +579,18 @@
       <span class="link">✕</span>
       <div class="node off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><b>Irgendein Server</b><small>Wird nie erreicht</small></div>
     </div>
+    <div class="plain-list">
+      <div><b>Nie ein Konto</b><p>Keine E-Mail, kein Passwort, kein Anmeldebildschirm. Nichts, was gehackt werden könnte, weil wir nie gefragt haben, wer du bist.</p></div>
+      <div><b>Funktioniert im Flugmodus</b><p>Die KI braucht kein Internet. Schreib und reflektiere im Flugzeug, in der Hütte, im Funkloch.</p></div>
+      <div><b>iCloud-Backup</b><p>Einträge synchronisieren sich in deine iCloud, privat unter deiner Apple-ID. Wir haben keinen Zugriff. Auch die Volltextsuche läuft lokal.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Funktionen</div>
       <h2>KI, die dich kennt. Und bei dir bleibt.</h2>
       <p class="lede">Wenige Werkzeuge, gebaut um das Eine, das Tagebuchschreiben wirksam macht: Ehrlichkeit. Alles hier unten entsteht auf deinem Telefon, aus deinen eigenen Einträgen. Die Beispiele stammen aus demselben Beispiel-Tagebuch wie oben.</p>
       <p class="tier-legend"><span class="tt free">Kostenlos</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>zeigen, welchen Plan es jeweils braucht.</span><a href="#pricing">Pläne vergleichen</a></p>
@@ -592,25 +642,21 @@
         <article class="card nc" data-stillopen></article>
       </div>
     </div>
-    <div class="plain-list">
-      <div><b>Nie ein Konto</b><p>Keine E-Mail, kein Passwort, kein Anmeldebildschirm. Nichts, was gehackt werden könnte, weil wir nie gefragt haben, wer du bist.</p></div>
-      <div><b>Funktioniert im Flugmodus</b><p>Die KI braucht kein Internet. Schreib und reflektiere im Flugzeug, in der Hütte, im Funkloch.</p></div>
-      <div><b>iCloud-Backup</b><p>Einträge synchronisieren sich in deine iCloud, privat unter deiner Apple-ID. Wir haben keinen Zugriff. Auch die Volltextsuche läuft lokal.</p></div>
-    </div>
   </div>
 </section>
 
 <section id="journey">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Deine erste Woche</div>
       <h2>KI, die sich Vertrauen verdient, bevor sie spricht.</h2>
       <p class="lede">Wir warten, bis MirrorNotes genug von dir gelesen hat, bevor es Einsichten zeigt. Keine schwachen Vermutungen am ersten Tag.</p>
     </div>
     <div class="steps" data-reveal>
       <div class="step reveal" style="--i:0"><div class="day"><b>0</b><span>TAG</span></div><div><h3>Ankommen</h3><p>Drei kurze Fragen. Schreib deinen ersten Eintrag. Kein Konto, keine E-Mail, keine Anmeldung.</p></div></div>
       <div class="step reveal" style="--i:2"><div class="day"><b>1–3</b><span>TAGE</span></div><div><h3>Mirror lernt</h3><p>Schreib frei. Noch keine KI: Wir brauchen erst Signal, bevor wir Einsichten anbieten. Du siehst einen ruhigen Fortschrittsbalken statt schlechter Vermutungen.</p></div></div>
-      <div class="step reveal" style="--i:4"><div class="day mood" style="background:#9575CD"><b>4</b><span>TAG</span></div><div><h3>Erste Reflexion</h3><p>Nach einer Woche Einträgen kennt MirrorNotes deine Muster. Deine erste Reflexion erscheint und zitiert, was du wirklich geschrieben hast.</p></div></div>
-      <div class="step reveal" style="--i:6"><div class="day mood" style="background:#66BB6A"><b>2+</b><span>WOCHE</span></div><div><h3>Volles Erlebnis</h3><p>Tägliche Reflexionen, Fragen, Wochenrückblick, Stimmungsverlauf. Die KI wird schärfer, je größer dein Archiv wird.</p></div></div>
+      <div class="step reveal" style="--i:4"><div class="day lit"><b>4</b><span>TAG</span></div><div><h3>Erste Reflexion</h3><p>Sobald genug echtes Geschriebenes da ist, erscheint deine erste Reflexion und zitiert, was du wirklich geschrieben hast. Die erste ist kostenlos.</p></div></div>
+      <div class="step reveal" style="--i:6"><div class="day full"><b>2+</b><span>WOCHE</span></div><div><h3>Volles Erlebnis</h3><p>Tägliche Reflexionen, Fragen, Wochenrückblick, Stimmungsverlauf. Die KI wird schärfer, je größer dein Archiv wird.</p></div></div>
     </div>
   </div>
 </section>
@@ -618,6 +664,7 @@
 <section id="prompts">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Frage ausprobieren</div>
       <h2>30 Fragen, die durch den Lärm schneiden.</h2>
       <p class="lede">Solche Fragen stellt MirrorNotes, abgeleitet aus dem, was du wirklich geschrieben hast. Such dir eine, die trifft.</p>
     </div>
@@ -636,6 +683,7 @@
 <section id="pricing">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Preise</div>
       <h2>Schreiben bleibt kostenlos, für immer. Du zahlst nur für die KI.</h2>
       <p class="lede">Schreiben ist kostenlos, für immer. Ab dem 15. November 2026 gibt es die KI in zwei Plänen, mit 7 Tagen kostenlos zum Ausprobieren für neue Abonnenten. Deine Einträge, dein Verlauf, die Suche und das iCloud-Backup kosten nie etwas.</p>
     </div>
@@ -694,9 +742,12 @@
 
 <section id="final">
   <div class="wrap">
+    <div class="cta-card">
+    <img class="cta-icon" src="/apple-touch-icon.png" alt="" width="72" height="72" loading="lazy">
     <h2>Deine ehrlichsten Gedanken verdienen einen privaten Ort.</h2>
     <p class="lede">Kein Konto. Kein Server. Kein Datendeal. Nur du, dein Telefon und eine KI, die bleibt, wo sie hingehört.</p>
-    <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Kostenlos fürs iPhone laden</a>
+    <a class="btn btn-light" href="https://apps.apple.com/app/id6769007201">Kostenlos fürs iPhone laden</a>
+    </div>
   </div>
 </section>
 </main>
@@ -814,7 +865,7 @@
   $("[data-entry-full]").innerHTML = card(entries[0], true);
   $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
   const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
-  document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`);
+  { const at = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44); const label = L10N.dateLang.startsWith("en") ? `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(at)}` : new Intl.DateTimeFormat(L10N.dateLang, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(at); document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = label); }
 
   // digest
   const lastSunday = new Date(today); lastSunday.setDate(lastSunday.getDate() - lastSunday.getDay());

@@ -422,6 +422,47 @@
     @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
+
+    /* ── 2026-11-10 page pass ── */
+    .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    /* reflection: what the app checks, under the entry */
+    .checks-card { margin-top: 18px; padding: 18px 20px; border-radius: 18px; background: var(--surface2); border: 1px solid var(--border); }
+    .checks-card h3 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .checks-card ol { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+    .checks-card li { counter-increment: c; display: flex; gap: 12px; padding: 7px 0; font-size: 15px; color: var(--text); line-height: 1.45; }
+    .checks-card li::before { content: counter(c); flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--surface3); color: var(--accent); font-size: 12px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+    .engine-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 36px; padding: 16px 20px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); font-size: 14.5px; color: var(--text-2); line-height: 1.55; max-width: 760px; text-align: left; }
+    .engine-note svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 1px; }
+    /* privacy band */
+    #privacy { background: linear-gradient(160deg, #4E1B3C 0%, #6E2A55 62%, #7E3364 100%); color: #fff; }
+    #privacy .kicker { color: #F1C9E2; }
+    #privacy h2 { color: #fff; } #privacy .lede { color: rgba(255,255,255,.84); }
+    #privacy .arch { max-width: none; margin-top: 8px; }
+    #privacy .node { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); box-shadow: none; padding: 30px 18px 26px; }
+    #privacy .node b { color: #fff; font-size: 18px; } #privacy .node small { color: rgba(255,255,255,.75); font-size: 14px; }
+    #privacy .node.ok svg { color: #8FD9A8; width: 32px; height: 32px; }
+    #privacy .node.off { background: transparent; border: 1.5px dashed rgba(255,255,255,.3); }
+    #privacy .node.off b { color: rgba(255,255,255,.7); } #privacy .node.off small, #privacy .node.off svg { color: rgba(255,255,255,.6); }
+    #privacy .arch .link { color: rgba(255,255,255,.7); font-size: 22px; }
+    #privacy .plain-list { border-top: 1px solid rgba(255,255,255,.16); margin-top: 48px; }
+    #privacy .plain-list b { color: #fff; font-size: 17px; } #privacy .plain-list p { color: rgba(255,255,255,.78); font-size: 15px; }
+    /* journey timeline */
+    .steps { position: relative; }
+    .steps::before { content: ''; position: absolute; left: 31px; right: calc((100% - 48px) / 4 - 31px); top: 31px; height: 2px; background: linear-gradient(90deg, var(--surface3), var(--accent)); z-index: 0; }
+    .step { position: relative; z-index: 1; grid-template-columns: 1fr; gap: 16px; align-content: start; }
+    .step .day { width: 62px; height: 62px; border-radius: 50%; background: var(--surface3); color: var(--accent); box-shadow: 0 0 0 6px var(--bg); }
+    .step .day span { opacity: 1; }
+    .step .day.lit { background: var(--accent-btn); color: #fff; }
+    .step .day.full { background: #4E1B3C; color: #fff; }
+    .step h3 { font-size: 18px; } .step p { font-size: 15px; line-height: 1.5; }
+    @media (max-width: 900px) { .steps::before { display: none; } .step { grid-template-columns: 62px 1fr; } }
+    /* final CTA card */
+    #final .cta-card { position: relative; overflow: hidden; border-radius: 32px; padding: 64px 28px 60px; background: linear-gradient(150deg, #4E1B3C 0%, #6E2A55 55%, #9A4478 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(78,27,60,.6); }
+    #final .cta-card::after { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -180px; border-radius: 50%; background: rgba(255,255,255,.06); pointer-events: none; }
+    #final .cta-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 22px; display: block; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35), 0 10px 24px -8px rgba(0,0,0,.45); }
+    #final h2 { color: #fff; } #final .lede { color: rgba(255,255,255,.84); }
+    #final .btn-light { background: #fff; color: #4E1B3C; box-shadow: 0 12px 28px -10px rgba(0,0,0,.45); }
+    #final .btn-light:hover { background: #F7EEF3; }
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
     #final .lede { margin: 0 auto 30px; }
@@ -488,6 +529,7 @@
 <section id="reflection">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">工作原理</div>
       <h2>每一次回看，都从你写下的一句话开始。</h2>
       <p class="lede">一字不差，加上引号。然后用一行字说说这一天读起来是什么样。不是摘要，也不是对你生活的猜测。</p>
     </div>
@@ -495,6 +537,7 @@
       <div>
         <p class="lead-in">一篇示例日记</p>
         <div data-entry-full><!-- static:entry --><article class="entry full" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">带领新项目的第一周。<mark class="draw">今天早上我很紧张，但启动会比我预想的顺利。</mark>林悦说我的计划是她见过最清楚的。</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>充满希望</span></div></div></article><!-- /static:entry --></div>
+        <div class="checks-card"><h3>显示之前</h3><ol><li>从你的日记里原样取出一句话。</li><li>应用核对这句话确实在日记里。</li><li>没有可引用的句子，就没有回看：你会看到下面这张如实的卡片。</li></ol></div>
       </div>
       <div>
         <p class="lead-in">同一个早晨的回看</p>
@@ -508,7 +551,7 @@
     <div class="pair honest" data-reveal>
       <div>
         <p class="lead-in">当日记里没有可引用的句子时</p>
-        <p class="honest-copy">在显示回看之前，应用会核对引用的那句话是否真的出现在日记里。找不到的话，这张卡片就是全部。没有编造的细节，没有凑数的话。没有别的应用能给你看这张卡片。</p>
+        <p class="honest-copy">找不到的话，这张卡片就是全部。没有编造的细节，没有凑数的话。没有别的应用能给你看这张卡片。</p>
       </div>
       <div>
         <article class="card honest-card reveal" style="--i:2">
@@ -518,13 +561,14 @@
         </article>
       </div>
     </div>
-    <p class="fine">支持 Apple Intelligence 的 iPhone 上，回看运行 Apple 的 Foundation Models；其他受支持的 iPhone 上运行内置的 Gemma 3 模型。都在手机上，都不联网。</p>
+    <p class="fine engine-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></svg><span>支持 Apple Intelligence 的 iPhone 上，回看运行 Apple 的 Foundation Models；其他受支持的 iPhone 上运行内置的 Gemma 3 模型。都在手机上，都不联网。</span></p>
   </div>
 </section>
 
 <section id="privacy">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">隐私</div>
       <h2>你的日记文字离不开你的手机。根本没有可以发送的服务器。</h2>
       <p class="lede">我们没有围绕云端 AI 去写隐私政策，而是把云端整个拿掉了。模型在你 iPhone 自己的芯片上运行，就是驱动 Face ID 的那一颗。没有网络请求，也就没有什么可拦截。</p>
     </div>
@@ -535,12 +579,18 @@
       <span class="link">✕</span>
       <div class="node off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><b>任何服务器</b><small>永远到不了</small></div>
     </div>
+    <div class="plain-list">
+      <div><b>从不需要账号</b><p>没有邮箱、没有密码、没有登录页。没什么可泄露的，因为我们从没问过你是谁。</p></div>
+      <div><b>飞行模式也能用</b><p>AI 不需要互联网。在飞机上、小木屋里、没有信号的地方，照样写、照样回看。</p></div>
+      <div><b>iCloud 备份</b><p>日记同步到你的 iCloud，在你的 Apple ID 下私密保存。我们无法访问。全文搜索也在本地完成。</p></div>
+    </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">功能</div>
       <h2>了解你的 AI，留在你身边的 AI。</h2>
       <p class="lede">一组精简的工具，围绕让写日记真正有用的那一件事：坦诚。下面的一切都在你的手机上、从你自己的日记里生成。示例来自上面同一本示例日记。</p>
       <p class="tier-legend"><span class="tt free">免费</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>标出每项功能所需的方案。</span><a href="#pricing">比较方案</a></p>
@@ -592,25 +642,21 @@
         <article class="card nc" data-stillopen></article>
       </div>
     </div>
-    <div class="plain-list">
-      <div><b>从不需要账号</b><p>没有邮箱、没有密码、没有登录页。没什么可泄露的，因为我们从没问过你是谁。</p></div>
-      <div><b>飞行模式也能用</b><p>AI 不需要互联网。在飞机上、小木屋里、没有信号的地方，照样写、照样回看。</p></div>
-      <div><b>iCloud 备份</b><p>日记同步到你的 iCloud，在你的 Apple ID 下私密保存。我们无法访问。全文搜索也在本地完成。</p></div>
-    </div>
   </div>
 </section>
 
 <section id="journey">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">你的第一周</div>
       <h2>先赢得信任，再开口的 AI。</h2>
       <p class="lede">在 MirrorNotes 读够你的文字之前，它不会给出任何洞察。第一天不会有敷衍的猜测。</p>
     </div>
     <div class="steps" data-reveal>
       <div class="step reveal" style="--i:0"><div class="day"><b>0</b><span>第 0 天</span></div><div><h3>熟悉一下</h3><p>三个简短的问题。写下第一篇日记。没有账号、没有邮箱、没有登录。</p></div></div>
       <div class="step reveal" style="--i:2"><div class="day"><b>1–3</b><span>第 1–3 天</span></div><div><h3>Mirror 正在学习</h3><p>自由地写。此时还没有 AI：在给出洞察之前，我们需要足够的线索。你看到的是一条安静的进度条，而不是糟糕的猜测。</p></div></div>
-      <div class="step reveal" style="--i:4"><div class="day mood" style="background:#9575CD"><b>4</b><span>第 4 天</span></div><div><h3>第一次回看</h3><p>有了一周的日记，MirrorNotes 就了解了你的模式。第一次回看出现，引用的是你真正写下的话。</p></div></div>
-      <div class="step reveal" style="--i:6"><div class="day mood" style="background:#66BB6A"><b>2+</b><span>第 2 周起</span></div><div><h3>完整体验</h3><p>每日回看、提问、每周摘要、心情曲线。随着记录增多，AI 也越来越敏锐。</p></div></div>
+      <div class="step reveal" style="--i:4"><div class="day lit"><b>4</b><span>第 4 天</span></div><div><h3>第一次回看</h3><p>写得足够多之后，第一次回看就会出现，引用的是你真正写下的话。第一次免费。</p></div></div>
+      <div class="step reveal" style="--i:6"><div class="day full"><b>2+</b><span>第 2 周起</span></div><div><h3>完整体验</h3><p>每日回看、提问、每周摘要、心情曲线。随着记录增多，AI 也越来越敏锐。</p></div></div>
     </div>
   </div>
 </section>
@@ -618,6 +664,7 @@
 <section id="prompts">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">试一个问题</div>
       <h2>30 个穿透噪音的问题。</h2>
       <p class="lede">MirrorNotes 问的就是这类问题，源自你真正写下的内容。找一个击中你的。</p>
     </div>
@@ -636,6 +683,7 @@
 <section id="pricing">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">价格</div>
       <h2>书写永远免费。只为 AI 付费。</h2>
       <p class="lede">写日记永远免费。自2026年11月15日起，AI 分为两种方案，新订阅者可享 7 天免费试用。你的日记、历史记录、搜索和 iCloud 备份永远不收费。</p>
     </div>
@@ -694,9 +742,12 @@
 
 <section id="final">
   <div class="wrap">
+    <div class="cta-card">
+    <img class="cta-icon" src="/apple-touch-icon.png" alt="" width="72" height="72" loading="lazy">
     <h2>最坦诚的想法，值得一个私密的空间。</h2>
     <p class="lede">没有账号。没有服务器。没有数据交易。只有你、你的手机，和一个待在该待的地方的 AI。</p>
-    <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">为 iPhone 免费下载</a>
+    <a class="btn btn-light" href="https://apps.apple.com/app/id6769007201">为 iPhone 免费下载</a>
+    </div>
   </div>
 </section>
 </main>
@@ -814,7 +865,7 @@
   $("[data-entry-full]").innerHTML = card(entries[0], true);
   $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
   const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
-  document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`);
+  { const at = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44); const label = L10N.dateLang.startsWith("en") ? `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(at)}` : new Intl.DateTimeFormat(L10N.dateLang, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(at); document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = label); }
 
   // digest
   const lastSunday = new Date(today); lastSunday.setDate(lastSunday.getDate() - lastSunday.getDay());

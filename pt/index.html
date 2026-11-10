@@ -422,6 +422,47 @@
     @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
+
+    /* ── 2026-11-10 page pass ── */
+    .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    /* reflection: what the app checks, under the entry */
+    .checks-card { margin-top: 18px; padding: 18px 20px; border-radius: 18px; background: var(--surface2); border: 1px solid var(--border); }
+    .checks-card h3 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .checks-card ol { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+    .checks-card li { counter-increment: c; display: flex; gap: 12px; padding: 7px 0; font-size: 15px; color: var(--text); line-height: 1.45; }
+    .checks-card li::before { content: counter(c); flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--surface3); color: var(--accent); font-size: 12px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+    .engine-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 36px; padding: 16px 20px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); font-size: 14.5px; color: var(--text-2); line-height: 1.55; max-width: 760px; text-align: left; }
+    .engine-note svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 1px; }
+    /* privacy band */
+    #privacy { background: linear-gradient(160deg, #4E1B3C 0%, #6E2A55 62%, #7E3364 100%); color: #fff; }
+    #privacy .kicker { color: #F1C9E2; }
+    #privacy h2 { color: #fff; } #privacy .lede { color: rgba(255,255,255,.84); }
+    #privacy .arch { max-width: none; margin-top: 8px; }
+    #privacy .node { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); box-shadow: none; padding: 30px 18px 26px; }
+    #privacy .node b { color: #fff; font-size: 18px; } #privacy .node small { color: rgba(255,255,255,.75); font-size: 14px; }
+    #privacy .node.ok svg { color: #8FD9A8; width: 32px; height: 32px; }
+    #privacy .node.off { background: transparent; border: 1.5px dashed rgba(255,255,255,.3); }
+    #privacy .node.off b { color: rgba(255,255,255,.7); } #privacy .node.off small, #privacy .node.off svg { color: rgba(255,255,255,.6); }
+    #privacy .arch .link { color: rgba(255,255,255,.7); font-size: 22px; }
+    #privacy .plain-list { border-top: 1px solid rgba(255,255,255,.16); margin-top: 48px; }
+    #privacy .plain-list b { color: #fff; font-size: 17px; } #privacy .plain-list p { color: rgba(255,255,255,.78); font-size: 15px; }
+    /* journey timeline */
+    .steps { position: relative; }
+    .steps::before { content: ''; position: absolute; left: 31px; right: calc((100% - 48px) / 4 - 31px); top: 31px; height: 2px; background: linear-gradient(90deg, var(--surface3), var(--accent)); z-index: 0; }
+    .step { position: relative; z-index: 1; grid-template-columns: 1fr; gap: 16px; align-content: start; }
+    .step .day { width: 62px; height: 62px; border-radius: 50%; background: var(--surface3); color: var(--accent); box-shadow: 0 0 0 6px var(--bg); }
+    .step .day span { opacity: 1; }
+    .step .day.lit { background: var(--accent-btn); color: #fff; }
+    .step .day.full { background: #4E1B3C; color: #fff; }
+    .step h3 { font-size: 18px; } .step p { font-size: 15px; line-height: 1.5; }
+    @media (max-width: 900px) { .steps::before { display: none; } .step { grid-template-columns: 62px 1fr; } }
+    /* final CTA card */
+    #final .cta-card { position: relative; overflow: hidden; border-radius: 32px; padding: 64px 28px 60px; background: linear-gradient(150deg, #4E1B3C 0%, #6E2A55 55%, #9A4478 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(78,27,60,.6); }
+    #final .cta-card::after { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -180px; border-radius: 50%; background: rgba(255,255,255,.06); pointer-events: none; }
+    #final .cta-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 22px; display: block; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35), 0 10px 24px -8px rgba(0,0,0,.45); }
+    #final h2 { color: #fff; } #final .lede { color: rgba(255,255,255,.84); }
+    #final .btn-light { background: #fff; color: #4E1B3C; box-shadow: 0 12px 28px -10px rgba(0,0,0,.45); }
+    #final .btn-light:hover { background: #F7EEF3; }
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
     #final .lede { margin: 0 auto 30px; }
@@ -488,6 +529,7 @@
 <section id="reflection">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Como funciona</div>
       <h2>Toda reflexão começa com uma frase que você escreveu.</h2>
       <p class="lede">Palavra por palavra, entre aspas. Depois, uma linha sobre como o dia se lê. Nem um resumo, nem um palpite sobre a sua vida.</p>
     </div>
@@ -495,6 +537,7 @@
       <div>
         <p class="lead-in">Uma entrada de exemplo</p>
         <div data-entry-full><!-- static:entry --><article class="entry full" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">Primeira semana à frente do novo projeto. <mark class="draw">Hoje de manhã eu estava nervosa, mas o kickoff foi melhor do que eu esperava.</mark> A Ana disse que meu plano era o mais claro que ela já viu.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Esperançoso</span></div></div></article><!-- /static:entry --></div>
+        <div class="checks-card"><h3>Antes de aparecer</h3><ol><li>Uma frase é tirada da sua entrada, palavra por palavra.</li><li>O app confere se essa frase está mesmo na entrada.</li><li>Sem frase para citar, sem reflexão: você vê o cartão honesto abaixo.</li></ol></div>
       </div>
       <div>
         <p class="lead-in">A reflexão dela, na mesma manhã</p>
@@ -508,7 +551,7 @@
     <div class="pair honest" data-reveal>
       <div>
         <p class="lead-in">E quando não há nada na entrada para citar</p>
-        <p class="honest-copy">Antes de mostrar uma reflexão, o app confere se a frase citada está mesmo na entrada. Se não encontra, este é o cartão inteiro. Sem detalhes inventados, sem enchimento. Ninguém mais consegue mostrar este cartão.</p>
+        <p class="honest-copy">Se não encontra, este é o cartão inteiro. Sem detalhes inventados, sem enchimento. Ninguém mais consegue mostrar este cartão.</p>
       </div>
       <div>
         <article class="card honest-card reveal" style="--i:2">
@@ -518,13 +561,14 @@
         </article>
       </div>
     </div>
-    <p class="fine">Em iPhones com Apple Intelligence a reflexão roda nos Foundation Models da Apple; em qualquer outro iPhone compatível, no modelo Gemma 3 incluído. Os dois no telefone, nenhum online.</p>
+    <p class="fine engine-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></svg><span>Em iPhones com Apple Intelligence a reflexão roda nos Foundation Models da Apple; em qualquer outro iPhone compatível, no modelo Gemma 3 incluído. Os dois no telefone, nenhum online.</span></p>
   </div>
 </section>
 
 <section id="privacy">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Privacidade</div>
       <h2>O texto do seu diário não pode sair do seu telefone. Não existe servidor para onde mandá-lo.</h2>
       <p class="lede">Não construímos uma política de privacidade em volta de IA na nuvem. Tiramos a nuvem por completo. O modelo roda no chip do seu iPhone, o mesmo que move o Face ID. Nenhuma chamada de rede. Nada a interceptar.</p>
     </div>
@@ -535,12 +579,18 @@
       <span class="link">✕</span>
       <div class="node off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><b>Qualquer servidor</b><small>Nunca alcançado</small></div>
     </div>
+    <div class="plain-list">
+      <div><b>Sem conta, nunca</b><p>Sem e-mail, sem senha, sem tela de login. Nada a vazar, porque nunca perguntamos quem você é.</p></div>
+      <div><b>Funciona no modo avião</b><p>A IA não precisa de internet. Escreva e reflita em um voo, numa cabana, sem sinal.</p></div>
+      <div><b>Backup no iCloud</b><p>As entradas sincronizam com o seu iCloud, privadas no seu ID Apple. Nós não temos acesso. A busca por texto também é local.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Recursos</div>
       <h2>Uma IA que conhece você. E fica com você.</h2>
       <p class="lede">Um conjunto enxuto de ferramentas construído em torno da única coisa que faz um diário funcionar: honestidade. Tudo abaixo é feito no seu telefone, a partir das suas próprias entradas. Os exemplos vêm do mesmo diário de exemplo acima.</p>
       <p class="tier-legend"><span class="tt free">Grátis</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>indicam o plano que cada um precisa.</span><a href="#pricing">Comparar planos</a></p>
@@ -592,25 +642,21 @@
         <article class="card nc" data-stillopen></article>
       </div>
     </div>
-    <div class="plain-list">
-      <div><b>Sem conta, nunca</b><p>Sem e-mail, sem senha, sem tela de login. Nada a vazar, porque nunca perguntamos quem você é.</p></div>
-      <div><b>Funciona no modo avião</b><p>A IA não precisa de internet. Escreva e reflita em um voo, numa cabana, sem sinal.</p></div>
-      <div><b>Backup no iCloud</b><p>As entradas sincronizam com o seu iCloud, privadas no seu ID Apple. Nós não temos acesso. A busca por texto também é local.</p></div>
-    </div>
   </div>
 </section>
 
 <section id="journey">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Sua primeira semana</div>
       <h2>Uma IA que conquista confiança antes de falar.</h2>
       <p class="lede">Esperamos o MirrorNotes ler o bastante do que você escreve antes de mostrar insights. Nada de palpites fracos no primeiro dia.</p>
     </div>
     <div class="steps" data-reveal>
       <div class="step reveal" style="--i:0"><div class="day"><b>0</b><span>DIA</span></div><div><h3>Se orientar</h3><p>Três perguntas rápidas. Escreva sua primeira entrada. Sem conta, sem e-mail, sem login.</p></div></div>
       <div class="step reveal" style="--i:2"><div class="day"><b>1–3</b><span>DIAS</span></div><div><h3>Mirror está aprendendo</h3><p>Escreva livremente. Ainda sem IA: precisamos de sinal antes de oferecer insights. Você vê uma barra de progresso discreta em vez de palpites ruins.</p></div></div>
-      <div class="step reveal" style="--i:4"><div class="day mood" style="background:#9575CD"><b>4</b><span>DIA</span></div><div><h3>Primeira reflexão</h3><p>Com uma semana de entradas, o MirrorNotes conhece seus padrões. Sua primeira reflexão aparece, citando o que você realmente escreveu.</p></div></div>
-      <div class="step reveal" style="--i:6"><div class="day mood" style="background:#66BB6A"><b>2+</b><span>SEMANA</span></div><div><h3>Experiência completa</h3><p>Reflexões diárias, perguntas, resumo semanal, linha do humor. A IA fica mais afiada conforme seu arquivo cresce.</p></div></div>
+      <div class="step reveal" style="--i:4"><div class="day lit"><b>4</b><span>DIA</span></div><div><h3>Primeira reflexão</h3><p>Quando já há escrita suficiente, sua primeira reflexão aparece, citando o que você realmente escreveu. A primeira é grátis.</p></div></div>
+      <div class="step reveal" style="--i:6"><div class="day full"><b>2+</b><span>SEMANA</span></div><div><h3>Experiência completa</h3><p>Reflexões diárias, perguntas, resumo semanal, linha do humor. A IA fica mais afiada conforme seu arquivo cresce.</p></div></div>
     </div>
   </div>
 </section>
@@ -618,6 +664,7 @@
 <section id="prompts">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Experimente uma pergunta</div>
       <h2>30 perguntas que cortam o ruído.</h2>
       <p class="lede">São o tipo de pergunta que o MirrorNotes faz, tiradas do que você realmente escreveu. Encontre uma que toque.</p>
     </div>
@@ -636,6 +683,7 @@
 <section id="pricing">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Preços</div>
       <h2>Escrever é grátis, para sempre. Você só paga pela IA.</h2>
       <p class="lede">Escrever é grátis, para sempre. A partir de 15 de novembro de 2026, a IA vem em dois planos, com um teste grátis de 7 dias para novos assinantes. Suas entradas, seu histórico, a busca e o backup no iCloud nunca custam nada.</p>
     </div>
@@ -694,9 +742,12 @@
 
 <section id="final">
   <div class="wrap">
+    <div class="cta-card">
+    <img class="cta-icon" src="/apple-touch-icon.png" alt="" width="72" height="72" loading="lazy">
     <h2>Seus pensamentos mais honestos merecem um espaço privado.</h2>
     <p class="lede">Sem conta. Sem servidor. Sem negócio com dados. Só você, seu telefone e uma IA que fica onde deve.</p>
-    <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Baixar grátis para iPhone</a>
+    <a class="btn btn-light" href="https://apps.apple.com/app/id6769007201">Baixar grátis para iPhone</a>
+    </div>
   </div>
 </section>
 </main>
@@ -814,7 +865,7 @@
   $("[data-entry-full]").innerHTML = card(entries[0], true);
   $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
   const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
-  document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`);
+  { const at = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44); const label = L10N.dateLang.startsWith("en") ? `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(at)}` : new Intl.DateTimeFormat(L10N.dateLang, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(at); document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = label); }
 
   // digest
   const lastSunday = new Date(today); lastSunday.setDate(lastSunday.getDate() - lastSunday.getDay());

@@ -439,6 +439,47 @@
     @media (max-width: 900px) { .new-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .new-grid { grid-template-columns: 1fr; } }
     /* ───── final + footer ───── */
+
+    /* ── 2026-11-10 page pass ── */
+    .kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    /* reflection: what the app checks, under the entry */
+    .checks-card { margin-top: 18px; padding: 18px 20px; border-radius: 18px; background: var(--surface2); border: 1px solid var(--border); }
+    .checks-card h3 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 8px; }
+    .checks-card ol { list-style: none; margin: 0; padding: 0; counter-reset: c; }
+    .checks-card li { counter-increment: c; display: flex; gap: 12px; padding: 7px 0; font-size: 15px; color: var(--text); line-height: 1.45; }
+    .checks-card li::before { content: counter(c); flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--surface3); color: var(--accent); font-size: 12px; font-weight: 700; display: grid; place-items: center; margin-top: 1px; }
+    .engine-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 36px; padding: 16px 20px; border-radius: 16px; border: 1px solid var(--border); background: var(--surface); font-size: 14.5px; color: var(--text-2); line-height: 1.55; max-width: 760px; text-align: left; }
+    .engine-note svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 1px; }
+    /* privacy band */
+    #privacy { background: linear-gradient(160deg, #4E1B3C 0%, #6E2A55 62%, #7E3364 100%); color: #fff; }
+    #privacy .kicker { color: #F1C9E2; }
+    #privacy h2 { color: #fff; } #privacy .lede { color: rgba(255,255,255,.84); }
+    #privacy .arch { max-width: none; margin-top: 8px; }
+    #privacy .node { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); box-shadow: none; padding: 30px 18px 26px; }
+    #privacy .node b { color: #fff; font-size: 18px; } #privacy .node small { color: rgba(255,255,255,.75); font-size: 14px; }
+    #privacy .node.ok svg { color: #8FD9A8; width: 32px; height: 32px; }
+    #privacy .node.off { background: transparent; border: 1.5px dashed rgba(255,255,255,.3); }
+    #privacy .node.off b { color: rgba(255,255,255,.7); } #privacy .node.off small, #privacy .node.off svg { color: rgba(255,255,255,.6); }
+    #privacy .arch .link { color: rgba(255,255,255,.7); font-size: 22px; }
+    #privacy .plain-list { border-top: 1px solid rgba(255,255,255,.16); margin-top: 48px; }
+    #privacy .plain-list b { color: #fff; font-size: 17px; } #privacy .plain-list p { color: rgba(255,255,255,.78); font-size: 15px; }
+    /* journey timeline */
+    .steps { position: relative; }
+    .steps::before { content: ''; position: absolute; left: 31px; right: calc((100% - 48px) / 4 - 31px); top: 31px; height: 2px; background: linear-gradient(90deg, var(--surface3), var(--accent)); z-index: 0; }
+    .step { position: relative; z-index: 1; grid-template-columns: 1fr; gap: 16px; align-content: start; }
+    .step .day { width: 62px; height: 62px; border-radius: 50%; background: var(--surface3); color: var(--accent); box-shadow: 0 0 0 6px var(--bg); }
+    .step .day span { opacity: 1; }
+    .step .day.lit { background: var(--accent-btn); color: #fff; }
+    .step .day.full { background: #4E1B3C; color: #fff; }
+    .step h3 { font-size: 18px; } .step p { font-size: 15px; line-height: 1.5; }
+    @media (max-width: 900px) { .steps::before { display: none; } .step { grid-template-columns: 62px 1fr; } }
+    /* final CTA card */
+    #final .cta-card { position: relative; overflow: hidden; border-radius: 32px; padding: 64px 28px 60px; background: linear-gradient(150deg, #4E1B3C 0%, #6E2A55 55%, #9A4478 100%); color: #fff; box-shadow: 0 30px 60px -30px rgba(78,27,60,.6); }
+    #final .cta-card::after { content: ''; position: absolute; width: 420px; height: 420px; right: -120px; top: -180px; border-radius: 50%; background: rgba(255,255,255,.06); pointer-events: none; }
+    #final .cta-icon { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 22px; display: block; box-shadow: 0 0 0 1.5px rgba(255,255,255,.35), 0 10px 24px -8px rgba(0,0,0,.45); }
+    #final h2 { color: #fff; } #final .lede { color: rgba(255,255,255,.84); }
+    #final .btn-light { background: #fff; color: #4E1B3C; box-shadow: 0 12px 28px -10px rgba(0,0,0,.45); }
+    #final .btn-light:hover { background: #F7EEF3; }
     #final { text-align: center; }
     #final h2 { max-width: 16em; margin: 0 auto 16px; }
     #final .lede { margin: 0 auto 30px; }
@@ -511,6 +552,7 @@
 <section id="reflection">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">How it works</div>
       <h2>Every reflection begins with a sentence you wrote.</h2>
       <p class="lede">Word for word, in quotation marks. Then one line about how the day reads. Not a summary, not a guess about your life.</p>
     </div>
@@ -518,6 +560,7 @@
       <div>
         <p class="lead-in">A sample entry</p>
         <div data-entry-full><!-- static:entry --><article class="entry full" style="--rail:#9575CD;--tint:#9575CD33;--i:0"><div class="tile"><b></b><span></span></div><div><p class="txt">First week leading the new project. <mark class="draw">I was nervous this morning, but the kickoff went better than I expected.</mark> Priya said my plan was the clearest she's seen.</p><div class="meta"><span></span><span class="mood-pill"><span class="dot" style="--c:#9575CD"></span>Hopeful</span></div></div></article><!-- /static:entry --></div>
+        <div class="checks-card"><h3>Before it's shown</h3><ol><li>One sentence is taken from your entry, word for word.</li><li>The app checks that sentence really is in the entry.</li><li>No sentence it can quote, no reflection: you see the honest card below.</li></ol></div>
       </div>
       <div>
         <p class="lead-in">Its reflection, the same morning</p>
@@ -531,7 +574,7 @@
     <div class="pair honest" data-reveal>
       <div>
         <p class="lead-in">And when nothing in the entry can be quoted</p>
-        <p class="honest-copy">Before a reflection is shown, the app checks that the quoted sentence really is in the entry. If it can't find one, this is the whole card. No invented detail, no filler. Nobody else can show you this card.</p>
+        <p class="honest-copy">If it can't find one, this is the whole card. No invented detail, no filler. Nobody else can show you this card.</p>
       </div>
       <div>
         <article class="card honest-card reveal" style="--i:2">
@@ -541,13 +584,14 @@
         </article>
       </div>
     </div>
-    <p class="fine">On iPhones with Apple Intelligence the reflection runs on Apple's Foundation Models; on every other supported iPhone, on the bundled Gemma 3 model. Both on the phone, neither online.</p>
+    <p class="fine engine-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6z"/></svg><span>On iPhones with Apple Intelligence the reflection runs on Apple's Foundation Models; on every other supported iPhone, on the bundled Gemma 3 model. Both on the phone, neither online.</span></p>
   </div>
 </section>
 
 <section id="privacy">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Privacy</div>
       <h2>Your journal text cannot leave your phone. There is no server to send it to.</h2>
       <p class="lede">We didn't build a privacy policy around cloud AI. We removed the cloud entirely. The model runs on your iPhone's own chip, the same one that powers Face ID. No network call. Nothing to intercept.</p>
     </div>
@@ -558,12 +602,18 @@
       <span class="link">✕</span>
       <div class="node off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><b>Any server</b><small>Never reached</small></div>
     </div>
+    <div class="plain-list">
+      <div><b>No account, ever</b><p>No email, no password, no sign-in screen. Nothing to breach, because we never asked who you are.</p></div>
+      <div><b>Works in airplane mode</b><p>The AI doesn't need the internet. Write and reflect on a flight, in a cabin, in a dead zone.</p></div>
+      <div><b>iCloud backup</b><p>Entries sync to your iCloud, private to your Apple ID. We don't have access. Full-text search is local too.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="features">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Features</div>
       <h2>AI that knows you. Stays with you.</h2>
       <p class="lede">A focused set of tools built around the one thing that makes journaling work: honesty. Everything below is made on your phone, from your own entries. The examples come from the same sample journal as above.</p>
       <p class="tier-legend"><span class="tt free">Free</span><span class="tt core">Core</span><span class="tt deep">Deep</span><span>mark the plan each one needs.</span><a href="#pricing">Compare plans</a></p>
@@ -615,25 +665,21 @@
         <article class="card nc" data-stillopen></article>
       </div>
     </div>
-    <div class="plain-list">
-      <div><b>No account, ever</b><p>No email, no password, no sign-in screen. Nothing to breach, because we never asked who you are.</p></div>
-      <div><b>Works in airplane mode</b><p>The AI doesn't need the internet. Write and reflect on a flight, in a cabin, in a dead zone.</p></div>
-      <div><b>iCloud backup</b><p>Entries sync to your iCloud, private to your Apple ID. We don't have access. Full-text search is local too.</p></div>
-    </div>
   </div>
 </section>
 
 <section id="journey">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Your first week</div>
       <h2>AI that earns trust before it speaks.</h2>
       <p class="lede">We wait until MirrorNotes has read enough of your writing before surfacing insights. No weak guesses on day one.</p>
     </div>
     <div class="steps" data-reveal>
       <div class="step reveal" style="--i:0"><div class="day"><b>0</b><span>DAY</span></div><div><h3>Get oriented</h3><p>Three quick questions. Write your first entry. No account, no email, no sign-in.</p></div></div>
       <div class="step reveal" style="--i:2"><div class="day"><b>1–3</b><span>DAYS</span></div><div><h3>Mirror is learning</h3><p>Write freely. No AI yet: we need signal before offering insight. You see a quiet progress bar instead of bad guesses.</p></div></div>
-      <div class="step reveal" style="--i:4"><div class="day mood" style="background:#9575CD"><b>4</b><span>DAY</span></div><div><h3>First reflection</h3><p>With a week of entries, MirrorNotes knows your patterns. Your first reflection appears, quoting what you actually wrote.</p></div></div>
-      <div class="step reveal" style="--i:6"><div class="day mood" style="background:#66BB6A"><b>2+</b><span>WEEK</span></div><div><h3>Full experience</h3><p>Daily reflections, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p></div></div>
+      <div class="step reveal" style="--i:4"><div class="day lit"><b>4</b><span>DAY</span></div><div><h3>First reflection</h3><p>Once there's enough real writing, your first reflection appears, quoting what you actually wrote. The first one is free.</p></div></div>
+      <div class="step reveal" style="--i:6"><div class="day full"><b>2+</b><span>WEEK</span></div><div><h3>Full experience</h3><p>Daily reflections, Ask, Weekly Digest, Mood Timeline. The AI sharpens as your archive grows.</p></div></div>
     </div>
   </div>
 </section>
@@ -641,6 +687,7 @@
 <section id="prompts">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Try a prompt</div>
       <h2>30 questions that cut through the noise.</h2>
       <p class="lede">These are the kinds of questions MirrorNotes asks, drawn from what you actually wrote. Find one that hits.</p>
     </div>
@@ -659,6 +706,7 @@
 <section id="pricing">
   <div class="wrap">
     <div class="intro">
+      <div class="kicker">Pricing</div>
       <h2>Free to write, forever. Pay only for the AI.</h2>
       <p class="lede">Writing is free, forever. From 15 November 2026 the AI comes in two plans, with a 7-day free trial for new subscribers. Your entries, your history, search and iCloud backup never cost anything.</p>
     </div>
@@ -717,9 +765,12 @@
 
 <section id="final">
   <div class="wrap">
+    <div class="cta-card">
+    <img class="cta-icon" src="/apple-touch-icon.png" alt="" width="72" height="72" loading="lazy">
     <h2>Your most honest thoughts deserve a private space.</h2>
     <p class="lede">No account. No server. No data deal. Just you, your phone, and an AI that stays where it belongs.</p>
-    <a class="btn btn-accent" href="https://apps.apple.com/app/id6769007201">Download free for iPhone</a>
+    <a class="btn btn-light" href="https://apps.apple.com/app/id6769007201">Download free for iPhone</a>
+    </div>
   </div>
 </section>
 </main>
@@ -838,7 +889,7 @@
   $("[data-entry-full]").innerHTML = card(entries[0], true);
   $("[data-reflection]").innerHTML = `${esc(L10N.youWrote)}<mark class="draw second">${L10N.open}${esc(QUOTE)}${L10N.close}</mark>${L10N.joiner}${esc(FEELING)}${ALSO ? `<span class="also reveal" style="--i:12">${esc(L10N.alsoWrote)}${L10N.open}${esc(ALSO)}${L10N.close}</span>` : ""}`;
   const fuq = (ALSO || QUOTE).replace(/[.。]$/, ""); $("[data-followup]").textContent = L10N.followUp(fuq);
-  document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44))}`);
+  { const at = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 44); const label = L10N.dateLang.startsWith("en") ? `${fmt(now, { day: "numeric", month: "short" })} at ${fTime(at)}` : new Intl.DateTimeFormat(L10N.dateLang, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(at); document.querySelectorAll("[data-reflection-time]").forEach(el => el.textContent = label); }
 
   // digest
   const lastSunday = new Date(today); lastSunday.setDate(lastSunday.getDate() - lastSunday.getDay());
